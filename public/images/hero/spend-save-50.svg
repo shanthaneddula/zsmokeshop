@@ -1,0 +1,40 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="deal50Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d97706;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b45309;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#deal50Grad)"/>
+  
+  <!-- Money bag icon -->
+  <g transform="translate(120, 120)">
+    <ellipse cx="60" cy="100" rx="45" ry="60" fill="#365314" opacity="0.8"/>
+    <rect x="45" y="60" width="30" height="20" rx="15" fill="#84cc16" opacity="0.9"/>
+    <circle cx="60" cy="80" r="25" fill="#65a30d" opacity="0.7"/>
+    <text x="60" y="90" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">$</text>
+  </g>
+  
+  <!-- 50+ illustration -->
+  <g transform="translate(250, 150)">
+    <text x="0" y="0" fill="white" font-family="Arial, sans-serif" font-size="72" font-weight="bold">$50</text>
+    <text x="120" y="-10" fill="white" font-family="Arial, sans-serif" font-size="48" font-weight="bold">+</text>
+  </g>
+  
+  <!-- 4% badge -->
+  <circle cx="350" cy="280" r="50" fill="#84cc16" opacity="0.95"/>
+  <text x="350" y="275" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">4%</text>
+  <text x="350" y="295" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14">OFF</text>
+  
+  <!-- Text content -->
+  <text x="450" y="130" fill="white" font-family="Arial, sans-serif" font-size="40" font-weight="bold">SPEND &amp; SAVE</text>
+  <text x="450" y="170" fill="white" font-family="Arial, sans-serif" font-size="28" opacity="0.9">Buy $50+ Get 4% OFF</text>
+  <text x="450" y="210" fill="white" font-family="Arial, sans-serif" font-size="20" opacity="0.8">The more you buy, the more you save!</text>
+  <text x="450" y="240" fill="white" font-family="Arial, sans-serif" font-size="18" opacity="0.8">Automatic discount applied at checkout</text>
+  <text x="450" y="265" fill="white" font-family="Arial, sans-serif" font-size="18" opacity="0.8">on qualifying orders</text>
+  
+  <!-- Call to action -->
+  <rect x="450" y="300" width="180" height="50" rx="25" fill="white" opacity="0.95"/>
+  <text x="540" y="330" text-anchor="middle" fill="#d97706" font-family="Arial, sans-serif" font-size="18" font-weight="bold">SHOP NOW</text>
+</svg>

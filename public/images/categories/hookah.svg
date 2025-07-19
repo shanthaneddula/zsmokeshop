@@ -1,0 +1,26 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hookahGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#hookahGrad)"/>
+  <!-- Hookah base -->
+  <ellipse cx="200" cy="320" rx="80" ry="30" fill="#92400e" opacity="0.8"/>
+  <ellipse cx="200" cy="280" rx="70" ry="40" fill="#b45309" opacity="0.7"/>
+  <!-- Stem -->
+  <rect x="195" y="200" width="10" height="80" fill="#451a03" opacity="0.9"/>
+  <!-- Bowl -->
+  <ellipse cx="200" cy="180" rx="25" ry="15" fill="#7c2d12" opacity="0.8"/>
+  <ellipse cx="200" cy="170" rx="30" ry="20" fill="#9a3412" opacity="0.7"/>
+  <!-- Hose -->
+  <path d="M 270 260 Q 320 240 350 260 Q 370 270 380 280" stroke="#451a03" stroke-width="8" fill="none" opacity="0.8"/>
+  <circle cx="380" cy="280" r="12" fill="#7c2d12" opacity="0.9"/>
+  <!-- Decorative patterns -->
+  <circle cx="200" cy="280" r="25" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.6"/>
+  <circle cx="200" cy="280" r="35" fill="none" stroke="#fbbf24" stroke-width="1" opacity="0.4"/>
+  <!-- Text -->
+  <text x="200" y="320" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="20" font-weight="bold">SHISHA &amp; HOOKAH</text>
+  <text x="200" y="350" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14" opacity="0.8">Traditional &amp; Modern</text>
+</svg>

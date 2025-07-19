@@ -1,0 +1,36 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="detoxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#detoxGrad)"/>
+  
+  <!-- Bottle -->
+  <rect x="170" y="120" width="60" height="160" rx="15" fill="#064e3b" opacity="0.8"/>
+  <rect x="180" y="100" width="40" height="30" rx="10" fill="#065f46" opacity="0.7"/>
+  <circle cx="200" cy="90" r="8" fill="#047857" opacity="0.8"/>
+  
+  <!-- Liquid -->
+  <rect x="175" y="160" width="50" height="115" rx="12" fill="#34d399" opacity="0.7"/>
+  
+  <!-- Label -->
+  <rect x="175" y="140" width="50" height="40" fill="white" opacity="0.9"/>
+  <text x="200" y="155" text-anchor="middle" fill="#047857" font-family="Arial, sans-serif" font-size="12" font-weight="bold">DETOX</text>
+  <text x="200" y="170" text-anchor="middle" fill="#065f46" font-family="Arial, sans-serif" font-size="8">CLEANSE</text>
+  
+  <!-- Pills/capsules -->
+  <ellipse cx="120" cy="180" rx="12" ry="8" fill="#6ee7b7" opacity="0.8"/>
+  <ellipse cx="140" cy="190" rx="12" ry="8" fill="#a7f3d0" opacity="0.8"/>
+  <ellipse cx="280" cy="200" rx="12" ry="8" fill="#6ee7b7" opacity="0.8"/>
+  <ellipse cx="300" cy="210" rx="12" ry="8" fill="#a7f3d0" opacity="0.8"/>
+  
+  <!-- Leaf decoration -->
+  <path d="M 150 250 Q 140 240 130 250 Q 140 260 150 250" fill="#10b981" opacity="0.6"/>
+  <path d="M 270 240 Q 280 230 290 240 Q 280 250 270 240" fill="#10b981" opacity="0.6"/>
+  
+  <!-- Text -->
+  <text x="200" y="320" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">DETOX</text>
+  <text x="200" y="350" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" opacity="0.8">Cleanse &amp; Purify</text>
+</svg>

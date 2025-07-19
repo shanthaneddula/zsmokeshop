@@ -1,0 +1,40 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="deal100Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#5b21b6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4c1d95;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#deal100Grad)"/>
+  
+  <!-- VIP crown icon -->
+  <g transform="translate(100, 120)">
+    <path d="M 50 80 L 70 40 L 90 80 L 110 40 L 130 80 L 120 100 L 60 100 Z" fill="#fbbf24" opacity="0.9"/>
+    <ellipse cx="90" cy="90" rx="30" ry="10" fill="#f59e0b" opacity="0.8"/>
+    <circle cx="90" cy="60" r="8" fill="#ef4444" opacity="0.9"/>
+  </g>
+  
+  <!-- 100+ illustration -->
+  <g transform="translate(220, 150)">
+    <text x="0" y="0" fill="white" font-family="Arial, sans-serif" font-size="64" font-weight="bold">$100</text>
+    <text x="120" y="-10" fill="white" font-family="Arial, sans-serif" font-size="48" font-weight="bold">+</text>
+  </g>
+  
+  <!-- 8% badge -->
+  <circle cx="350" cy="280" r="55" fill="#fbbf24" opacity="0.95"/>
+  <circle cx="350" cy="280" r="40" fill="#f59e0b" opacity="0.9"/>
+  <text x="350" y="275" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="bold">8%</text>
+  <text x="350" y="295" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14">OFF</text>
+  
+  <!-- Text content -->
+  <text x="450" y="120" fill="white" font-family="Arial, sans-serif" font-size="38" font-weight="bold">MAXIMUM SAVINGS</text>
+  <text x="450" y="160" fill="white" font-family="Arial, sans-serif" font-size="28" opacity="0.9">Buy $100+ Get 8% OFF</text>
+  <text x="450" y="200" fill="white" font-family="Arial, sans-serif" font-size="20" opacity="0.8">Our biggest discount for VIP customers!</text>
+  <text x="450" y="230" fill="white" font-family="Arial, sans-serif" font-size="18" opacity="0.8">Stack up on your favorites and save big</text>
+  <text x="450" y="255" fill="white" font-family="Arial, sans-serif" font-size="18" opacity="0.8">Free shipping included on orders $100+</text>
+  
+  <!-- Call to action -->
+  <rect x="450" y="300" width="200" height="50" rx="25" fill="white" opacity="0.95"/>
+  <text x="550" y="330" text-anchor="middle" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18" font-weight="bold">SHOP BIG SAVE</text>
+</svg>

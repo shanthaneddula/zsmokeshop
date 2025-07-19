@@ -1,0 +1,47 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hookahDealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0891b2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0c4a6e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="400" fill="url(#hookahDealGrad)"/>
+  
+  <!-- Hookah illustration -->
+  <g opacity="0.8">
+    <!-- Base -->
+    <ellipse cx="200" cy="320" rx="60" ry="25" fill="#0f766e"/>
+    <ellipse cx="200" cy="290" rx="50" ry="35" fill="#14b8a6"/>
+    <!-- Stem -->
+    <rect x="195" y="220" width="10" height="70" fill="#134e4a"/>
+    <!-- Bowl -->
+    <ellipse cx="200" cy="200" rx="25" ry="12" fill="#0f766e"/>
+    <ellipse cx="200" cy="190" rx="30" ry="18" fill="#14b8a6"/>
+    <!-- Hose -->
+    <path d="M 260 270 Q 300 250 330 270 Q 350 280 360 290" stroke="#134e4a" stroke-width="6" fill="none"/>
+    <circle cx="360" cy="290" r="8" fill="#0f766e"/>
+  </g>
+  
+  <!-- Glass bong -->
+  <g opacity="0.7" transform="translate(100, 0)">
+    <!-- Base -->
+    <ellipse cx="200" cx="320" rx="40" ry="20" fill="#6ee7b7" opacity="0.6"/>
+    <rect x="185" y="200" width="30" height="120" fill="#34d399" opacity="0.7"/>
+    <ellipse cx="200" cy="200" rx="25" ry="25" fill="#10b981" opacity="0.8"/>
+    <rect x="190" y="150" width="20" height="50" fill="#059669" opacity="0.9"/>
+    <ellipse cx="200" cy="150" rx="15" ry="15" fill="#047857"/>
+  </g>
+  
+  <!-- Text content -->
+  <text x="450" y="120" fill="white" font-family="Arial, sans-serif" font-size="40" font-weight="bold">GLASS &amp; HOOKAH</text>
+  <text x="450" y="160" fill="white" font-family="Arial, sans-serif" font-size="32" font-weight="bold">SPECIAL DEALS</text>
+  <text x="450" y="200" fill="white" font-family="Arial, sans-serif" font-size="20" opacity="0.9">Premium water pipes, bongs,</text>
+  <text x="450" y="225" fill="white" font-family="Arial, sans-serif" font-size="20" opacity="0.9">and hookah accessories</text>
+  <text x="450" y="260" fill="white" font-family="Arial, sans-serif" font-size="18" opacity="0.8">High-quality borosilicate glass</text>
+  <text x="450" y="285" fill="white" font-family="Arial, sans-serif" font-size="18" opacity="0.8">Authentic hookah imports</text>
+  
+  <!-- Call to action -->
+  <rect x="450" y="320" width="200" height="50" rx="25" fill="white" opacity="0.95"/>
+  <text x="550" y="350" text-anchor="middle" fill="#0891b2" font-family="Arial, sans-serif" font-size="18" font-weight="bold">EXPLORE DEALS</text>
+</svg>

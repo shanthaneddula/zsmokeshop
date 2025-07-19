@@ -1,0 +1,21 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="smokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#smokeGrad)"/>
+  <!-- Vape device -->
+  <rect x="150" y="120" width="100" height="20" rx="10" fill="#2d3748" opacity="0.8"/>
+  <rect x="160" y="140" width="80" height="120" rx="15" fill="#4a5568" opacity="0.9"/>
+  <circle cx="200" cy="180" r="15" fill="#f7fafc" opacity="0.9"/>
+  <circle cx="200" cy="220" r="8" fill="#e53e3e" opacity="0.8"/>
+  <!-- Smoke effect -->
+  <path d="M 180 100 Q 185 80 190 60 Q 195 40 200 20" stroke="#f7fafc" stroke-width="3" fill="none" opacity="0.6"/>
+  <path d="M 200 100 Q 205 85 210 70 Q 215 50 220 30" stroke="#f7fafc" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M 220 100 Q 225 80 230 60 Q 235 45 240 25" stroke="#f7fafc" stroke-width="2" fill="none" opacity="0.4"/>
+  <!-- Text -->
+  <text x="200" y="320" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">VAPES</text>
+  <text x="200" y="350" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" opacity="0.8">Premium Quality</text>
+</svg>

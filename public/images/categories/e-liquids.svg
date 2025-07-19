@@ -1,0 +1,26 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#liquidGrad)"/>
+  <!-- Bottle -->
+  <rect x="170" y="150" width="60" height="120" rx="10" fill="#1e293b" opacity="0.8"/>
+  <rect x="180" y="140" width="40" height="20" rx="5" fill="#334155" opacity="0.7"/>
+  <rect x="190" y="120" width="20" height="20" fill="#475569" opacity="0.8"/>
+  <!-- Liquid level -->
+  <rect x="175" y="200" width="50" height="65" rx="8" fill="#06b6d4" opacity="0.7"/>
+  <!-- Label -->
+  <rect x="175" y="180" width="50" height="30" fill="#f8fafc" opacity="0.9"/>
+  <rect x="180" y="185" width="40" height="5" fill="#0ea5e9" opacity="0.8"/>
+  <rect x="180" y="195" width="30" height="3" fill="#64748b" opacity="0.6"/>
+  <rect x="180" y="200" width="25" height="3" fill="#64748b" opacity="0.6"/>
+  <!-- Dropper/cap -->
+  <rect x="195" y="110" width="10" height="10" fill="#374151" opacity="0.9"/>
+  <circle cx="200" cy="105" r="5" fill="#6b7280" opacity="0.8"/>
+  <!-- Text -->
+  <text x="200" y="320" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">E-LIQUIDS</text>
+  <text x="200" y="350" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" opacity="0.8">Premium Flavors</text>
+</svg>
