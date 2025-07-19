@@ -31,7 +31,7 @@ export function UICleanup() {
             // Only remove if outside our main app
             el.remove();
           });
-        } catch (e) {
+        } catch {
           // Ignore removal errors
         }
       });

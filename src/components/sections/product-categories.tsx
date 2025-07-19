@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
+// Image import removed as it's not currently used (uncomment when adding actual images)
+// import Image from "next/image";
 
 // Sample categories data - replace with actual content later
 const categories = [
@@ -76,7 +77,16 @@ export default function ProductCategories() {
   );
 }
 
-function CategoryCard({ category }) {
+// Define the category type
+type Category = {
+  id: number;
+  name: string;
+  image: string;
+  slug: string;
+  count: number;
+};
+
+function CategoryCard({ category }: { category: Category }) {
   const [isHovered, setIsHovered] = useState(false);
   
   return (
