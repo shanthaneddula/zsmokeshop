@@ -1,175 +1,175 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { MapPin, Phone, Clock, Navigation } from 'lucide-react';
-import { locations } from '@/data';
+
+interface StoreLocation {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  hours: {
+    weekdays: string;
+    weekends: string;
+  };
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  features: string[];
+}
+
+const storeLocations: StoreLocation[] = [
+  {
+    id: "z-smoke-shop",
+    name: "Z SMOKE SHOP",
+    address: "719 W William Cannon Dr #105, Austin, TX 78745",
+    phone: "+1 (661) 371-1413",
+    hours: {
+      weekdays: "Mon-Thu, Sun: 10:00 AM - 11:00 PM",
+      weekends: "Fri-Sat: 10:00 AM - 12:00 AM"
+    },
+    coordinates: {
+      lat: 30.2241,
+      lng: -97.7889
+    },
+    features: ["Large Parking", "Wheelchair Accessible", "Expert Staff", "Premium Selection"]
+  },
+  {
+    id: "five-star-smoke-shop",
+    name: "5 STAR SMOKE SHOP & GIFTS",
+    address: "5318 Cameron Rd, Austin, TX 78723",
+    phone: "+1 (661) 371-1413",
+    hours: {
+      weekdays: "Mon-Thu, Sun: 10:00 AM - 11:00 PM",
+      weekends: "Fri-Sat: 10:00 AM - 12:00 AM"
+    },
+    coordinates: {
+      lat: 30.2969,
+      lng: -97.6947
+    },
+    features: ["Large Parking", "Wheelchair Accessible", "Expert Staff", "Premium Selection"]
+  }
+];
 
 export default function LocationsPage() {
+  const openInMaps = (address: string) => {
+    const encodedAddress = encodeURIComponent(address);
+    window.open(`https://maps.google.com/?q=${encodedAddress}`, '_blank');
+  };
+
+  const callStore = (phone: string) => {
+    window.open(`tel:${phone}`, '_self');
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header Section */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12">
-        <div className="container mx-auto px-4">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-center mb-4"
-          >
-            Our Locations
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl text-center text-purple-100"
-          >
-            Visit us at either of our convenient Austin locations
-          </motion.p>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-12">
-        {/* Locations Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {locations.map((location, index) => (
-            <motion.div
-              key={location.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
-            >
-              {/* Location Header */}
-              <div className="bg-gradient-to-r from-purple-500 to-blue-500 text-white p-6">
-                <h2 className="text-2xl font-bold mb-2">
-                  Z SMOKE SHOP - Store {location.id}
-                </h2>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-5 h-5" />
-                  <span className="text-purple-100">Austin, Texas</span>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      {/* Clean header - Better proportions */}
+      <div className="py-16 bg-white dark:bg-gray-900">
+        <div className="container-wide">
+          <div className="mb-16">
+            <h1 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4 tracking-tight uppercase">
+              LOCATIONS
+            </h1>
+            <div className="w-16 h-0.5 bg-gray-900 dark:bg-white mb-6"></div>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-xl font-light">
+              Two Austin locations serving premium products with expert guidance
+            </p>
+          </div>
+          
+          {/* Clean grid layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            {storeLocations.map((location, index) => (
+              <div
+                key={location.id}
+                className="group"
+              >
+                {/* Store number indicator */}
+                <div className="flex items-center mb-6">
+                  <span className="text-4xl font-black text-gray-200 dark:text-gray-700 mr-4">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
                 </div>
-              </div>
 
-              {/* Location Details */}
-              <div className="p-6">
-                <div className="space-y-4 mb-6">
-                  <div className="flex items-start space-x-3">
-                    <MapPin className="w-6 h-6 text-purple-600 mt-0.5 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-semibold text-gray-800 mb-1">Address</h3>
-                      <p className="text-gray-600">{location.address}</p>
+                {/* Store name - bold typography */}
+                <h2 className="text-xl font-black text-gray-900 dark:text-white mb-6 tracking-tight leading-tight uppercase">
+                  {location.name}
+                </h2>
+
+                {/* Essential information - clean spacing */}
+                <div className="space-y-5">
+                  {/* Address */}
+                  <div className="flex items-start gap-4">
+                    <MapPin className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed font-light">
+                      {location.address}
+                    </p>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-center gap-4">
+                    <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                    <button
+                      onClick={() => callStore(location.phone)}
+                      className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors underline-offset-4 hover:underline"
+                    >
+                      {location.phone}
+                    </button>
+                  </div>
+
+                  {/* Hours - structured display */}
+                  <div className="flex items-start gap-4">
+                    <Clock className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                    <div className="text-gray-700 dark:text-gray-300 font-light">
+                      <p className="mb-1">{location.hours.weekdays}</p>
+                      <p>{location.hours.weekends}</p>
                     </div>
                   </div>
 
-                  {location.phone && (
-                    <div className="flex items-start space-x-3">
-                      <Phone className="w-6 h-6 text-purple-600 mt-0.5" />
-                      <div>
-                        <h3 className="font-semibold text-gray-800 mb-1">Phone</h3>
-                        <a 
-                          href={`tel:${location.phone}`}
-                          className="text-purple-600 hover:text-purple-700 transition-colors"
-                        >
-                          {location.phone}
-                        </a>
-                      </div>
-                    </div>
-                  )}
-
-                  {location.hours && (
-                    <div className="flex items-start space-x-3">
-                      <Clock className="w-6 h-6 text-purple-600 mt-0.5" />
-                      <div>
-                        <h3 className="font-semibold text-gray-800 mb-1">Hours</h3>
-                        <p className="text-gray-600">{location.hours}</p>
-                      </div>
-                    </div>
-                  )}
+                  {/* Features - minimal tags */}
+                  <div className="flex flex-wrap gap-3 pt-3">
+                    {location.features.map((feature, featureIndex) => (
+                      <span
+                        key={featureIndex}
+                        className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-300 dark:border-gray-600 pb-0.5"
+                      >
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={`https://maps.google.com/?q=${encodeURIComponent(location.address)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-purple-600 text-white py-3 px-4 rounded-lg hover:bg-purple-700 transition-colors font-medium text-center flex items-center justify-center"
-                  >
-                    <Navigation className="w-4 h-4 mr-2" />
-                    Get Directions
-                  </a>
-                  {location.phone && (
-                    <a
-                      href={`tel:${location.phone}`}
-                      className="flex-1 border border-purple-600 text-purple-600 py-3 px-4 rounded-lg hover:bg-purple-50 transition-colors font-medium text-center flex items-center justify-center"
-                    >
-                      <Phone className="w-4 h-4 mr-2" />
-                      Call Store
-                    </a>
-                  )}
-                </div>
+                {/* Single primary action - Adidas style */}
+                <button
+                  onClick={() => openInMaps(location.address)}
+                  className="mt-8 w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold py-4 px-6 transition-all duration-300 hover:bg-gray-800 dark:hover:bg-gray-100 flex items-center justify-center gap-3 uppercase tracking-wider text-sm"
+                >
+                  <Navigation className="h-4 w-4" />
+                  Get Directions
+                </button>
               </div>
+            ))}
+          </div>
 
-              {/* Map Placeholder */}
-              <div className="h-48 bg-gray-200 flex items-center justify-center border-t">
-                <div className="text-center text-gray-500">
-                  <MapPin className="w-12 h-12 mx-auto mb-2 opacity-50" />
-                  <p>Interactive Map Coming Soon</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Additional Information */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="bg-white rounded-xl shadow-lg p-8"
-        >
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-            Why Choose Z SMOKE SHOP?
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="w-8 h-8 text-purple-600" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                Convenient Locations
+          {/* Minimal call-to-action */}
+          <div className="mt-20 text-center max-w-xl mx-auto">
+            <div className="border-t border-gray-200 dark:border-gray-700 pt-16">
+              <h3 className="text-2xl font-black text-gray-900 dark:text-white mb-4 tracking-tight uppercase">
+                NEED HELP?
               </h3>
-              <p className="text-gray-600">
-                Two accessible locations in Austin to serve you better
+              <p className="text-gray-600 dark:text-gray-400 mb-8 font-light">
+                Call for expert product advice and information
               </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-blue-600" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                Extended Hours
-              </h3>
-              <p className="text-gray-600">
-                Open 7 days a week with convenient hours for your schedule
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                Expert Support
-              </h3>
-              <p className="text-gray-600">
-                Knowledgeable staff ready to help with all your questions
-              </p>
+              <button 
+                onClick={() => callStore("+1 (661) 371-1413")}
+                className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold px-8 py-4 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors inline-flex items-center gap-3 uppercase tracking-wider text-sm"
+              >
+                <Phone className="h-4 w-4" />
+                Call Now
+              </button>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

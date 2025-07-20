@@ -54,15 +54,16 @@ const categories = [
 
 export default function ProductCategories() {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
+    <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container-wide">
-        {/* Section header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
-            Shop by Category
+        {/* Section header - Adidas Style */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight text-gray-900 dark:text-white mb-6 uppercase">
+            Shop Categories
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Explore our wide selection of premium products across multiple categories
+          <div className="w-16 h-0.5 bg-gray-900 dark:bg-white mx-auto mb-8"></div>
+          <p className="text-lg font-light text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            Discover premium products across our curated categories
           </p>
         </div>
         
@@ -92,46 +93,39 @@ function CategoryCard({ category }: { category: Category }) {
   return (
     <Link href={`/category/${category.slug}`}>
       <motion.div 
-        className="relative rounded-xl overflow-hidden card hover-card"
+        className="group relative bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white transition-all duration-300"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        whileHover={{ y: -5 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        whileHover={{ y: -2 }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
       >
-        {/* Image container - explicitly set position relative and minimum height */}
-        <div className="relative w-full h-52 overflow-hidden">
-          {/* Placeholder gradient background until images are added */}
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-800 to-accent-900">
-            {/* When images are available, uncomment this:
-            <Image 
-              src={category.image} 
-              alt={category.name}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className={`object-cover transition-transform duration-500 ${
-                isHovered ? "scale-110" : "scale-100"
-              }`}
-            />
-            */}
+        {/* Image container */}
+        <div className="relative w-full h-48 overflow-hidden bg-gray-100 dark:bg-gray-700">
+          {/* Placeholder - clean geometric pattern */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-600 group-hover:border-gray-900 dark:group-hover:border-white transition-colors duration-300"></div>
           </div>
-          
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
         </div>
         
         {/* Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-          <h3 className="text-xl font-semibold mb-1">{category.name}</h3>
+        <div className="p-6">
+          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-wide">
+            {category.name}
+          </h3>
+          
           <div className="flex items-center justify-between">
-            <p className="text-sm text-gray-200">{category.count} products</p>
+            <p className="text-sm font-light text-gray-600 dark:text-gray-400">
+              {category.count} Products
+            </p>
             
-            <motion.span 
-              className="text-brand-400 text-sm font-medium"
+            <motion.div 
+              className="flex items-center gap-2 text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide"
               initial={{ x: 0 }}
-              animate={{ x: isHovered ? 5 : 0 }}
+              animate={{ x: isHovered ? 4 : 0 }}
             >
-              View All →
-            </motion.span>
+              Shop
+              <div className="w-4 h-px bg-gray-900 dark:bg-white"></div>
+            </motion.div>
           </div>
         </div>
       </motion.div>

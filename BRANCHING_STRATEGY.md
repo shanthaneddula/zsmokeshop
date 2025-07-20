@@ -1,13 +1,24 @@
-# Git Branching Strategy - Z Smoke Shop
+# Git Branching Strategy for Z SMOKE SHOP
 
-## Overview
-This project follows **Git Flow** branching strategy, which is an industry standard for production applications with scheduled releases.
+This document outlines the branching strategy and workflow for the Z SMOKE SHOP project, following GitFlow methodology with adaptations for our Adidas-inspired UI development.
 
 ## Branch Structure
 
 ### Main Branches
-- **`main`** - Production-ready code. Only stable, tested features.
-- **`develop`** - Integration branch for features. Latest development changes.
+
+- **`main`** - Production-ready code
+  - Always deployable to production
+  - Protected branch with required reviews
+  - Tagged releases (v1.0.0, v1.1.0, etc.)
+  - Direct pushes not allowed
+  - Automatic deployment to production environment
+
+- **`develop`** - Integration branch
+  - Latest development changes
+  - Feature branches merge here first
+  - Staging deployments for testing
+  - Base for all new feature branches
+  - Contains completed features ready for next release
 
 ### Supporting Branches
 - **`feature/*`** - New features and enhancements
@@ -15,26 +26,35 @@ This project follows **Git Flow** branching strategy, which is an industry stand
 - **`hotfix/*`** - Critical production fixes
 - **`bugfix/*`** - Non-critical bug fixes
 
-## Branching Workflow
+## Workflow Examples
 
-### 1. Feature Development
+### Creating a New Feature
+
 ```bash
-# Start new feature from develop
+# Start from develop
 git checkout develop
 git pull origin develop
-git checkout -b feature/hero-section-improvements
+
+# Create feature branch
+git checkout -b feature/ui-improvements-and-docs-update
 
 # Work on feature...
 git add .
-git commit -m "feat: implement mobile responsive hero cards"
+git commit -m "feat: redesign hero section with single-line title and perfect centering"
+git commit -m "feat: implement expandable mobile menu with Adidas-style navigation"
+git commit -m "feat: update support page to match Adidas help design"
+git commit -m "feat: replace thick borders with thin separators throughout UI"
+git commit -m "docs: update PROJECT_SUMMARY.md with latest UI improvements"
+git commit -m "docs: enhance README.md with comprehensive feature list and setup"
 
 # Push feature branch
-git push origin feature/hero-section-improvements
+git push origin feature/ui-improvements-and-docs-update
 
-# Create Pull Request to develop
+# Create pull request to develop
+# After review and approval, merge to develop
 ```
 
-### 2. Release Preparation
+### Release Preparation
 ```bash
 # Create release branch from develop
 git checkout develop

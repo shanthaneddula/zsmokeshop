@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Star, ShoppingCart, Heart } from "lucide-react";
+import { Star } from "lucide-react";
 
 interface Product {
   id: string;
@@ -68,17 +68,6 @@ const featuredProducts: Product[] = [
 ];
 
 export default function FeaturedProducts() {
-  const [favorites, setFavorites] = useState<Set<string>>(new Set());
-
-  const toggleFavorite = (productId: string) => {
-    const newFavorites = new Set(favorites);
-    if (newFavorites.has(productId)) {
-      newFavorites.delete(productId);
-    } else {
-      newFavorites.add(productId);
-    }
-    setFavorites(newFavorites);
-  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -91,112 +80,89 @@ export default function FeaturedProducts() {
     return Array.from({ length: 5 }, (_, i) => (
       <Star
         key={i}
-        className={`h-4 w-4 ${
+        className={`h-3 w-3 ${
           i < Math.floor(rating)
-            ? 'text-yellow-400 fill-current'
-            : i < rating
-            ? 'text-yellow-400 fill-current opacity-50'
-            : 'text-gray-300'
+            ? 'text-gray-900 dark:text-white fill-current'
+            : 'text-gray-300 dark:text-gray-600'
         }`}
       />
     ));
   };
 
   return (
-    <section className="py-16 bg-white dark:bg-gray-800">
+    <section className="py-20 bg-gray-50 dark:bg-gray-800">
       <div className="container-wide">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+        {/* Section Header - Adidas Style */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-black tracking-tight text-gray-900 dark:text-white mb-6 uppercase">
             Featured Products
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Check out our most popular items handpicked for quality and value
+          <div className="w-16 h-0.5 bg-gray-900 dark:bg-white mx-auto mb-8"></div>
+          <p className="text-lg font-light text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+            Our most popular and highly-rated products
           </p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {featuredProducts.map((product) => (
             <div
               key={product.id}
-              className="group relative bg-white dark:bg-gray-900 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700"
+              className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white transition-all duration-300"
             >
               {/* Product Badges */}
-              <div className="absolute top-3 left-3 z-10 flex flex-col gap-2">
+              <div className="absolute top-4 left-4 z-10">
                 {product.isBestSeller && (
-                  <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                    BEST SELLER
+                  <span className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold px-3 py-1 uppercase tracking-wide">
+                    Best Seller
                   </span>
                 )}
                 {product.isNew && (
-                  <span className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                    NEW
-                  </span>
-                )}
-                {product.originalPrice && (
-                  <span className="bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                    SALE
+                  <span className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs font-bold px-3 py-1 uppercase tracking-wide">
+                    New
                   </span>
                 )}
               </div>
 
-              {/* Favorite Button */}
-              <button
-                onClick={() => toggleFavorite(product.id)}
-                className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm hover:bg-white dark:hover:bg-gray-800 transition-colors"
-              >
-                <Heart
-                  className={`h-4 w-4 ${
-                    favorites.has(product.id)
-                      ? 'text-red-500 fill-current'
-                      : 'text-gray-600 dark:text-gray-400'
-                  }`}
-                />
-              </button>
-
               {/* Product Image */}
-              <div className="aspect-square relative overflow-hidden bg-gray-50 dark:bg-gray-800">
+              <div className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="object-cover group-hover:scale-102 transition-transform duration-500"
                 />
               </div>
 
               {/* Product Info */}
-              <div className="p-4">
-                <div className="mb-2">
-                  <span className="text-xs font-medium text-brand-600 dark:text-brand-400 uppercase tracking-wide">
+              <div className="p-6">
+                <div className="mb-3">
+                  <span className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-[0.2em]">
                     {product.category}
                   </span>
                 </div>
                 
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide text-sm">
                   {product.name}
                 </h3>
-                
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
-                  {product.description}
-                </p>
 
                 {/* Rating */}
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="flex items-center">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-1">
                     {renderStars(product.rating)}
                   </div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
-                    {product.rating} ({product.reviewCount})
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-light">
+                    ({product.reviewCount})
                   </span>
                 </div>
 
                 {/* Price */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-gray-900 dark:text-white">
+                <div className="mb-6">
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg font-bold text-gray-900 dark:text-white">
                       {formatPrice(product.price)}
                     </span>
                     {product.originalPrice && (
-                      <span className="text-sm text-gray-500 line-through">
+                      <span className="text-sm text-gray-500 line-through font-light">
                         {formatPrice(product.originalPrice)}
                       </span>
                     )}
@@ -204,8 +170,7 @@ export default function FeaturedProducts() {
                 </div>
 
                 {/* Add to Cart Button */}
-                <button className="w-full bg-brand-600 hover:bg-brand-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 group">
-                  <ShoppingCart className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                <button className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3 px-4 font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors uppercase tracking-wide text-sm">
                   Add to Cart
                 </button>
               </div>
@@ -214,12 +179,9 @@ export default function FeaturedProducts() {
         </div>
 
         {/* View All Products Button */}
-        <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold px-8 py-4 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">
+        <div className="text-center mt-16">
+          <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold px-12 py-4 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors uppercase tracking-wide text-sm border border-gray-900 dark:border-white">
             View All Products
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
           </button>
         </div>
       </div>

@@ -39,8 +39,26 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
-        heading: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: [
+          "system-ui", 
+          "-apple-system", 
+          "BlinkMacSystemFont", 
+          "Segoe UI", 
+          "Roboto", 
+          "Helvetica Neue", 
+          "Arial", 
+          "sans-serif"
+        ],
+        heading: [
+          "system-ui", 
+          "-apple-system", 
+          "BlinkMacSystemFont", 
+          "Segoe UI", 
+          "Roboto", 
+          "Helvetica Neue", 
+          "Arial", 
+          "sans-serif"
+        ],
       },
       boxShadow: {
         glass: "0 4px 30px rgba(0, 0, 0, 0.1)",

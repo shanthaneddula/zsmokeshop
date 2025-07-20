@@ -3,27 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, User, ShoppingCart, ChevronDown, Sun, Moon, Laptop } from "lucide-react";
+import { Menu, X, User, ShoppingCart, Sun, Moon, Search, ChevronRight } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const { theme, setTheme } = useTheme();
-  
-  // Handle scroll effect for sticky header
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    
-    window.addEventListener("scroll", handleScroll);
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   
   // Handle theme mounting to prevent hydration mismatch
   useEffect(() => {
@@ -36,6 +23,7 @@ export default function Header() {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+      setExpandedCategories([]); // Reset expanded categories when menu closes
     }
     
     // Cleanup on unmount
@@ -44,111 +32,260 @@ export default function Header() {
     };
   }, [isMobileMenuOpen]);
 
+  const toggleCategory = (category: string) => {
+    setExpandedCategories(prev => 
+      prev.includes(category) 
+        ? prev.filter(c => c !== category)
+        : [...prev, category]
+    );
+  };
+
   return (
     <header 
-      className={`sticky top-0 z-sticky w-full transition-all duration-200 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-md dark:bg-gray-900/90" : "bg-transparent"
-      }`}
+      className="sticky top-0 z-sticky w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
     >
       <div className="container-wide relative flex h-16 items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight text-brand-800 dark:text-white">
+        {/* Logo - Adidas style */}
+        <Link href="/" className="flex items-center">
+          <span className="text-lg font-black tracking-tight text-gray-900 dark:text-white uppercase">
             Z SMOKE SHOP
           </span>
         </Link>
 
-        {/* Desktop Navigation - visible on md and above */}
-        <nav className="hidden items-center gap-1 md:flex">
-          <Link
-            href="/"
-            className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-brand-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-400"
-          >
-            Home
-          </Link>
+        {/* Search Bar - Adidas Style */}
+        <div className="hidden md:flex flex-1 max-w-md mx-8">
+          <div className="relative w-full">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-gray-900 dark:focus:border-white transition-colors uppercase tracking-wide"
+            />
+          </div>
+        </div>
+
+        {/* Desktop Navigation - Clean and Minimalist */}
+        <nav className="hidden md:flex items-center gap-8">
           <div className="relative group">
-            <button className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-brand-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-400">
+            <Link
+              href="/shop"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors uppercase tracking-wide"
+            >
               Shop
-              <ChevronDown className="h-4 w-4" />
-            </button>
-            {/* Dropdown menu for Shop */}
-            <div className="absolute left-0 top-full z-dropdown mt-1 hidden min-w-[200px] overflow-hidden rounded-md bg-white p-1 shadow-lg ring-1 ring-black/5 group-hover:block dark:bg-gray-800 dark:ring-white/10">
-              <Link
-                href="/shop"
-                className="block rounded px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
-              >
-                All Products
-              </Link>
-              <Link
-                href="/category/vapes-mods-pods"
-                className="block rounded px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
-              >
-                Vapes & Mods
-              </Link>
-              <Link
-                href="/category/glass"
-                className="block rounded px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
-              >
-                Glass
-              </Link>
-              <Link
-                href="/category/accessories"
-                className="block rounded px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
-              >
-                Accessories
-              </Link>
+            </Link>
+            
+            {/* Full-width Adidas-style mega menu overlay */}
+            <div className="fixed top-16 left-0 z-dropdown hidden group-hover:block w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg">
+              <div className="container-wide py-12">
+                <div className="grid grid-cols-5 gap-8">
+                  {/* Column 1: Vaping */}
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+                      Vaping
+                    </h3>
+                    <div className="space-y-2">
+                      <Link
+                        href="/category/high-end-vaporizers"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        High-End Vaporizers
+                      </Link>
+                      <Link
+                        href="/category/disposable-vapes"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Disposable Vapes
+                      </Link>
+                      <Link
+                        href="/category/vapes-mods-pods"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Vapes, Mods & Pods
+                      </Link>
+                      <Link
+                        href="/category/e-liquids"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        E-Liquids
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Column 2: Glass & Smoking */}
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+                      Glass & Smoking
+                    </h3>
+                    <div className="space-y-2">
+                      <Link
+                        href="/category/bongs-pipes"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Bongs & Pipes
+                      </Link>
+                      <Link
+                        href="/category/shisha-hookah"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Shisha & Hookah
+                      </Link>
+                      <Link
+                        href="/category/cigarillos"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Cigarillos
+                      </Link>
+                      <Link
+                        href="/category/lighters-torches"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Lighters & Torches
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Column 3: Cannabis & CBD */}
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+                      Cannabis & CBD
+                    </h3>
+                    <div className="space-y-2">
+                      <Link
+                        href="/category/cannabis"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Cannabis
+                      </Link>
+                      <Link
+                        href="/category/thc-a-cbd-drinks"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        THC-A and CBD Drinks
+                      </Link>
+                      <Link
+                        href="/category/kratom-7-hydroxy"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Kratom & 7 Hydroxy
+                      </Link>
+                      <Link
+                        href="/category/detox"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Detox
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Column 4: Accessories */}
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+                      Accessories
+                    </h3>
+                    <div className="space-y-2">
+                      <Link
+                        href="/category/grinders-scales-trays"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Grinders, Scales & Trays
+                      </Link>
+                      <Link
+                        href="/category/smoke-accessories"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Smoke Accessories
+                      </Link>
+                      <Link
+                        href="/category/candles-incense"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Candles & Incense
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Column 5: Beverages & More */}
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+                      Beverages & More
+                    </h3>
+                    <div className="space-y-2">
+                      <Link
+                        href="/category/energy-drinks"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Energy Drinks
+                      </Link>
+                      <Link
+                        href="/category/exotic"
+                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+                      >
+                        Exotic
+                      </Link>
+                    </div>
+                    
+                    {/* All Products Link */}
+                    <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
+                      <Link
+                        href="/shop"
+                        className="block text-sm font-bold text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors uppercase tracking-wide"
+                      >
+                        All Products
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <Link
-            href="/contact"
-            className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-brand-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-400"
+            href="/support"
+            className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors uppercase tracking-wide"
           >
-            Contact
+            Support
           </Link>
           <Link
             href="/locations"
-            className="rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-brand-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-400"
+            className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors uppercase tracking-wide"
           >
             Locations
           </Link>
         </nav>
 
-        {/* Right Side Actions */}
-        <div className="flex items-center gap-2">
+        {/* Right Side Actions - Minimalist */}
+        <div className="flex items-center gap-1">
           {/* Theme Switcher */}
           {mounted && (
-            <div className="hidden sm:block">
-              <button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
-                aria-label="Toggle theme"
-              >
-                {theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
-              </button>
-            </div>
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+              aria-label="Toggle theme"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-4 w-4" />
+              ) : (
+                <Moon className="h-4 w-4" />
+              )}
+            </button>
           )}
 
           {/* User Account */}
           <Link
             href="/account"
-            className="rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
             aria-label="User account"
           >
-            <User className="h-5 w-5" />
+            <User className="h-4 w-4" />
           </Link>
 
           {/* Cart */}
           <Link
             href="/cart"
-            className="relative rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800"
+            className="relative p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
             aria-label="Shopping cart"
           >
-            <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-brand-600 text-xs text-white">
+            <ShoppingCart className="h-4 w-4" />
+            <span className="absolute -right-0 -top-0 flex h-4 w-4 items-center justify-center rounded-full bg-gray-900 dark:bg-white text-xs text-white dark:text-gray-900 font-bold">
               0
             </span>
           </Link>
@@ -156,10 +293,10 @@ export default function Header() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(true)}
-            className="ml-1 rounded-md p-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-800 md:hidden"
+            className="ml-2 p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors md:hidden"
             aria-label="Open mobile menu"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-5 w-5" />
           </button>
         </div>
       </div>
@@ -177,146 +314,257 @@ export default function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Slide-out menu panel - Proper mobile navigation */}
+            {/* Adidas-inspired slide-out menu panel */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 right-0 z-40 w-full max-w-sm overflow-y-auto bg-white shadow-2xl dark:bg-gray-900 sm:max-w-xs"
+              className="fixed inset-y-0 right-0 z-mobile-nav w-full max-w-sm bg-white dark:bg-gray-900 overflow-y-auto"
             >
-              {/* Mobile menu content container */}
-              <div className="flex h-full flex-col p-6">
+              <div className="flex h-full flex-col">
                 {/* Mobile menu header */}
-                <div className="flex items-center justify-between border-b border-gray-200 pb-4 dark:border-gray-700">
-                  <span className="text-xl font-bold tracking-tight text-brand-800 dark:text-white">
-                    Z SMOKE SHOP
+                <div className="flex h-16 items-center justify-between px-6 border-b border-gray-200 dark:border-gray-700">
+                  <span className="text-lg font-black tracking-tight text-gray-900 dark:text-white uppercase">
+                    Menu
                   </span>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                    className="p-2 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     aria-label="Close menu"
                   >
                     <X className="h-6 w-6" />
                   </button>
                 </div>
 
-                {/* Mobile navigation links */}
-                <nav className="mt-6 flex-1 space-y-1 overflow-y-auto">
-                  <Link
-                    href="/"
-                    className="block rounded-lg px-4 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-400"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Home
-                  </Link>
-                  <div>
-                    <p className="block rounded-lg px-4 py-3 text-base font-semibold text-gray-900 dark:text-white">
-                      Shop
-                    </p>
-                    <div className="ml-4 space-y-1 border-l-2 border-brand-200 pl-4 dark:border-brand-700">
-                      <Link
-                        href="/shop"
-                        className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-brand-400"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        All Products
-                      </Link>
-                      <Link
-                        href="/category/vapes-mods-pods"
-                        className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-brand-400"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Vapes & Mods
-                      </Link>
-                      <Link
-                        href="/category/glass"
-                        className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-brand-400"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Glass
-                      </Link>
-                      <Link
-                        href="/category/accessories"
-                        className="block rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-brand-400"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Accessories
-                      </Link>
-                    </div>
-                  </div>
-                  <Link
-                    href="/contact"
-                    className="block rounded-lg px-4 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-400"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Contact
-                  </Link>
-                  <Link
-                    href="/locations"
-                    className="block rounded-lg px-4 py-3 text-base font-medium text-gray-700 transition-colors hover:bg-gray-100 hover:text-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-brand-400"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Locations
-                  </Link>
-                </nav>
-
-                {/* Mobile Actions */}
-                <div className="mt-6 border-t border-gray-200 pt-6 dark:border-gray-700">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                      Theme
-                    </span>
-                    <div className="flex rounded-lg bg-gray-100 p-1 dark:bg-gray-800">
-                      <button
-                        onClick={() => setTheme("light")}
-                        className={`rounded-md p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 ${
-                          theme === "light" ? "bg-white shadow-sm dark:bg-gray-700" : "hover:bg-gray-200 dark:hover:bg-gray-700"
-                        }`}
-                        aria-label="Light theme"
-                      >
-                        <Sun className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => setTheme("dark")}
-                        className={`rounded-md p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 ${
-                          theme === "dark" ? "bg-white shadow-sm dark:bg-gray-700" : "hover:bg-gray-200 dark:hover:bg-gray-700"
-                        }`}
-                        aria-label="Dark theme"
-                      >
-                        <Moon className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => setTheme("system")}
-                        className={`rounded-md p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500 ${
-                          theme === "system" ? "bg-white shadow-sm dark:bg-gray-700" : "hover:bg-gray-200 dark:hover:bg-gray-700"
-                        }`}
-                        aria-label="System theme"
-                      >
-                        <Laptop className="h-4 w-4" />
-                      </button>
-                    </div>
+                {/* Adidas-style Mobile Search Bar */}
+                <div className="p-6 border-b-2 border-gray-900 dark:border-white">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-900 dark:text-white" />
+                    <input
+                      type="text"
+                      placeholder="SEARCH PRODUCTS..."
+                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-gray-900 dark:focus:border-white transition-colors uppercase tracking-wide font-medium"
+                    />
                   </div>
                 </div>
 
-                {/* Mobile user/cart links */}
-                <div className="mt-6 space-y-3">
-                  <Link
-                    href="/account"
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-100 px-4 py-3 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <User className="h-5 w-5" />
-                    <span>My Account</span>
-                  </Link>
-                  <Link
-                    href="/cart"
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:bg-brand-600 dark:hover:bg-brand-700"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <ShoppingCart className="h-5 w-5" />
-                    <span>View Cart (0)</span>
-                  </Link>
+                {/* Primary Navigation */}
+                <div className="flex-1">
+                  <nav>
+                    {/* Shop with expandable categories */}
+                    <div className="border-b border-gray-200 dark:border-gray-700">
+                      <button
+                        onClick={() => toggleCategory('shop')}
+                        className="flex items-center justify-between w-full py-4 px-6 text-base font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors uppercase tracking-wide"
+                      >
+                        <span>Shop</span>
+                        <ChevronRight className={`h-5 w-5 transition-transform ${
+                          expandedCategories.includes('shop') ? 'rotate-90' : ''
+                        }`} />
+                      </button>
+                      
+                      {expandedCategories.includes('shop') && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="bg-gray-50 dark:bg-gray-800"
+                        >
+                          <div className="py-2">
+                            <button
+                              onClick={() => toggleCategory('vapes')}
+                              className="flex items-center justify-between w-full py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
+                            >
+                              <span>Vapes & E-Cigarettes</span>
+                              <ChevronRight className={`h-4 w-4 transition-transform ${
+                                expandedCategories.includes('vapes') ? 'rotate-90' : ''
+                              }`} />
+                            </button>
+                            
+                            {expandedCategories.includes('vapes') && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="bg-gray-100 dark:bg-gray-700"
+                              >
+                                <div className="py-1">
+                                  <Link
+                                    href="/products/disposable-vapes"
+                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    Disposable Vapes
+                                  </Link>
+                                  <Link
+                                    href="/products/vape-kits"
+                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    Vape Kits
+                                  </Link>
+                                  <Link
+                                    href="/products/e-liquids"
+                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    E-Liquids
+                                  </Link>
+                                </div>
+                              </motion.div>
+                            )}
+                            
+                            <button
+                              onClick={() => toggleCategory('smoking')}
+                              className="flex items-center justify-between w-full py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
+                            >
+                              <span>Smoking Accessories</span>
+                              <ChevronRight className={`h-4 w-4 transition-transform ${
+                                expandedCategories.includes('smoking') ? 'rotate-90' : ''
+                              }`} />
+                            </button>
+                            
+                            {expandedCategories.includes('smoking') && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="bg-gray-100 dark:bg-gray-700"
+                              >
+                                <div className="py-1">
+                                  <Link
+                                    href="/products/pipes"
+                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    Pipes
+                                  </Link>
+                                  <Link
+                                    href="/products/papers-wraps"
+                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    Papers & Wraps
+                                  </Link>
+                                  <Link
+                                    href="/products/lighters"
+                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    Lighters
+                                  </Link>
+                                </div>
+                              </motion.div>
+                            )}
+                            
+                            <Link
+                              href="/products/cbd"
+                              className="block py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              CBD Products
+                            </Link>
+                            <Link
+                              href="/products/new"
+                              className="block py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              New & Trending
+                            </Link>
+                            <Link
+                              href="/products/sale"
+                              className="block py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              Sale
+                            </Link>
+                          </div>
+                        </motion.div>
+                      )}
+                    </div>
+                    
+                    {/* Locations */}
+                    <div className="border-b border-gray-200 dark:border-gray-700">
+                      <Link
+                        href="/locations"
+                        className="flex items-center justify-between py-4 px-6 text-base font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors uppercase tracking-wide"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <span>Locations</span>
+                        <ChevronRight className="h-5 w-5" />
+                      </Link>
+                    </div>
+                    
+                    {/* Support */}
+                    <div className="border-b border-gray-200 dark:border-gray-700">
+                      <Link
+                        href="/support"
+                        className="flex items-center justify-between py-4 px-6 text-base font-medium text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors uppercase tracking-wide"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <span>Support</span>
+                        <ChevronRight className="h-5 w-5" />
+                      </Link>
+                    </div>
+                  </nav>
+
+                  {/* Secondary Links */}
+                  <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <nav className="px-6 space-y-1">
+                      <Link
+                        href="/account"
+                        className="block py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        My Account
+                      </Link>
+                      <Link
+                        href="/cart"
+                        className="block py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Exchanges & Returns
+                      </Link>
+                      <Link
+                        href="/cart"
+                        className="block py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Order Tracker
+                      </Link>
+                      <Link
+                        href="/locations"
+                        className="block py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Store Locator
+                      </Link>
+                    </nav>
+                  </div>
+
+                  {/* Cart Button */}
+                  <div className="mt-8 px-6">
+                    <Link
+                      href="/cart"
+                      className="flex w-full items-center justify-center gap-2 border border-gray-900 dark:border-white px-6 py-3 text-sm font-bold text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors uppercase tracking-wide"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <ShoppingCart className="h-5 w-5" />
+                      <span>View Cart (0)</span>
+                    </Link>
+                  </div>
+
+                  {/* Country/Region */}
+                  <div className="mt-6 px-6 pb-6">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <span className="text-lg">🇺🇸</span>
+                      <span>United States</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>

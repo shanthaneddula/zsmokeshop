@@ -18,27 +18,32 @@ export default function Home() {
       <ProductCategories />
       <StoreLocations />
       
-      {/* Newsletter Section */}
-      <section className="py-16 bg-gradient-to-br from-brand-900 to-accent-900 text-white">
-        <div className="container-narrow text-center">
-          <h2 className="text-3xl font-bold mb-4">Join Our Newsletter</h2>
-          <p className="mb-6 max-w-xl mx-auto">
-            Stay updated with our latest products, exclusive deals, and special events.
-          </p>
-          <form className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-1 rounded-lg bg-white/10 border-white/20 px-4 py-3 text-white placeholder-white/60 focus:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/50"
-              required
-            />
-            <button
-              type="submit"
-              className="rounded-lg bg-white px-6 py-3 font-medium text-brand-900 hover:bg-white/90"
-            >
-              Subscribe
-            </button>
-          </form>
+      {/* Newsletter Section - Adidas Style */}
+      <section className="py-20 bg-gray-900 dark:bg-black text-white">
+        <div className="container-wide">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-black mb-6 tracking-tight uppercase">
+              STAY UPDATED
+            </h2>
+            <div className="w-16 h-0.5 bg-white mx-auto mb-8"></div>
+            <p className="mb-10 text-lg font-light text-gray-300">
+              Get the latest products, exclusive deals, and special events
+            </p>
+            <form className="flex flex-col sm:flex-row gap-0 max-w-lg mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 bg-transparent border border-white/30 px-6 py-4 text-white placeholder-gray-400 focus:border-white focus:outline-none font-light uppercase tracking-wide text-sm"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-white text-gray-900 px-8 py-4 font-bold hover:bg-gray-100 transition-colors uppercase tracking-wide text-sm"
+              >
+                Subscribe
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </main>

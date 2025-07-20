@@ -6,64 +6,63 @@ import {
   Phone, 
   Facebook, 
   Instagram, 
-  Twitter, 
-  Send 
+  Twitter
 } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="mt-auto bg-gradient-to-br from-gray-900 to-gray-800 text-gray-200">
+    <footer className="mt-auto bg-gray-900 dark:bg-black text-white">
       {/* Main Footer */}
-      <div className="container-wide py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container-wide py-16">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Column */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-white">Z SMOKE SHOP</h3>
-            <p className="text-sm text-gray-300">
-              Your premier destination for quality smoke shop products and accessories in Austin, Texas. 
-              Serving the community with excellence since day one.
+          <div className="space-y-6">
+            <h3 className="text-2xl font-black text-white uppercase tracking-tight">Z SMOKE SHOP</h3>
+            <div className="w-12 h-0.5 bg-white"></div>
+            <p className="text-sm font-light text-gray-300 leading-relaxed">
+              Austin&apos;s premier destination for quality smoke shop products and accessories.
             </p>
-            <div className="flex space-x-3">
+            <div className="flex space-x-4">
               <a 
                 href="https://facebook.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 text-white transition-colors hover:bg-brand-600"
+                className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
                 aria-label="Facebook"
               >
-                <Facebook size={18} />
+                <Facebook size={16} />
               </a>
               <a 
                 href="https://instagram.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 text-white transition-colors hover:bg-brand-600"
+                className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
                 aria-label="Instagram"
               >
-                <Instagram size={18} />
+                <Instagram size={16} />
               </a>
               <a 
                 href="https://twitter.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 text-white transition-colors hover:bg-brand-600"
+                className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
                 aria-label="Twitter"
               >
-                <Twitter size={18} />
+                <Twitter size={16} />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-white">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="mb-6 text-lg font-bold text-white uppercase tracking-wide">Quick Links</h3>
+            <ul className="space-y-3">
               <li>
                 <Link 
                   href="/" 
-                  className="inline-block text-gray-300 transition-colors hover:text-brand-400"
+                  className="text-sm font-light text-gray-300 hover:text-white transition-colors uppercase tracking-wide"
                 >
                   Home
                 </Link>
@@ -71,7 +70,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/shop" 
-                  className="inline-block text-gray-300 transition-colors hover:text-brand-400"
+                  className="text-sm font-light text-gray-300 hover:text-white transition-colors uppercase tracking-wide"
                 >
                   Shop All
                 </Link>
@@ -79,7 +78,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/contact" 
-                  className="inline-block text-gray-300 transition-colors hover:text-brand-400"
+                  className="text-sm font-light text-gray-300 hover:text-white transition-colors uppercase tracking-wide"
                 >
                   Contact
                 </Link>
@@ -87,100 +86,71 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/locations" 
-                  className="inline-block text-gray-300 transition-colors hover:text-brand-400"
+                  className="text-sm font-light text-gray-300 hover:text-white transition-colors uppercase tracking-wide"
                 >
                   Locations
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/faq" 
-                  className="inline-block text-gray-300 transition-colors hover:text-brand-400"
-                >
-                  FAQ
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Store Locations & Hours */}
+          {/* Store Info */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-white">Store Locations & Hours</h3>
-            <div className="mb-4 space-y-2">
-              <p className="font-medium text-white">Location 1</p>
-              <div className="flex items-start gap-2 text-sm text-gray-300">
-                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                <span>719 W William Cannon Dr #105, Austin, TX 78745</span>
+            <h3 className="mb-6 text-lg font-bold text-white uppercase tracking-wide">Store Info</h3>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3 text-sm text-gray-300">
+                <MapPin className="mt-1 h-4 w-4 flex-shrink-0" />
+                <span className="font-light leading-relaxed">719 W William Cannon Dr #105<br />Austin, TX 78745</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-300">
+              <div className="flex items-center gap-3 text-sm text-gray-300">
                 <Phone className="h-4 w-4 flex-shrink-0" />
-                <a href="tel:(512) XXX-XXXX" className="hover:text-brand-400">(512) XXX-XXXX</a>
+                <a href="tel:(661) 371-1413" className="hover:text-white transition-colors font-light">(661) 371-1413</a>
               </div>
-              <div className="ml-6 mt-1 space-y-1 text-xs text-gray-400">
-                <p className="font-medium">Store Hours</p>
-                <p>Monday - Thursday: 10:00 AM - 10:00 PM</p>
-                <p>Friday - Saturday: 10:00 AM - 11:00 PM</p>
-                <p>Sunday: 11:00 AM - 9:00 PM</p>
-              </div>
-            </div>
-            
-            <div className="space-y-2">
-              <p className="font-medium text-white">Location 2</p>
-              <div className="flex items-start gap-2 text-sm text-gray-300">
-                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                <span>5318 Cameron Rd, Austin, TX 78723</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-300">
-                <Phone className="h-4 w-4 flex-shrink-0" />
-                <a href="tel:(512) XXX-XXXX" className="hover:text-brand-400">(512) XXX-XXXX</a>
-              </div>
-              <div className="ml-6 mt-1 space-y-1 text-xs text-gray-400">
-                <p className="font-medium">Store Hours</p>
-                <p>Monday - Thursday: 10:00 AM - 10:00 PM</p>
-                <p>Friday - Saturday: 10:00 AM - 11:00 PM</p>
-                <p>Sunday: 11:00 AM - 9:00 PM</p>
+              <div className="pt-2 border-t border-white/10">
+                <p className="text-xs font-bold text-white mb-2 uppercase tracking-wide">Hours</p>
+                <div className="space-y-1 text-xs font-light text-gray-300">
+                  <p>Mon-Thu, Sun: 10AM-11PM</p>
+                  <p>Fri-Sat: 10AM-12AM</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Newsletter Signup */}
+          {/* Newsletter */}
           <div>
-            <h3 className="mb-4 text-lg font-semibold text-white">Stay Updated</h3>
-            <p className="mb-4 text-sm text-gray-300">
-              Subscribe to our newsletter for exclusive deals, new product announcements, and special offers.
+            <h3 className="mb-6 text-lg font-bold text-white uppercase tracking-wide">Stay Updated</h3>
+            <p className="mb-6 text-sm font-light text-gray-300 leading-relaxed">
+              Get exclusive deals and product updates
             </p>
-            <form className="space-y-2">
-              <div className="flex overflow-hidden rounded-lg bg-white/10 focus-within:ring-1 focus-within:ring-brand-500">
+            <form className="space-y-4">
+              <div className="flex border border-white/30 focus-within:border-white">
                 <input
                   type="email"
-                  placeholder="Your email"
-                  className="w-full border-0 bg-transparent px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-0"
+                  placeholder="Enter email"
+                  className="flex-1 bg-transparent px-4 py-3 text-white placeholder-gray-400 focus:outline-none text-sm font-light"
                 />
                 <button 
                   type="submit" 
-                  className="bg-brand-600 px-3 text-white transition-colors hover:bg-brand-700"
+                  className="bg-white text-gray-900 px-6 py-3 font-bold hover:bg-gray-100 transition-colors uppercase tracking-wide text-xs"
                 >
-                  <Send size={18} />
+                  Subscribe
                 </button>
               </div>
-              <p className="text-xs text-gray-400">
-                We respect your privacy. Unsubscribe at any time.
-              </p>
             </form>
           </div>
         </div>
       </div>
       
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800 bg-black/20">
-        <div className="container-wide flex flex-col items-center justify-between space-y-4 py-6 text-center text-sm text-gray-400 md:flex-row md:space-y-0 md:text-left">
-          <div>
-            © {currentYear} Z SMOKE SHOP. All rights reserved. | Licensed Tobacco Retailer
+      <div className="border-t border-white/10 bg-black/50">
+        <div className="container-wide flex flex-col items-center justify-between space-y-4 py-8 text-center text-xs text-gray-400 md:flex-row md:space-y-0 md:text-left">
+          <div className="font-light">
+            © {currentYear} Z SMOKE SHOP. All rights reserved.
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link href="/privacy" className="hover:text-brand-400">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-brand-400">Terms of Service</Link>
-            <Link href="/age-verification" className="hover:text-brand-400">Age Verification</Link>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Link href="/privacy" className="hover:text-white transition-colors font-light uppercase tracking-wide">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors font-light uppercase tracking-wide">Terms</Link>
+            <Link href="/age-verification" className="hover:text-white transition-colors font-light uppercase tracking-wide">Age Verification</Link>
           </div>
         </div>
       </div>
