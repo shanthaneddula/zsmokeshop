@@ -54,7 +54,7 @@ const categories = [
 
 export default function ProductCategories() {
   return (
-    <section className="py-20 bg-white dark:bg-gray-900">
+    <section className="py-20 bg-gray-50 dark:bg-gray-850">
       <div className="container-wide">
         {/* Section header - Adidas Style */}
         <div className="text-center mb-16">

@@ -74,8 +74,10 @@ export default function Header() {
               Shop
             </Link>
             
-            {/* Full-width Adidas-style mega menu overlay */}
-            <div className="fixed top-16 left-0 z-dropdown hidden group-hover:block w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg">
+            {/* Full-width Adidas-style mega menu overlay with extended hover area */}
+            <div className="fixed top-16 left-0 z-dropdown hidden group-hover:block hover:block w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg">
+              {/* Invisible bridge to prevent dropdown from disappearing */}
+              <div className="absolute -top-1 left-0 right-0 h-1 bg-transparent"></div>
               <div className="container-wide py-12">
                 <div className="grid grid-cols-5 gap-8">
                   {/* Column 1: Vaping */}
@@ -487,6 +489,7 @@ export default function Header() {
                       )}
                     </div>
                     
+
                     {/* Locations */}
                     <div className="border-b border-gray-200 dark:border-gray-700">
                       <Link
