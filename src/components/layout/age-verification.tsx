@@ -20,6 +20,9 @@ export default function AgeVerification() {
     if (isOfAge) {
       sessionStorage.setItem("ageVerified", "true");
       setIsVisible(false);
+      
+      // Dispatch custom event to notify other components
+      window.dispatchEvent(new CustomEvent('ageVerified'));
     } else {
       // Redirect to a different page or show a message
       window.location.href = "https://www.google.com";

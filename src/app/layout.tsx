@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import AgeVerification from "@/components/layout/age-verification";
+import TawkToChat from "@/components/chat/TawkToChat";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -71,6 +72,9 @@ export default function RootLayout({
             
             {/* Footer */}
             <Footer />
+            
+            {/* Conditional Tawk.to Chat - Only after age verification */}
+            <TawkToChat />
           </div>
         </ThemeProvider>
       </body>
