@@ -62,7 +62,7 @@ export default function LocationsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-gray-900 pt-[6.7rem]">
       {/* Clean header - Better proportions */}
       <div className="py-16 bg-white dark:bg-gray-900">
         <div className="container-wide">

@@ -16,7 +16,7 @@ export default function ShopAllPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pt-[6.7rem]">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-12">
         <div className="container mx-auto px-4">

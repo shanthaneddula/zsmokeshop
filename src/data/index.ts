@@ -63,14 +63,16 @@ export const promoItems: PromoItem[] = [
 export const locations: Location[] = [
   {
     id: '1',
+    name: 'Z SMOKE SHOP',
     address: '719 W William Cannon Dr #105, Austin, TX 78745',
-    phone: '(512) XXX-XXXX',
-    hours: '9:00 AM - 10:00 PM'
+    phone: '(661) 371-1413',
+    hours: 'Mon-Thu, Sun: 10AM-11PM | Fri-Sat: 10AM-12AM'
   },
   {
     id: '2',
+    name: '5 STAR SMOKE SHOP & GIFTS',
     address: '5318 Cameron Rd, Austin, TX 78723',
-    phone: '(512) XXX-XXXX',
-    hours: '9:00 AM - 10:00 PM'
+    phone: '(661) 371-1413',
+    hours: 'Mon-Thu, Sun: 10:00 AM - 11:00 PM | Fri-Sat: 10:00 AM - 12:00 AM'
   },
 ];

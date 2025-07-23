@@ -42,7 +42,7 @@ export default function Header() {
 
   return (
     <header 
-      className="sticky top-0 z-sticky w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
+      className="sticky top-[2.7rem] z-sticky w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
     >
       <div className="container-wide relative flex h-16 items-center justify-between">
         {/* Logo - Adidas style */}

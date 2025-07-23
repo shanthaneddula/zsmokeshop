@@ -134,6 +134,9 @@ body {
   }
 
   /* Z-index utility classes - Proper layering system */
+  .z-announcement {
+    @apply z-50; /* Announcement bar - top priority */
+  }
   .z-modal {
     @apply z-50; /* Age verification and critical modals */
   }

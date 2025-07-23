@@ -17,7 +17,7 @@ export default function CategoryPageClient({ category }: CategoryPageClientProps
   
   if (!category) {
     return (
-      <div className="container mx-auto px-4 py-16 text-center">
+      <div className="container mx-auto px-4 py-16 text-center pt-[6.7rem]">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">Category Not Found</h1>
         <p className="text-gray-600 mb-8">The requested category could not be found.</p>
         <Link
@@ -45,7 +45,7 @@ export default function CategoryPageClient({ category }: CategoryPageClientProps
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pt-[6.7rem]">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
         <div className="container mx-auto px-4">

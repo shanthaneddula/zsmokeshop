@@ -46,28 +46,36 @@ export default function SupportPage() {
   const faqs = [
     {
       question: 'What is the minimum age requirement?',
-      answer: 'You must be 21 years or older to purchase products from Z Smoke Shop. Valid ID is required for all purchases.'
+      answer: 'You must be 21 years or older to purchase products from Z Smoke Shop. Valid government-issued ID is required for all purchases. We strictly enforce age verification for the safety and compliance of our business.'
+    },
+    {
+      question: 'What are your store hours?',
+      answer: 'Both locations are open Mon-Thu & Sun: 10AM-11PM, and Fri-Sat: 10AM-12AM. We offer convenient hours to serve you throughout the week. Holiday hours may vary.'
     },
     {
       question: 'Do you offer same-day pickup?',
-      answer: 'Yes! Place your order online and pick it up the same day at any of our store locations during business hours.'
+      answer: 'Yes! Place your order online or call us at (661) 371-1413 and pick it up the same day at either of our Austin locations during business hours. We\'ll have your order ready for quick pickup.'
     },
     {
       question: 'What payment methods do you accept?',
-      answer: 'We accept cash, debit cards, and major credit cards. Some locations may have additional payment options.'
+      answer: 'We accept cash, debit cards, and major credit cards (Visa, MasterCard, American Express). Some specialty items may require cash payment due to banking regulations.'
     },
     {
       question: 'Can I return opened products?',
-      answer: 'Due to health regulations, we cannot accept returns on opened tobacco or vaping products. Unopened items may be returned within 30 days with receipt.'
+      answer: 'Due to health and safety regulations, we cannot accept returns on opened tobacco, vaping, or consumable products. Unopened items may be returned within 7 days with receipt and original packaging.'
     },
     {
-      question: 'Do you have a loyalty program?',
-      answer: 'Yes! Join our rewards program to earn points on every purchase and receive exclusive offers and discounts.'
+      question: 'Do you have a rewards or loyalty program?',
+      answer: 'Yes! Ask about our customer loyalty program to earn points on every purchase and receive exclusive offers, discounts, and early access to new products.'
+    },
+    {
+      question: 'Do you provide product recommendations?',
+      answer: 'Absolutely! Our knowledgeable staff can help you choose the right products based on your preferences and experience level. Contact us at (661) 371-1413 or visit either location for personalized recommendations.'
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-gray-900 pt-[6.7rem]">
       {/* Hero Section */}
       <div className="bg-white dark:bg-gray-900 py-20">
         <div className="container-wide">
@@ -96,7 +104,20 @@ export default function SupportPage() {
           <div className="grid md:grid-cols-3 gap-6">
             <motion.div
               whileHover={{ y: -2 }}
-              className="text-center p-10 border-2 border-gray-900 dark:border-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all group"
+              className="text-center p-10 border-2 border-gray-900 dark:border-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all group cursor-pointer"
+              onClick={() => {
+                // Open PuffBuddy Tawk.to chat
+                if (typeof window !== 'undefined') {
+                  const tawkWindow = window as typeof window & {
+                    $_Tawk?: {
+                      maximize: () => void;
+                    };
+                  };
+                  if (tawkWindow.$_Tawk) {
+                    tawkWindow.$_Tawk.maximize();
+                  }
+                }
+              }}
             >
               <MessageCircle className="h-12 w-12 text-gray-900 dark:text-white group-hover:text-white dark:group-hover:text-gray-900 mx-auto mb-6" />
               <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-white dark:group-hover:text-gray-900 mb-2 uppercase tracking-wide">
@@ -116,7 +137,7 @@ export default function SupportPage() {
                 Call Us
               </h3>
               <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-200 dark:group-hover:text-gray-600 text-sm uppercase tracking-wide">
-                Mon-Fri 9AM-8PM
+                (661) 371-1413
               </p>
             </motion.div>
             
@@ -129,7 +150,7 @@ export default function SupportPage() {
                 Email
               </h3>
               <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-200 dark:group-hover:text-gray-600 text-sm uppercase tracking-wide">
-                24 Hour Response
+                info@zsmokeshop.com
               </p>
             </motion.div>
           </div>
@@ -224,7 +245,7 @@ export default function SupportPage() {
                 className="border-2 border-gray-900 dark:border-white p-6"
               >
                 <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
-                  Store {location.id}
+                  {location.name || `Store ${location.id}`}
                 </h3>
                 
                 <div className="space-y-3 mb-6">

@@ -1,0 +1,55 @@
+# Z SMOKE SHOP - Robots.txt
+# Allow all crawlers to access the site for maximum SEO visibility
+
+User-agent: *
+Allow: /
+
+# Disallow sensitive or unnecessary pages
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /login/
+Disallow: /register/
+Disallow: /thank-you/
+Disallow: /order-confirmation/
+Disallow: /search?*
+Disallow: /*?utm_*
+Disallow: /*?ref=*
+Disallow: /*?fbclid=*
+Disallow: /*?sort=*
+Disallow: /*?filter=*
+Disallow: /*?page=*
+Disallow: /*?limit=*
+
+# Allow important pages for SEO (explicit allows for clarity)
+Allow: /shop/
+Allow: /catalogue/
+Allow: /category/
+Allow: /locations/
+Allow: /support/
+Allow: /
+
+# Special rules for Google
+User-agent: Googlebot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cart/
+Disallow: /account/
+
+# Allow Google Images to crawl product images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /public/images/
+
+# Sitemap locations (update with your actual domain)
+Sitemap: https://zsmokeshop.com/sitemap.xml
+Sitemap: https://zsmokeshop.com/sitemap-products.xml
+Sitemap: https://zsmokeshop.com/sitemap-categories.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1

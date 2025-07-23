@@ -13,7 +13,7 @@ export default function CataloguePage() {
   const products = activeSubcategory ? generateMockProducts(activeCategory, activeSubcategory, 8) : [];
   
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-gray-900 pt-[6.7rem]">
       {/* Page Header - Adidas Style */}
       <div className="container mx-auto px-4 pt-8 pb-4 border-b-2 border-gray-900 dark:border-gray-100">
         <h1 className="text-3xl md:text-5xl font-bold tracking-widest uppercase">
