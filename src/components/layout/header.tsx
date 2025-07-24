@@ -5,12 +5,14 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, User, ShoppingCart, Sun, Moon, Search, ChevronRight } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useBanner } from "@/contexts/BannerContext";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const { theme, setTheme } = useTheme();
+  const { isVisible: isBannerVisible } = useBanner();
   
   // Handle theme mounting to prevent hydration mismatch
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function Header() {
 
   return (
     <header 
-      className="sticky top-[2.7rem] z-sticky w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700"
+      className={`sticky ${isBannerVisible ? 'top-[2.7rem] md:top-16' : 'top-0'} z-sticky w-full bg-white dark:bg-gray-900 border-b-2 border-gray-900 dark:border-white transition-all duration-300 ease-in-out`}
     >
       <div className="container-wide relative flex h-16 items-center justify-between">
         {/* Logo - Adidas style */}
@@ -66,18 +68,20 @@ export default function Header() {
 
         {/* Desktop Navigation - Clean and Minimalist */}
         <nav className="hidden md:flex items-center gap-8">
-          <div className="relative group">
+          <div className="relative dropdown-group">
             <Link
               href="/shop"
-              className="text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors uppercase tracking-wide"
+              className="relative z-10 py-4 px-2 -mx-2 text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors uppercase tracking-wide pointer-events-auto"
             >
               Shop
             </Link>
             
             {/* Full-width Adidas-style mega menu overlay with extended hover area */}
-            <div className="fixed top-16 left-0 z-dropdown hidden group-hover:block hover:block w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg">
-              {/* Invisible bridge to prevent dropdown from disappearing */}
-              <div className="absolute -top-1 left-0 right-0 h-1 bg-transparent"></div>
+            <div className={`dropdown-menu fixed ${isBannerVisible ? 'top-[6.7rem] md:top-32' : 'top-16'} left-0 z-dropdown hidden w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 shadow-lg`}>
+              {/* Dynamic invisible bridge responsive to banner state - pointer-events-none to prevent blocking clicks */}
+              <div className={`absolute left-0 right-0 bg-transparent pointer-events-none ${
+                isBannerVisible ? '-top-[6.7rem] md:-top-32 h-[6.7rem] md:h-32' : '-top-16 h-16'
+              }`}></div>
               <div className="container-wide py-12">
                 <div className="grid grid-cols-5 gap-8">
                   {/* Column 1: Vaping */}
@@ -87,25 +91,19 @@ export default function Header() {
                     </h3>
                     <div className="space-y-2">
                       <Link
-                        href="/category/high-end-vaporizers"
+                        href="/shop?category=high-end-vaporizers"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         High-End Vaporizers
                       </Link>
                       <Link
-                        href="/category/disposable-vapes"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Disposable Vapes
-                      </Link>
-                      <Link
-                        href="/category/vapes-mods-pods"
+                        href="/shop?category=vapes-mods-pods"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Vapes, Mods & Pods
                       </Link>
                       <Link
-                        href="/category/e-liquids"
+                        href="/shop?category=e-liquids"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         E-Liquids
@@ -120,25 +118,25 @@ export default function Header() {
                     </h3>
                     <div className="space-y-2">
                       <Link
-                        href="/category/bongs-pipes"
+                        href="/shop?category=glass"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
-                        Bongs & Pipes
+                        Glass
                       </Link>
                       <Link
-                        href="/category/shisha-hookah"
+                        href="/shop?category=shisha-hookah"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Shisha & Hookah
                       </Link>
                       <Link
-                        href="/category/cigarillos"
+                        href="/shop?category=cigarillos"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Cigarillos
                       </Link>
                       <Link
-                        href="/category/lighters-torches"
+                        href="/shop?category=lighters-torches"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Lighters & Torches
@@ -153,25 +151,25 @@ export default function Header() {
                     </h3>
                     <div className="space-y-2">
                       <Link
-                        href="/category/cannabis"
+                        href="/shop?category=exotic"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
-                        Cannabis
+                        Exotic
                       </Link>
                       <Link
-                        href="/category/thc-a-cbd-drinks"
+                        href="/shop?category=thc-a"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
-                        THC-A and CBD Drinks
+                        THC-A
                       </Link>
                       <Link
-                        href="/category/kratom-7-hydroxy"
+                        href="/shop?category=kratoms"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
-                        Kratom & 7 Hydroxy
+                        Kratoms
                       </Link>
                       <Link
-                        href="/category/detox"
+                        href="/shop?category=detox"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Detox
@@ -186,19 +184,19 @@ export default function Header() {
                     </h3>
                     <div className="space-y-2">
                       <Link
-                        href="/category/grinders-scales-trays"
+                        href="/shop?category=grinders-scales-trays"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Grinders, Scales & Trays
                       </Link>
                       <Link
-                        href="/category/smoke-accessories"
+                        href="/shop?category=smoke-accessories"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Smoke Accessories
                       </Link>
                       <Link
-                        href="/category/candles-incense"
+                        href="/shop?category=candles-incense"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Candles & Incense
@@ -213,16 +211,16 @@ export default function Header() {
                     </h3>
                     <div className="space-y-2">
                       <Link
-                        href="/category/energy-drinks"
+                        href="/shop?category=energy-drinks"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
                         Energy Drinks
                       </Link>
                       <Link
-                        href="/category/exotic"
+                        href="/shop?category=batteries"
                         className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
                       >
-                        Exotic
+                        Batteries
                       </Link>
                     </div>
                     

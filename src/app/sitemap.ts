@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next'
-import { categories } from '@/data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://zsmokeshop.com' // Replace with your actual domain when deployed
@@ -18,12 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
-    {
-      url: `${baseUrl}/catalogue`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.9,
-    },
+
     {
       url: `${baseUrl}/locations`,
       lastModified: new Date(),
@@ -38,13 +32,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  // Dynamic category pages
-  const categoryPages = categories.map((category) => ({
-    url: `${baseUrl}/category/${category.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
-
-  return [...staticPages, ...categoryPages]
+  return staticPages
 }

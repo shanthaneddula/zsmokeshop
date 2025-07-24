@@ -215,6 +215,8 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
           )}
         </div>
 
+
+
         {/* Price */}
         <div className="flex items-center gap-2 mb-4">
           <span className="text-lg font-black text-gray-900 dark:text-white">

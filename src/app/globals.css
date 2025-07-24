@@ -133,6 +133,38 @@ body {
     @apply transition-all duration-300 hover:scale-[1.02];
   }
 
+  /* Dropdown animations - Industry standard smooth behavior */
+  .dropdown-group:hover .dropdown-menu {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .dropdown-menu {
+    animation: fadeOut 0.15s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+  }
+
   /* Z-index utility classes - Proper layering system */
   .z-announcement {
     @apply z-50; /* Announcement bar - top priority */

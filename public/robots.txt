@@ -27,8 +27,6 @@ Disallow: /*?limit=*
 
 # Allow important pages for SEO (explicit allows for clarity)
 Allow: /shop/
-Allow: /catalogue/
-Allow: /category/
 Allow: /locations/
 Allow: /support/
 Allow: /

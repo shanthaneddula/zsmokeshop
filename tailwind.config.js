@@ -102,6 +102,9 @@ module.exports = {
         "128": "32rem",
       },
       zIndex: {
+        "banner": 50,
+        "sticky": 40,
+        "dropdown": 30,
         "60": 60,
         "70": 70,
         "80": 80,

@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Phone, Sparkles } from "lucide-react";
+import { useBanner } from "@/contexts/BannerContext";
 
 export default function AnnouncementBar() {
-  const [isVisible, setIsVisible] = useState(true);
+  const { isVisible, setIsVisible } = useBanner();
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 
   const messages = [

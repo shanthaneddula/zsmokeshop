@@ -1,5 +1,6 @@
 # Z Smoke Shop Website Knowledge Transfer Document
-
+⚠️ floating-chat-prompt.tsx - Complete but not integrated
+🚨 data/catalogue.ts - Creates data inconsistency (discussed earlier)
 ## Website Structure and Components
 
 ### Page Structure

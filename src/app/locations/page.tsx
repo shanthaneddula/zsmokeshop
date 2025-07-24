@@ -1,33 +1,22 @@
 'use client';
 
 import { MapPin, Phone, Clock, Navigation } from 'lucide-react';
+import { locations } from '@/data';
+import { Location } from '@/types';
 
-interface StoreLocation {
-  id: string;
-  name: string;
-  address: string;
-  phone: string;
-  hours: {
-    weekdays: string;
-    weekends: string;
-  };
-  coordinates: {
+// Extended interface for locations page with additional features
+interface ExtendedLocation extends Location {
+  coordinates?: {
     lat: number;
     lng: number;
   };
-  features: string[];
+  features?: string[];
 }
 
-const storeLocations: StoreLocation[] = [
+// Extend the shared locations data with additional features for this page
+const extendedLocations: ExtendedLocation[] = [
   {
-    id: "z-smoke-shop",
-    name: "Z SMOKE SHOP",
-    address: "719 W William Cannon Dr #105, Austin, TX 78745",
-    phone: "+1 (661) 371-1413",
-    hours: {
-      weekdays: "Mon-Thu, Sun: 10:00 AM - 11:00 PM",
-      weekends: "Fri-Sat: 10:00 AM - 12:00 AM"
-    },
+    ...locations[0],
     coordinates: {
       lat: 30.2241,
       lng: -97.7889
@@ -35,14 +24,7 @@ const storeLocations: StoreLocation[] = [
     features: ["Large Parking", "Wheelchair Accessible", "Expert Staff", "Premium Selection"]
   },
   {
-    id: "five-star-smoke-shop",
-    name: "5 STAR SMOKE SHOP & GIFTS",
-    address: "5318 Cameron Rd, Austin, TX 78723",
-    phone: "+1 (661) 371-1413",
-    hours: {
-      weekdays: "Mon-Thu, Sun: 10:00 AM - 11:00 PM",
-      weekends: "Fri-Sat: 10:00 AM - 12:00 AM"
-    },
+    ...locations[1],
     coordinates: {
       lat: 30.2969,
       lng: -97.6947
@@ -78,7 +60,7 @@ export default function LocationsPage() {
           
           {/* Clean grid layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {storeLocations.map((location, index) => (
+            {extendedLocations.map((location, index) => (
               <div
                 key={location.id}
                 className="group"
@@ -119,16 +101,17 @@ export default function LocationsPage() {
 
                   {/* Hours - structured display */}
                   <div className="flex items-start gap-4">
-                    <Clock className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
-                    <div className="text-gray-700 dark:text-gray-300 font-light">
-                      <p className="mb-1">{location.hours.weekdays}</p>
-                      <p>{location.hours.weekends}</p>
+                    <div className="flex items-start gap-4">
+                      <Clock className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                      <div className="text-gray-700 dark:text-gray-300 font-light">
+                        <p className="text-sm text-gray-600 dark:text-gray-400">{location.hours}</p>
+                      </div>
                     </div>
                   </div>
 
                   {/* Features - minimal tags */}
                   <div className="flex flex-wrap gap-3 pt-3">
-                    {location.features.map((feature, featureIndex) => (
+                    {location.features?.map((feature, featureIndex) => (
                       <span
                         key={featureIndex}
                         className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-300 dark:border-gray-600 pb-0.5"

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { BannerProvider } from "@/contexts/BannerContext";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import AgeVerification from "@/components/layout/age-verification";
@@ -60,26 +61,28 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Main app container - z-smoke-shop-app for identification */}
-          <div id="z-smoke-shop-app" className="relative flex min-h-screen flex-col">
-            {/* Age verification portal */}
-            <AgeVerification />
-            
-            {/* Announcement Bar - Fixed at top */}
-            <AnnouncementBar />
-            
-            {/* Header - Positioned to account for announcement bar */}
-            <Header />
-            
-            {/* Main content */}
-            {children}
-            
-            {/* Footer */}
-            <Footer />
-            
-            {/* Conditional Tawk.to Chat - Only after age verification */}
-            <TawkToChat />
-          </div>
+          <BannerProvider>
+            {/* Main app container - z-smoke-shop-app for identification */}
+            <div id="z-smoke-shop-app" className="relative flex min-h-screen flex-col">
+              {/* Age verification portal */}
+              <AgeVerification />
+              
+              {/* Announcement Bar - Fixed at top */}
+              <AnnouncementBar />
+              
+              {/* Header - Positioned to account for announcement bar */}
+              <Header />
+              
+              {/* Main content */}
+              {children}
+              
+              {/* Footer */}
+              <Footer />
+              
+              {/* Conditional Tawk.to Chat - Only after age verification */}
+              <TawkToChat />
+            </div>
+          </BannerProvider>
         </ThemeProvider>
       </body>
     </html>
