@@ -124,11 +124,11 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-lg font-black text-gray-900 dark:text-white">
-                  ${product.price.toFixed(2)}
+                  ${product.salePrice ? product.salePrice.toFixed(2) : product.price.toFixed(2)}
                 </span>
-                {product.originalPrice && (
+                {product.salePrice && (
                   <span className="text-sm text-gray-500 line-through">
-                    ${product.originalPrice.toFixed(2)}
+                    ${product.price.toFixed(2)}
                   </span>
                 )}
               </div>
@@ -220,11 +220,11 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
         {/* Price */}
         <div className="flex items-center gap-2 mb-4">
           <span className="text-lg font-black text-gray-900 dark:text-white">
-            ${product.price.toFixed(2)}
+            ${product.salePrice ? product.salePrice.toFixed(2) : product.price.toFixed(2)}
           </span>
-          {product.originalPrice && (
+          {product.salePrice && (
             <span className="text-sm text-gray-500 line-through">
-              ${product.originalPrice.toFixed(2)}
+              ${product.price.toFixed(2)}
             </span>
           )}
         </div>

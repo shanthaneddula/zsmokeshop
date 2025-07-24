@@ -89,15 +89,17 @@ export default function LocationsPage() {
                   </div>
 
                   {/* Phone */}
-                  <div className="flex items-center gap-4">
-                    <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
-                    <button
-                      onClick={() => callStore(location.phone)}
-                      className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors underline-offset-4 hover:underline"
-                    >
-                      {location.phone}
-                    </button>
-                  </div>
+                  {location.phone && (
+                    <div className="flex items-center gap-4">
+                      <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                      <button
+                        onClick={() => callStore(location.phone!)}
+                        className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-medium transition-colors underline-offset-4 hover:underline"
+                      >
+                        {location.phone}
+                      </button>
+                    </div>
+                  )}
 
                   {/* Hours - structured display */}
                   <div className="flex items-start gap-4">

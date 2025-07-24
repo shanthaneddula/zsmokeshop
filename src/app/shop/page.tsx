@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 import ShopPageClient from './shop-client';
 
 // SEO metadata for the shop page
@@ -14,5 +15,9 @@ export const metadata: Metadata = {
 };
 
 export default function ShopPage() {
-  return <ShopPageClient />;
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ShopPageClient />
+    </Suspense>
+  );
 }
