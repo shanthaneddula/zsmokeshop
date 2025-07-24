@@ -28,11 +28,15 @@ export interface Location {
 export interface Product {
   id: string;
   name: string;
-  category: string;
+  category: string; // category slug
   price: number;
+  originalPrice?: number; // for sale pricing
   image: string;
   description?: string;
   inStock: boolean;
+  badges?: ('new' | 'sale' | 'best-seller' | 'out-of-stock')[];
+  brand?: string;
+  sku?: string;
 }
 
 export interface ReviewData {
