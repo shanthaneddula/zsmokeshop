@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ShoppingCart, Heart, Eye } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Product } from '@/types';
@@ -67,6 +68,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
         animate={{ opacity: 1, y: 0 }}
         className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white transition-all duration-300"
       >
+        <Link href={`/products/${product.slug}`}>
         <div className="flex p-4 gap-4">
           {/* Product Image */}
           <div className="relative w-24 h-24 flex-shrink-0">
@@ -152,6 +154,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
             </div>
           </div>
         </div>
+        </Link>
       </motion.div>
     );
   }
@@ -163,6 +166,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
       animate={{ opacity: 1, y: 0 }}
       className="group bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white transition-all duration-300"
     >
+      <Link href={`/products/${product.slug}`}>
       {/* Product Image */}
       <div className="relative aspect-square overflow-hidden">
         {renderBadges()}
@@ -248,6 +252,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
           )}
         </button>
       </div>
+      </Link>
     </motion.div>
   );
 }

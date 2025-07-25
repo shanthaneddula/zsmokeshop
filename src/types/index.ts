@@ -28,6 +28,7 @@ export interface Location {
 export interface Product {
   id: string;
   name: string;
+  slug: string;
   category: string;
   price: number;
   salePrice?: number;
@@ -36,6 +37,7 @@ export interface Product {
   brand?: string;
   inStock: boolean;
   badges?: string[]; // e.g., ['new', 'best-seller', 'sale', 'out-of-stock']
+  rating?: number;
 }
 
 export interface ReviewData {
@@ -44,4 +46,48 @@ export interface ReviewData {
   rating: number;
   comment: string;
   date: string;
+}
+
+// Admin Product interface for backend management
+export interface AdminProduct {
+  id: string;
+  name: string;
+  slug: string;
+  category: string;
+  price: number;
+  salePrice?: number;
+  image?: string;
+  description?: string;
+  brand?: string;
+  inStock: boolean;
+  badges?: string[];
+  sku?: string;
+  status: 'active' | 'inactive' | 'draft';
+  weight?: string;
+  dimensions?: string;
+  rating?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  createdBy?: string;
+  updatedBy?: string;
+  imageHistory?: string[];
+}
+
+// Admin Category interface for backend management
+export interface AdminCategory {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  image?: string;
+  status: 'active' | 'inactive' | 'draft';
+  sortOrder?: number;
+  productCount?: number;
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  createdBy?: string;
+  updatedBy?: string;
 }

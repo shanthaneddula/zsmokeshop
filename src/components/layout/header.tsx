@@ -6,17 +6,36 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, User, ShoppingCart, Sun, Moon, Search, ChevronRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useBanner } from "@/contexts/BannerContext";
+import { Category } from "@/types";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const { theme, setTheme } = useTheme();
   const { isVisible: isBannerVisible } = useBanner();
   
   // Handle theme mounting to prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Fetch categories from admin API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('/api/shop/categories');
+        const data = await response.json();
+        if (data.success) {
+          setCategories(data.categories);
+        }
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
   }, []);
   
   // Prevent body scroll when mobile menu is open
@@ -44,7 +63,7 @@ export default function Header() {
 
   return (
     <header 
-      className={`sticky ${isBannerVisible ? 'top-[2.7rem] md:top-16' : 'top-0'} z-sticky w-full bg-white dark:bg-gray-900 border-b-2 border-gray-900 dark:border-white transition-all duration-300 ease-in-out`}
+      className={`sticky ${isBannerVisible ? 'top-[2.7rem] md:top-16' : 'top-0'} z-sticky w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out`}
     >
       <div className="container-wide relative flex h-16 items-center justify-between">
         {/* Logo - Adidas style */}
@@ -83,158 +102,47 @@ export default function Header() {
                 isBannerVisible ? '-top-[6.7rem] md:-top-32 h-[6.7rem] md:h-32' : '-top-16 h-16'
               }`}></div>
               <div className="container-wide py-12">
-                <div className="grid grid-cols-5 gap-8">
-                  {/* Column 1: Vaping */}
-                  <div>
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
-                      Vaping
-                    </h3>
-                    <div className="space-y-2">
-                      <Link
-                        href="/shop?category=high-end-vaporizers"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        High-End Vaporizers
-                      </Link>
-                      <Link
-                        href="/shop?category=vapes-mods-pods"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Vapes, Mods & Pods
-                      </Link>
-                      <Link
-                        href="/shop?category=e-liquids"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        E-Liquids
-                      </Link>
-                    </div>
+                {categories.length > 0 ? (
+                  <div className="grid grid-cols-4 gap-8">
+                    {/* Dynamically display categories in columns */}
+                    {Array.from({ length: 4 }, (_, colIndex) => {
+                      const startIndex = colIndex * Math.ceil(categories.length / 4);
+                      const endIndex = Math.min(startIndex + Math.ceil(categories.length / 4), categories.length);
+                      const columnCategories = categories.slice(startIndex, endIndex);
+                      
+                      return (
+                        <div key={colIndex}>
+                          {columnCategories.map((category) => (
+                            <div key={category.id} className="mb-6">
+                              <Link
+                                href={`/shop?category=${category.slug}`}
+                                className="block text-sm font-bold text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors uppercase tracking-wide mb-2"
+                              >
+                                {category.name}
+                              </Link>
+                            </div>
+                          ))}
+                          
+                          {/* Add "All Products" link to the last column */}
+                          {colIndex === 3 && (
+                            <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
+                              <Link
+                                href="/shop"
+                                className="block text-sm font-bold text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors uppercase tracking-wide"
+                              >
+                                All Products
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
-
-                  {/* Column 2: Glass & Smoking */}
-                  <div>
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
-                      Glass & Smoking
-                    </h3>
-                    <div className="space-y-2">
-                      <Link
-                        href="/shop?category=glass"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Glass
-                      </Link>
-                      <Link
-                        href="/shop?category=shisha-hookah"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Shisha & Hookah
-                      </Link>
-                      <Link
-                        href="/shop?category=cigarillos"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Cigarillos
-                      </Link>
-                      <Link
-                        href="/shop?category=lighters-torches"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Lighters & Torches
-                      </Link>
-                    </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-gray-600 dark:text-gray-400">Loading categories...</p>
                   </div>
-
-                  {/* Column 3: Cannabis & CBD */}
-                  <div>
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
-                      Cannabis & CBD
-                    </h3>
-                    <div className="space-y-2">
-                      <Link
-                        href="/shop?category=exotic"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Exotic
-                      </Link>
-                      <Link
-                        href="/shop?category=thc-a"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        THC-A
-                      </Link>
-                      <Link
-                        href="/shop?category=kratoms"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Kratoms
-                      </Link>
-                      <Link
-                        href="/shop?category=detox"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Detox
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Column 4: Accessories */}
-                  <div>
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
-                      Accessories
-                    </h3>
-                    <div className="space-y-2">
-                      <Link
-                        href="/shop?category=grinders-scales-trays"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Grinders, Scales & Trays
-                      </Link>
-                      <Link
-                        href="/shop?category=smoke-accessories"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Smoke Accessories
-                      </Link>
-                      <Link
-                        href="/shop?category=candles-incense"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Candles & Incense
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Column 5: Beverages & More */}
-                  <div>
-                    <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
-                      Beverages & More
-                    </h3>
-                    <div className="space-y-2">
-                      <Link
-                        href="/shop?category=energy-drinks"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Energy Drinks
-                      </Link>
-                      <Link
-                        href="/shop?category=batteries"
-                        className="block text-xs font-light text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-                      >
-                        Batteries
-                      </Link>
-                    </div>
-                    
-                    {/* All Products Link */}
-                    <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
-                      <Link
-                        href="/shop"
-                        className="block text-sm font-bold text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors uppercase tracking-wide"
-                      >
-                        All Products
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

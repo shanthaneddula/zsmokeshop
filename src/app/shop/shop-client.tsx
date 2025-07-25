@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { Search, Grid, List, Filter, ChevronDown } from 'lucide-react';
+import { Search, Grid, List, Filter, ChevronDown, Loader2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { categories, products } from '@/data';
+import { Category, Product } from '@/types';
 import ProductCard from '@/components/product/ProductCard';
 import Pagination from '@/components/ui/Pagination';
 
@@ -14,6 +14,13 @@ export default function ShopPageClient() {
   const router = useRouter();
   const pathname = usePathname();
   
+  // Data state
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  
+  // UI state
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -23,6 +30,44 @@ export default function ShopPageClient() {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   
   const ITEMS_PER_PAGE = 12;
+
+  // Fetch data from admin-managed APIs
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      
+      const [categoriesRes, productsRes] = await Promise.all([
+        fetch('/api/shop/categories'),
+        fetch('/api/shop/products')
+      ]);
+      
+      if (categoriesRes.ok && productsRes.ok) {
+        const categoriesData = await categoriesRes.json();
+        const productsData = await productsRes.json();
+        
+        if (categoriesData.success) {
+          setCategories(categoriesData.categories);
+        }
+        
+        if (productsData.success) {
+          setProducts(productsData.products);
+        }
+      } else {
+        throw new Error('Failed to fetch data');
+      }
+    } catch (err) {
+      console.error('Error fetching shop data:', err);
+      setError('Failed to load shop data. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Load data on mount
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // Handle URL parameters on mount
   useEffect(() => {
@@ -43,7 +88,7 @@ export default function ShopPageClient() {
     if (typeof document !== 'undefined') {
       document.title = title;
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, categories]);
 
   // Update URL when category changes
   const handleCategoryChange = (categorySlug: string) => {
@@ -66,43 +111,48 @@ export default function ShopPageClient() {
   };
 
   // Filter and sort products
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         product.brand?.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
-    
-    return matchesSearch && matchesCategory;
-  });
+  const filteredProducts = useMemo(() => {
+    const filtered = products.filter(product => {
+      const matchesSearch = !searchQuery || 
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.brand?.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesCategory = !selectedCategory || product.category === selectedCategory;
+      
+      return matchesSearch && matchesCategory;
+    });
 
-  // Sort products
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortBy) {
-      case 'price-low-high':
-        return a.price - b.price;
-      case 'price-high-low':
-        return b.price - a.price;
-      case 'name-a-z':
-        return a.name.localeCompare(b.name);
-      case 'name-z-a':
-        return b.name.localeCompare(a.name);
+    // Sort products
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case 'price-low-high':
+          return a.price - b.price;
+        case 'price-high-low':
+          return b.price - a.price;
+        case 'name-a-z':
+          return a.name.localeCompare(b.name);
+        case 'name-z-a':
+          return b.name.localeCompare(a.name);
 
-      case 'newest':
-        return (b.badges?.includes('new') ? 1 : 0) - (a.badges?.includes('new') ? 1 : 0);
-      case 'featured':
-      default:
-        // Featured: prioritize best-sellers, then by newest (badges with 'new')
-        const aScore = (a.badges?.includes('best-seller') ? 100 : 0) + (a.badges?.includes('new') ? 50 : 0);
-        const bScore = (b.badges?.includes('best-seller') ? 100 : 0) + (b.badges?.includes('new') ? 50 : 0);
-        return bScore - aScore;
-    }
-  });
+        case 'newest':
+          return (b.badges?.includes('new') ? 1 : 0) - (a.badges?.includes('new') ? 1 : 0);
+        case 'featured':
+        default:
+          // Featured: prioritize best-sellers, then by newest (badges with 'new')
+          const aScore = (a.badges?.includes('best-seller') ? 100 : 0) + (a.badges?.includes('new') ? 50 : 0);
+          const bScore = (b.badges?.includes('best-seller') ? 100 : 0) + (b.badges?.includes('new') ? 50 : 0);
+          return bScore - aScore;
+      }
+    });
+
+    return filtered;
+  }, [products, searchQuery, selectedCategory, sortBy]);
 
   // Pagination
-  const totalPages = Math.ceil(sortedProducts.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedProducts = sortedProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const paginatedProducts = filteredProducts.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   // Sort options
   const sortOptions = [
@@ -115,7 +165,7 @@ export default function ShopPageClient() {
   ];
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section - Adidas Style */}
       <section className="relative bg-black text-white py-16 md:py-24">
         <div className="container-wide">
@@ -271,7 +321,7 @@ export default function ShopPageClient() {
 
               {/* Results Count */}
               <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
-                {filteredProducts.length} Products
+                {loading ? 'Loading...' : `${filteredProducts.length} Products`}
               </span>
             </div>
           </div>
@@ -326,24 +376,59 @@ export default function ShopPageClient() {
           </aside>
 
           {/* Main Content */}
-          <div className="flex-1">
+          <main className="flex-1">
+            {/* Loading State */}
+            {loading && (
+              <div className="flex items-center justify-center py-16">
+                <div className="text-center">
+                  <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4 text-gray-900 dark:text-white" />
+                  <p className="text-gray-600 dark:text-gray-400 font-medium uppercase tracking-wide">
+                    Loading Products...
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Error State */}
+            {error && (
+              <div className="text-center py-16">
+                <div className="w-24 h-24 mx-auto mb-6 border-2 border-red-300 dark:border-red-600 flex items-center justify-center">
+                  <span className="text-2xl text-red-500">!</span>
+                </div>
+                <h3 className="text-2xl font-black uppercase tracking-wide text-gray-900 dark:text-white mb-2">
+                  Error Loading Products
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                  {error}
+                </p>
+                <button
+                  onClick={fetchData}
+                  className="inline-flex items-center justify-center border border-gray-900 dark:border-white px-6 py-3 text-sm font-black uppercase tracking-wide text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-all duration-300"
+                >
+                  Try Again
+                </button>
+              </div>
+            )}
+
             {/* Product Grid/List */}
-            <div className={`${
-              viewMode === 'grid' 
-                ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6' 
-                : 'space-y-4'
-            }`}>
-              {paginatedProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  viewMode={viewMode}
-                />
-              ))}
-            </div>
+            {!loading && !error && (
+              <div className={`${
+                viewMode === 'grid' 
+                  ? 'grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6' 
+                  : 'space-y-4'
+              }`}>
+                {paginatedProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    viewMode={viewMode}
+                  />
+                ))}
+              </div>
+            )}
 
             {/* No Results - Adidas Style */}
-            {filteredProducts.length === 0 && (
+            {!loading && !error && filteredProducts.length === 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -371,7 +456,7 @@ export default function ShopPageClient() {
             )}
 
             {/* Pagination */}
-            {filteredProducts.length > 0 && (
+            {!loading && !error && filteredProducts.length > 0 && (
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
@@ -380,9 +465,9 @@ export default function ShopPageClient() {
                 itemsPerPage={ITEMS_PER_PAGE}
               />
             )}
-          </div>
+          </main>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

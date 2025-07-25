@@ -409,7 +409,7 @@ export default function FeaturedProducts() {
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Link href="/products">
+          <Link href="/shop">
             <button className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold px-8 md:px-12 py-3 md:py-4 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors uppercase tracking-wide text-sm border border-gray-900 dark:border-white">
               View All Products
             </button>

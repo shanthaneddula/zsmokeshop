@@ -2,15 +2,51 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { categories, products } from '@/data';
+import { Category, Product } from '@/types';
 
 export default function HomepageCatalogue() {
-  const [activeCategory, setActiveCategory] = useState(categories[0].id);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [activeCategory, setActiveCategory] = useState('');
   const [isVisible, setIsVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
   
   const selectedCategory = categories.find(cat => cat.id === activeCategory);
-  const categoryProducts = products.filter(product => product.category === activeCategory);
+  const categoryProducts = products.filter(product => product.category === selectedCategory?.slug);
   
+  // Fetch categories and products from admin API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch categories
+        const categoriesResponse = await fetch('/api/shop/categories');
+        const categoriesData = await categoriesResponse.json();
+        
+        // Fetch products
+        const productsResponse = await fetch('/api/shop/products');
+        const productsData = await productsResponse.json();
+        
+        if (categoriesData.success && productsData.success) {
+          setCategories(categoriesData.categories);
+          setProducts(productsData.products);
+          
+          // Set first category as active if available
+          if (categoriesData.categories.length > 0) {
+            setActiveCategory(categoriesData.categories[0].id);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -49,38 +85,58 @@ export default function HomepageCatalogue() {
           </p>
         </motion.div>
 
-        {/* Category Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12"
-        >
-          <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex space-x-6 md:space-x-8 min-w-max px-4 md:px-0 md:justify-center">
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`relative pb-2 text-sm md:text-base font-medium uppercase tracking-wider transition-colors whitespace-nowrap ${
-                    activeCategory === category.id
-                      ? 'text-gray-900 dark:text-white'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
-                  }`}
-                >
-                  {category.name}
-                  {activeCategory === category.id && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900 dark:bg-white"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+        {/* Loading State */}
+        {loading ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16"
+          >
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white"></div>
+            <p className="mt-4 text-gray-600 dark:text-gray-400 uppercase tracking-wide">Loading products...</p>
+          </motion.div>
+        ) : categories.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-16"
+          >
+            <p className="text-gray-600 dark:text-gray-400 uppercase tracking-wide">No categories available</p>
+          </motion.div>
+        ) : (
+          <>
+            {/* Category Tabs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-12"
+            >
+              <div className="overflow-x-auto scrollbar-hide">
+                <div className="flex space-x-6 md:space-x-8 min-w-max px-4 md:px-0 md:justify-center">
+                  {categories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setActiveCategory(category.id)}
+                      className={`relative pb-2 text-sm md:text-base font-medium uppercase tracking-wider transition-colors whitespace-nowrap ${
+                        activeCategory === category.id
+                          ? 'text-gray-900 dark:text-white'
+                          : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                      }`}
+                    >
+                      {category.name}
+                      {activeCategory === category.id && (
+                        <motion.div
+                          layoutId="activeTab"
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gray-900 dark:bg-white"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
         
         {/* Category Content */}
         <motion.div
@@ -90,15 +146,6 @@ export default function HomepageCatalogue() {
           transition={{ duration: 0.3 }}
           className="mt-12"
         >
-          {selectedCategory && (
-            <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
-                {selectedCategory.name}
-              </h3>
-              <div className="w-16 h-0.5 bg-gray-900 dark:bg-white mx-auto mb-6"></div>
-            </div>
-          )}
-
           {/* Products Grid */}
           {categoryProducts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -195,6 +242,8 @@ export default function HomepageCatalogue() {
             </div>
           )}
         </motion.div>
+            </>
+        )}
       </div>
     </section>
   );

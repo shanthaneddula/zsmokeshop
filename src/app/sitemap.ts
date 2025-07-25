@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
+import { getAllProducts } from '@/lib/product-utils-server'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://zsmokeshop.com' // Replace with your actual domain when deployed
   
   // Static pages
@@ -32,5 +33,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ]
 
-  return staticPages
+  // Dynamic product pages
+  try {
+    const products = await getAllProducts()
+    const productPages = products
+      .filter(product => product.status === 'active')
+      .map(product => ({
+        url: `${baseUrl}/products/${product.slug}`,
+        lastModified: product.updatedAt ? new Date(product.updatedAt) : new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.6,
+      }))
+
+    return [...staticPages, ...productPages]
+  } catch (error) {
+    console.error('Error generating sitemap:', error)
+    return staticPages
+  }
 }

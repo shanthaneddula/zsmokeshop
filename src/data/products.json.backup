@@ -1,0 +1,552 @@
+[
+  {
+    "id": "prod_1753361497281_0",
+    "name": "SMOK Nord 4 Pod Kit",
+    "category": "vapes-mods-pods",
+    "price": 34.99,
+    "salePrice": 29.99,
+    "image": "/images/products/smok-nord-4.jpg",
+    "description": "Compact and powerful pod system with 2000mAh battery and adjustable wattage.",
+    "brand": "SMOK",
+    "inStock": true,
+    "badges": [
+      "best-seller",
+      "sale"
+    ],
+    "sku": "SKU-1753361497281-0",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/smok-nord-4.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_1",
+    "name": "Voopoo Drag X Plus",
+    "category": "vapes-mods-pods",
+    "price": 49.99,
+    "image": "/images/products/voopoo-drag-x-plus.jpg",
+    "description": "Advanced mod with GENE.TT chip and 100W max output.",
+    "brand": "Voopoo",
+    "inStock": true,
+    "badges": [
+      "new"
+    ],
+    "sku": "SKU-1753361497281-1",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/voopoo-drag-x-plus.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_2",
+    "name": "Uwell Caliburn G2",
+    "category": "vapes-mods-pods",
+    "price": 24.99,
+    "image": "/images/products/uwell-caliburn-g2.jpg",
+    "description": "Sleek pod system perfect for beginners and experienced vapers.",
+    "brand": "Uwell",
+    "inStock": true,
+    "badges": [
+      "best-seller"
+    ],
+    "sku": "SKU-1753361497281-2",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/uwell-caliburn-g2.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_3",
+    "name": "GeekVape Aegis Legend 2",
+    "category": "vapes-mods-pods",
+    "price": 64.99,
+    "image": "/images/products/geekvape-aegis-legend-2.jpg",
+    "description": "Rugged and waterproof dual-battery mod with 200W power.",
+    "brand": "GeekVape",
+    "inStock": false,
+    "badges": [
+      "out-of-stock"
+    ],
+    "sku": "SKU-1753361497281-3",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/geekvape-aegis-legend-2.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_4",
+    "name": "Thick Glass Beaker Bong 12\"",
+    "category": "glass",
+    "price": 89.99,
+    "salePrice": 74.99,
+    "image": "/images/products/beaker-bong-12.jpg",
+    "description": "High-quality borosilicate glass beaker bong with ice catcher.",
+    "brand": "Premium Glass",
+    "inStock": true,
+    "badges": [
+      "best-seller",
+      "sale"
+    ],
+    "sku": "SKU-1753361497281-4",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/beaker-bong-12.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_5",
+    "name": "Straight Tube Water Pipe 14\"",
+    "category": "glass",
+    "price": 69.99,
+    "image": "/images/products/straight-tube-14.jpg",
+    "description": "Classic straight tube design with diffused downstem.",
+    "brand": "Clear Choice",
+    "inStock": true,
+    "badges": [],
+    "sku": "SKU-1753361497281-5",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/straight-tube-14.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_6",
+    "name": "Recycler Dab Rig 8\"",
+    "category": "glass",
+    "price": 124.99,
+    "image": "/images/products/recycler-dab-rig.jpg",
+    "description": "Advanced recycler design for smooth concentrate hits.",
+    "brand": "Heady Glass",
+    "inStock": true,
+    "badges": [
+      "new"
+    ],
+    "sku": "SKU-1753361497281-6",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/recycler-dab-rig.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_7",
+    "name": "Mini Bubbler 6\"",
+    "category": "glass",
+    "price": 39.99,
+    "salePrice": 34.99,
+    "image": "/images/products/mini-bubbler.jpg",
+    "description": "Compact bubbler perfect for on-the-go sessions.",
+    "brand": "Pocket Glass",
+    "inStock": true,
+    "badges": [
+      "sale"
+    ],
+    "sku": "SKU-1753361497281-7",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/mini-bubbler.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_8",
+    "name": "Khalil Mamoon Hookah 32\"",
+    "category": "shisha-hookah",
+    "price": 149.99,
+    "image": "/images/products/khalil-mamoon-hookah.jpg",
+    "description": "Authentic Egyptian hookah with traditional brass stem.",
+    "brand": "Khalil Mamoon",
+    "inStock": true,
+    "badges": [
+      "best-seller"
+    ],
+    "sku": "SKU-1753361497281-8",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/khalil-mamoon-hookah.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_9",
+    "name": "Al Fakher Shisha 250g - Double Apple",
+    "category": "shisha-hookah",
+    "price": 12.99,
+    "image": "/images/products/al-fakher-double-apple.jpg",
+    "description": "Premium shisha tobacco with classic double apple flavor.",
+    "brand": "Al Fakher",
+    "inStock": true,
+    "badges": [],
+    "sku": "SKU-1753361497281-9",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/al-fakher-double-apple.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_10",
+    "name": "Starbuzz Shisha 250g - Blue Mist",
+    "category": "shisha-hookah",
+    "price": 15.99,
+    "salePrice": 13.99,
+    "image": "/images/products/starbuzz-blue-mist.jpg",
+    "description": "High-quality American shisha with refreshing blue mist flavor.",
+    "brand": "Starbuzz",
+    "inStock": true,
+    "badges": [
+      "sale"
+    ],
+    "sku": "SKU-1753361497281-10",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/starbuzz-blue-mist.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_11",
+    "name": "Naked 100 - Lava Flow 60ml",
+    "category": "e-liquids",
+    "price": 19.99,
+    "image": "/images/products/naked-lava-flow.jpg",
+    "description": "Tropical blend of strawberry, coconut, and pineapple.",
+    "brand": "Naked 100",
+    "inStock": true,
+    "badges": [
+      "best-seller"
+    ],
+    "sku": "SKU-1753361497281-11",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/naked-lava-flow.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_12",
+    "name": "Juice Head - Peach Pear 100ml",
+    "category": "e-liquids",
+    "price": 24.99,
+    "salePrice": 19.99,
+    "image": "/images/products/juice-head-peach-pear.jpg",
+    "description": "Sweet and juicy peach pear blend in large 100ml bottle.",
+    "brand": "Juice Head",
+    "inStock": true,
+    "badges": [
+      "sale",
+      "new"
+    ],
+    "sku": "SKU-1753361497281-12",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.281Z",
+    "imageHistory": [
+      "/images/products/juice-head-peach-pear.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497281_13",
+    "name": "Coastal Clouds - Vanilla Custard 60ml",
+    "category": "e-liquids",
+    "price": 17.99,
+    "image": "/images/products/coastal-clouds-vanilla.jpg",
+    "description": "Rich and creamy vanilla custard dessert flavor.",
+    "brand": "Coastal Clouds",
+    "inStock": true,
+    "badges": [],
+    "sku": "SKU-1753361497281-13",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.281Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/coastal-clouds-vanilla.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_14",
+    "name": "RAW Classic Rolling Papers King Size",
+    "category": "smoke-accessories",
+    "price": 2.99,
+    "image": "/images/products/raw-papers-king.jpg",
+    "description": "Natural unrefined rolling papers, king size.",
+    "brand": "RAW",
+    "inStock": true,
+    "badges": [
+      "best-seller"
+    ],
+    "sku": "SKU-1753361497282-14",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/raw-papers-king.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_15",
+    "name": "Element Rolling Tray Large",
+    "category": "smoke-accessories",
+    "price": 14.99,
+    "salePrice": 12.99,
+    "image": "/images/products/element-rolling-tray.jpg",
+    "description": "Large metal rolling tray with curved edges.",
+    "brand": "Element",
+    "inStock": true,
+    "badges": [
+      "sale"
+    ],
+    "sku": "SKU-1753361497282-15",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/element-rolling-tray.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_16",
+    "name": "Clipper Lighter 4-Pack",
+    "category": "smoke-accessories",
+    "price": 8.99,
+    "image": "/images/products/clipper-lighter-4pack.jpg",
+    "description": "Refillable butane lighters in assorted colors.",
+    "brand": "Clipper",
+    "inStock": true,
+    "badges": [],
+    "sku": "SKU-1753361497282-16",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/clipper-lighter-4pack.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_17",
+    "name": "Santa Cruz Shredder 4-Piece Large",
+    "category": "grinders-scales-trays",
+    "price": 64.99,
+    "image": "/images/products/santa-cruz-shredder.jpg",
+    "description": "Premium aluminum grinder with unique tooth design.",
+    "brand": "Santa Cruz Shredder",
+    "inStock": true,
+    "badges": [
+      "best-seller"
+    ],
+    "sku": "SKU-1753361497282-17",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/santa-cruz-shredder.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_18",
+    "name": "Digital Pocket Scale 0.1g",
+    "category": "grinders-scales-trays",
+    "price": 19.99,
+    "salePrice": 16.99,
+    "image": "/images/products/digital-pocket-scale.jpg",
+    "description": "Precision digital scale with 0.1g accuracy.",
+    "brand": "WeighMax",
+    "inStock": true,
+    "badges": [
+      "sale"
+    ],
+    "sku": "SKU-1753361497282-18",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/digital-pocket-scale.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_19",
+    "name": "Blazer Big Shot Torch",
+    "category": "lighters-torches",
+    "price": 49.99,
+    "image": "/images/products/blazer-big-shot.jpg",
+    "description": "Professional butane torch with adjustable flame.",
+    "brand": "Blazer",
+    "inStock": true,
+    "badges": [
+      "best-seller"
+    ],
+    "sku": "SKU-1753361497282-19",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/blazer-big-shot.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_20",
+    "name": "Zippo Classic Lighter",
+    "category": "lighters-torches",
+    "price": 24.99,
+    "image": "/images/products/zippo-classic.jpg",
+    "description": "Iconic windproof lighter with lifetime warranty.",
+    "brand": "Zippo",
+    "inStock": true,
+    "badges": [],
+    "sku": "SKU-1753361497282-20",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/zippo-classic.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_21",
+    "name": "Mega Clean Detox Drink 32oz",
+    "category": "detox",
+    "price": 39.99,
+    "salePrice": 34.99,
+    "image": "/images/products/mega-clean-detox.jpg",
+    "description": "Fast-acting detox drink for cleansing support.",
+    "brand": "Detoxify",
+    "inStock": true,
+    "badges": [
+      "sale"
+    ],
+    "sku": "SKU-1753361497282-21",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/mega-clean-detox.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_22",
+    "name": "Red Bali Kratom Powder 1oz",
+    "category": "kratoms",
+    "price": 12.99,
+    "image": "/images/products/red-bali-kratom.jpg",
+    "description": "Premium red vein Bali kratom powder.",
+    "brand": "Botanical Wellness",
+    "inStock": true,
+    "badges": [
+      "new"
+    ],
+    "sku": "SKU-1753361497282-22",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/red-bali-kratom.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "id": "prod_1753361497282_23",
+    "name": "Samsung 18650 Battery 2-Pack",
+    "category": "batteries",
+    "price": 16.99,
+    "image": "/images/products/samsung-18650-battery.jpg",
+    "description": "High-drain 18650 batteries for vape mods.",
+    "brand": "Samsung",
+    "inStock": true,
+    "badges": [
+      "best-seller"
+    ],
+    "sku": "SKU-1753361497282-23",
+    "status": "active",
+    "createdAt": "2025-07-24T12:51:37.282Z",
+    "updatedAt": "2025-07-24T12:51:37.282Z",
+    "imageHistory": [
+      "/images/products/samsung-18650-battery.jpg"
+    ],
+    "createdBy": "migration",
+    "updatedBy": "migration"
+  },
+  {
+    "name": "raw",
+    "category": "exotic",
+    "price": 5,
+    "salePrice": 4,
+    "image": "/images/admin/general/ikonik-1753374512802-g2nqml.webp",
+    "description": "pre roll",
+    "brand": "raw r",
+    "inStock": true,
+    "badges": [],
+    "sku": "",
+    "status": "active",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "id": "prod_1753374538357",
+    "createdAt": "2025-07-24T16:28:58.357Z",
+    "updatedAt": "2025-07-24T16:28:58.357Z",
+    "imageHistory": [
+      "/images/admin/general/ikonik-1753374512802-g2nqml.webp"
+    ]
+  }
+]

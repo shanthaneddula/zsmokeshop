@@ -1,0 +1,277 @@
+// Image cleanup API for admin system
+import { NextRequest, NextResponse } from 'next/server';
+import { 
+  getAllImages, 
+  getStorageStats, 
+  findOrphanedImages, 
+  cleanupOrphanedImages,
+  cleanupOldImages,
+  deleteImages
+} from '@/lib/admin/image-utils';
+import { ProductsJsonUtils } from '@/lib/admin/json-utils';
+
+export const runtime = 'edge';
+
+// Get cleanup information and statistics
+export async function GET(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const action = searchParams.get('action');
+    
+    switch (action) {
+      case 'stats':
+        const stats = await getStorageStats();
+        return NextResponse.json({
+          success: true,
+          data: stats
+        });
+        
+      case 'orphaned':
+        // Get all product images to find orphaned ones
+        const products = await ProductsJsonUtils.readProducts();
+        const referencedUrls = products.flatMap(product => [
+          product.image,
+          ...(product.images || [])
+        ]).filter(Boolean);
+        
+        const orphanedImages = await findOrphanedImages(referencedUrls);
+        
+        return NextResponse.json({
+          success: true,
+          data: {
+            orphanedImages,
+            count: orphanedImages.length,
+            totalSize: orphanedImages.reduce((sum, img) => sum + img.size, 0)
+          }
+        });
+        
+      case 'old':
+        const daysOld = parseInt(searchParams.get('days') || '30');
+        const allImages = await getAllImages();
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - daysOld);
+        
+        const oldImages = allImages.filter(image => 
+          new Date(image.created) < cutoffDate
+        );
+        
+        return NextResponse.json({
+          success: true,
+          data: {
+            oldImages,
+            count: oldImages.length,
+            totalSize: oldImages.reduce((sum, img) => sum + img.size, 0),
+            daysOld
+          }
+        });
+        
+      default:
+        return NextResponse.json({
+          success: false,
+          error: 'Invalid action. Use: stats, orphaned, or old'
+        }, { status: 400 });
+    }
+    
+  } catch (error: any) {
+    console.error('Cleanup GET error:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to get cleanup information' },
+      { status: 500 }
+    );
+  }
+}
+
+// Perform cleanup operations
+export async function POST(request: NextRequest) {
+  try {
+    const { action, options = {} } = await request.json();
+    
+    switch (action) {
+      case 'orphaned':
+        // Clean up orphaned images
+        const products = await ProductsJsonUtils.readProducts();
+        const referencedUrls = products.flatMap(product => [
+          product.image,
+          ...(product.images || [])
+        ]).filter(Boolean);
+        
+        const orphanedResult = await cleanupOrphanedImages(referencedUrls);
+        
+        return NextResponse.json({
+          success: true,
+          data: orphanedResult,
+          message: `Cleaned up ${orphanedResult.totalDeleted} orphaned images`
+        });
+        
+      case 'old':
+        // Clean up old images
+        const daysOld = options.days || 30;
+        const oldResult = await cleanupOldImages(daysOld);
+        
+        return NextResponse.json({
+          success: true,
+          data: oldResult,
+          message: `Cleaned up ${oldResult.totalDeleted} images older than ${daysOld} days`
+        });
+        
+      case 'specific':
+        // Delete specific images
+        const imagePaths = options.imagePaths || [];
+        if (!Array.isArray(imagePaths) || imagePaths.length === 0) {
+          return NextResponse.json({
+            success: false,
+            error: 'imagePaths array is required'
+          }, { status: 400 });
+        }
+        
+        const specificResult = await deleteImages(imagePaths);
+        
+        return NextResponse.json({
+          success: true,
+          data: specificResult,
+          message: `Deleted ${specificResult.totalDeleted} images`
+        });
+        
+      case 'category':
+        // Clean up entire category
+        const category = options.category;
+        if (!category) {
+          return NextResponse.json({
+            success: false,
+            error: 'category is required'
+          }, { status: 400 });
+        }
+        
+        const allImages = await getAllImages();
+        const categoryImages = allImages.filter(img => img.category === category);
+        const categoryPaths = categoryImages.map(img => img.path);
+        
+        const categoryResult = await deleteImages(categoryPaths);
+        
+        return NextResponse.json({
+          success: true,
+          data: categoryResult,
+          message: `Cleaned up ${categoryResult.totalDeleted} images from category "${category}"`
+        });
+        
+      default:
+        return NextResponse.json({
+          success: false,
+          error: 'Invalid action. Use: orphaned, old, specific, or category'
+        }, { status: 400 });
+    }
+    
+  } catch (error: any) {
+    console.error('Cleanup POST error:', error);
+    return NextResponse.json(
+      { success: false, error: 'Cleanup operation failed' },
+      { status: 500 }
+    );
+  }
+}
+
+// Get detailed cleanup report
+export async function PUT(request: NextRequest) {
+  try {
+    const { generateReport = true } = await request.json();
+    
+    if (!generateReport) {
+      return NextResponse.json({
+        success: false,
+        error: 'generateReport must be true'
+      }, { status: 400 });
+    }
+    
+    // Get comprehensive cleanup report
+    const [stats, allImages, products] = await Promise.all([
+      getStorageStats(),
+      getAllImages(),
+      ProductsJsonUtils.readProducts()
+    ]);
+    
+    // Find orphaned images
+    const referencedUrls = products.flatMap(product => [
+      product.image,
+      ...(product.images || [])
+    ]).filter(Boolean);
+    
+    const orphanedImages = await findOrphanedImages(referencedUrls);
+    
+    // Find old images (30+ days)
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - 30);
+    const oldImages = allImages.filter(image => 
+      new Date(image.created) < cutoffDate
+    );
+    
+    // Category breakdown
+    const categoryBreakdown = Object.entries(stats.categoryCounts).map(([category, count]) => ({
+      category,
+      count,
+      size: stats.categorySizes[category] || 0,
+      images: allImages.filter(img => img.category === category)
+    }));
+    
+    // Recommendations
+    const recommendations = [];
+    
+    if (orphanedImages.length > 0) {
+      recommendations.push({
+        type: 'orphaned',
+        priority: 'high',
+        message: `${orphanedImages.length} orphaned images found (${(orphanedImages.reduce((sum, img) => sum + img.size, 0) / 1024 / 1024).toFixed(1)} MB)`,
+        action: 'Consider cleaning up orphaned images to free space'
+      });
+    }
+    
+    if (oldImages.length > 0) {
+      recommendations.push({
+        type: 'old',
+        priority: 'medium',
+        message: `${oldImages.length} images older than 30 days (${(oldImages.reduce((sum, img) => sum + img.size, 0) / 1024 / 1024).toFixed(1)} MB)`,
+        action: 'Review and clean up old images if no longer needed'
+      });
+    }
+    
+    if (stats.totalSize > 100 * 1024 * 1024) { // 100MB
+      recommendations.push({
+        type: 'storage',
+        priority: 'medium',
+        message: `Total storage usage: ${(stats.totalSize / 1024 / 1024).toFixed(1)} MB`,
+        action: 'Monitor storage usage and implement regular cleanup'
+      });
+    }
+    
+    const report = {
+      generatedAt: new Date().toISOString(),
+      summary: {
+        totalImages: stats.totalImages,
+        totalSize: stats.totalSize,
+        orphanedCount: orphanedImages.length,
+        oldCount: oldImages.length,
+        categoriesCount: Object.keys(stats.categoryCounts).length
+      },
+      details: {
+        orphanedImages: orphanedImages.slice(0, 10), // Limit for performance
+        oldImages: oldImages.slice(0, 10),
+        categoryBreakdown,
+        oldestImage: stats.oldestImage,
+        newestImage: stats.newestImage
+      },
+      recommendations
+    };
+    
+    return NextResponse.json({
+      success: true,
+      data: report,
+      message: 'Cleanup report generated successfully'
+    });
+    
+  } catch (error: any) {
+    console.error('Cleanup report error:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to generate cleanup report' },
+      { status: 500 }
+    );
+  }
+}
