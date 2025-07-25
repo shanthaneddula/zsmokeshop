@@ -2,8 +2,57 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+
+// Helper function to check if store is currently open
+function getStoreStatus() {
+  const now = new Date();
+  const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+  const currentHour = now.getHours();
+  const currentMinute = now.getMinutes();
+  const currentTime = currentHour * 60 + currentMinute; // Convert to minutes
+
+  // Get day names
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const currentDayName = dayNames[currentDay];
+
+  // Store hours: Mon-Thu, Sun: 10AM-11PM | Fri-Sat: 10AM-12AM
+  let openTime, closeTime, todayHours;
+  
+  if (currentDay === 0 || (currentDay >= 1 && currentDay <= 4)) {
+    // Sunday or Monday-Thursday: 10AM-11PM
+    openTime = 10 * 60; // 10:00 AM in minutes
+    closeTime = 23 * 60; // 11:00 PM in minutes
+    todayHours = `${currentDayName}: 10:00AM - 11:00PM`;
+  } else {
+    // Friday-Saturday: 10AM-12AM (midnight)
+    openTime = 10 * 60; // 10:00 AM in minutes
+    closeTime = 24 * 60; // 12:00 AM (midnight) in minutes
+    todayHours = `${currentDayName}: 10:00AM - 12:00AM`;
+  }
+
+  const isOpen = currentTime >= openTime && currentTime < closeTime;
+  
+  return {
+    isOpen,
+    todayHours,
+    statusText: isOpen ? "Open Now" : "Closed",
+    statusColor: isOpen ? "bg-green-400" : "bg-red-400"
+  };
+}
 
 export default function HeroSection() {
+  const [storeStatus, setStoreStatus] = useState(getStoreStatus());
+
+  // Update store status every minute
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStoreStatus(getStoreStatus());
+    }, 60000); // Update every minute
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] bg-black flex items-center overflow-hidden">
       {/* Video Background */}
@@ -71,14 +120,14 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* Store Status - Moved to bottom and made more compact */}
+            {/* Store Status - Dynamic based on current time */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm pt-4 opacity-90">
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-green-400 rounded-full shadow-lg"></div>
-                <span className="text-gray-300 font-medium uppercase tracking-wide">Open Now</span>
+                <div className={`w-1.5 h-1.5 ${storeStatus.statusColor} rounded-full shadow-lg`}></div>
+                <span className="text-gray-300 font-medium uppercase tracking-wide">{storeStatus.statusText}</span>
               </div>
               <div className="text-gray-400 uppercase tracking-wide">
-                Mon-Sun: 9AM-10PM
+                {storeStatus.todayHours}
               </div>
             </div>
           </motion.div>

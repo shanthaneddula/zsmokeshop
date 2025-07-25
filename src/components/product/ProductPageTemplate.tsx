@@ -26,8 +26,10 @@ export default function ProductPageTemplate({ product }: ProductPageTemplateProp
         const response = await fetch(`/api/shop/products?category=${product.category}&limit=4`);
         if (response.ok) {
           const data = await response.json();
-          const related = data.products.filter((p: AdminProduct) => p.id !== product.id);
-          setRelatedProducts(related);
+          if (data.success && data.data && data.data.products) {
+            const related = data.data.products.filter((p: AdminProduct) => p.id !== product.id);
+            setRelatedProducts(related);
+          }
         }
       } catch (error) {
         console.error('Error loading related products:', error);

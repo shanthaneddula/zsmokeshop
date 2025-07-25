@@ -35,21 +35,56 @@ async function readProductsServerless(): Promise<AdminProduct[]> {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    // Parse query parameters
+    const { searchParams } = new URL(request.url);
+    const search = searchParams.get('search');
+    const category = searchParams.get('category');
+    const limit = searchParams.get('limit');
+    
     // Read admin-managed products using serverless-compatible method
     const adminProducts = await readProductsServerless();
     
     // Filter only active and in-stock products for public shop
-    const activeProducts = adminProducts
-      .filter((product: AdminProduct) => product.status === 'active' && product.inStock)
-      .map(convertToPublicProduct);
+    let filteredProducts = adminProducts
+      .filter((product: AdminProduct) => product.status === 'active' && product.inStock);
+    
+    // Apply search filter if provided
+    if (search && search.trim()) {
+      const searchTerm = search.toLowerCase().trim();
+      filteredProducts = filteredProducts.filter((product: AdminProduct) => 
+        product.name.toLowerCase().includes(searchTerm) ||
+        product.description?.toLowerCase().includes(searchTerm) ||
+        product.brand?.toLowerCase().includes(searchTerm) ||
+        product.category.toLowerCase().includes(searchTerm)
+      );
+    }
+    
+    // Apply category filter if provided
+    if (category && category.trim()) {
+      filteredProducts = filteredProducts.filter((product: AdminProduct) => 
+        product.category.toLowerCase() === category.toLowerCase()
+      );
+    }
+    
+    // Convert to public format
+    const publicProducts = filteredProducts.map(convertToPublicProduct);
+    
+    // Apply limit if provided
+    let finalProducts = publicProducts;
+    if (limit) {
+      const limitNum = parseInt(limit, 10);
+      if (!isNaN(limitNum) && limitNum > 0) {
+        finalProducts = publicProducts.slice(0, limitNum);
+      }
+    }
 
     return NextResponse.json({
       success: true,
       data: {
-        products: activeProducts,
-        total: activeProducts.length
+        products: finalProducts,
+        total: publicProducts.length // Total before limit is applied
       }
     });
 

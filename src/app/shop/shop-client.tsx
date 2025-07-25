@@ -72,8 +72,15 @@ export default function ShopPageClient() {
   // Handle URL parameters on mount
   useEffect(() => {
     const categoryParam = searchParams.get('category');
+    const searchParam = searchParams.get('search');
+    
     if (categoryParam) {
       setSelectedCategory(categoryParam);
+    }
+    
+    if (searchParam) {
+      setSearchQuery(searchParam);
+      setCurrentPage(1); // Reset to first page when loading with search
     }
   }, [searchParams]);
 

@@ -2,19 +2,24 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, User, ShoppingCart, Sun, Moon, Search, ChevronRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useBanner } from "@/contexts/BannerContext";
-import { Category } from "@/types";
+import { Category, Product } from "@/types";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState<Product[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const { theme, setTheme } = useTheme();
   const { isVisible: isBannerVisible } = useBanner();
+  const router = useRouter();
   
   // Handle theme mounting to prevent hydration mismatch
   useEffect(() => {
@@ -37,6 +42,43 @@ export default function Header() {
 
     fetchCategories();
   }, []);
+
+  // Search functionality
+  const handleSearchChange = async (value: string) => {
+    setSearchQuery(value);
+    
+    if (value.length >= 2) {
+      try {
+        const response = await fetch(`/api/shop/products?search=${encodeURIComponent(value)}&limit=5`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success && data.data && data.data.products) {
+            setSearchSuggestions(data.data.products);
+            setShowSuggestions(true);
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching search suggestions:', error);
+      }
+    } else {
+      setSearchSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setShowSuggestions(false);
+      router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleSuggestionClick = (product: Product) => {
+    setShowSuggestions(false);
+    setSearchQuery("");
+    router.push(`/products/${product.slug}`);
+  };
   
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -73,15 +115,50 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Search Bar - Adidas Style */}
+        {/* Search Bar - Adidas Style with Suggestions */}
         <div className="hidden md:flex flex-1 max-w-md mx-8">
           <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-gray-900 dark:focus:border-white transition-colors uppercase tracking-wide"
-            />
+            <form onSubmit={handleSearchSubmit}>
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                onFocus={() => searchQuery.length >= 2 && setShowSuggestions(true)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                placeholder="Search products..."
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-gray-900 dark:focus:border-white transition-colors uppercase tracking-wide"
+              />
+            </form>
+            
+            {/* Search Suggestions Dropdown */}
+            {showSuggestions && searchSuggestions.length > 0 && (
+              <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 shadow-lg z-50 max-h-80 overflow-y-auto">
+                {searchSuggestions.map((product) => (
+                  <button
+                    key={product.id}
+                    onClick={() => handleSuggestionClick(product)}
+                    className="w-full px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-800 border-b border-gray-100 dark:border-gray-700 last:border-b-0 flex items-center gap-3"
+                  >
+                    {product.image && (
+                      <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="w-10 h-10 object-cover flex-shrink-0"
+                      />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                        {product.name}
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">
+                        ${product.price}
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -248,12 +325,48 @@ export default function Header() {
                 {/* Adidas-style Mobile Search Bar */}
                 <div className="p-6 border-b-2 border-gray-900 dark:border-white">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-900 dark:text-white" />
-                    <input
-                      type="text"
-                      placeholder="SEARCH PRODUCTS..."
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-gray-900 dark:focus:border-white transition-colors uppercase tracking-wide font-medium"
-                    />
+                    <form onSubmit={handleSearchSubmit}>
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-900 dark:text-white" />
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => handleSearchChange(e.target.value)}
+                        placeholder="SEARCH PRODUCTS..."
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 bg-transparent text-sm text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:border-gray-900 dark:focus:border-white transition-colors uppercase tracking-wide font-medium"
+                      />
+                    </form>
+                    
+                    {/* Mobile Search Suggestions */}
+                    {showSuggestions && searchSuggestions.length > 0 && (
+                      <div className="absolute top-full left-0 right-0 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 shadow-lg z-50 max-h-60 overflow-y-auto">
+                        {searchSuggestions.map((product) => (
+                          <button
+                            key={product.id}
+                            onClick={() => {
+                              handleSuggestionClick(product);
+                              setIsMobileMenuOpen(false);
+                            }}
+                            className="w-full px-4 py-3 text-left hover:bg-gray-50 dark:hover:bg-gray-800 border-b border-gray-100 dark:border-gray-700 last:border-b-0 flex items-center gap-3"
+                          >
+                            {product.image && (
+                              <img 
+                                src={product.image} 
+                                alt={product.name}
+                                className="w-8 h-8 object-cover flex-shrink-0"
+                              />
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                                {product.name}
+                              </div>
+                              <div className="text-xs text-gray-500 dark:text-gray-400">
+                                ${product.price}
+                              </div>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
 
