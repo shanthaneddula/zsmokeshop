@@ -29,12 +29,12 @@ export default function HomepageCatalogue() {
         const productsData = await productsResponse.json();
         
         if (categoriesData.success && productsData.success) {
-          setCategories(categoriesData.categories);
-          setProducts(productsData.products);
+          setCategories(categoriesData.data.categories);
+          setProducts(productsData.data.products);
           
           // Set first category as active if available
-          if (categoriesData.categories.length > 0) {
-            setActiveCategory(categoriesData.categories[0].id);
+          if (categoriesData.data.categories.length > 0) {
+            setActiveCategory(categoriesData.data.categories[0].id);
           }
         }
       } catch (error) {

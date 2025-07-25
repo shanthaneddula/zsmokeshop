@@ -46,12 +46,12 @@ export default function ShopPageClient() {
         const categoriesData = await categoriesRes.json();
         const productsData = await productsRes.json();
         
-        if (categoriesData.success) {
-          setCategories(categoriesData.categories);
+        if (categoriesData.success && categoriesData.data) {
+          setCategories(categoriesData.data.categories);
         }
         
-        if (productsData.success) {
-          setProducts(productsData.products);
+        if (productsData.success && productsData.data) {
+          setProducts(productsData.data.products);
         }
       } else {
         throw new Error('Failed to fetch data');

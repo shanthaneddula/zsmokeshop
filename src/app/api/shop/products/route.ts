@@ -1,7 +1,6 @@
 // Public API endpoint for shop products
 // Serves only active products from admin-managed data
 import { NextResponse } from 'next/server';
-import { ProductsJsonUtils } from '@/lib/admin/json-utils';
 import { AdminProduct } from '@/types/admin';
 import { Product } from '@/types';
 
@@ -23,20 +22,35 @@ function convertToPublicProduct(adminProduct: AdminProduct): Product {
   };
 }
 
+// Serverless-compatible function to read products
+async function readProductsServerless(): Promise<AdminProduct[]> {
+  try {
+    // Try to import the JSON file directly (works in serverless)
+    const productsData = await import('@/data/products.json');
+    return (productsData.default || []) as AdminProduct[];
+  } catch (error) {
+    console.error('Error reading products.json:', error);
+    // Fallback to empty array if file doesn't exist
+    return [];
+  }
+}
+
 export async function GET() {
   try {
-    // Read admin-managed products
-    const adminProducts = await ProductsJsonUtils.readProducts();
+    // Read admin-managed products using serverless-compatible method
+    const adminProducts = await readProductsServerless();
     
     // Filter only active and in-stock products for public shop
     const activeProducts = adminProducts
-      .filter(product => product.status === 'active' && product.inStock)
+      .filter((product: AdminProduct) => product.status === 'active' && product.inStock)
       .map(convertToPublicProduct);
 
     return NextResponse.json({
       success: true,
-      products: activeProducts,
-      total: activeProducts.length
+      data: {
+        products: activeProducts,
+        total: activeProducts.length
+      }
     });
 
   } catch (error) {
@@ -45,8 +59,10 @@ export async function GET() {
       {
         success: false,
         error: 'Failed to fetch products',
-        products: [],
-        total: 0
+        data: {
+          products: [],
+          total: 0
+        }
       },
       { status: 500 }
     );

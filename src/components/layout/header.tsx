@@ -27,8 +27,8 @@ export default function Header() {
       try {
         const response = await fetch('/api/shop/categories');
         const data = await response.json();
-        if (data.success) {
-          setCategories(data.categories);
+        if (data.success && data.data) {
+          setCategories(data.data.categories);
         }
       } catch (error) {
         console.error('Error fetching categories:', error);

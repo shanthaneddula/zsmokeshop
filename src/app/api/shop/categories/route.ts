@@ -1,7 +1,6 @@
 // Public API endpoint for shop categories
 // Serves only active categories from admin-managed data
 import { NextResponse } from 'next/server';
-import { CategoriesJsonUtils } from '@/lib/admin/json-utils';
 import { AdminCategory } from '@/types/admin';
 import { Category } from '@/types';
 
@@ -15,24 +14,36 @@ function convertToPublicCategory(adminCategory: AdminCategory): Category {
   };
 }
 
+// Serverless-compatible function to read categories
+async function readCategoriesServerless(): Promise<AdminCategory[]> {
+  try {
+    // Try to import the JSON file directly (works in serverless)
+    const categoriesData = await import('@/data/categories.json');
+    return (categoriesData.default || []) as AdminCategory[];
+  } catch (error) {
+    console.error('Error reading categories.json:', error);
+    // Fallback to empty array if file doesn't exist
+    return [];
+  }
+}
+
 export async function GET() {
   try {
-    // Update product counts first
-    await CategoriesJsonUtils.updateProductCounts();
-    
-    // Re-read categories after product count update
-    const updatedCategories = await CategoriesJsonUtils.readCategories();
+    // Read categories using serverless-compatible method
+    const categories = await readCategoriesServerless();
     
     // Filter only active categories for public shop (show all active, even with 0 products)
-    const activeCategories = updatedCategories
+    const activeCategories = categories
       .filter(category => category.status === 'active')
       .sort((a, b) => a.sortOrder - b.sortOrder) // Sort by admin-defined order
       .map(convertToPublicCategory);
 
     return NextResponse.json({
       success: true,
-      categories: activeCategories,
-      total: activeCategories.length
+      data: {
+        categories: activeCategories,
+        total: activeCategories.length
+      }
     });
 
   } catch (error) {
@@ -41,8 +52,10 @@ export async function GET() {
       {
         success: false,
         error: 'Failed to fetch categories',
-        categories: [],
-        total: 0
+        data: {
+          categories: [],
+          total: 0
+        }
       },
       { status: 500 }
     );
