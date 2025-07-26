@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Category, Product } from '@/types';
+import ProductCard from '@/components/product/ProductCard';
 
 export default function HomepageCatalogue() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -20,12 +21,15 @@ export default function HomepageCatalogue() {
       try {
         setLoading(true);
         
+        // Add cache-busting parameter to ensure fresh data
+        const cacheBuster = Date.now();
+        
         // Fetch categories
-        const categoriesResponse = await fetch('/api/shop/categories');
+        const categoriesResponse = await fetch(`/api/shop/categories?t=${cacheBuster}`, { cache: 'no-store' });
         const categoriesData = await categoriesResponse.json();
         
         // Fetch products
-        const productsResponse = await fetch('/api/shop/products');
+        const productsResponse = await fetch(`/api/shop/products?t=${cacheBuster}`, { cache: 'no-store' });
         const productsData = await productsResponse.json();
         
         if (categoriesData.success && productsData.success) {
@@ -148,72 +152,15 @@ export default function HomepageCatalogue() {
         >
           {/* Products Grid */}
           {categoryProducts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {categoryProducts.slice(0, 8).map((product) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {categoryProducts.map((product, index) => (
                 <motion.div
                   key={product.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                  className="group cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white transition-all duration-300 overflow-hidden">
-                    {/* Product Image */}
-                    <div className="aspect-square bg-gray-100 dark:bg-gray-700 flex items-center justify-center relative">
-                      {product.image ? (
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-16 h-16 bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
-                          <span className="text-2xl font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                            {product.name.charAt(0)}
-                          </span>
-                        </div>
-                      )}
-                      
-                      {/* Badges */}
-                      {product.badges && product.badges.length > 0 && (
-                        <div className="absolute top-2 left-2">
-                          <span className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-xs px-2 py-1 font-bold uppercase tracking-wide">
-                            {product.badges[0]}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    
-                    {/* Product Info */}
-                    <div className="p-4">
-                      <h4 className="font-bold text-sm text-gray-900 dark:text-white mb-2 uppercase tracking-wide line-clamp-2">
-                        {product.name}
-                      </h4>
-                      
-                      {/* Brand */}
-                      {product.brand && (
-                        <p className="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-wider mb-2">
-                          {product.brand}
-                        </p>
-                      )}
-                      
-                      {/* Price */}
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="text-lg font-bold text-gray-900 dark:text-white">
-                          ${product.price}
-                        </span>
-                      </div>
-                      
-                      {/* Stock Status */}
-                      <div className="text-xs uppercase tracking-wider">
-                        {product.inStock ? (
-                          <span className="text-green-600 dark:text-green-400">In Stock</span>
-                        ) : (
-                          <span className="text-red-600 dark:text-red-400">Out of Stock</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                  <ProductCard product={product} viewMode="grid" />
                 </motion.div>
               ))}
             </div>

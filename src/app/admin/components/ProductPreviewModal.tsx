@@ -184,7 +184,7 @@ export function ProductPreviewModal({ product, onClose }: ProductPreviewModalPro
                 <div>
                   <h4 className="text-sm font-bold uppercase tracking-wide mb-2">Dimensions</h4>
                   <div className="text-sm">
-                    {product.dimensions.length}&quot; × {product.dimensions.width}&quot; × {product.dimensions.height}&quot;
+                    {product.dimensions}
                   </div>
                 </div>
               )}

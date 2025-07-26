@@ -25,8 +25,9 @@ function convertToPublicProduct(adminProduct: AdminProduct): Product {
 // Serverless-compatible function to read products
 async function readProductsServerless(): Promise<AdminProduct[]> {
   try {
-    // Try to import the JSON file directly (works in serverless)
-    const productsData = await import('@/data/products.json');
+    // Force fresh read by adding cache-busting parameter
+    const cacheBuster = Date.now();
+    const productsData = await import(`@/data/products.json?t=${cacheBuster}`);
     return (productsData.default || []) as AdminProduct[];
   } catch (error) {
     console.error('Error reading products.json:', error);
@@ -80,13 +81,20 @@ export async function GET(request: Request) {
       }
     }
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       data: {
         products: finalProducts,
         total: publicProducts.length // Total before limit is applied
       }
     });
+    
+    // Add cache headers to prevent stale data
+    response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+    
+    return response;
 
   } catch (error) {
     console.error('Error fetching shop products:', error);

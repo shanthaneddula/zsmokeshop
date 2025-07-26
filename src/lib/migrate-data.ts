@@ -29,12 +29,8 @@ export async function migrateStaticData() {
       status: 'active' as const,
       imageHistory: [product.image],
       sku: `ZSS-${product.id.toUpperCase()}`,
-      weight: Math.random() * 2 + 0.1, // Random weight between 0.1-2.1 lbs
-      dimensions: {
-        length: Math.floor(Math.random() * 10) + 2, // 2-12 inches
-        width: Math.floor(Math.random() * 8) + 2,   // 2-10 inches
-        height: Math.floor(Math.random() * 6) + 1   // 1-7 inches
-      }
+      weight: `${(Math.random() * 2 + 0.1).toFixed(1)} lbs`, // Random weight between 0.1-2.1 lbs
+      dimensions: `${Math.floor(Math.random() * 10) + 2}x${Math.floor(Math.random() * 8) + 2}x${Math.floor(Math.random() * 6) + 1} inches`
     }));
 
     // Write to JSON files

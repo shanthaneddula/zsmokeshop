@@ -11,12 +11,8 @@ export interface AdminProduct extends Product {
   imageHistory?: string[]; // Track image changes
   status: 'active' | 'inactive' | 'draft';
   sku?: string; // For inventory tracking
-  weight?: number; // For shipping calculations
-  dimensions?: {
-    length: number;
-    width: number;
-    height: number;
-  };
+  weight?: string; // For shipping calculations (e.g., "1.5 lbs", "250g")
+  dimensions?: string; // For shipping calculations (e.g., "10x5x3 inches")
 }
 
 // Enhanced Category interface for admin operations

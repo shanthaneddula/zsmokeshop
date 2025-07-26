@@ -17,8 +17,9 @@ function convertToPublicCategory(adminCategory: AdminCategory): Category {
 // Serverless-compatible function to read categories
 async function readCategoriesServerless(): Promise<AdminCategory[]> {
   try {
-    // Try to import the JSON file directly (works in serverless)
-    const categoriesData = await import('@/data/categories.json');
+    // Force fresh read by adding cache-busting parameter
+    const cacheBuster = Date.now();
+    const categoriesData = await import(`@/data/categories.json?t=${cacheBuster}`);
     return (categoriesData.default || []) as AdminCategory[];
   } catch (error) {
     console.error('Error reading categories.json:', error);
@@ -38,13 +39,20 @@ export async function GET() {
       .sort((a, b) => a.sortOrder - b.sortOrder) // Sort by admin-defined order
       .map(convertToPublicCategory);
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       data: {
         categories: activeCategories,
         total: activeCategories.length
       }
     });
+    
+    // Add cache headers to prevent stale data
+    response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+    
+    return response;
 
   } catch (error) {
     console.error('Error fetching shop categories:', error);

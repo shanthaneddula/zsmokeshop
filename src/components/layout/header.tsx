@@ -30,7 +30,11 @@ export default function Header() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('/api/shop/categories');
+        // Add cache-busting parameter to ensure fresh data
+        const cacheBuster = Date.now();
+        const response = await fetch(`/api/shop/categories?t=${cacheBuster}`, {
+          cache: 'no-store'
+        });
         const data = await response.json();
         if (data.success && data.data) {
           setCategories(data.data.categories);
@@ -178,22 +182,22 @@ export default function Header() {
               <div className={`absolute left-0 right-0 bg-transparent pointer-events-none ${
                 isBannerVisible ? '-top-[6.7rem] md:-top-32 h-[6.7rem] md:h-32' : '-top-16 h-16'
               }`}></div>
-              <div className="container-wide py-12">
+              <div className="container-wide py-6">
                 {categories.length > 0 ? (
-                  <div className="grid grid-cols-4 gap-8">
-                    {/* Dynamically display categories in columns */}
-                    {Array.from({ length: 4 }, (_, colIndex) => {
-                      const startIndex = colIndex * Math.ceil(categories.length / 4);
-                      const endIndex = Math.min(startIndex + Math.ceil(categories.length / 4), categories.length);
+                  <div className="grid grid-cols-5 gap-8 max-h-80 overflow-y-auto">
+                    {/* Display categories in fixed 5-column grid matching Adidas style */}
+                    {Array.from({ length: 5 }, (_, colIndex) => {
+                      const startIndex = colIndex * Math.ceil(categories.length / 5);
+                      const endIndex = Math.min(startIndex + Math.ceil(categories.length / 5), categories.length);
                       const columnCategories = categories.slice(startIndex, endIndex);
                       
                       return (
-                        <div key={colIndex}>
+                        <div key={colIndex} className="space-y-2">
                           {columnCategories.map((category) => (
-                            <div key={category.id} className="mb-6">
+                            <div key={category.id}>
                               <Link
                                 href={`/shop?category=${category.slug}`}
-                                className="block text-sm font-bold text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors uppercase tracking-wide mb-2"
+                                className="block text-xs font-normal text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors uppercase tracking-wide py-1 leading-relaxed"
                               >
                                 {category.name}
                               </Link>
@@ -201,11 +205,11 @@ export default function Header() {
                           ))}
                           
                           {/* Add "All Products" link to the last column */}
-                          {colIndex === 3 && (
-                            <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
+                          {colIndex === 4 && (
+                            <div className="pt-2 mt-2 border-t border-gray-200 dark:border-gray-700">
                               <Link
                                 href="/shop"
-                                className="block text-sm font-bold text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors uppercase tracking-wide"
+                                className="block text-xs font-normal text-gray-900 hover:text-gray-600 dark:text-white dark:hover:text-gray-300 transition-colors uppercase tracking-wide py-1 leading-relaxed"
                               >
                                 All Products
                               </Link>
@@ -394,114 +398,25 @@ export default function Header() {
                           className="bg-gray-50 dark:bg-gray-800"
                         >
                           <div className="py-2">
-                            <button
-                              onClick={() => toggleCategory('vapes')}
-                              className="flex items-center justify-between w-full py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
-                            >
-                              <span>Vapes & E-Cigarettes</span>
-                              <ChevronRight className={`h-4 w-4 transition-transform ${
-                                expandedCategories.includes('vapes') ? 'rotate-90' : ''
-                              }`} />
-                            </button>
-                            
-                            {expandedCategories.includes('vapes') && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="bg-gray-100 dark:bg-gray-700"
+                            {/* Dynamic Categories */}
+                            {categories.map((category) => (
+                              <Link
+                                key={category.id}
+                                href={`/shop?category=${category.slug}`}
+                                className="block py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
+                                onClick={() => setIsMobileMenuOpen(false)}
                               >
-                                <div className="py-1">
-                                  <Link
-                                    href="/products/disposable-vapes"
-                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                  >
-                                    Disposable Vapes
-                                  </Link>
-                                  <Link
-                                    href="/products/vape-kits"
-                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                  >
-                                    Vape Kits
-                                  </Link>
-                                  <Link
-                                    href="/products/e-liquids"
-                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                  >
-                                    E-Liquids
-                                  </Link>
-                                </div>
-                              </motion.div>
-                            )}
+                                {category.name}
+                              </Link>
+                            ))}
                             
-                            <button
-                              onClick={() => toggleCategory('smoking')}
-                              className="flex items-center justify-between w-full py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
-                            >
-                              <span>Smoking Accessories</span>
-                              <ChevronRight className={`h-4 w-4 transition-transform ${
-                                expandedCategories.includes('smoking') ? 'rotate-90' : ''
-                              }`} />
-                            </button>
-                            
-                            {expandedCategories.includes('smoking') && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: 'auto', opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="bg-gray-100 dark:bg-gray-700"
-                              >
-                                <div className="py-1">
-                                  <Link
-                                    href="/products/pipes"
-                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                  >
-                                    Pipes
-                                  </Link>
-                                  <Link
-                                    href="/products/papers-wraps"
-                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                  >
-                                    Papers & Wraps
-                                  </Link>
-                                  <Link
-                                    href="/products/lighters"
-                                    className="block py-2 px-12 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                  >
-                                    Lighters
-                                  </Link>
-                                </div>
-                              </motion.div>
-                            )}
-                            
+                            {/* All Products Link */}
                             <Link
-                              href="/products/cbd"
-                              className="block py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
+                              href="/shop"
+                              className="block py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide border-t border-gray-200 dark:border-gray-700 mt-2 pt-4"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
-                              CBD Products
-                            </Link>
-                            <Link
-                              href="/products/new"
-                              className="block py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              New & Trending
-                            </Link>
-                            <Link
-                              href="/products/sale"
-                              className="block py-3 px-8 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide"
-                              onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                              Sale
+                              All Products
                             </Link>
                           </div>
                         </motion.div>

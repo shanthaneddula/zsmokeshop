@@ -71,6 +71,34 @@ export interface AdminProduct {
   createdBy?: string;
   updatedBy?: string;
   imageHistory?: string[];
+  
+  // Compliance and Safety Fields
+  complianceLevel?: 'none' | 'age-restricted' | 'regulated' | 'prescription';
+  complianceTemplate?: string; // Template ID
+  complianceNotes?: string[]; // Custom compliance notes
+  safetyWarnings?: string[]; // Safety warnings
+  legalDisclaimers?: string[]; // Legal disclaimers
+  intendedUse?: string; // Intended use description
+  ageRestriction?: number; // Minimum age (18, 21, etc.)
+  
+  // Cannabis-Specific Fields
+  subcategory?: string; // Gummies, Cartridges, etc.
+  strainType?: 'indica' | 'sativa' | 'hybrid';
+  strainName?: string; // e.g., Runtz, Gelato
+  cannabinoidType?: string[]; // THC-A, CBD, Delta-8 (multi-select)
+  cannabinoidStrength?: number; // mg for edibles, drinks, vapes
+  thcaPercentage?: number; // % for flower & pre-rolls
+  weightVolume?: string; // e.g., 1g, 1/8oz, 1ml
+  unitsPerPack?: number; // e.g., 25ct, 2-pack
+  servingsPerItem?: number; // e.g., 1 or 2 (for drinks)
+  bottleSize?: string; // oz for drinks
+  volume?: string; // ml for cartridges/disposables
+  potency?: number; // mg for cartridges/disposables
+  is510Compatible?: boolean; // for cartridges
+  batteryIncluded?: boolean; // for disposables
+  totalGrams?: number; // for pre-rolls
+  count?: number; // count for pre-rolls
+  effectTags?: string[]; // Relaxing, Uplifting, Focus, Sleep
 }
 
 // Admin Category interface for backend management
@@ -90,4 +118,24 @@ export interface AdminCategory {
   updatedAt?: string;
   createdBy?: string;
   updatedBy?: string;
+}
+
+// Compliance Template interface for predefined compliance rules
+export interface ComplianceTemplate {
+  id: string;
+  name: string;
+  category: string;
+  level: 'none' | 'age-restricted' | 'regulated' | 'prescription';
+  defaultNotes: string[];
+  defaultWarnings: string[];
+  defaultDisclaimers: string[];
+  ageRestriction: number;
+  description?: string;
+}
+
+// Compliance validation result
+export interface ComplianceValidation {
+  isValid: boolean;
+  errors: string[];
+  warnings: string[];
 }

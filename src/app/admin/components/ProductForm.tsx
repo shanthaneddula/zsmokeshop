@@ -1,7 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AdminProduct, AdminCategory } from '@/types/admin';
+import { AdminProduct, AdminCategory, ComplianceTemplate } from '@/types';
+import { 
+  getAllComplianceTemplates,
+  getComplianceTemplatesByCategory,
+  applyComplianceTemplate
+} from '@/lib/compliance-templates';
 import ProductImageUpload from './ProductImageUpload';
 
 interface ProductFormProps {
@@ -27,6 +32,8 @@ const STATUS_OPTIONS = [
 
 export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: ProductFormProps) {
   const [categories, setCategories] = useState<AdminCategory[]>([]);
+  const [complianceTemplates, setComplianceTemplates] = useState<ComplianceTemplate[]>([]);
+  const [availableTemplates, setAvailableTemplates] = useState<ComplianceTemplate[]>([]);
   const [formData, setFormData] = useState<Partial<AdminProduct>>({
     name: '',
     category: '',
@@ -40,14 +47,23 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
     sku: '',
     status: 'active',
     weight: undefined,
-    dimensions: undefined
+    dimensions: undefined,
+    // Compliance fields
+    complianceLevel: 'none',
+    complianceTemplate: undefined,
+    complianceNotes: [],
+    safetyWarnings: [],
+    legalDisclaimers: [],
+    intendedUse: undefined,
+    ageRestriction: undefined
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [imageUploading, setImageUploading] = useState(false);
 
-  // Load categories on mount
+  // Load categories and compliance templates on mount
   useEffect(() => {
     fetchCategories();
+    loadComplianceTemplates();
   }, []);
 
   // Populate form with existing product data
@@ -66,10 +82,28 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
         sku: product.sku || '',
         status: product.status || 'active',
         weight: product.weight,
-        dimensions: product.dimensions
+        dimensions: product.dimensions,
+        // Compliance fields
+        complianceLevel: product.complianceLevel || 'none',
+        complianceTemplate: product.complianceTemplate,
+        complianceNotes: product.complianceNotes || [],
+        safetyWarnings: product.safetyWarnings || [],
+        legalDisclaimers: product.legalDisclaimers || [],
+        intendedUse: product.intendedUse,
+        ageRestriction: product.ageRestriction
       });
     }
   }, [product]);
+
+  // Update available templates when category changes
+  useEffect(() => {
+    if (formData.category) {
+      const categoryTemplates = getComplianceTemplatesByCategory(formData.category);
+      setAvailableTemplates(categoryTemplates);
+    } else {
+      setAvailableTemplates(complianceTemplates);
+    }
+  }, [formData.category, complianceTemplates]);
 
   const fetchCategories = async () => {
     try {
@@ -81,6 +115,51 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
     } catch (error) {
       console.error('Error fetching categories:', error);
     }
+  };
+
+  const loadComplianceTemplates = () => {
+    const templates = getAllComplianceTemplates();
+    setComplianceTemplates(templates);
+    setAvailableTemplates(templates);
+  };
+
+  const handleComplianceChange = (level: 'none' | 'age-restricted' | 'regulated' | 'prescription') => {
+    setFormData(prev => ({
+      ...prev,
+      complianceLevel: level,
+      complianceTemplate: level === 'none' ? undefined : prev.complianceTemplate,
+      complianceNotes: level === 'none' ? [] : prev.complianceNotes,
+      safetyWarnings: level === 'none' ? [] : prev.safetyWarnings,
+      legalDisclaimers: level === 'none' ? [] : prev.legalDisclaimers,
+      ageRestriction: level === 'none' ? undefined : prev.ageRestriction
+    }));
+  };
+
+  const handleTemplateChange = (templateId: string) => {
+    if (!templateId) {
+      setFormData(prev => ({
+        ...prev,
+        complianceTemplate: undefined,
+        complianceNotes: [],
+        safetyWarnings: [],
+        legalDisclaimers: [],
+        ageRestriction: undefined
+      }));
+      return;
+    }
+
+    const templateData = applyComplianceTemplate(templateId, {
+      complianceNotes: formData.complianceNotes,
+      safetyWarnings: formData.safetyWarnings,
+      legalDisclaimers: formData.legalDisclaimers,
+      ageRestriction: formData.ageRestriction
+    });
+
+    setFormData(prev => ({
+      ...prev,
+      complianceTemplate: templateId,
+      ...templateData
+    }));
   };
 
   const validateForm = (): boolean => {
@@ -420,6 +499,424 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
             className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
             placeholder="0.00"
           />
+        </div>
+
+        {/* Cannabis-Specific Fields */}
+        {formData.category === 'cannabis-products' && (
+          <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+            <h3 className="text-lg font-bold uppercase tracking-wide mb-4 text-gray-900 dark:text-white">
+              Cannabis Product Details
+            </h3>
+            
+            {/* Subcategory and Strain Type */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {/* Subcategory */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  Subcategory
+                </label>
+                <select
+                  value={formData.subcategory || ''}
+                  onChange={(e) => handleInputChange('subcategory', e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                >
+                  <option value="">Select subcategory...</option>
+                  <option value="edibles">Edibles</option>
+                  <option value="gummies">Gummies</option>
+                  <option value="pre-rolls">Pre-Rolls</option>
+                  <option value="cannabis-drinks">Drinks</option>
+                  <option value="vapes">Vapes</option>
+                  <option value="cartridges">Cartridges</option>
+                  <option value="flower">Flower</option>
+                </select>
+              </div>
+
+              {/* Strain Type */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  Strain Type
+                </label>
+                <select
+                  value={formData.strainType || ''}
+                  onChange={(e) => handleInputChange('strainType', e.target.value as 'indica' | 'sativa' | 'hybrid')}
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                >
+                  <option value="">Select strain type...</option>
+                  <option value="indica">Indica</option>
+                  <option value="sativa">Sativa</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Strain Name and Cannabinoid Strength */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {/* Strain Name */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  Strain Name
+                </label>
+                <input
+                  type="text"
+                  value={formData.strainName || ''}
+                  onChange={(e) => handleInputChange('strainName', e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  placeholder="e.g., Runtz, Gelato, Forbidden Punch"
+                />
+              </div>
+
+              {/* Cannabinoid Strength */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  Cannabinoid Strength (mg)
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  value={formData.cannabinoidStrength || ''}
+                  onChange={(e) => handleInputChange('cannabinoidStrength', e.target.value ? parseInt(e.target.value) : undefined)}
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  placeholder="e.g., 25, 50, 100"
+                />
+              </div>
+            </div>
+
+            {/* THC-A Percentage and Weight/Volume */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {/* THC-A Percentage */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  THC-A Percentage (%)
+                </label>
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  max="100"
+                  value={formData.thcaPercentage || ''}
+                  onChange={(e) => handleInputChange('thcaPercentage', e.target.value ? parseFloat(e.target.value) : undefined)}
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  placeholder="e.g., 25.5"
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  For flower and pre-rolls
+                </p>
+              </div>
+
+              {/* Weight/Volume */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  Weight/Volume
+                </label>
+                <input
+                  type="text"
+                  value={formData.weightVolume || ''}
+                  onChange={(e) => handleInputChange('weightVolume', e.target.value)}
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  placeholder="e.g., 1g, 1/8oz, 1ml"
+                />
+              </div>
+            </div>
+
+            {/* Units per Pack and Servings */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              {/* Units per Pack */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  Units per Pack
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  value={formData.unitsPerPack || ''}
+                  onChange={(e) => handleInputChange('unitsPerPack', e.target.value ? parseInt(e.target.value) : undefined)}
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  placeholder="e.g., 25, 10, 2"
+                />
+              </div>
+
+              {/* Servings per Item */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  Servings per Item
+                </label>
+                <input
+                  type="number"
+                  min="1"
+                  value={formData.servingsPerItem || ''}
+                  onChange={(e) => handleInputChange('servingsPerItem', e.target.value ? parseInt(e.target.value) : undefined)}
+                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  placeholder="e.g., 1, 2"
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  For drinks and edibles
+                </p>
+              </div>
+            </div>
+
+            {/* Cannabinoid Types (Multi-select) */}
+            <div className="mb-6">
+              <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                Cannabinoid Types
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {['THC-A', 'CBD', 'Delta-8', 'Delta-9', 'CBG', 'CBN'].map(cannabinoid => (
+                  <button
+                    key={cannabinoid}
+                    type="button"
+                    onClick={() => {
+                      const current = formData.cannabinoidType || [];
+                      const updated = current.includes(cannabinoid)
+                        ? current.filter(c => c !== cannabinoid)
+                        : [...current, cannabinoid];
+                      handleInputChange('cannabinoidType', updated);
+                    }}
+                    className={`px-3 py-1 text-xs font-bold uppercase tracking-wide border transition-colors ${
+                      (formData.cannabinoidType || []).includes(cannabinoid)
+                        ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900 border-gray-900 dark:border-white'
+                        : 'bg-white text-gray-900 dark:bg-gray-800 dark:text-white border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    {cannabinoid}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Effect Tags */}
+            <div className="mb-6">
+              <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                Effect Tags
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {['Relaxing', 'Uplifting', 'Focus', 'Sleep', 'Energy', 'Creative', 'Pain Relief', 'Anxiety Relief'].map(effect => (
+                  <button
+                    key={effect}
+                    type="button"
+                    onClick={() => {
+                      const current = formData.effectTags || [];
+                      const updated = current.includes(effect)
+                        ? current.filter(e => e !== effect)
+                        : [...current, effect];
+                      handleInputChange('effectTags', updated);
+                    }}
+                    className={`px-3 py-1 text-xs font-bold uppercase tracking-wide border transition-colors ${
+                      (formData.effectTags || []).includes(effect)
+                        ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900 border-gray-900 dark:border-white'
+                        : 'bg-white text-gray-900 dark:bg-gray-800 dark:text-white border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    {effect}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Conditional Fields Based on Subcategory */}
+            {formData.subcategory === 'cartridges' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                    Volume (ml)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.volume || ''}
+                    onChange={(e) => handleInputChange('volume', e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    placeholder="e.g., 1ml"
+                  />
+                </div>
+                <div className="flex items-center pt-8">
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={formData.is510Compatible || false}
+                      onChange={(e) => handleInputChange('is510Compatible', e.target.checked)}
+                      className="mr-2"
+                    />
+                    510-Thread Compatible
+                  </label>
+                </div>
+              </div>
+            )}
+
+            {formData.subcategory === 'cannabis-drinks' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                    Bottle Size (oz)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.bottleSize || ''}
+                    onChange={(e) => handleInputChange('bottleSize', e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    placeholder="e.g., 12oz, 16oz"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                    Potency (mg)
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={formData.potency || ''}
+                    onChange={(e) => handleInputChange('potency', e.target.value ? parseInt(e.target.value) : undefined)}
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    placeholder="e.g., 10, 25, 50"
+                  />
+                </div>
+              </div>
+            )}
+
+            {formData.subcategory === 'pre-rolls' && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                    Total Grams
+                  </label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    value={formData.totalGrams || ''}
+                    onChange={(e) => handleInputChange('totalGrams', e.target.value ? parseFloat(e.target.value) : undefined)}
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    placeholder="e.g., 1.0, 0.5"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                    Count
+                  </label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={formData.count || ''}
+                    onChange={(e) => handleInputChange('count', e.target.value ? parseInt(e.target.value) : undefined)}
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    placeholder="e.g., 1, 2, 5"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Compliance Section */}
+        <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+          <h3 className="text-lg font-bold uppercase tracking-wide mb-4 text-gray-900 dark:text-white">
+            Compliance & Safety
+          </h3>
+          
+          {/* Compliance Level */}
+          <div className="mb-6">
+            <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+              Compliance Level
+            </label>
+            <select
+              value={formData.complianceLevel || 'none'}
+              onChange={(e) => handleComplianceChange(e.target.value as 'none' | 'age-restricted' | 'regulated' | 'prescription')}
+              className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+            >
+              <option value="none">No Special Compliance</option>
+              <option value="age-restricted">Age Restricted (18+)</option>
+              <option value="regulated">Regulated Product</option>
+              <option value="prescription">Prescription Required</option>
+            </select>
+          </div>
+
+          {/* Compliance Template */}
+          {formData.complianceLevel && formData.complianceLevel !== 'none' && (
+            <div className="mb-6">
+              <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                Compliance Template
+              </label>
+              <select
+                value={formData.complianceTemplate || ''}
+                onChange={(e) => handleTemplateChange(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+              >
+                <option value="">Select a template...</option>
+                {availableTemplates.map(template => (
+                  <option key={template.id} value={template.id}>
+                    {template.name}
+                  </option>
+                ))}
+              </select>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                Templates provide pre-configured compliance notes and warnings for common product types.
+              </p>
+            </div>
+          )}
+
+          {/* Age Restriction */}
+          {formData.complianceLevel && formData.complianceLevel !== 'none' && (
+            <div className="mb-6">
+              <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                Minimum Age
+              </label>
+              <input
+                type="number"
+                min="18"
+                max="25"
+                value={formData.ageRestriction || 18}
+                onChange={(e) => handleInputChange('ageRestriction', parseInt(e.target.value))}
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                placeholder="18"
+              />
+            </div>
+          )}
+
+          {/* Compliance Notes Preview */}
+          {formData.complianceNotes && formData.complianceNotes.length > 0 && (
+            <div className="mb-6">
+              <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                Compliance Notes
+              </label>
+              <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 rounded">
+                <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                  {formData.complianceNotes.map((note, index) => (
+                    <li key={index}>{note}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* Safety Warnings Preview */}
+          {formData.safetyWarnings && formData.safetyWarnings.length > 0 && (
+            <div className="mb-6">
+              <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                Safety Warnings
+              </label>
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-4 rounded">
+                <ul className="list-disc list-inside space-y-1 text-sm text-yellow-800 dark:text-yellow-200">
+                  {formData.safetyWarnings.map((warning, index) => (
+                    <li key={index}>{warning}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* Legal Disclaimers Preview */}
+          {formData.legalDisclaimers && formData.legalDisclaimers.length > 0 && (
+            <div className="mb-6">
+              <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                Legal Disclaimers
+              </label>
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-4 rounded">
+                <ul className="list-disc list-inside space-y-1 text-sm text-red-800 dark:text-red-200">
+                  {formData.legalDisclaimers.map((disclaimer, index) => (
+                    <li key={index}>{disclaimer}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Form Actions */}

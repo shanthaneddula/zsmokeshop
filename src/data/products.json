@@ -65,5 +65,28 @@
     "imageHistory": [
       "/images/admin/general/strawberry-doodlez-n-1753414633343-b43bmz.jpg"
     ]
+  },
+  {
+    "name": "Casper THCA Jelly Rolls – Watermelon Zkittlez (2 Pre-Rolls × 2 g)",
+    "slug": "casper-thca-jelly-rolls-watermelon-zkittlez-2-pre-rolls-2-g",
+    "category": "cannabis-products",
+    "price": 20,
+    "image": "/images/admin/general/watermelon-zkittlez--1753476562749-0zgnmm.jpg",
+    "description": "Elevate your experience with Casper THCA Jelly Rolls—each roll packed with 2 g of hand‑rolled USA-grown, THCA-rich flower infused with jelly badder for that next-level flavor and potency. These fat, terpene-heavy joints deliver smooth, powerful hits with a sweet watermelon candy aroma in every puff. Designed for those who want bold flavor and serious effects.",
+    "brand": "CASPER",
+    "inStock": true,
+    "badges": [
+      "best-seller"
+    ],
+    "sku": "ZSS-THCA-WMZ-2PK",
+    "status": "active",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "id": "prod_1753476660569",
+    "createdAt": "2025-07-25T20:51:00.569Z",
+    "updatedAt": "2025-07-26T00:00:34.648Z",
+    "imageHistory": [
+      "/images/admin/general/watermelon-zkittlez--1753476562749-0zgnmm.jpg"
+    ]
   }
 ]

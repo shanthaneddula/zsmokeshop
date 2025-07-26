@@ -10,6 +10,7 @@ import ProductDetails from './ProductDetails';
 import ProductActions from './ProductActions';
 import RelatedProducts from './RelatedProducts';
 import ProductBreadcrumbs from './ProductBreadcrumbs';
+import ComplianceNote from './ComplianceNote';
 
 interface ProductPageTemplateProps {
   product: AdminProduct;
@@ -149,6 +150,15 @@ export default function ProductPageTemplate({ product }: ProductPageTemplateProp
 
               {/* Product Details */}
               <ProductDetails product={product} />
+
+              {/* Compliance Information */}
+              <ComplianceNote
+                complianceLevel={product.complianceLevel}
+                ageRestriction={product.ageRestriction}
+                complianceNotes={product.complianceNotes}
+                safetyWarnings={product.safetyWarnings}
+                legalDisclaimers={product.legalDisclaimers}
+              />
             </div>
           </div>
         </div>

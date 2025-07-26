@@ -37,9 +37,11 @@ export default function ShopPageClient() {
       setLoading(true);
       setError('');
       
+      // Add cache-busting parameter to ensure fresh data
+      const cacheBuster = Date.now();
       const [categoriesRes, productsRes] = await Promise.all([
-        fetch('/api/shop/categories'),
-        fetch('/api/shop/products')
+        fetch(`/api/shop/categories?t=${cacheBuster}`, { cache: 'no-store' }),
+        fetch(`/api/shop/products?t=${cacheBuster}`, { cache: 'no-store' })
       ]);
       
       if (categoriesRes.ok && productsRes.ok) {

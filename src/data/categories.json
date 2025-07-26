@@ -222,5 +222,19 @@
     "createdAt": "2025-07-25T02:38:05.382Z",
     "updatedAt": "2025-07-25T02:41:14.330Z",
     "productCount": 2
+  },
+  {
+    "name": "Cannabis Products",
+    "slug": "cannabis-products",
+    "description": "Explore legal, hemp-derived products at Z Smoke Shop in South Austin, TX — including THCA flower, Pre-Rolls, Delta-8 vapes, CBD gummies and more. All products contain less than 0.3% Delta-9 THC and are Farm Bill compliant.",
+    "image": "/images/admin/categories/cannabis-products-1753475435074-5lr4r8.jpg",
+    "status": "active",
+    "sortOrder": 0,
+    "seoTitle": "THCA, Delta-8, & CBD Hemp Products – Z Smoke Shop | South Austin, TX",
+    "seoDescription": "Shop hemp-derived THCA, Delta-8, and CBD products at Z Smoke Shop in South Austin, TX. All products contain <0.3% Delta-9 THC and are 100% Farm Bill compliant.",
+    "id": "cat_1753474602215",
+    "createdAt": "2025-07-25T20:16:42.215Z",
+    "updatedAt": "2025-07-25T20:30:38.029Z",
+    "productCount": 1
   }
 ]
