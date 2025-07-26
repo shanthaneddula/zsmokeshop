@@ -17,9 +17,9 @@ function convertToPublicCategory(adminCategory: AdminCategory): Category {
 // Serverless-compatible function to read categories
 async function readCategoriesServerless(): Promise<AdminCategory[]> {
   try {
-    // Force fresh read by adding cache-busting parameter
-    const cacheBuster = Date.now();
-    const categoriesData = await import(`@/data/categories.json?t=${cacheBuster}`);
+    // Use static import for reliability in serverless environments
+    // Cache-busting is handled by HTTP headers in the response
+    const categoriesData = await import('@/data/categories.json');
     return (categoriesData.default || []) as AdminCategory[];
   } catch (error) {
     console.error('Error reading categories.json:', error);

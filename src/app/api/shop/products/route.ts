@@ -25,9 +25,9 @@ function convertToPublicProduct(adminProduct: AdminProduct): Product {
 // Serverless-compatible function to read products
 async function readProductsServerless(): Promise<AdminProduct[]> {
   try {
-    // Force fresh read by adding cache-busting parameter
-    const cacheBuster = Date.now();
-    const productsData = await import(`@/data/products.json?t=${cacheBuster}`);
+    // Use static import for reliability in serverless environments
+    // Cache-busting is handled by HTTP headers in the response
+    const productsData = await import('@/data/products.json');
     return (productsData.default || []) as AdminProduct[];
   } catch (error) {
     console.error('Error reading products.json:', error);
