@@ -1,7 +1,7 @@
 // Products API routes - GET (list) and POST (create)
 import { NextRequest, NextResponse } from 'next/server';
 import { ProductsJsonUtils } from '@/lib/admin/json-utils';
-import { AdminProduct } from '@/types/admin';
+import { AdminProduct } from '@/types';
 import { generateSlug } from '@/lib/json-utils';
 
 // Validation schema for product data
@@ -92,12 +92,17 @@ export async function GET(request: NextRequest) {
     }
 
     // Apply sorting
+    const validSortFields = ['name', 'price', 'category', 'status', 'createdAt', 'updatedAt', 'brand'] as const;
+    type ValidSortField = typeof validSortFields[number];
+    
+    const safeSortBy = validSortFields.includes(sortBy as ValidSortField) ? sortBy as ValidSortField : 'updatedAt';
+    
     products.sort((a, b) => {
-      let aValue: any = a[sortBy as keyof AdminProduct];
-      let bValue: any = b[sortBy as keyof AdminProduct];
+      let aValue: string | number | Date = a[safeSortBy] || '';
+      let bValue: string | number | Date = b[safeSortBy] || '';
 
       // Handle different data types
-      if (typeof aValue === 'string') {
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
         aValue = aValue.toLowerCase();
         bValue = bValue.toLowerCase();
       }
@@ -170,7 +175,9 @@ export async function POST(request: NextRequest) {
       price: body.price,
       salePrice: body.salePrice,
       image: body.image.trim(),
-      description: body.description?.trim() || '',
+
+      shortDescription: body.shortDescription?.trim() || '',
+      detailedDescription: body.detailedDescription?.trim() || '',
       brand: body.brand?.trim() || '',
       inStock: body.inStock !== undefined ? body.inStock : true,
       badges: body.badges || [],

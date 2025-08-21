@@ -1,16 +1,25 @@
-// Authentication utilities for admin system
+// Authentication utilities for admin system (Edge Runtime compatible)
 
 import jwt from 'jsonwebtoken';
 import { AdminUser, LoginCredentials, AuthResponse } from '@/types/admin';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-key';
-const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
 const SESSION_DURATION = '24h';
-// const COOKIE_NAME = 'admin-token'; // Used in API routes
 
-// Validate login credentials
-export function validateCredentials(credentials: LoginCredentials): AuthResponse {
+// Default admin config with bcrypt hash for 'admin123'
+const DEFAULT_ADMIN_CONFIG = {
+  admin: {
+    id: 'admin-1',
+    username: 'admin',
+    passwordHash: '$2b$12$LQv3c1yqBwEHXk.JHd3vVeH3pumNVdvRdqAwp/HzMiD/83Uq9Q6uW',
+    role: 'admin',
+    createdAt: '2025-01-01T00:00:00.000Z',
+    lastPasswordChange: '2025-01-01T00:00:00.000Z'
+  }
+};
+
+// Simple credential validation for Edge Runtime
+export async function validateCredentials(credentials: LoginCredentials): Promise<AuthResponse> {
   const { username, password } = credentials;
   
   if (!username || !password) {
@@ -20,7 +29,12 @@ export function validateCredentials(credentials: LoginCredentials): AuthResponse
     };
   }
   
-  if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
+  // For Edge Runtime compatibility, we'll validate against environment variables
+  // or use a simple hardcoded check as fallback
+  const adminUsername = process.env.ADMIN_USERNAME || DEFAULT_ADMIN_CONFIG.admin.username;
+  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
+  
+  if (username !== adminUsername || password !== adminPassword) {
     return {
       success: false,
       error: 'Invalid username or password'
@@ -28,8 +42,8 @@ export function validateCredentials(credentials: LoginCredentials): AuthResponse
   }
   
   const user: AdminUser = {
-    id: 'admin-1',
-    username: ADMIN_USERNAME,
+    id: DEFAULT_ADMIN_CONFIG.admin.id,
+    username: adminUsername,
     role: 'admin',
     lastLogin: new Date().toISOString()
   };

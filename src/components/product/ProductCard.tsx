@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import Link from 'next/link';
 import { ShoppingCart, Heart, Eye } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -73,12 +73,12 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
           {/* Product Image */}
           <div className="relative w-24 h-24 flex-shrink-0">
             {renderBadges()}
-            <div className="w-full h-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+            <div className="relative w-full h-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
               {!imageError ? (
-                <Image
+                <OptimizedImage
                   src={product.image}
                   alt={product.name}
-                  fill
+                  context="card"
                   className="object-cover"
                   onError={() => setImageError(true)}
                 />
@@ -187,12 +187,12 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
           </button>
         </div>
 
-        <div className="w-full h-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+        <div className="relative w-full h-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
           {!imageError ? (
-            <Image
+            <OptimizedImage
               src={product.image}
               alt={product.name}
-              fill
+              context="card"
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               onError={() => setImageError(true)}
             />

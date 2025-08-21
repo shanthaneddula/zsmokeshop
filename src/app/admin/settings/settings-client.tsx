@@ -1,20 +1,20 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { 
   Store, 
-  Users, 
   Shield, 
   Bell, 
   Settings as SettingsIcon,
-  Clock,
   MapPin,
-  Phone,
-  Mail,
   Calculator,
   AlertTriangle,
   Save,
-  RefreshCw
+  RefreshCw,
+  TrendingUp,
+  Key,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 
 interface StoreSettings {
@@ -47,6 +47,15 @@ interface StoreSettings {
   orderPrefix: string;
   orderStartNumber: number;
   orderExpirationHours: number;
+  
+  // Featured Products
+  featuredProducts: {
+    enabled: boolean;
+    selectedBadges: string[];
+    maxProducts: number;
+    sortOrder: 'newest' | 'price-low' | 'price-high' | 'name';
+    showOnlyInStock: boolean;
+  };
   
   // Notifications
   lowStockThreshold: number;
@@ -108,6 +117,15 @@ export default function SettingsClient() {
     orderStartNumber: 1000,
     orderExpirationHours: 24,
     
+    // Featured Products
+    featuredProducts: {
+      enabled: true,
+      selectedBadges: ['featured', 'best-seller', 'new'],
+      maxProducts: 12,
+      sortOrder: 'newest',
+      showOnlyInStock: true
+    },
+    
     // Notifications
     lowStockThreshold: 5,
     emailNotifications: {
@@ -127,13 +145,28 @@ export default function SettingsClient() {
   
   const [isLoading, setIsLoading] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const [passwordForm, setPasswordForm] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+  const [showPasswords, setShowPasswords] = useState({
+    current: false,
+    new: false,
+    confirm: false
+  });
+  const [passwordStatus, setPasswordStatus] = useState<'idle' | 'changing' | 'success' | 'error'>('idle');
+  const [passwordError, setPasswordError] = useState('');
 
   const tabs = [
     { id: 'store', name: 'Store Info', icon: Store },
     { id: 'locations', name: 'Locations', icon: MapPin },
     { id: 'orders', name: 'Orders', icon: Calculator },
+    { id: 'featured', name: 'Featured Products', icon: TrendingUp },
     { id: 'compliance', name: 'Compliance', icon: Shield },
     { id: 'notifications', name: 'Notifications', icon: Bell },
+    { id: 'security', name: 'Security', icon: Key },
     { id: 'system', name: 'System', icon: SettingsIcon }
   ];
 
@@ -177,6 +210,71 @@ export default function SettingsClient() {
         loc.id === locationId ? { ...loc, ...updates } : loc
       )
     }));
+  };
+
+  const togglePasswordVisibility = (field: 'current' | 'new' | 'confirm') => {
+    setShowPasswords(prev => ({
+      ...prev,
+      [field]: !prev[field]
+    }));
+  };
+
+  const handlePasswordChange = async () => {
+    if (!passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword) {
+      setPasswordError('All fields are required');
+      return;
+    }
+
+    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
+      setPasswordError('New passwords do not match');
+      return;
+    }
+
+    if (passwordForm.newPassword.length < 8) {
+      setPasswordError('Password must be at least 8 characters long');
+      return;
+    }
+
+    setPasswordStatus('changing');
+    setPasswordError('');
+
+    try {
+      const response = await fetch('/api/admin/auth/change-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          currentPassword: passwordForm.currentPassword,
+          newPassword: passwordForm.newPassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setPasswordStatus('success');
+        setPasswordForm({
+          currentPassword: '',
+          newPassword: '',
+          confirmPassword: '',
+        });
+        setTimeout(() => {
+          setPasswordStatus('idle');
+          setShowPasswordForm(false);
+        }, 2000);
+      } else {
+        setPasswordError(data.error || 'Failed to change password');
+        setPasswordStatus('error');
+        setTimeout(() => setPasswordStatus('idle'), 3000);
+      }
+    } catch (error) {
+      console.error('Password change error:', error);
+      setPasswordError('Network error. Please try again.');
+      setPasswordStatus('error');
+      setTimeout(() => setPasswordStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -617,6 +715,318 @@ export default function SettingsClient() {
                   />
                   <span>System Alerts</span>
                 </label>
+              </div>
+            </div>
+          )}
+
+          {/* Featured Products Tab */}
+          {activeTab === 'featured' && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+                Featured Products Settings
+              </h2>
+              
+              <div className="space-y-6">
+                {/* Enable/Disable Featured Products */}
+                <div>
+                  <label className="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={settings.featuredProducts.enabled}
+                      onChange={(e) => updateSettings('featuredProducts', {
+                        ...settings.featuredProducts,
+                        enabled: e.target.checked
+                      })}
+                      className="mr-3"
+                    />
+                    <span className="font-bold uppercase tracking-wide">
+                      Enable Featured Products Section
+                    </span>
+                  </label>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                    Show/hide the featured products carousel on the homepage
+                  </p>
+                </div>
+
+                {settings.featuredProducts.enabled && (
+                  <>
+                    {/* Badge Selection */}
+                    <div>
+                      <label className="block text-sm font-bold uppercase tracking-wide mb-4">
+                        Select Badges to Feature
+                      </label>
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {[
+                          { value: 'featured', label: 'Featured', color: 'bg-blue-100 text-blue-800' },
+                          { value: 'best-seller', label: 'Best Seller', color: 'bg-green-100 text-green-800' },
+                          { value: 'new', label: 'New', color: 'bg-purple-100 text-purple-800' },
+                          { value: 'sale', label: 'Sale', color: 'bg-red-100 text-red-800' },
+                          { value: 'limited', label: 'Limited Edition', color: 'bg-yellow-100 text-yellow-800' }
+                        ].map((badge) => (
+                          <label key={badge.value} className="flex items-center p-3 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={settings.featuredProducts.selectedBadges.includes(badge.value)}
+                              onChange={(e) => {
+                                const newBadges = e.target.checked
+                                  ? [...settings.featuredProducts.selectedBadges, badge.value]
+                                  : settings.featuredProducts.selectedBadges.filter(b => b !== badge.value);
+                                updateSettings('featuredProducts', {
+                                  ...settings.featuredProducts,
+                                  selectedBadges: newBadges
+                                });
+                              }}
+                              className="mr-3"
+                            />
+                            <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${badge.color}`}>
+                              {badge.label}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        Products with selected badges will appear in the featured section
+                      </p>
+                    </div>
+
+                    {/* Maximum Products */}
+                    <div>
+                      <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                        Maximum Products to Display
+                      </label>
+                      <input
+                        type="number"
+                        min="4"
+                        max="20"
+                        value={settings.featuredProducts.maxProducts}
+                        onChange={(e) => updateSettings('featuredProducts', {
+                          ...settings.featuredProducts,
+                          maxProducts: parseInt(e.target.value) || 12
+                        })}
+                        className="w-32 px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                      />
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        Recommended: 8-12 products for optimal carousel performance
+                      </p>
+                    </div>
+
+                    {/* Sort Order */}
+                    <div>
+                      <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                        Sort Order
+                      </label>
+                      <select
+                        value={settings.featuredProducts.sortOrder}
+                        onChange={(e) => updateSettings('featuredProducts', {
+                          ...settings.featuredProducts,
+                          sortOrder: e.target.value as 'newest' | 'price-low' | 'price-high' | 'name'
+                        })}
+                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                      >
+                        <option value="newest">Newest First</option>
+                        <option value="name">Alphabetical</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                      </select>
+                    </div>
+
+                    {/* Stock Filter */}
+                    <div>
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          checked={settings.featuredProducts.showOnlyInStock}
+                          onChange={(e) => updateSettings('featuredProducts', {
+                            ...settings.featuredProducts,
+                            showOnlyInStock: e.target.checked
+                          })}
+                          className="mr-3"
+                        />
+                        <span className="font-bold uppercase tracking-wide">
+                          Show Only In-Stock Products
+                        </span>
+                      </label>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        Hide out-of-stock products from the featured section
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Security Tab */}
+          {activeTab === 'security' && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+                Security Settings
+              </h2>
+              
+              <div className="space-y-6">
+                {/* Password Change Section */}
+                <div className="border border-gray-200 dark:border-gray-700 p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-bold uppercase tracking-wide text-gray-900 dark:text-white">
+                        Admin Password
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        Change your admin login password
+                      </p>
+                    </div>
+                    
+                    {!showPasswordForm && (
+                      <button
+                        onClick={() => setShowPasswordForm(true)}
+                        className="flex items-center px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                      >
+                        <Key className="w-4 h-4 mr-2" />
+                        Change Password
+                      </button>
+                    )}
+                  </div>
+
+                  {showPasswordForm && (
+                    <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                      {/* Current Password */}
+                      <div>
+                        <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                          Current Password
+                        </label>
+                        <div className="relative">
+                          <input
+                            type={showPasswords.current ? 'text' : 'password'}
+                            value={passwordForm.currentPassword}
+                            onChange={(e) => setPasswordForm(prev => ({ ...prev, currentPassword: e.target.value }))}
+                            className="w-full px-4 py-3 pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                            placeholder="Enter current password"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => togglePasswordVisibility('current')}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                          >
+                            {showPasswords.current ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* New Password */}
+                      <div>
+                        <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                          New Password
+                        </label>
+                        <div className="relative">
+                          <input
+                            type={showPasswords.new ? 'text' : 'password'}
+                            value={passwordForm.newPassword}
+                            onChange={(e) => setPasswordForm(prev => ({ ...prev, newPassword: e.target.value }))}
+                            className="w-full px-4 py-3 pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                            placeholder="Enter new password (min 8 characters)"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => togglePasswordVisibility('new')}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                          >
+                            {showPasswords.new ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Confirm Password */}
+                      <div>
+                        <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                          Confirm New Password
+                        </label>
+                        <div className="relative">
+                          <input
+                            type={showPasswords.confirm ? 'text' : 'password'}
+                            value={passwordForm.confirmPassword}
+                            onChange={(e) => setPasswordForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                            className="w-full px-4 py-3 pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                            placeholder="Confirm new password"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => togglePasswordVisibility('confirm')}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                          >
+                            {showPasswords.confirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Error Message */}
+                      {passwordError && (
+                        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-3 rounded">
+                          <p className="text-sm text-red-800 dark:text-red-200">{passwordError}</p>
+                        </div>
+                      )}
+
+                      {/* Success Message */}
+                      {passwordStatus === 'success' && (
+                        <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-3 rounded">
+                          <p className="text-sm text-green-800 dark:text-green-200">Password changed successfully!</p>
+                        </div>
+                      )}
+
+                      {/* Action Buttons */}
+                      <div className="flex space-x-3">
+                        <button
+                          onClick={handlePasswordChange}
+                          disabled={passwordStatus === 'changing' || !passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword}
+                          className={`
+                            flex items-center px-4 py-2 font-bold uppercase tracking-wide transition-all
+                            ${passwordStatus === 'changing'
+                              ? 'bg-gray-400 text-white cursor-not-allowed'
+                              : 'bg-green-600 hover:bg-green-700 text-white'
+                            }
+                          `}
+                        >
+                          {passwordStatus === 'changing' ? (
+                            <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                          ) : (
+                            <Save className="w-4 h-4 mr-2" />
+                          )}
+                          {passwordStatus === 'changing' ? 'Changing...' : 'Change Password'}
+                        </button>
+                        
+                        <button
+                          onClick={() => {
+                            setShowPasswordForm(false);
+                            setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
+                            setPasswordError('');
+                            setPasswordStatus('idle');
+                          }}
+                          className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Security Info */}
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4 rounded">
+                  <div className="flex items-start">
+                    <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-3 mt-0.5" />
+                    <div>
+                      <h4 className="font-bold text-blue-900 dark:text-blue-100 mb-2">
+                        Security Best Practices
+                      </h4>
+                      <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+                        <li>• Use a strong password with at least 8 characters</li>
+                        <li>• Include uppercase, lowercase, numbers, and special characters</li>
+                        <li>• Change your password regularly</li>
+                        <li>• Never share your admin credentials</li>
+                        <li>• Log out when finished using the admin panel</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}

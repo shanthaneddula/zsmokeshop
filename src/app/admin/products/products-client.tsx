@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { AdminProduct, AdminCategory } from '@/types/admin';
 import { ProductPreviewModal } from '../components/ProductPreviewModal';
 
@@ -389,10 +389,10 @@ export function ProductsClient() {
                   </div>
                   <div className="col-span-2">
                     <div className="w-16 h-16 relative border border-gray-200 dark:border-gray-700 rounded">
-                      <Image
+                      <OptimizedImage
                         src={product.image || '/images/placeholder.jpg'}
                         alt={product.name}
-                        fill
+                        context="admin-thumb"
                         className="object-cover rounded"
                       />
                     </div>
@@ -505,12 +505,11 @@ export function ProductsClient() {
                   {/* Mobile Card Content */}
                   <div className="flex space-x-4">
                     <div className="w-16 h-16 relative border border-gray-200 dark:border-gray-700 rounded flex-shrink-0">
-                      <Image
+                      <OptimizedImage
                         src={product.image || '/images/placeholder.jpg'}
                         alt={product.name}
-                        fill
+                        context="admin-thumb"
                         className="object-cover rounded"
-                        sizes="64px"
                       />
                     </div>
                     <div className="flex-1 min-w-0">

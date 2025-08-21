@@ -1,7 +1,7 @@
 // Individual Product API routes - GET, PUT, DELETE
 import { NextRequest, NextResponse } from 'next/server';
 import { ProductsJsonUtils } from '@/lib/admin/json-utils';
-import { AdminProduct } from '@/types/admin';
+import { AdminProduct } from '@/types';
 import { generateSlug } from '@/lib/json-utils';
 
 // Validation schema for product updates
@@ -151,7 +151,9 @@ export async function PUT(
     if (body.price !== undefined) updateData.price = body.price;
     if (body.salePrice !== undefined) updateData.salePrice = body.salePrice;
     if (body.image !== undefined) updateData.image = body.image.trim();
-    if (body.description !== undefined) updateData.description = body.description?.trim() || '';
+
+    if (body.shortDescription !== undefined) updateData.shortDescription = body.shortDescription?.trim() || '';
+    if (body.detailedDescription !== undefined) updateData.detailedDescription = body.detailedDescription?.trim() || '';
     if (body.brand !== undefined) updateData.brand = body.brand?.trim() || '';
     if (body.inStock !== undefined) updateData.inStock = body.inStock;
     if (body.badges !== undefined) updateData.badges = body.badges;

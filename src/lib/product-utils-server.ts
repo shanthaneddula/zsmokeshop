@@ -62,7 +62,8 @@ export async function searchProducts(query: string): Promise<AdminProduct[]> {
     product.status === 'active' &&
     (
       product.name.toLowerCase().includes(searchTerm) ||
-      product.description?.toLowerCase().includes(searchTerm) ||
+      product.shortDescription?.toLowerCase().includes(searchTerm) ||
+      product.detailedDescription?.toLowerCase().includes(searchTerm) ||
       product.brand?.toLowerCase().includes(searchTerm) ||
       product.category.toLowerCase().includes(searchTerm)
     )

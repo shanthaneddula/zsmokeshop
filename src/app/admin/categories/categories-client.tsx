@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { AdminCategory } from '@/types/admin';
 import { CategoryPreviewModal } from '../components/CategoryPreviewModal';
 
@@ -322,12 +322,12 @@ export function CategoriesClient() {
                     
                     <div className="col-span-2">
                       <div className="w-16 h-16 relative border border-gray-200 dark:border-gray-700 rounded">
-                        <Image
-                          src={category.image || '/images/placeholder.jpg'}
-                          alt={category.name}
-                          fill
-                          className="object-cover rounded"
-                        />
+                          <OptimizedImage
+                            src={category.image || '/images/placeholder.jpg'}
+                            alt={category.name}
+                            context="admin-thumb"
+                            className="object-cover rounded"
+                          />
                       </div>
                     </div>
                     
@@ -417,11 +417,10 @@ export function CategoriesClient() {
                       {/* Content with image and info grid */}
                       <div className="flex items-start space-x-4">
                         <div className="w-16 h-16 relative border border-gray-200 dark:border-gray-700 rounded flex-shrink-0">
-                          <Image
+                          <OptimizedImage
                             src={category.image || '/images/placeholder.jpg'}
                             alt={category.name}
-                            fill
-                            sizes="64px"
+                            context="admin-thumb"
                             className="object-cover rounded"
                           />
                         </div>

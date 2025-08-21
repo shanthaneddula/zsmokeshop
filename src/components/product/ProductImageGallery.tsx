@@ -2,7 +2,7 @@
 
 import { AdminProduct } from '@/types';
 import { useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 interface ProductImageGalleryProps {
@@ -31,13 +31,12 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
     <div className="space-y-4">
       {/* Main Image */}
       <div className="relative aspect-square bg-gray-100 dark:bg-gray-800 overflow-hidden group">
-        <Image
+        <OptimizedImage
           src={images[selectedImageIndex]}
           alt={product.name}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          context="gallery"
           priority
+          className="object-cover"
         />
         
         {/* Navigation Arrows - only show if multiple images */}
@@ -93,12 +92,11 @@ export default function ProductImageGallery({ product }: ProductImageGalleryProp
                 }
               `}
             >
-              <Image
+              <OptimizedImage
                 src={image}
                 alt={`${product.name} - Image ${index + 1}`}
-                fill
+                context="thumbnail"
                 className="object-cover"
-                sizes="150px"
               />
             </button>
           ))}

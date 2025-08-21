@@ -44,27 +44,29 @@
     ]
   },
   {
-    "name": "Pink Strawberry –4.5L Flavored Whipped Cream N₂O Tanks by Doodlez",
-    "slug": "pink-strawberry-45l-flavored-whipped-cream-no-tanks-by-doodlez",
+    "name": "Pink Strawberry –4.5L N₂O Tanks by Doodlez",
+    "slug": "pink-strawberry-45l-no-tanks-by-doodlez",
     "category": "whipped-cream-chargers-nitrous-oxide",
     "price": 120,
     "image": "/images/admin/general/strawberry-doodlez-n-1753414633343-b43bmz.jpg",
-    "description": "Doodlez’s Pink Strawberry Flavored Whipped Cream N₂O Tanks deliver premium food-grade nitrous oxide infused with sweet raspberry flavor, ideal for whipped cream dispensers, culinary infusions, or mixology. These tanks come in multiple sizes (1 L, 2.2 L, 4.5 L), offering flexible options for different usage needs. The 4.5 L size is affordably priced at $120.00 but is backordered; larger sizes are priced accordingly. The 1L and 2.2L variant is currently sold out.",
+    "description": "",
     "brand": "Doodlez",
     "inStock": true,
     "badges": [
-      "new"
+      "best-seller"
     ],
-    "sku": "DOOD-PNKSTBRY-4.5L",
+    "sku": "ZSS-DOOD-PNKSTBRY-4.5L",
     "status": "active",
     "createdBy": "admin",
     "updatedBy": "admin",
     "id": "prod_1753414639993",
     "createdAt": "2025-07-25T03:37:19.994Z",
-    "updatedAt": "2025-07-25T03:37:19.994Z",
+    "updatedAt": "2025-07-27T03:49:42.472Z",
     "imageHistory": [
       "/images/admin/general/strawberry-doodlez-n-1753414633343-b43bmz.jpg"
-    ]
+    ],
+    "shortDescription": "Experience rich strawberry flavor with the Doodlez Pink Strawberry 4.5L (3060g) N₂O Tank. A high-capacity, food-grade nitrous oxide tank perfect for whipping, infusions, and Nitro brews — ideal for kitchens, cafés, and caterers.",
+    "detailedDescription": "The Doodlez Pink Strawberry 4.5L (3060g) N₂O Tank delivers flavorful performance and serious volume. Infused with a bold strawberry aroma, this refillable tank is perfect for whipped creams, mousses, Nitro coffee, and mixology creations.\n\n- Large 3060g Capacity – Fewer refills, more productivity\n- Strawberry-Flavored N₂O – Adds flavor right from the source\n- Food-Grade & Ultra-Pure – Safe and clean for all culinary use\n- Compatible Design – Works with standard dispensers and regulators\n- Reusable & Eco-Friendly – A sustainable option for heavy users\n\nUpgrade your culinary game with Doodlez – where flavor meets performance."
   },
   {
     "name": "Casper THCA Jelly Rolls – Watermelon Zkittlez (2 Pre-Rolls × 2 g)",

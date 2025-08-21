@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useBanner } from "@/contexts/BannerContext";
 
 // Helper function to check if store is currently open
 function getStoreStatus() {
@@ -43,6 +44,7 @@ function getStoreStatus() {
 
 export default function HeroSection() {
   const [storeStatus, setStoreStatus] = useState(getStoreStatus());
+  const { isVisible: isBannerVisible } = useBanner();
 
   // Update store status every minute
   useEffect(() => {
@@ -54,7 +56,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] bg-black flex items-center overflow-hidden">
+    <section className="relative min-h-[85vh] max-h-screen bg-black flex items-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
@@ -74,18 +76,20 @@ export default function HeroSection() {
         </video>
       </div>
 
-      {/* Subtle overlay for text readability */}
-      <div className="absolute inset-0 bg-black/30 z-5"></div>
+      {/* Enhanced overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/50 z-5"></div>
 
       {/* Fallback Background (if video doesn't load) */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-0"></div>
 
-      {/* Main Content */}
-      <div className="container-wide relative z-10">
-        <div className="flex items-center justify-center min-h-[60vh] pt-8">
+      {/* Main Content - Account for banner and header spacing */}
+      <div className="container-wide relative z-10 w-full">
+        <div className={`flex items-center justify-center min-h-screen ${
+          isBannerVisible ? 'pt-[7rem] md:pt-[8rem]' : 'pt-[4rem]'
+        }`}>
           {/* Centered Content */}
           <motion.div 
-            className="space-y-6 md:space-y-8 text-center px-4"
+            className="space-y-6 md:space-y-8 text-center px-4 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -93,40 +97,42 @@ export default function HeroSection() {
 
             {/* Main Headline */}
             <div className="space-y-3 md:space-y-4">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white uppercase leading-none drop-shadow-lg">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase leading-none drop-shadow-2xl">
                 Z SMOKE SHOP
               </h1>
-              <div className="w-12 md:w-16 h-0.5 bg-white shadow-lg mx-auto"></div>
+              <div className="w-16 md:w-20 h-1 bg-white shadow-lg mx-auto"></div>
             </div>
 
             {/* Description */}
-            <p className="text-base md:text-lg lg:text-xl text-gray-200 leading-relaxed max-w-xl lg:max-w-2xl drop-shadow-md px-2">
+            <p className="text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-lg px-2">
               Your trusted destination for quality smoking accessories, vapes, and CBD products.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-row gap-3 md:gap-4 justify-center pt-2">
+            {/* CTA Buttons - Enhanced hierarchy */}
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center pt-4">
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center border-2 border-white px-4 sm:px-6 md:px-8 py-2.5 md:py-3 text-xs sm:text-sm font-bold text-white hover:bg-white hover:text-black transition-all duration-300 uppercase tracking-wide shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center bg-white text-black px-8 md:px-10 py-4 md:py-5 text-sm md:text-base font-black hover:bg-gray-100 transition-all duration-300 uppercase tracking-wider shadow-2xl hover:shadow-3xl transform hover:scale-105"
               >
                 Shop Now
               </Link>
               <Link
                 href="/locations"
-                className="inline-flex items-center justify-center border-2 border-white/50 px-4 sm:px-6 md:px-8 py-2.5 md:py-3 text-xs sm:text-sm font-bold text-white hover:border-white hover:bg-white/10 transition-all duration-300 uppercase tracking-wide shadow-lg"
+                className="inline-flex items-center justify-center border-2 border-white/80 px-8 md:px-10 py-4 md:py-5 text-sm md:text-base font-black text-white hover:bg-white hover:text-black transition-all duration-300 uppercase tracking-wider shadow-2xl"
               >
                 Find Store
               </Link>
             </div>
 
-            {/* Store Status - Dynamic based on current time */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm pt-4 opacity-90">
-              <div className="flex items-center gap-2">
-                <div className={`w-1.5 h-1.5 ${storeStatus.statusColor} rounded-full shadow-lg`}></div>
-                <span className="text-gray-300 font-medium uppercase tracking-wide">{storeStatus.statusText}</span>
+            {/* Store Status - Enhanced visibility with banner-aware spacing */}
+            <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm sm:text-base pt-6 opacity-95 ${
+              isBannerVisible ? 'pb-24 sm:pb-8' : 'pb-20 sm:pb-6'
+            }`}>
+              <div className="flex items-center gap-3">
+                <div className={`w-3 h-3 ${storeStatus.statusColor} rounded-full shadow-xl animate-pulse`}></div>
+                <span className="text-white font-bold uppercase tracking-wider">{storeStatus.statusText}</span>
               </div>
-              <div className="text-gray-400 uppercase tracking-wide">
+              <div className="text-gray-200 uppercase tracking-wider font-medium">
                 {storeStatus.todayHours}
               </div>
             </div>
@@ -134,15 +140,22 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom Scroll Indicator */}
+      {/* Enhanced Scroll Indicator - Banner-aware positioning */}
       <motion.div 
-        className="absolute bottom-6 md:bottom-8 left-0 right-0 z-10 flex justify-center"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className={`absolute left-0 right-0 z-10 flex justify-center ${
+          isBannerVisible ? 'bottom-4 sm:bottom-6 md:bottom-8' : 'bottom-2 sm:bottom-8 md:bottom-12'
+        }`}
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="flex flex-col items-center gap-1.5 md:gap-2 text-white/70">
-          <span className="text-xs font-medium uppercase tracking-wider drop-shadow-md">Scroll</span>
-          <div className="w-px h-6 md:h-8 bg-white/50 shadow-lg"></div>
+        <div className="flex flex-col items-center gap-1 sm:gap-2 md:gap-3 text-white/80 hover:text-white transition-colors cursor-pointer">
+          <span className="text-xs sm:text-sm font-bold uppercase tracking-widest drop-shadow-lg">Scroll Down</span>
+          <div className="w-0.5 h-6 sm:h-8 md:h-12 bg-white/70 shadow-xl"></div>
+          <motion.div 
+            className="w-2 h-2 bg-white rounded-full shadow-xl"
+            animate={{ y: [0, 6, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          />
         </div>
       </motion.div>
     </section>

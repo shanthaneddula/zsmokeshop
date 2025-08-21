@@ -94,7 +94,7 @@ export function generateProductMetadata(product: AdminProduct): Metadata {
 }
 
 function generateProductDescription(product: AdminProduct): string {
-  const baseDescription = product.description || `${product.name} available at ${BUSINESS_NAME}`;
+  const baseDescription = product.shortDescription || product.detailedDescription || `${product.name} available at ${BUSINESS_NAME}`;
   const priceText = product.salePrice 
     ? `Sale price ${formatPrice(product.salePrice)} (was ${formatPrice(product.price)})`
     : `Price ${formatPrice(product.price)}`;
@@ -113,7 +113,7 @@ export function generateStructuredData(product: AdminProduct) {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
-    description: product.description || `${product.name} available at ${BUSINESS_NAME}`,
+    description: product.shortDescription || product.detailedDescription || `${product.name} available at ${BUSINESS_NAME}`,
     image: imageUrl ? [imageUrl] : [],
     url: productUrl,
     sku: product.sku,

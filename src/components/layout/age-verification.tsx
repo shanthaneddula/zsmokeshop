@@ -38,12 +38,12 @@ export default function AgeVerification() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-overlay"
+            className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100]"
             onClick={() => {}} // Prevent clicks from passing through
           />
 
           {/* Modal */}
-          <div className="fixed inset-0 z-modal flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-[101] flex items-center justify-center p-4 sm:p-6">
             <motion.div
               className="w-full max-w-sm sm:max-w-md mx-auto bg-white dark:bg-gray-900 border-2 border-gray-900 dark:border-white shadow-2xl"
               initial={{ opacity: 0, scale: 0.9, y: 30 }}

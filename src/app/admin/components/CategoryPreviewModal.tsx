@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { AdminCategory } from '@/types/admin';
 
 interface CategoryPreviewModalProps {
@@ -71,10 +71,11 @@ export function CategoryPreviewModal({ category, onClose }: CategoryPreviewModal
             {/* Image */}
             <div>
               <div className="aspect-square relative border border-gray-900 dark:border-white">
-                <Image
+                <OptimizedImage
                   src={category.image || '/images/placeholder.jpg'}
                   alt={category.name}
-                  fill
+                  context="preview"
+                  priority
                   className="object-cover"
                 />
               </div>

@@ -1,7 +1,8 @@
 // Admin login API route
 
 import { NextRequest, NextResponse } from 'next/server';
-import { validateCredentials, createToken, checkRateLimit, recordLoginAttempt } from '@/lib/auth';
+import { createToken, checkRateLimit, recordLoginAttempt } from '@/lib/auth';
+import { validateCredentialsWithBcrypt } from '@/lib/auth-server';
 import { LoginCredentials } from '@/types/admin';
 
 export async function POST(request: NextRequest) {
@@ -25,8 +26,17 @@ export async function POST(request: NextRequest) {
     // Parse request body
     const credentials: LoginCredentials = await request.json();
 
-    // Validate credentials
-    const authResult = validateCredentials(credentials);
+    // Use bcrypt validation only (no fallback to prevent dual password issue)
+    let authResult;
+    try {
+      authResult = await validateCredentialsWithBcrypt(credentials.username, credentials.password);
+    } catch (error) {
+      console.error('Authentication error:', error);
+      authResult = {
+        success: false,
+        error: 'Authentication failed'
+      };
+    }
     
     if (!authResult.success) {
       recordLoginAttempt(ip, false);

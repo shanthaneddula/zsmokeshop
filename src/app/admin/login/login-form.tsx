@@ -141,14 +141,6 @@ export default function LoginForm() {
         )}
       </button>
 
-      {/* Development Note */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800">
-          <p className="text-xs text-yellow-800 dark:text-yellow-200">
-            <strong>Development Mode:</strong> Default credentials are admin/admin123
-          </p>
-        </div>
-      )}
     </form>
   );
 }

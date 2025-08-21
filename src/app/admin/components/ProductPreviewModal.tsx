@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 import { AdminProduct } from '@/types/admin';
 
 interface ProductPreviewModalProps {
@@ -73,10 +73,11 @@ export function ProductPreviewModal({ product, onClose }: ProductPreviewModalPro
             {/* Image */}
             <div>
               <div className="aspect-square relative border border-gray-900 dark:border-white">
-                <Image
+                <OptimizedImage
                   src={product.image || '/images/placeholder.jpg'}
                   alt={product.name}
-                  fill
+                  context="preview"
+                  priority
                   className="object-cover"
                 />
               </div>

@@ -175,31 +175,6 @@ export default function ShopPageClient() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Hero Section - Adidas Style */}
-      <section className="relative bg-black text-white py-16 md:py-24">
-        <div className="container-wide">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight mb-4">
-              {selectedCategory 
-                ? categories.find(cat => cat.slug === selectedCategory)?.name || 'Shop'
-                : 'Shop'
-              }
-            </h1>
-            <div className="w-16 h-0.5 bg-white mx-auto mb-6"></div>
-            <p className="text-lg md:text-xl font-light text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              {selectedCategory 
-                ? `Browse our ${categories.find(cat => cat.slug === selectedCategory)?.name.toLowerCase()} collection`
-                : 'Premium smoke shop products and accessories for the modern enthusiast'
-              }
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Breadcrumb Navigation */}
       <section className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">

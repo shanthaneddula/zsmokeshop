@@ -40,7 +40,9 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
     price: 0,
     salePrice: undefined,
     image: '',
-    description: '',
+
+    shortDescription: '',
+    detailedDescription: '',
     brand: '',
     inStock: true,
     badges: [],
@@ -75,7 +77,9 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
         price: product.price || 0,
         salePrice: product.salePrice,
         image: product.image || '',
-        description: product.description || '',
+
+        shortDescription: product.shortDescription || '',
+        detailedDescription: product.detailedDescription || '',
         brand: product.brand || '',
         inStock: product.inStock ?? true,
         badges: product.badges || [],
@@ -203,7 +207,7 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
     }
   };
 
-  const handleInputChange = (field: keyof AdminProduct, value: any) => {
+  const handleInputChange = (field: keyof AdminProduct, value: string | number | boolean | string[] | undefined) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -383,19 +387,47 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
           </div>
         </div>
 
-        {/* Description */}
+        {/* Short Description */}
         <div>
           <label className="block text-sm font-bold uppercase tracking-wide mb-2">
-            Description
+            Short Description *
           </label>
           <textarea
-            value={formData.description || ''}
-            onChange={(e) => handleInputChange('description', e.target.value)}
-            rows={4}
+            value={formData.shortDescription || ''}
+            onChange={(e) => handleInputChange('shortDescription', e.target.value)}
+            rows={2}
             className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 resize-none"
-            placeholder="Enter product description"
+            placeholder="Brief product summary (1-2 sentences)"
           />
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            This will be shown initially on the product page
+          </p>
         </div>
+
+        {/* Detailed Description */}
+        <div>
+          <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+            Detailed Description
+          </label>
+          <textarea
+            value={formData.detailedDescription || ''}
+            onChange={(e) => handleInputChange('detailedDescription', e.target.value)}
+            rows={6}
+            className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 resize-none"
+            placeholder="Full product description with details..."
+          />
+          <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-1">
+            <p>This will be shown when users click &ldquo;Read More&rdquo;</p>
+            <p><strong>Formatting tips:</strong></p>
+            <ul className="list-disc list-inside ml-2 space-y-0.5">
+              <li>Use double line breaks for paragraphs</li>
+              <li>Start lines with • or - for bullet points</li>
+              <li>Example: • Feature one\n• Feature two</li>
+            </ul>
+          </div>
+        </div>
+
+
 
         {/* Image Upload */}
         <div>

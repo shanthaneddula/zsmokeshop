@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { Upload, X, Image as ImageIcon, Loader2 } from 'lucide-react';
-import Image from 'next/image';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
 interface ProductImageUploadProps {
   currentImage?: string;
@@ -92,10 +92,10 @@ export default function ProductImageUpload({
       {currentImage && (
         <div className="relative">
           <div className="relative w-full h-48 border border-gray-900 dark:border-white">
-            <Image
+            <OptimizedImage
               src={currentImage}
               alt="Product image"
-              fill
+              context="preview"
               className="object-cover"
             />
           </div>

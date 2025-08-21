@@ -44,13 +44,7 @@ export default function ProductBreadcrumbs({ product }: ProductBreadcrumbsProps)
             </Link>
           </li>
           
-          <ChevronRightIcon className="w-4 h-4 text-gray-400" />
-          
-          <li>
-            <span className="text-gray-900 dark:text-white font-medium">
-              {product.name}
-            </span>
-          </li>
+
         </ol>
       </div>
     </nav>

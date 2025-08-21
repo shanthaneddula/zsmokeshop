@@ -57,7 +57,9 @@ export interface AdminProduct {
   price: number;
   salePrice?: number;
   image?: string;
-  description?: string;
+
+  shortDescription?: string; // Brief product summary (1-2 sentences)
+  detailedDescription?: string; // Full detailed description with formatting
   brand?: string;
   inStock: boolean;
   badges?: string[];

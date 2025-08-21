@@ -2,26 +2,35 @@
 
 import { AdminProduct } from '@/types';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { formatPrice, calculateDiscount } from '@/lib/product-utils';
+
 import { generateStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo-utils';
-import ProductImageGallery from './ProductImageGallery';
-import ProductDetails from './ProductDetails';
-import ProductActions from './ProductActions';
+import MobileProductImageGallery from './MobileProductImageGallery';
+import StickyBottomActionBar from './StickyBottomActionBar';
+import MobileProductSpecs from './MobileProductSpecs';
 import RelatedProducts from './RelatedProducts';
+import ExpandableDescription from './ExpandableDescription';
+import DesktopProductSpecs from './DesktopProductSpecs';
 import ProductBreadcrumbs from './ProductBreadcrumbs';
-import ComplianceNote from './ComplianceNote';
+
+import { StarIcon as StarSolidIcon } from '@heroicons/react/24/solid';
+import { StarIcon as StarOutlineIcon } from '@heroicons/react/24/outline';
 
 interface ProductPageTemplateProps {
   product: AdminProduct;
+  showRatings?: boolean;
+  showStockStatus?: boolean;
 }
 
-export default function ProductPageTemplate({ product }: ProductPageTemplateProps) {
+export default function ProductPageTemplate({ 
+  product,
+  showRatings = false,
+  showStockStatus = false
+}: ProductPageTemplateProps) {
   const [relatedProducts, setRelatedProducts] = useState<AdminProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
 
   useEffect(() => {
-    // Load related products via API
     const loadRelatedProducts = async () => {
       try {
         const response = await fetch(`/api/shop/products?category=${product.category}&limit=4`);
@@ -42,8 +51,15 @@ export default function ProductPageTemplate({ product }: ProductPageTemplateProp
     loadRelatedProducts();
   }, [product]);
 
-  const discount = calculateDiscount(product.price, product.salePrice);
-  const finalPrice = product.salePrice || product.price;
+  const handleAddToCart = async () => {
+    setIsAddingToCart(true);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log(`Added ${product.name} to cart`);
+    setIsAddingToCart(false);
+  };
+
+  const rating = product.rating || 0;
+  const reviewCount = 12;
 
   return (
     <>
@@ -61,153 +77,167 @@ export default function ProductPageTemplate({ product }: ProductPageTemplateProp
         }}
       />
 
-      <div className="min-h-screen bg-white dark:bg-gray-900">
-        {/* Breadcrumbs */}
+      {/* Breadcrumbs - Desktop Only */}
+      <div className="hidden lg:block">
         <ProductBreadcrumbs product={product} />
+      </div>
 
-        {/* Main Product Section */}
+      {/* Mobile Layout */}
+      <div className="lg:hidden">
+        <div className="container mx-auto px-4 py-4">
+          {/* Mobile Product Name - Smaller like related products */}
+          <div className="mb-4">
+            <h1 className="text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white leading-tight line-clamp-2">
+              {product.name}
+            </h1>
+            {product.brand && (
+              <p className="text-sm text-gray-600 dark:text-gray-400 font-medium uppercase tracking-wide mt-1">
+                {product.brand}
+              </p>
+            )}
+          </div>
+
+          {/* Product Images - Full Width */}
+          <div className="mb-6">
+            <MobileProductImageGallery product={product} />
+          </div>
+
+          {/* Mobile Product Specifications */}
+          <MobileProductSpecs product={product} />
+        </div>
+
+        {/* Mobile Sticky Bottom Action Bar - Simplified */}
+        <StickyBottomActionBar 
+          product={product} 
+          onAddToCart={handleAddToCart}
+          isAddingToCart={isAddingToCart}
+        />
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:block">
         <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 gap-12">
             {/* Product Images */}
-            <div className="space-y-4">
-              <ProductImageGallery product={product} />
+            <div>
+              <MobileProductImageGallery product={product} />
             </div>
 
             {/* Product Information */}
             <div className="space-y-6">
               {/* Product Title & Brand */}
-              <div className="space-y-2">
-                <h1 className="text-3xl lg:text-4xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+              <div>
+                <h1 className="text-4xl font-black uppercase tracking-wide text-gray-900 dark:text-white leading-tight">
                   {product.name}
                 </h1>
                 {product.brand && (
-                  <p className="text-lg font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wide">
+                  <p className="text-xl text-gray-600 dark:text-gray-400 font-medium uppercase tracking-wide mt-2">
                     {product.brand}
                   </p>
                 )}
               </div>
 
-              {/* Price */}
-              <div className="space-y-2">
-                <div className="flex items-center space-x-4">
-                  <span className="text-3xl font-black text-gray-900 dark:text-white">
-                    {formatPrice(finalPrice)}
-                  </span>
-                  {product.salePrice && (
-                    <>
-                      <span className="text-xl text-gray-500 line-through">
-                        {formatPrice(product.price)}
-                      </span>
-                      <span className="bg-red-600 text-white px-2 py-1 text-sm font-bold uppercase">
-                        {discount}% OFF
-                      </span>
-                    </>
-                  )}
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {product.inStock ? (
-                    <span className="text-green-600 font-medium">✓ In Stock</span>
-                  ) : (
-                    <span className="text-red-600 font-medium">✗ Out of Stock</span>
-                  )}
-                </p>
-              </div>
-
-              {/* Badges */}
-              {product.badges && product.badges.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {product.badges.map((badge) => (
-                    <span
-                      key={badge}
-                      className={`
-                        px-3 py-1 text-xs font-bold uppercase tracking-wide
-                        ${badge === 'best-seller' ? 'bg-yellow-400 text-gray-900' : ''}
-                        ${badge === 'new' ? 'bg-green-600 text-white' : ''}
-                        ${badge === 'sale' ? 'bg-red-600 text-white' : ''}
-                        ${badge === 'limited' ? 'bg-purple-600 text-white' : ''}
-                      `}
-                    >
-                      {badge.replace('-', ' ')}
-                    </span>
-                  ))}
+              {/* Ratings */}
+              {showRatings && rating > 0 && (
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <div key={star} className="relative">
+                        {rating >= star ? (
+                          <StarSolidIcon className="w-5 h-5 text-yellow-400" />
+                        ) : rating >= star - 0.5 ? (
+                          <div className="relative">
+                            <StarOutlineIcon className="w-5 h-5 text-gray-300" />
+                            <StarSolidIcon className="w-5 h-5 text-yellow-400 absolute inset-0" style={{ clipPath: 'inset(0 50% 0 0)' }} />
+                          </div>
+                        ) : (
+                          <StarOutlineIcon className="w-5 h-5 text-gray-300" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-600 dark:text-gray-400">({reviewCount} reviews)</span>
                 </div>
               )}
 
-              {/* Description */}
-              {product.description && (
-                <div className="space-y-2">
-                  <h3 className="text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white">
-                    Description
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {product.description}
+              {/* Price */}
+              <div className="space-y-2">
+                <div className="flex items-baseline space-x-3">
+                  <span className="text-4xl font-bold text-gray-900 dark:text-white">
+                    ${product.salePrice || product.price}
+                  </span>
+                  {product.salePrice && (
+                    <span className="text-xl text-gray-500 dark:text-gray-400 line-through">
+                      ${product.price}
+                    </span>
+                  )}
+                </div>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Tax included • Free pickup in store
+                </p>
+              </div>
+
+              {/* Stock Status */}
+              {showStockStatus && (
+                <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {product.inStock ? (
+                      <span className="text-green-600 font-medium">✓ In Stock</span>
+                    ) : (
+                      <span className="text-red-600 font-medium">✗ Out of Stock</span>
+                    )}
                   </p>
                 </div>
               )}
 
-              {/* Product Actions */}
-              <ProductActions product={product} />
-
-              {/* Product Details */}
-              <ProductDetails product={product} />
-
-              {/* Compliance Information */}
-              <ComplianceNote
-                complianceLevel={product.complianceLevel}
-                ageRestriction={product.ageRestriction}
-                complianceNotes={product.complianceNotes}
-                safetyWarnings={product.safetyWarnings}
-                legalDisclaimers={product.legalDisclaimers}
+              {/* Enhanced Description */}
+              <ExpandableDescription 
+                shortDescription={product.shortDescription}
+                detailedDescription={product.detailedDescription}
               />
-            </div>
-          </div>
-        </div>
 
-        {/* Related Products */}
-        {!isLoading && relatedProducts.length > 0 && (
-          <RelatedProducts products={relatedProducts} currentProduct={product} />
-        )}
-
-        {/* Store Information */}
-        <div className="bg-gray-50 dark:bg-gray-800 py-12">
-          <div className="container mx-auto px-4">
-            <div className="text-center space-y-4">
-              <h3 className="text-2xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
-                Available at Z Smoke Shop
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Visit our Austin, Texas location for the best selection of premium smoke accessories, 
-                vapes, and tobacco products. Expert staff and competitive prices guaranteed.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
-                <Link
-                  href="/locations"
-                  className="
-                    bg-gray-900 dark:bg-white text-white dark:text-gray-900 
-                    px-6 py-3 font-black uppercase tracking-wide text-sm
-                    hover:bg-gray-800 dark:hover:bg-gray-100 
-                    transition-colors duration-200
-                  "
+              {/* Desktop Add to Cart */}
+              <div className="space-y-4">
+                <button
+                  onClick={handleAddToCart}
+                  disabled={!product.inStock || isAddingToCart}
+                  className={`
+                    w-full flex items-center justify-center space-x-2 py-4 px-6 rounded-lg font-bold uppercase tracking-wide text-sm transition-all duration-200
+                    ${product.inStock && !isAddingToCart
+                      ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                    }
+                  `}
                 >
-                  Store Location
-                </Link>
-                <Link
-                  href="/support"
-                  className="
-                    bg-transparent text-gray-900 dark:text-white 
-                    px-6 py-3 font-black uppercase tracking-wide text-sm
-                    border-2 border-gray-900 dark:border-white
-                    hover:bg-gray-100 dark:hover:bg-gray-800 
-                    transition-colors duration-200
-                  "
-                >
-                  Contact Us
-                </Link>
+                  {isAddingToCart ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                      <span>Adding...</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                      </svg>
+                      <span>{product.inStock ? 'Add to Cart' : 'Out of Stock'}</span>
+                    </>
+                  )}
+                </button>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Desktop Product Specifications and Details */}
+        <div className="max-w-7xl mx-auto px-4 pb-8">
+          <DesktopProductSpecs product={product} />
+        </div>
       </div>
+
+      {/* Related Products */}
+      {!isLoading && relatedProducts.length > 0 && (
+        <RelatedProducts products={relatedProducts} currentProduct={product} />
+      )}
     </>
   );
 }
