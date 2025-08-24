@@ -13,54 +13,51 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="min-h-[90vh] flex flex-col justify-center bg-gray-900 dark:bg-black text-white">
+    <footer className="bg-gray-900 dark:bg-black text-white">
       {/* Main Footer Content */}
-      <div className="container-wide py-12">
-        <div className="space-y-12">
+      <div className="container-wide py-16">
+        <div className="space-y-8">
           {/* Brand Section with Social Icons */}
-          <div className="text-center space-y-6">
-            <div className="flex items-center justify-center gap-6">
-              <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-wide">Z SMOKE SHOP</h3>
-              <div className="flex space-x-3">
-                <a 
-                  href="https://facebook.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
-                  aria-label="Facebook"
-                >
-                  <Facebook size={16} />
-                </a>
-                <a 
-                  href="https://instagram.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={16} />
-                </a>
-                <a 
-                  href="https://twitter.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
-                  aria-label="Twitter"
-                >
-                  <Twitter size={16} />
-                </a>
-              </div>
-            </div>
+          <div className="text-center space-y-4">
+            <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-wide">Z SMOKE SHOP</h3>
             <div className="w-12 h-0.5 bg-white mx-auto"></div>
-            <p className="text-base font-light text-gray-300 max-w-2xl mx-auto uppercase tracking-wide">
+            <p className="text-sm font-light text-gray-300 max-w-xl mx-auto uppercase tracking-wide">
               Austin&apos;s premier destination for quality smoke shop products
             </p>
+            <div className="flex justify-center space-x-4 pt-2">
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
+                aria-label="Facebook"
+              >
+                <Facebook size={16} />
+              </a>
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
+                aria-label="Instagram"
+              >
+                <Instagram size={16} />
+              </a>
+              <a 
+                href="https://twitter.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-8 h-8 border border-white/30 flex items-center justify-center hover:border-white hover:bg-white hover:text-gray-900 transition-all"
+                aria-label="Twitter"
+              >
+                <Twitter size={16} />
+              </a>
+            </div>
           </div>
 
           {/* Quick Links in Row */}
           <div className="text-center">
-            <h4 className="text-lg font-bold text-white uppercase tracking-wide mb-6">Quick Links</h4>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
               <Link 
                 href="/" 
                 className="text-sm font-light text-gray-300 hover:text-white transition-colors uppercase tracking-wide"
@@ -89,11 +86,11 @@ export default function Footer() {
           </div>
 
           {/* Store Info and Newsletter in Two Columns */}
-          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+          <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
             {/* Store Info */}
             <div className="text-center md:text-left">
-              <h4 className="text-lg font-bold text-white uppercase tracking-wide mb-6">Store Info</h4>
-              <div className="space-y-4">
+              <h4 className="text-base font-bold text-white uppercase tracking-wide mb-4">Store Info</h4>
+              <div className="space-y-3">
                 <div className="flex items-start justify-center md:justify-start gap-3 text-sm text-gray-300">
                   <MapPin className="mt-1 h-4 w-4 flex-shrink-0" />
                   <span className="font-light leading-relaxed">719 W William Cannon Dr #105<br />Austin, TX 78745</span>
@@ -114,8 +111,8 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div className="text-center md:text-left">
-              <h4 className="text-lg font-bold text-white uppercase tracking-wide mb-6">Stay Updated</h4>
-              <p className="mb-6 text-sm font-light text-gray-300 leading-relaxed">
+              <h4 className="text-base font-bold text-white uppercase tracking-wide mb-4">Stay Updated</h4>
+              <p className="mb-4 text-sm font-light text-gray-300 leading-relaxed">
                 Get exclusive deals and product updates
               </p>
               <form className="space-y-4">
@@ -139,12 +136,12 @@ export default function Footer() {
       </div>
       
       {/* Bottom Bar */}
-      <div className="mt-auto border-t border-white/10 bg-black/50">
-        <div className="container-wide flex flex-col items-center justify-between space-y-4 py-6 text-center text-xs text-gray-400 md:flex-row md:space-y-0 md:text-left">
+      <div className="border-t border-white/10 bg-black/30">
+        <div className="container-wide flex flex-col items-center justify-between space-y-3 py-4 text-center text-xs text-gray-400 md:flex-row md:space-y-0 md:text-left">
           <div className="font-light">
             © {currentYear} Z SMOKE SHOP. All rights reserved.
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/privacy" className="hover:text-white transition-colors font-light uppercase tracking-wide">Privacy</Link>
             <Link href="/terms" className="hover:text-white transition-colors font-light uppercase tracking-wide">Terms</Link>
             <Link href="/age-verification" className="hover:text-white transition-colors font-light uppercase tracking-wide">Age Verification</Link>

@@ -17,6 +17,29 @@ import {
   EyeOff
 } from 'lucide-react';
 
+interface BusinessLocation {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  googlePlaceId: string;
+  yelpBusinessId: string;
+  appleMapsBusiness: string;
+  isPrimary: boolean;
+}
+
+interface ReviewSettings {
+  enableGoogleReviews: boolean;
+  enableYelpReviews: boolean;
+  enableAppleReviews: boolean;
+  autoRefreshInterval: number;
+}
+
+interface BusinessSettings {
+  locations: BusinessLocation[];
+  reviewSettings: ReviewSettings;
+}
+
 interface StoreSettings {
   // Store Information
   storeName: string;

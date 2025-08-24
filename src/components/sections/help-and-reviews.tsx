@@ -1,58 +1,12 @@
 "use client";
 
-import { Phone, Star, ExternalLink, ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useState, useRef, useCallback, useEffect } from "react";
-
-// Placeholder Google Reviews data - will be replaced with actual Google Reviews API
-const googleReviews = [
-  {
-    id: 1,
-    author: "Sarah M.",
-    rating: 5,
-    text: "Excellent selection and knowledgeable staff. They helped me find exactly what I was looking for. Great customer service!",
-    date: "2 weeks ago",
-    verified: true
-  },
-  {
-    id: 2,
-    author: "Mike R.",
-    rating: 5,
-    text: "Best smoke shop in Austin! Clean store, fair prices, and the staff really knows their products. Highly recommend!",
-    date: "1 month ago",
-    verified: true
-  },
-  {
-    id: 3,
-    author: "Jessica L.",
-    rating: 4,
-    text: "Great variety of products and convenient locations. Staff is always friendly and helpful.",
-    date: "3 weeks ago",
-    verified: true
-  },
-  {
-    id: 4,
-    author: "David K.",
-    rating: 5,
-    text: "Amazing customer service and great prices. The staff is very knowledgeable about all their products.",
-    date: "1 week ago",
-    verified: true
-  },
-  {
-    id: 5,
-    author: "Lisa P.",
-    rating: 4,
-    text: "Clean store with a wide selection. Staff was helpful in finding what I needed. Will definitely return!",
-    date: "2 months ago",
-    verified: true
-  }
-];
+import { Phone, X, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
 
 
 export default function HelpAndReviews() {
   const [showHoursPopup, setShowHoursPopup] = useState(false);
-  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
   // Check if store is currently open
   const isStoreOpen = () => {
@@ -78,173 +32,124 @@ export default function HelpAndReviews() {
     }
   };
 
-  const openGoogleReviews = () => {
-    window.open('https://www.google.com/search?q=Z+Smoke+Shop+Austin+reviews', '_blank');
-  };
-
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <Star
-        key={index}
-        className={`h-4 w-4 ${
-          index < rating
-            ? 'text-yellow-400 fill-current'
-            : 'text-gray-300 dark:text-gray-600'
-        }`}
-      />
-    ));
-  };
-
-  // Carousel navigation
-  const scrollToReview = useCallback((index: number) => {
-    if (carouselRef.current) {
-      const reviewWidth = carouselRef.current.offsetWidth;
-      carouselRef.current.scrollTo({
-        left: index * reviewWidth,
-        behavior: 'smooth'
-      });
-      setCurrentReviewIndex(index);
-    }
-  }, []);
-
-  const nextReview = useCallback(() => {
-    const nextIndex = (currentReviewIndex + 1) % googleReviews.length;
-    scrollToReview(nextIndex);
-  }, [currentReviewIndex, scrollToReview]);
-
-  const prevReview = useCallback(() => {
-    const prevIndex = currentReviewIndex === 0 ? googleReviews.length - 1 : currentReviewIndex - 1;
-    scrollToReview(prevIndex);
-  }, [currentReviewIndex, scrollToReview]);
-
-  // Auto-scroll carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextReview();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [nextReview]);
-
   return (
-    <section className="py-12 md:py-16 bg-gray-50 dark:bg-gray-800">
-      <div className="container-wide w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Help Section */}
-          <div className="space-y-6">
-            <div className="text-center lg:text-left">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 tracking-wide uppercase">
-                NEED HELP?
-              </h3>
+    <section className="min-h-[90vh] bg-white dark:bg-gray-900 flex flex-col justify-center py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Centered Need Help Section */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-wide uppercase">
+            Need Help?
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            Our expert team is here to help you find the perfect products for your needs.
+          </p>
+          
+          {/* Contact Options - Call and Chat Only */}
+          <div className="flex justify-center gap-6">
+            <button 
+              onClick={handleCallStore}
+              className="flex items-center justify-center gap-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 font-medium tracking-wide uppercase transition-all duration-300 hover:bg-gray-800 dark:hover:bg-gray-100"
+            >
+              <Phone className="h-5 w-5" />
+              Call Us
+            </button>
+            
+            <button className="flex items-center justify-center gap-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 font-medium tracking-wide uppercase transition-all duration-300 hover:bg-gray-800 dark:hover:bg-gray-100">
+              <MessageCircle className="h-5 w-5" />
+              Chat
+            </button>
+          </div>
+        </div>
+
+        {/* Google Maps with Reviews Section */}
+        <div className="space-y-6">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-wide uppercase">
+              Visit Our Store & See Reviews
+            </h2>
+            <div className="w-12 h-0.5 bg-gray-900 dark:bg-white mx-auto mb-6"></div>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              Find us on Google Maps and read authentic customer reviews
+            </p>
+          </div>
+
+          {/* Google Maps with Reviews - Responsive */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-5xl">
+              {/* Desktop/Tablet View */}
+              <div className="hidden md:block relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.4140832592784!2d-97.7885041!3d30.1967269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b4d6715b70a87%3A0x19df64376b6b2a4c!2sZ%20smoke%20shop!5e0!3m2!1sen!2sus!4v1756019395461!5m2!1sen!2sus&maptype=roadmap&zoom=15"
+                  className="absolute top-0 left-0 w-full h-full border-0"
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Z Smoke Shop Location and Reviews"
+                />
+              </div>
               
-              <button 
-                onClick={handleCallStore}
-                className="w-full lg:w-auto bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold px-8 py-4 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors inline-flex items-center justify-center gap-3 uppercase tracking-wider text-sm"
-              >
-                <Phone className="h-5 w-5" />
-                Call Expert Staff
-              </button>
+              {/* Mobile View */}
+              <div className="block md:hidden w-full">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.4140832592784!2d-97.7885041!3d30.1967269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b4d6715b70a87%3A0x19df64376b6b2a4c!2sZ%20smoke%20shop!5e0!3m2!1sen!2sus!4v1756019395461!5m2!1sen!2sus&maptype=roadmap&zoom=15"
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Z Smoke Shop Location and Reviews"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Customer Reviews Carousel */}
-          <div className="space-y-6">
-            <div className="text-center lg:text-left">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 tracking-wide uppercase">
-                CUSTOMER REVIEWS
+          {/* External Links for Reviews */}
+          <div className="flex justify-center gap-4 flex-wrap">
+            <a
+              href="https://www.google.com/maps/place/Z+smoke+shop/@30.1967269,-97.7885041,17z/data=!4m8!3m7!1s0x865b4d6715b70a87:0x19df64376b6b2a4c!8m2!3d30.1967269!4d-97.7885041!9m1!1b1!16s%2Fg%2F11x13gx5kq?entry=ttu&g_ep=EgoyMDI1MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 font-medium tracking-wide uppercase transition-all duration-300 hover:bg-blue-700"
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              View on Google Maps
+            </a>
+            
+            <a
+              href="https://www.yelp.com/biz/z-smoke-shop-austin-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-red-600 text-white px-6 py-3 font-medium tracking-wide uppercase transition-all duration-300 hover:bg-red-700"
+            >
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+              Read Yelp Reviews
+            </a>
+          </div>
+
+          {/* Store Information */}
+          <div className="text-center mt-8">
+            <div className="bg-gray-50 dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-600 max-w-2xl mx-auto">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+                Store Location
               </h3>
-              
-              {/* Average Rating Display */}
-              <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
-                <div className="flex items-center gap-1">
-                  {renderStars(5)}
-                </div>
-                <span className="text-2xl font-bold text-gray-900 dark:text-white">4.8</span>
-                <span className="text-gray-500 dark:text-gray-400 font-light">
-                  ({googleReviews.length} reviews)
-                </span>
-              </div>
-
-              {/* Reviews Carousel */}
-              <div className="relative">
-                {/* Carousel Container */}
-                <div 
-                  ref={carouselRef}
-                  className="flex overflow-x-hidden scroll-smooth"
-                  style={{ scrollSnapType: 'x mandatory' }}
-                >
-                  {googleReviews.map((review) => (
-                    <div
-                      key={review.id}
-                      className="w-full flex-shrink-0 px-2"
-                      style={{ scrollSnapAlign: 'start' }}
-                    >
-                      <div className="bg-white dark:bg-gray-900 p-6 border border-gray-200 dark:border-gray-700 h-48">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex items-center gap-2">
-                            <span className="font-medium text-gray-900 dark:text-white text-sm">
-                              {review.author}
-                            </span>
-                            {review.verified && (
-                              <span className="text-xs text-green-600 dark:text-green-400 font-medium">
-                                Verified
-                              </span>
-                            )}
-                          </div>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
-                            {review.date}
-                          </span>
-                        </div>
-                        
-                        <div className="flex items-center gap-1 mb-3">
-                          {renderStars(review.rating)}
-                        </div>
-                        
-                        <p className="text-sm text-gray-700 dark:text-gray-300 font-light leading-relaxed line-clamp-4">
-                          {review.text}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Navigation Arrows */}
-                <button
-                  onClick={prevReview}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 p-2 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                <button
-                  onClick={nextReview}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 p-2 hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-
-                {/* Dots Indicator */}
-                <div className="flex justify-center mt-4 gap-2">
-                  {googleReviews.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => scrollToReview(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentReviewIndex
-                          ? 'bg-gray-900 dark:bg-white'
-                          : 'bg-gray-300 dark:bg-gray-600'
-                      }`}
-                    />
-                  ))}
+              <p className="text-gray-700 dark:text-gray-200 mb-2">
+                <strong>Address:</strong> 719 W William Cannon Dr, Unit 105, Austin, TX 78745
+              </p>
+              <p className="text-gray-700 dark:text-gray-200 mb-2">
+                <strong>Phone:</strong> (661) 371-1413
+              </p>
+              <div className="text-gray-700 dark:text-gray-200">
+                <strong>Hours:</strong>
+                <div className="mt-2 text-sm">
+                  <p>Mon-Thu, Sun: 10:00 AM - 11:00 PM</p>
+                  <p>Fri-Sat: 10:00 AM - 12:00 AM</p>
                 </div>
               </div>
-
-              {/* View All Reviews Button */}
-              <button
-                onClick={openGoogleReviews}
-                className="mt-6 w-full lg:w-auto border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white font-bold px-6 py-3 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors inline-flex items-center justify-center gap-3 uppercase tracking-wider text-sm"
-              >
-                <ExternalLink className="h-4 w-4" />
-                View All Reviews
-              </button>
             </div>
           </div>
         </div>
@@ -253,7 +158,7 @@ export default function HelpAndReviews() {
       {/* Store Hours Popup */}
       {showHoursPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-900 p-6 max-w-sm w-full border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-6 max-w-sm w-full border border-gray-200 dark:border-gray-600">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wide">
                 Store Hours
@@ -265,11 +170,11 @@ export default function HelpAndReviews() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+            <div className="space-y-2 text-sm text-gray-700 dark:text-gray-200">
               <p><strong>Mon-Thu, Sun:</strong> 10:00 AM - 11:00 PM</p>
               <p><strong>Fri-Sat:</strong> 10:00 AM - 12:00 AM</p>
             </div>
-            <p className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+            <p className="mt-4 text-xs text-gray-500 dark:text-gray-300">
               We&apos;re currently closed. Please call during business hours.
             </p>
           </div>

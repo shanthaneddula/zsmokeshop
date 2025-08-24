@@ -71,20 +71,20 @@ export default function HomepageCatalogue() {
   }, []);
 
   return (
-    <section id="homepage-catalogue" className="min-h-[80vh] py-12 md:py-16 bg-gray-50 dark:bg-gray-850">
+    <section id="homepage-catalogue" className="min-h-[90vh] flex flex-col justify-center py-8 md:py-12 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wider">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
             Product Catalogue
           </h2>
-          <div className="w-16 h-0.5 bg-gray-900 dark:bg-white mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto uppercase tracking-wide">
+          <div className="w-12 h-0.5 bg-gray-900 dark:bg-white mx-auto mb-4"></div>
+          <p className="text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto uppercase tracking-wide">
             Explore our premium selection across all categories
           </p>
         </motion.div>
@@ -114,7 +114,7 @@ export default function HomepageCatalogue() {
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-12"
+              className="mb-8"
             >
               <div className="overflow-x-auto scrollbar-hide">
                 <div className="flex space-x-6 md:space-x-8 min-w-max px-4 md:px-0 md:justify-center">
@@ -176,7 +176,7 @@ export default function HomepageCatalogue() {
                 <h4 className="font-bold text-xl text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
                   {selectedCategory?.name}
                 </h4>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
                   Products coming soon
                 </p>
                 <a 

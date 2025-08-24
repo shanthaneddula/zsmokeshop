@@ -6,5 +6,38 @@
     "role": "admin",
     "createdAt": "2025-01-01T00:00:00.000Z",
     "lastPasswordChange": "2025-08-21T13:04:57.320Z"
+  },
+  "businessSettings": {
+    "locations": [
+      {
+        "id": "location-1",
+        "name": "Z Smoke Shop",
+        "address": "719 W William Cannon Dr, Unit 105, Austin, TX 78745",
+        "phone": "(661) 371-1413",
+        "googlePlaceId": "ChIJh7C3FWdNbIYRTCprszdkfxk",
+        "googleMapsUrl": "https://www.google.com/maps/place/Z+smoke+shop/@30.1967269,-97.7885041,17z/data=!4m8!3m7!1s0x865b4d6715b70a87:0x19df64376b6b2a4c!8m2!3d30.1967269!4d-97.7885041!9m1!1b1!16s%2Fg%2F11x13gx5kq?entry=ttu&g_ep=EgoyMDI1MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+        "yelpBusinessId": "z-smoke-shop-austin-2",
+        "yelpUrl": "https://www.yelp.com/biz/z-smoke-shop-austin-2?osq=Z+Smoke+Shop",
+        "appleMapsPlaceId": "I2DD6C076C5ECD6DA",
+        "appleMapsUrl": "https://maps.apple.com/place?place-id=I2DD6C076C5ECD6DA&address=719+W+William+Cannon+Dr%2C+Unit+105%2C+Austin%2C+TX++78745%2C+United+States&coordinate=30.1966334%2C-97.7886482&name=Z+Smoke+Shop&_provider=9902",
+        "isPrimary": true
+      },
+      {
+        "id": "location-2",
+        "name": "Z Smoke Shop - South Austin",
+        "address": "456 Oak Ave, Austin, TX 78704",
+        "phone": "(512) 555-0456",
+        "googlePlaceId": "",
+        "yelpBusinessId": "",
+        "appleMapsBusiness": "",
+        "isPrimary": false
+      }
+    ],
+    "reviewSettings": {
+      "enableGoogleReviews": true,
+      "enableYelpReviews": true,
+      "enableAppleReviews": true,
+      "autoRefreshInterval": 24
+    }
   }
 }
