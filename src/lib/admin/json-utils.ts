@@ -47,8 +47,9 @@ async function readJsonFile<T>(filename: string): Promise<T[]> {
     try {
       const data = await fs.readFile(filePath, 'utf-8');
       return JSON.parse(data);
-    } catch (error: any) {
-      if (error.code === 'ENOENT') {
+    } catch (error: unknown) {
+      const nodeError = error as NodeJS.ErrnoException;
+      if (nodeError.code === 'ENOENT') {
         // File doesn't exist, return empty array
         console.log(`File ${filename} doesn't exist, returning empty array`);
         return [];
