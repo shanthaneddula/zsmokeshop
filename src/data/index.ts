@@ -1,4 +1,4 @@
-import { Category, PromoItem, Location, Product } from '@/types';
+import { Category, PromoItem, Product } from '@/types';
 
 export const categories: Category[] = [
   { id: '1', name: 'Batteries', slug: 'batteries', image: '/images/categories/batteries.svg' },
@@ -60,22 +60,8 @@ export const promoItems: PromoItem[] = [
   },
 ];
 
-export const locations: Location[] = [
-  {
-    id: '1',
-    name: 'Z SMOKE SHOP',
-    address: '719 W William Cannon Dr #105, Austin, TX 78745',
-    phone: '(661) 371-1413',
-    hours: 'Mon-Thu, Sun: 10AM-11PM | Fri-Sat: 10AM-12AM'
-  },
-  {
-    id: '2',
-    name: '5 STAR SMOKE SHOP & GIFTS',
-    address: '5318 Cameron Rd, Austin, TX 78723',
-    phone: '(661) 371-1413',
-    hours: 'Mon-Thu, Sun: 10:00 AM - 11:00 PM | Fri-Sat: 10:00 AM - 12:00 AM'
-  },
-];
+// Locations are now managed dynamically through the admin system via useBusinessSettings hook
+// Static locations export removed to prevent conflicts with admin-managed data
 
 // Products are now managed dynamically through the admin system
 // Static products removed to prevent build conflicts with admin-managed data

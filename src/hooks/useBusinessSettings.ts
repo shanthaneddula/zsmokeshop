@@ -39,7 +39,12 @@ export function useBusinessSettings() {
   useEffect(() => {
     async function fetchSettings() {
       try {
-        const response = await fetch('/api/admin/settings');
+        const response = await fetch('/api/admin/settings', {
+          cache: 'no-store',
+          headers: {
+            'Cache-Control': 'no-cache',
+          },
+        });
         if (!response.ok) {
           throw new Error('Failed to fetch settings');
         }
