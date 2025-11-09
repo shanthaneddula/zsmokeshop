@@ -10,27 +10,20 @@
   "businessSettings": {
     "locations": [
       {
-        "id": "location-1",
-        "name": "Z Smoke Shop",
-        "address": "719 W William Cannon Dr, Unit 105, Austin, TX 78745",
-        "phone": "(661) 371-1413",
-        "googlePlaceId": "ChIJh7C3FWdNbIYRTCprszdkfxk",
-        "googleMapsUrl": "https://www.google.com/maps/place/Z+smoke+shop/@30.1967269,-97.7885041,17z/data=!4m8!3m7!1s0x865b4d6715b70a87:0x19df64376b6b2a4c!8m2!3d30.1967269!4d-97.7885041!9m1!1b1!16s%2Fg%2F11x13gx5kq?entry=ttu&g_ep=EgoyMDI1MDgxOS4wIKXMDSoASAFQAw%3D%3D",
-        "yelpBusinessId": "z-smoke-shop-austin-2",
-        "yelpUrl": "https://www.yelp.com/biz/z-smoke-shop-austin-2?osq=Z+Smoke+Shop",
-        "appleMapsPlaceId": "I2DD6C076C5ECD6DA",
-        "appleMapsUrl": "https://maps.apple.com/place?place-id=I2DD6C076C5ECD6DA&address=719+W+William+Cannon+Dr%2C+Unit+105%2C+Austin%2C+TX++78745%2C+United+States&coordinate=30.1966334%2C-97.7886482&name=Z+Smoke+Shop&_provider=9902",
-        "isPrimary": true
+        "id": "1",
+        "name": "Z SMOKE SHOP",
+        "address": "719 W William Cannon Dr #105, Austin, TX 78745",
+        "phone": "(512) 227-9820",
+        "hours": "Mon-Thu, Sun: 10:00 AM - 11:00 PM | Fri-Sat: 10:00 AM - 12:00 AM",
+        "isActive": true
       },
       {
-        "id": "location-2",
-        "name": "Z Smoke Shop - South Austin",
-        "address": "456 Oak Ave, Austin, TX 78704",
-        "phone": "(512) 555-0456",
-        "googlePlaceId": "",
-        "yelpBusinessId": "",
-        "appleMapsBusiness": "",
-        "isPrimary": false
+        "id": "2",
+        "name": "5 STAR SMOKE SHOP & GIFTS",
+        "address": "5318 Cameron Rd, Austin, TX 78723",
+        "phone": "(661) 371-1413",
+        "hours": "Mon-Thu, Sun: 10:00 AM - 11:00 PM | Fri-Sat: 10:00 AM - 12:00 AM",
+        "isActive": true
       }
     ],
     "reviewSettings": {
@@ -38,6 +31,39 @@
       "enableYelpReviews": true,
       "enableAppleReviews": true,
       "autoRefreshInterval": 24
-    }
+    },
+    "storeName": "Z Smoke Shop",
+    "storeDescription": "Premium smoke shop serving Austin, Texas with quality products and exceptional service.",
+    "businessPhone": "+15122279820",
+    "businessEmail": "info@zsmokeshop.com",
+    "taxRate": 8.25,
+    "currency": "USD",
+    "minimumAge": 21,
+    "ageVerificationRequired": true,
+    "ageVerificationMessage": "You must be 21 years or older to enter this site and purchase tobacco products.",
+    "orderPrefix": "ZSS",
+    "orderStartNumber": 1000,
+    "orderExpirationHours": 24,
+    "featuredProducts": {
+      "enabled": true,
+      "selectedBadges": [
+        "featured",
+        "best-seller",
+        "new"
+      ],
+      "maxProducts": 12,
+      "sortOrder": "newest",
+      "showOnlyInStock": true
+    },
+    "lowStockThreshold": 5,
+    "emailNotifications": {
+      "newOrders": true,
+      "lowStock": true,
+      "systemAlerts": true
+    },
+    "complianceEnabled": true,
+    "defaultComplianceLevel": "age-restricted",
+    "maintenanceMode": false,
+    "maintenanceMessage": "We are currently performing scheduled maintenance. Please check back soon."
   }
 }

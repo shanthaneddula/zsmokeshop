@@ -82,10 +82,38 @@ export function useBusinessSettings() {
     fetchSettings();
   }, []);
 
+  // Helper function to format phone number
+  const formatPhoneNumber = (phone: string): string => {
+    if (!phone) return '(512) 227-9820';
+    
+    // Remove all non-digit characters
+    const cleaned = phone.replace(/\D/g, '');
+    
+    // Handle different formats
+    if (cleaned.length === 11 && cleaned.startsWith('1')) {
+      // Format: 15122279820 -> (512) 227-9820
+      const areaCode = cleaned.substring(1, 4);
+      const prefix = cleaned.substring(4, 7);
+      const number = cleaned.substring(7, 11);
+      return `(${areaCode}) ${prefix}-${number}`;
+    } else if (cleaned.length === 10) {
+      // Format: 5122279820 -> (512) 227-9820
+      const areaCode = cleaned.substring(0, 3);
+      const prefix = cleaned.substring(3, 6);
+      const number = cleaned.substring(6, 10);
+      return `(${areaCode}) ${prefix}-${number}`;
+    }
+    
+    // Return as-is if already formatted or unknown format
+    return phone;
+  };
+
   // Helper function to get primary phone number
   const getPrimaryPhone = () => {
     if (!settings) return '(512) 227-9820';
-    return settings.businessPhone || settings.locations?.[0]?.phone || '(512) 227-9820';
+    
+    const phone = settings.businessPhone || settings.locations?.[0]?.phone || '(512) 227-9820';
+    return formatPhoneNumber(phone);
   };
 
   // Helper function to get active locations
