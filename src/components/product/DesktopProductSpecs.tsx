@@ -4,6 +4,7 @@ import { AdminProduct } from '@/types';
 import CollapsibleInfoSection from './CollapsibleInfoSection';
 import ComplianceNote from './ComplianceNote';
 import Link from 'next/link';
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import { 
   InformationCircleIcon, 
   BuildingStorefrontIcon, 
@@ -16,6 +17,10 @@ interface DesktopProductSpecsProps {
 }
 
 export default function DesktopProductSpecs({ product }: DesktopProductSpecsProps) {
+  const { getPrimaryPhone, getActiveLocations } = useBusinessSettings();
+  const primaryLocation = getActiveLocations()[0];
+  const businessPhone = getPrimaryPhone();
+
   return (
     <div className="space-y-6">
       {/* Product Specifications */}
@@ -167,17 +172,17 @@ export default function DesktopProductSpecs({ product }: DesktopProductSpecsProp
 
           <div className="space-y-3">
             <h4 className="font-bold text-gray-900 dark:text-white uppercase tracking-wide">
-              Z Smoke Shop - Austin
+              {primaryLocation?.name || 'Z Smoke Shop - Austin'}
             </h4>
             <div className="space-y-2 text-sm">
               <p className="text-gray-600 dark:text-gray-400">
-                <strong>Address:</strong> 123 Main St, Austin, TX 78701
+                <strong>Address:</strong> {primaryLocation?.address || '719 W William Cannon Dr #105, Austin, TX 78745'}
               </p>
               <p className="text-gray-600 dark:text-gray-400">
-                <strong>Phone:</strong> (512) 555-0123
+                <strong>Phone:</strong> {businessPhone}
               </p>
               <p className="text-gray-600 dark:text-gray-400">
-                <strong>Hours:</strong> Mon-Sat 10AM-9PM, Sun 12PM-6PM
+                <strong>Hours:</strong> {primaryLocation?.hours || 'Mon-Thu, Sun: 10:00 AM - 11:00 PM | Fri-Sat: 10:00 AM - 12:00 AM'}
               </p>
             </div>
           </div>
