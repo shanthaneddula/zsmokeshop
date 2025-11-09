@@ -4,10 +4,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Phone, Sparkles } from "lucide-react";
 import { useBanner } from "@/contexts/BannerContext";
+import { useBusinessSettings } from "@/hooks/useBusinessSettings";
 
 export default function AnnouncementBar() {
   const { isVisible, setIsVisible } = useBanner();
+  const { getPrimaryPhone } = useBusinessSettings();
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+
+  const businessPhone = getPrimaryPhone();
 
   const messages = [
     {
@@ -19,8 +23,8 @@ export default function AnnouncementBar() {
     },
     {
       icon: Phone,
-      text: "Can't find what you're looking for? Call us at (661) 371-1413",
-      mobileText: "Can't find it? Call (661) 371-1413",
+      text: `Can't find what you're looking for? Call us at ${businessPhone}`,
+      mobileText: `Can't find it? Call ${businessPhone}`,
       cta: "CALL",
       highlight: "INSTANT HELP"
     },
@@ -66,7 +70,9 @@ export default function AnnouncementBar() {
   };
 
   const handleCallClick = () => {
-    window.location.href = 'tel:+16613711413';
+    // Remove any formatting from phone number for tel: link
+    const cleanPhone = businessPhone.replace(/\D/g, '');
+    window.location.href = `tel:+1${cleanPhone}`;
   };
 
   const handleActionClick = () => {

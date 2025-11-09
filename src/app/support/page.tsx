@@ -13,9 +13,13 @@ import {
   Shield
 } from 'lucide-react';
 import Link from 'next/link';
-import { locations } from '@/data';
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 
 export default function SupportPage() {
+  const { getPrimaryPhone, getActiveLocations } = useBusinessSettings();
+  const businessPhone = getPrimaryPhone();
+  const locations = getActiveLocations();
+  
   const supportCategories = [
     {
       icon: ShoppingBag,
@@ -54,7 +58,7 @@ export default function SupportPage() {
     },
     {
       question: 'Do you offer same-day pickup?',
-      answer: 'Yes! Place your order online or call us at (661) 371-1413 and pick it up the same day at either of our Austin locations during business hours. We\'ll have your order ready for quick pickup.'
+      answer: `Yes! Place your order online or call us at ${businessPhone} and pick it up the same day at either of our Austin locations during business hours. We'll have your order ready for quick pickup.`
     },
     {
       question: 'What payment methods do you accept?',
@@ -70,7 +74,7 @@ export default function SupportPage() {
     },
     {
       question: 'Do you provide product recommendations?',
-      answer: 'Absolutely! Our knowledgeable staff can help you choose the right products based on your preferences and experience level. Contact us at (661) 371-1413 or visit either location for personalized recommendations.'
+      answer: `Absolutely! Our knowledgeable staff can help you choose the right products based on your preferences and experience level. Contact us at ${businessPhone} or visit either location for personalized recommendations.`
     }
   ];
 
@@ -137,7 +141,7 @@ export default function SupportPage() {
                 Call Us
               </h3>
               <p className="text-gray-600 dark:text-gray-400 group-hover:text-gray-200 dark:group-hover:text-gray-600 text-sm uppercase tracking-wide">
-                (661) 371-1413
+                {businessPhone}
               </p>
             </motion.div>
             
