@@ -1,57 +1,11 @@
 "use client";
 
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
-
-interface StoreLocation {
-  id: string;
-  name: string;
-  address: string;
-  phone: string;
-  hours: {
-    weekdays: string;
-    weekends: string;
-  };
-  coordinates: {
-    lat: number;
-    lng: number;
-  };
-  features: string[];
-}
-
-const storeLocations: StoreLocation[] = [
-  {
-    id: "z-smoke-shop",
-    name: "Z SMOKE SHOP",
-    address: "719 W William Cannon Dr #105, Austin, TX 78745",
-    phone: "+1 (661) 371-1413",
-    hours: {
-      weekdays: "Mon-Thu, Sun: 10:00 AM - 11:00 PM",
-      weekends: "Fri-Sat: 10:00 AM - 12:00 AM"
-    },
-    coordinates: {
-      lat: 30.2241,
-      lng: -97.7889
-    },
-    features: ["Large Parking", "Wheelchair Accessible", "Expert Staff", "Premium Selection"]
-  },
-  {
-    id: "five-star-smoke-shop",
-    name: "5 STAR SMOKE SHOP & GIFTS",
-    address: "5318 Cameron Rd, Austin, TX 78723",
-    phone: "+1 (661) 371-1413",
-    hours: {
-      weekdays: "Mon-Thu, Sun: 10:00 AM - 11:00 PM",
-      weekends: "Fri-Sat: 10:00 AM - 12:00 AM"
-    },
-    coordinates: {
-      lat: 30.2969,
-      lng: -97.6947
-    },
-    features: ["Large Parking", "Wheelchair Accessible", "Expert Staff", "Premium Selection"]
-  }
-];
+import { useBusinessSettings } from "@/hooks/useBusinessSettings";
 
 export default function StoreLocations() {
+  const { settings, loading, getActiveLocations } = useBusinessSettings();
+
   const openInMaps = (address: string) => {
     const encodedAddress = encodeURIComponent(address);
     window.open(`https://maps.google.com/?q=${encodedAddress}`, '_blank');
@@ -60,6 +14,35 @@ export default function StoreLocations() {
   const callStore = (phone: string) => {
     window.open(`tel:${phone}`, '_self');
   };
+
+  if (loading) {
+    return (
+      <section className="py-12 md:py-16 bg-white dark:bg-gray-900">
+        <div className="container-wide w-full">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-300 rounded w-48 mx-auto mb-4"></div>
+              <div className="h-1 bg-gray-300 rounded w-12 mx-auto mb-8"></div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div className="space-y-4">
+                  <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+                  <div className="h-4 bg-gray-300 rounded w-full"></div>
+                  <div className="h-4 bg-gray-300 rounded w-2/3"></div>
+                </div>
+                <div className="space-y-4">
+                  <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+                  <div className="h-4 bg-gray-300 rounded w-full"></div>
+                  <div className="h-4 bg-gray-300 rounded w-2/3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const activeLocations = getActiveLocations();
 
   return (
     <section className="py-12 md:py-16 bg-white dark:bg-gray-900">
@@ -77,7 +60,7 @@ export default function StoreLocations() {
         
         {/* Mobile-optimized grid layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 max-w-6xl mx-auto">
-          {storeLocations.map((location, index) => (
+          {activeLocations.map((location, index) => (
             <div
               key={location.id}
               className="group"
@@ -120,21 +103,8 @@ export default function StoreLocations() {
                 <div className="flex items-start gap-3 md:gap-4">
                   <Clock className="h-5 w-5 text-gray-400 mt-1 flex-shrink-0" />
                   <div className="text-base md:text-base text-gray-700 dark:text-gray-300 font-light">
-                    <p className="mb-1">{location.hours.weekdays}</p>
-                    <p>{location.hours.weekends}</p>
+                    <div className="whitespace-pre-line">{location.hours}</div>
                   </div>
-                </div>
-
-                {/* Features - hidden on mobile */}
-                <div className="hidden md:flex flex-wrap gap-1 md:gap-2 pt-1 md:pt-2">
-                  {location.features.map((feature, featureIndex) => (
-                    <span
-                      key={featureIndex}
-                      className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-300 dark:border-gray-600 pb-0.5 md:pb-1"
-                    >
-                      {feature}
-                    </span>
-                  ))}
                 </div>
               </div>
 

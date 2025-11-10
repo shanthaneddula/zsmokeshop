@@ -2,6 +2,7 @@
 
 import { AdminProduct } from '@/types';
 import { useState } from 'react';
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import { 
   HeartIcon,
   ShareIcon,
@@ -23,6 +24,8 @@ export default function EnhancedMobileProductPage({ product }: EnhancedMobilePro
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
+  const { getPrimaryPhone } = useBusinessSettings();
+  const businessPhone = getPrimaryPhone();
 
 
   // Get images array
@@ -330,8 +333,8 @@ export default function EnhancedMobileProductPage({ product }: EnhancedMobilePro
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600 dark:text-gray-400">Phone:</span>
-              <a href="tel:(661) 371-1413" className="font-medium text-gray-900 dark:text-white hover:underline">
-                (661) 371-1413
+              <a href={`tel:${businessPhone}`} className="font-medium text-gray-900 dark:text-white hover:underline">
+                {businessPhone}
               </a>
             </div>
           </div>

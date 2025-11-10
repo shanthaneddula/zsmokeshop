@@ -8,9 +8,15 @@ import {
   Instagram, 
   Twitter
 } from "lucide-react";
+import { useBusinessSettings } from "@/hooks/useBusinessSettings";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { getActiveLocations, getPrimaryPhone } = useBusinessSettings();
+  
+  // Get primary location for footer display
+  const primaryLocation = getActiveLocations()[0];
+  const businessPhone = getPrimaryPhone();
   
   return (
     <footer className="bg-gray-900 dark:bg-black text-white">
@@ -91,21 +97,24 @@ export default function Footer() {
             <div className="text-center md:text-left">
               <h4 className="text-base font-bold text-white uppercase tracking-wide mb-4">Store Info</h4>
               <div className="space-y-3">
-                <div className="flex items-start justify-center md:justify-start gap-3 text-sm text-gray-300">
-                  <MapPin className="mt-1 h-4 w-4 flex-shrink-0" />
-                  <span className="font-light leading-relaxed">719 W William Cannon Dr #105<br />Austin, TX 78745</span>
-                </div>
-                <div className="flex items-center justify-center md:justify-start gap-3 text-sm text-gray-300">
-                  <Phone className="h-4 w-4 flex-shrink-0" />
-                  <a href="tel:(661) 371-1413" className="hover:text-white transition-colors font-light">(661) 371-1413</a>
-                </div>
-                <div className="pt-2 border-t border-white/10">
-                  <p className="text-xs font-bold text-white mb-2 uppercase tracking-wide">Hours</p>
-                  <div className="space-y-1 text-xs font-light text-gray-300">
-                    <p>Mon-Thu, Sun: 10AM-11PM</p>
-                    <p>Fri-Sat: 10AM-12AM</p>
-                  </div>
-                </div>
+                {primaryLocation && (
+                  <>
+                    <div className="flex items-start justify-center md:justify-start gap-3 text-sm text-gray-300">
+                      <MapPin className="mt-1 h-4 w-4 flex-shrink-0" />
+                      <span className="font-light leading-relaxed whitespace-pre-line">{primaryLocation.address}</span>
+                    </div>
+                    <div className="flex items-center justify-center md:justify-start gap-3 text-sm text-gray-300">
+                      <Phone className="h-4 w-4 flex-shrink-0" />
+                      <a href={`tel:${businessPhone}`} className="hover:text-white transition-colors font-light">{businessPhone}</a>
+                    </div>
+                    <div className="pt-2 border-t border-white/10">
+                      <p className="text-xs font-bold text-white mb-2 uppercase tracking-wide">Hours</p>
+                      <div className="text-xs font-light text-gray-300 whitespace-pre-line">
+                        {primaryLocation.hours}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 

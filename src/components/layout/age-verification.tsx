@@ -3,18 +3,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function AgeVerification() {
   const [isVisible, setIsVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
+    // Skip age verification for admin routes
+    if (pathname?.startsWith('/admin')) {
+      return;
+    }
+
     // Check if user has already been verified in this session
     const verified = sessionStorage.getItem("ageVerified");
     if (!verified) {
       // Small delay to ensure page loads first
       setTimeout(() => setIsVisible(true), 800);
     }
-  }, []);
+  }, [pathname]);
 
   const handleVerification = (isOfAge: boolean) => {
     if (isOfAge) {

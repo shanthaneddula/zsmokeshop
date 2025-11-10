@@ -236,5 +236,33 @@
     "createdAt": "2025-07-25T20:16:42.215Z",
     "updatedAt": "2025-07-25T20:30:38.029Z",
     "productCount": 1
+  },
+  {
+    "name": "Test Category",
+    "slug": "test-category",
+    "description": "Test description",
+    "image": "",
+    "status": "active",
+    "sortOrder": 0,
+    "seoTitle": "Test Category",
+    "seoDescription": "Test description",
+    "id": "cat_1756024416945",
+    "createdAt": "2025-08-24T08:33:36.945Z",
+    "updatedAt": "2025-08-24T08:33:36.946Z",
+    "productCount": 0
+  },
+  {
+    "name": "Frontend Test Category",
+    "slug": "frontend-test-category",
+    "description": "Testing frontend integration",
+    "image": "",
+    "status": "active",
+    "sortOrder": 18,
+    "seoTitle": "Frontend Test Category",
+    "seoDescription": "Testing frontend integration",
+    "id": "cat_1756024431220",
+    "createdAt": "2025-08-24T08:33:51.220Z",
+    "updatedAt": "2025-08-24T08:33:51.220Z",
+    "productCount": 0
   }
 ]

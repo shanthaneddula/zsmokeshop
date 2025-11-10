@@ -1,25 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
-
-const CONFIG_FILE = path.join(process.cwd(), 'src/data/admin-config.json');
+import { verifyToken } from '@/lib/auth';
+import { SettingsService } from '@/lib/settings-service';
 
 export async function GET() {
   try {
-    const configData = await fs.readFile(CONFIG_FILE, 'utf-8');
-    const config = JSON.parse(configData);
+    const settings = await SettingsService.getSettings();
     
     return NextResponse.json({
       success: true,
-      data: config.businessSettings || {
-        locations: [],
-        reviewSettings: {
-          enableGoogleReviews: true,
-          enableYelpReviews: true,
-          enableAppleReviews: true,
-          autoRefreshInterval: 24
-        }
-      }
+      data: settings
     });
   } catch (error) {
     console.error('Error reading business settings:', error);
@@ -32,21 +21,23 @@ export async function GET() {
 
 export async function PUT(request: NextRequest) {
   try {
+    // Check authentication
+    const token = request.cookies.get('admin-token')?.value;
+    if (!token || !verifyToken(token)) {
+      return NextResponse.json(
+        { success: false, error: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+
     const body = await request.json();
-    const configData = await fs.readFile(CONFIG_FILE, 'utf-8');
-    const config = JSON.parse(configData);
+    console.log('📊 Settings PUT request body:', body);
     
-    // Update business settings
-    config.businessSettings = {
-      ...config.businessSettings,
-      ...body
-    };
-    
-    await fs.writeFile(CONFIG_FILE, JSON.stringify(config, null, 2));
+    const updatedSettings = await SettingsService.updateSettings(body);
     
     return NextResponse.json({
       success: true,
-      data: config.businessSettings
+      data: updatedSettings
     });
   } catch (error) {
     console.error('Error updating business settings:', error);

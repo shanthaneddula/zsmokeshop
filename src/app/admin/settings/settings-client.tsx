@@ -198,20 +198,30 @@ export default function SettingsClient() {
     setIsLoading(true);
     
     try {
-      // Simulate API call - replace with actual API endpoint
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log('💾 Saving business settings:', settings);
       
-      // TODO: Implement actual save to API
-      // const response = await fetch('/api/admin/settings', {
-      //   method: 'PUT',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(settings)
-      // });
+      const response = await fetch('/api/admin/settings', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(settings)
+      });
+      
+      console.log('📡 API Response status:', response.status);
+      console.log('📡 API Response headers:', Object.fromEntries(response.headers));
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('❌ API Error response:', errorText);
+        throw new Error(`Failed to save settings: ${response.status} - ${errorText}`);
+      }
+      
+      const result = await response.json();
+      console.log('✅ Settings saved successfully:', result);
       
       setSaveStatus('saved');
       setTimeout(() => setSaveStatus('idle'), 2000);
     } catch (error) {
-      console.error('Save error:', error);
+      console.error('💥 Save error:', error);
       setSaveStatus('error');
       setTimeout(() => setSaveStatus('idle'), 3000);
     } finally {

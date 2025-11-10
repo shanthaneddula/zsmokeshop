@@ -8,6 +8,7 @@ import {
   TruckIcon,
   ClockIcon
 } from '@heroicons/react/24/outline';
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import CollapsibleInfoSection from './CollapsibleInfoSection';
 import ExpandableDescription from './ExpandableDescription';
 
@@ -16,6 +17,8 @@ interface MobileProductSpecsProps {
 }
 
 export default function MobileProductSpecs({ product }: MobileProductSpecsProps) {
+  const { getPrimaryPhone } = useBusinessSettings();
+  const businessPhone = getPrimaryPhone();
   return (
     <div className="space-y-0">
       {/* Enhanced Description - Shows as separate sections */}
@@ -209,10 +212,10 @@ export default function MobileProductSpecs({ product }: MobileProductSpecsProps)
               Contact Our Store
             </a>
             <a 
-              href="tel:(661) 371-1413" 
+              href={`tel:${businessPhone}`} 
               className="block w-full py-3 px-4 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white font-black uppercase tracking-wide text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
             >
-              Call (661) 371-1413
+              Call {businessPhone}
             </a>
           </div>
         </div>

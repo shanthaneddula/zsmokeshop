@@ -1,12 +1,12 @@
-import { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Contact Us | Z Smoke Shop - Austin, TX',
-  description: 'Get in touch with Z Smoke Shop in Austin, Texas. Visit our store, call us, or send us a message for all your smoking and vaping needs.',
-  keywords: 'contact Z Smoke Shop, Austin smoke shop, tobacco store Austin, vape shop contact',
-};
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 
 export default function ContactPage() {
+  const { getActiveLocations, getPrimaryPhone, settings } = useBusinessSettings();
+  
+  const primaryLocation = getActiveLocations()[0];
+  const businessPhone = getPrimaryPhone();
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
@@ -35,17 +35,29 @@ export default function ContactPage() {
                   VISIT OUR STORE
                 </h2>
                 <div className="space-y-4 text-gray-600 dark:text-gray-300">
-                  <div>
-                    <h3 className="font-bold text-gray-900 dark:text-white mb-2">Address</h3>
-                    <p>123 Main Street<br />Austin, TX 78701</p>
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-gray-900 dark:text-white mb-2">Phone</h3>
-                    <p>(512) 555-0123</p>
-                  </div>
+                  {primaryLocation && (
+                    <>
+                      <div>
+                        <h3 className="font-bold text-gray-900 dark:text-white mb-2">Address</h3>
+                        <p className="whitespace-pre-line">{primaryLocation.address}</p>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-gray-900 dark:text-white mb-2">Phone</h3>
+                        <p>
+                          <a href={`tel:${businessPhone}`} className="hover:underline">
+                            {businessPhone}
+                          </a>
+                        </p>
+                      </div>
+                    </>
+                  )}
                   <div>
                     <h3 className="font-bold text-gray-900 dark:text-white mb-2">Email</h3>
-                    <p>info@zsmokeshop.com</p>
+                    <p>
+                      <a href="mailto:info@zsmokeshop.com" className="hover:underline">
+                        info@zsmokeshop.com
+                      </a>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -55,15 +67,8 @@ export default function ContactPage() {
                 <h3 className="text-xl font-bold uppercase tracking-wide text-gray-900 dark:text-white mb-4">
                   STORE HOURS
                 </h3>
-                <div className="space-y-2 text-gray-600 dark:text-gray-300">
-                  <div className="flex justify-between">
-                    <span>Monday - Saturday</span>
-                    <span>10:00 AM - 10:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span>12:00 PM - 8:00 PM</span>
-                  </div>
+                <div className="text-gray-600 dark:text-gray-300 whitespace-pre-line">
+                  {primaryLocation?.hours || 'Mon-Thu, Sun: 10:00 AM - 11:00 PM\nFri-Sat: 10:00 AM - 12:00 AM'}
                 </div>
               </div>
             </div>

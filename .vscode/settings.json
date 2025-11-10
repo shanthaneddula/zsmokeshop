@@ -1,4 +1,4 @@
 {
     "chat.extensionTools.enabled": false,
-    "chat.mcp.enabled": false
+    "chat.mcp.access": "none"
 }

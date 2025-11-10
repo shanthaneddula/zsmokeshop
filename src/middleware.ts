@@ -1,8 +1,7 @@
-// Middleware for admin route protection
+// Middleware for admin route protection (Edge Runtime compatible)
 
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { verifyToken } from '@/lib/auth';
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -11,9 +10,9 @@ export function middleware(request: NextRequest) {
   if (pathname.startsWith('/admin')) {
     // Allow access to login page
     if (pathname === '/admin/login') {
-      // If already authenticated, redirect to dashboard
+      // Simple token presence check (detailed verification moved to route handlers)
       const token = request.cookies.get('admin-token')?.value;
-      if (token && verifyToken(token)) {
+      if (token) {
         return NextResponse.redirect(new URL('/admin', request.url));
       }
       return NextResponse.next();
@@ -23,36 +22,16 @@ export function middleware(request: NextRequest) {
     const token = request.cookies.get('admin-token')?.value;
     console.log('🔍 Middleware - Checking admin route:', request.url);
     console.log('🍪 Middleware - Token found:', !!token);
-    console.log('🔑 Middleware - Token value:', token ? `${token.substring(0, 20)}...` : 'none');
     
     if (!token) {
       console.log('❌ Middleware - No token, redirecting to login');
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
     
-    // Verify token
-    console.log('🔐 Middleware - Verifying token...');
-    const user = verifyToken(token);
-    console.log('👤 Middleware - User from token:', user);
-    if (!user) {
-      // Invalid token, redirect to login
-      console.log('❌ Middleware - Token verification failed, redirecting to login');
-      const response = NextResponse.redirect(new URL('/admin/login', request.url));
-      response.cookies.delete('admin-token');
-      return response;
-    }
+    // Note: Token verification moved to individual route handlers to avoid Edge Runtime issues
+    console.log('✅ Middleware - Token present, allowing access');
     
-    console.log('✅ Middleware - Authentication successful for user:', user.username);
-    
-    // Add user info to headers for API routes
-    const requestHeaders = new Headers(request.headers);
-    requestHeaders.set('x-admin-user', JSON.stringify(user));
-    
-    return NextResponse.next({
-      request: {
-        headers: requestHeaders,
-      },
-    });
+    return NextResponse.next();
   }
   
   return NextResponse.next();

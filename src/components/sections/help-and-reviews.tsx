@@ -2,11 +2,15 @@
 
 import { Phone, X, MessageCircle } from "lucide-react";
 import { useState } from "react";
-
-
+import { useBusinessSettings } from "@/hooks/useBusinessSettings";
 
 export default function HelpAndReviews() {
   const [showHoursPopup, setShowHoursPopup] = useState(false);
+  const { getPrimaryPhone, getActiveLocations } = useBusinessSettings();
+
+  // Get primary location or first active location
+  const primaryLocation = getActiveLocations()[0];
+  const businessPhone = getPrimaryPhone();
 
   // Check if store is currently open
   const isStoreOpen = () => {
@@ -26,7 +30,7 @@ export default function HelpAndReviews() {
 
   const handleCallStore = () => {
     if (isStoreOpen()) {
-      window.open('tel:+1 (661) 371-1413', '_self');
+      window.open(`tel:${businessPhone}`, '_self');
     } else {
       setShowHoursPopup(true);
     }
@@ -137,19 +141,22 @@ export default function HelpAndReviews() {
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
                 Store Location
               </h3>
-              <p className="text-gray-700 dark:text-gray-200 mb-2">
-                <strong>Address:</strong> 719 W William Cannon Dr, Unit 105, Austin, TX 78745
-              </p>
-              <p className="text-gray-700 dark:text-gray-200 mb-2">
-                <strong>Phone:</strong> (661) 371-1413
-              </p>
-              <div className="text-gray-700 dark:text-gray-200">
-                <strong>Hours:</strong>
-                <div className="mt-2 text-sm">
-                  <p>Mon-Thu, Sun: 10:00 AM - 11:00 PM</p>
-                  <p>Fri-Sat: 10:00 AM - 12:00 AM</p>
-                </div>
-              </div>
+              {primaryLocation && (
+                <>
+                  <p className="text-gray-700 dark:text-gray-200 mb-2">
+                    <strong>Address:</strong> {primaryLocation.address}
+                  </p>
+                  <p className="text-gray-700 dark:text-gray-200 mb-2">
+                    <strong>Phone:</strong> {primaryLocation.phone}
+                  </p>
+                  <div className="text-gray-700 dark:text-gray-200">
+                    <strong>Hours:</strong>
+                    <div className="mt-2 text-sm whitespace-pre-line">
+                      {primaryLocation.hours}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -170,9 +177,8 @@ export default function HelpAndReviews() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-2 text-sm text-gray-700 dark:text-gray-200">
-              <p><strong>Mon-Thu, Sun:</strong> 10:00 AM - 11:00 PM</p>
-              <p><strong>Fri-Sat:</strong> 10:00 AM - 12:00 AM</p>
+            <div className="space-y-2 text-sm text-gray-700 dark:text-gray-200 whitespace-pre-line">
+              {primaryLocation?.hours || 'Mon-Thu, Sun: 10:00 AM - 11:00 PM\nFri-Sat: 10:00 AM - 12:00 AM'}
             </div>
             <p className="mt-4 text-xs text-gray-500 dark:text-gray-300">
               We&apos;re currently closed. Please call during business hours.
