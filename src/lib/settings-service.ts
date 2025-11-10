@@ -1,9 +1,25 @@
 import { kv } from '@vercel/kv';
 import { promises as fs } from 'fs';
 import path from 'path';
+import Redis from 'ioredis';
 
 const CONFIG_FILE = path.join(process.cwd(), 'src/data/admin-config.json');
 const KV_KEY = 'business-settings';
+
+// Initialize Redis client if REDIS_URL is provided
+let redisClient: Redis | null = null;
+if (process.env.REDIS_URL) {
+  try {
+    redisClient = new Redis(process.env.REDIS_URL, {
+      maxRetriesPerRequest: 3,
+      enableReadyCheck: false,
+      lazyConnect: true,
+    });
+    console.log('📊 Redis client initialized');
+  } catch (error) {
+    console.error('❌ Failed to initialize Redis client:', error);
+  }
+}
 
 interface BusinessSettings {
   storeName?: string;
@@ -37,7 +53,24 @@ interface BusinessSettings {
 export class SettingsService {
   static async getSettings(): Promise<BusinessSettings> {
     try {
-      // Try Vercel KV first (production) - only if both URL and TOKEN are set
+      // Try Redis Cloud first (if REDIS_URL is set)
+      if (redisClient) {
+        console.log('📊 Using Redis Cloud for settings');
+        try {
+          await redisClient.connect();
+          const redisSettings = await redisClient.get(KV_KEY);
+          if (redisSettings) {
+            const parsed = JSON.parse(redisSettings);
+            console.log('📊 Retrieved settings from Redis');
+            return parsed;
+          }
+          console.log('📊 No settings found in Redis, checking other sources');
+        } catch (redisError) {
+          console.error('📊 Redis error, falling back:', redisError);
+        }
+      }
+
+      // Try Vercel KV (Upstash) if configured
       if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
         console.log('📊 Using Vercel KV for settings');
         try {
@@ -57,6 +90,17 @@ export class SettingsService {
       const configData = await fs.readFile(CONFIG_FILE, 'utf-8');
       const config = JSON.parse(configData);
       const settings = config.businessSettings || this.getDefaultSettings();
+      
+      // Seed Redis if available and no settings there
+      if (redisClient && settings) {
+        try {
+          console.log('📊 Seeding Redis with local settings');
+          await redisClient.connect();
+          await redisClient.set(KV_KEY, JSON.stringify(settings));
+        } catch (redisError) {
+          console.error('📊 Failed to seed Redis:', redisError);
+        }
+      }
       
       // If we have KV available and no settings there, seed it from local file
       if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN && settings) {
@@ -80,7 +124,21 @@ export class SettingsService {
       const currentSettings = await this.getSettings();
       const updatedSettings = { ...currentSettings, ...newSettings };
 
-      // Update Vercel KV (production) - only if both URL and TOKEN are set
+      // Update Redis Cloud first (if configured)
+      if (redisClient) {
+        console.log('📊 Updating settings in Redis Cloud');
+        try {
+          await redisClient.connect();
+          await redisClient.set(KV_KEY, JSON.stringify(updatedSettings));
+          console.log('📊 Settings updated in Redis successfully');
+          return updatedSettings;
+        } catch (redisError) {
+          console.error('📊 Redis update failed:', redisError);
+          // Continue to try other methods
+        }
+      }
+
+      // Update Vercel KV (Upstash) if configured
       if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
         console.log('📊 Updating settings in Vercel KV');
         await kv.set(KV_KEY, updatedSettings);
@@ -88,10 +146,10 @@ export class SettingsService {
         return updatedSettings;
       }
 
-      // Check if running in production without KV
+      // Check if running in production without any KV
       if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
-        console.error('❌ KV environment variables not set in production!');
-        throw new Error('Vercel KV is required in production. Please set KV_REST_API_URL and KV_REST_API_TOKEN environment variables.');
+        console.error('❌ No KV storage configured in production!');
+        throw new Error('Redis or Vercel KV is required in production. Please set REDIS_URL or KV_REST_API_URL and KV_REST_API_TOKEN environment variables.');
       }
 
       // Update local file (development only)
