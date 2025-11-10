@@ -12,10 +12,19 @@ if (process.env.REDIS_URL) {
   try {
     redisClient = new Redis(process.env.REDIS_URL, {
       maxRetriesPerRequest: 3,
-      enableReadyCheck: false,
-      lazyConnect: true,
+      retryStrategy: (times) => {
+        const delay = Math.min(times * 50, 2000);
+        return delay;
+      },
+      reconnectOnError: (err) => {
+        const targetError = 'READONLY';
+        if (err.message.includes(targetError)) {
+          return true;
+        }
+        return false;
+      },
     });
-    console.log('📊 Redis client initialized');
+    console.log('📊 Redis client initialized and connecting...');
   } catch (error) {
     console.error('❌ Failed to initialize Redis client:', error);
   }
@@ -57,7 +66,6 @@ export class SettingsService {
       if (redisClient) {
         console.log('📊 Using Redis Cloud for settings');
         try {
-          await redisClient.connect();
           const redisSettings = await redisClient.get(KV_KEY);
           if (redisSettings) {
             const parsed = JSON.parse(redisSettings);
@@ -95,7 +103,6 @@ export class SettingsService {
       if (redisClient && settings) {
         try {
           console.log('📊 Seeding Redis with local settings');
-          await redisClient.connect();
           await redisClient.set(KV_KEY, JSON.stringify(settings));
         } catch (redisError) {
           console.error('📊 Failed to seed Redis:', redisError);
@@ -128,7 +135,6 @@ export class SettingsService {
       if (redisClient) {
         console.log('📊 Updating settings in Redis Cloud');
         try {
-          await redisClient.connect();
           await redisClient.set(KV_KEY, JSON.stringify(updatedSettings));
           console.log('📊 Settings updated in Redis successfully');
           return updatedSettings;
