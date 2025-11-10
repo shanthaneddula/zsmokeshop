@@ -37,15 +37,19 @@ interface BusinessSettings {
 export class SettingsService {
   static async getSettings(): Promise<BusinessSettings> {
     try {
-      // Try Vercel KV first (production)
-      if (process.env.KV_REST_API_URL) {
+      // Try Vercel KV first (production) - only if both URL and TOKEN are set
+      if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
         console.log('📊 Using Vercel KV for settings');
-        const kvSettings = await kv.get<BusinessSettings>(KV_KEY);
-        if (kvSettings) {
-          console.log('📊 Retrieved settings from KV:', kvSettings);
-          return kvSettings;
+        try {
+          const kvSettings = await kv.get<BusinessSettings>(KV_KEY);
+          if (kvSettings) {
+            console.log('📊 Retrieved settings from KV:', kvSettings);
+            return kvSettings;
+          }
+          console.log('📊 No settings found in KV, checking local file');
+        } catch (kvError) {
+          console.error('📊 KV error, falling back to local file:', kvError);
         }
-        console.log('📊 No settings found in KV, checking local file');
       }
 
       // Fallback to local file (development)
@@ -55,9 +59,13 @@ export class SettingsService {
       const settings = config.businessSettings || this.getDefaultSettings();
       
       // If we have KV available and no settings there, seed it from local file
-      if (process.env.KV_REST_API_URL && settings) {
-        console.log('📊 Seeding KV with local settings');
-        await kv.set(KV_KEY, settings);
+      if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN && settings) {
+        try {
+          console.log('📊 Seeding KV with local settings');
+          await kv.set(KV_KEY, settings);
+        } catch (kvError) {
+          console.error('📊 Failed to seed KV, continuing with local settings:', kvError);
+        }
       }
       
       return settings;
@@ -72,15 +80,19 @@ export class SettingsService {
       const currentSettings = await this.getSettings();
       const updatedSettings = { ...currentSettings, ...newSettings };
 
-      // Update Vercel KV (production)
-      if (process.env.KV_REST_API_URL) {
+      // Update Vercel KV (production) - only if both URL and TOKEN are set
+      if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
         console.log('📊 Updating settings in Vercel KV');
-        await kv.set(KV_KEY, updatedSettings);
-        console.log('📊 Settings updated in KV successfully');
-        return updatedSettings;
+        try {
+          await kv.set(KV_KEY, updatedSettings);
+          console.log('📊 Settings updated in KV successfully');
+          return updatedSettings;
+        } catch (kvError) {
+          console.error('📊 KV update failed, falling back to local file:', kvError);
+        }
       }
 
-      // Update local file (development)
+      // Update local file (development or KV fallback)
       console.log('📊 Updating local file settings');
       const configData = await fs.readFile(CONFIG_FILE, 'utf-8');
       const config = JSON.parse(configData);
