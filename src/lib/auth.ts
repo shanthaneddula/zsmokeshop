@@ -73,24 +73,13 @@ export function verifyToken(token: string): AdminUser | null {
   console.log('🔑 verifyToken - Token:', token ? `${token.substring(0, 20)}...` : 'none');
   
   try {
-    // Simple JWT parsing without crypto verification for Edge Runtime
-    // In production, you'd want to use a proper Edge Runtime compatible JWT library
-    const parts = token.split('.');
-    if (parts.length !== 3) {
-      console.log('❌ verifyToken - Invalid token format');
-      return null;
-    }
-    
-    // Decode payload (base64url)
-    const payload = parts[1];
-    const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
-    console.log('✅ verifyToken - Token decoded successfully:', decoded);
-    
-    // Check expiration
-    if (decoded.exp && Date.now() >= decoded.exp * 1000) {
-      console.log('❌ verifyToken - Token expired');
-      return null;
-    }
+    // Use proper JWT verification instead of manual parsing
+    const decoded = jwt.verify(token, JWT_SECRET) as jwt.JwtPayload & {
+      id: string;
+      username: string;
+      role: string;
+    };
+    console.log('✅ verifyToken - Token verified successfully:', decoded);
     
     const user = {
       id: decoded.id,

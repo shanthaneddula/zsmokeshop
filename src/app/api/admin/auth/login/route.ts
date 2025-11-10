@@ -51,6 +51,7 @@ export async function POST(request: NextRequest) {
 
     // Create JWT token
     const token = createToken(authResult.user!);
+    console.log('🔑 Login - Created token:', token.substring(0, 20) + '...');
     
     // Create response
     const response = NextResponse.json({
@@ -63,13 +64,16 @@ export async function POST(request: NextRequest) {
     });
 
     // Set authentication cookie
-    response.cookies.set('admin-token', token, {
+    const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'lax' as const,
       maxAge: 24 * 60 * 60, // 24 hours
       path: '/'
-    });
+    };
+    
+    console.log('🍪 Login - Setting cookie with options:', cookieOptions);
+    response.cookies.set('admin-token', token, cookieOptions);
 
     // Record successful login
     recordLoginAttempt(ip, true);

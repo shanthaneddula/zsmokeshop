@@ -20,8 +20,11 @@ export function middleware(request: NextRequest) {
     
     // Check authentication for all other admin routes
     const token = request.cookies.get('admin-token')?.value;
+    const allCookies = request.cookies.toString();
     console.log('🔍 Middleware - Checking admin route:', request.url);
-    console.log('🍪 Middleware - Token found:', !!token);
+    console.log('🍪 Middleware - All cookies:', allCookies);
+    console.log('🍪 Middleware - Admin token found:', !!token);
+    console.log('🔑 Middleware - Token value:', token ? `${token.substring(0, 20)}...` : 'none');
     
     if (!token) {
       console.log('❌ Middleware - No token, redirecting to login');
