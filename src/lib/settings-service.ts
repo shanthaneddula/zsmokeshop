@@ -83,17 +83,19 @@ export class SettingsService {
       // Update Vercel KV (production) - only if both URL and TOKEN are set
       if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
         console.log('📊 Updating settings in Vercel KV');
-        try {
-          await kv.set(KV_KEY, updatedSettings);
-          console.log('📊 Settings updated in KV successfully');
-          return updatedSettings;
-        } catch (kvError) {
-          console.error('📊 KV update failed, falling back to local file:', kvError);
-        }
+        await kv.set(KV_KEY, updatedSettings);
+        console.log('📊 Settings updated in KV successfully');
+        return updatedSettings;
       }
 
-      // Update local file (development or KV fallback)
-      console.log('📊 Updating local file settings');
+      // Check if running in production without KV
+      if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+        console.error('❌ KV environment variables not set in production!');
+        throw new Error('Vercel KV is required in production. Please set KV_REST_API_URL and KV_REST_API_TOKEN environment variables.');
+      }
+
+      // Update local file (development only)
+      console.log('📊 Updating local file settings (development mode)');
       const configData = await fs.readFile(CONFIG_FILE, 'utf-8');
       const config = JSON.parse(configData);
       config.businessSettings = updatedSettings;
@@ -103,7 +105,7 @@ export class SettingsService {
       return updatedSettings;
     } catch (error) {
       console.error('Error updating settings:', error);
-      throw new Error('Failed to update settings');
+      throw error instanceof Error ? error : new Error('Failed to update settings');
     }
   }
 
