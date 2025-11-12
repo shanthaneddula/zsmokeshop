@@ -1,6 +1,6 @@
-// Image upload API for admin system (Phase 3 - Simplified for testing)
+// Image upload API for admin system - Uses Vercel Blob Storage for production compatibility
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs/promises';
+import { put, del, list } from '@vercel/blob';
 import path from 'path';
 
 // Use Node.js runtime for file operations
@@ -18,17 +18,6 @@ function generateFileName(originalName: string): string {
     .substring(0, 20);
   
   return `${baseName}-${timestamp}-${random}${extension}`;
-}
-
-const UPLOAD_DIR = path.join(process.cwd(), 'public/images/admin');
-
-// Ensure upload directory exists
-async function ensureUploadDir() {
-  try {
-    await fs.mkdir(UPLOAD_DIR, { recursive: true });
-  } catch (error) {
-    console.error('Error creating upload directory:', error);
-  }
 }
 
 // Validate file type and size
@@ -50,14 +39,10 @@ function validateFile(file: File): { valid: boolean; error?: string } {
   return { valid: true };
 }
 
-// Convert File to Buffer
-async function fileToBuffer(file: File): Promise<Buffer> {
-  const arrayBuffer = await file.arrayBuffer();
-  return Buffer.from(arrayBuffer);
-}
-
+// Upload image to Vercel Blob storage
 export async function POST(request: NextRequest) {
   try {
+    console.log('��️ Starting file upload process...');
     const formData = await request.formData();
     const file = formData.get('file') as File;
     const category = formData.get('category') as string || 'general';
@@ -69,31 +54,36 @@ export async function POST(request: NextRequest) {
       );
     }
     
+    console.log('📁 File details:', {
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      category
+    });
+    
     // Validate file
     const validation = validateFile(file);
     if (!validation.valid) {
+      console.log('❌ File validation failed:', validation.error);
       return NextResponse.json(
         { success: false, error: validation.error },
         { status: 400 }
       );
     }
     
-    // Ensure upload directory exists
-    await ensureUploadDir();
-    
-    // Generate unique filename
+    // Generate unique filename with category prefix
     const fileName = generateFileName(file.name);
-    const categoryDir = path.join(UPLOAD_DIR, category);
-    await fs.mkdir(categoryDir, { recursive: true });
+    const blobPath = `admin/${category}/${fileName}`;
     
-    const filePath = path.join(categoryDir, fileName);
+    console.log('📤 Uploading to Vercel Blob:', blobPath);
     
-    // Convert file to buffer and save
-    const buffer = await fileToBuffer(file);
-    await fs.writeFile(filePath, buffer);
+    // Upload to Vercel Blob storage
+    const blob = await put(blobPath, file, {
+      access: 'public',
+      contentType: file.type,
+    });
     
-    // Generate public URL
-    const publicUrl = `/images/admin/${category}/${fileName}`;
+    console.log('✅ Upload successful:', blob.url);
     
     return NextResponse.json({
       success: true,
@@ -103,57 +93,50 @@ export async function POST(request: NextRequest) {
         size: file.size,
         type: file.type,
         category,
-        url: publicUrl,
-        path: filePath
+        url: blob.url,
+        path: blobPath,
+        downloadUrl: blob.downloadUrl
       },
       message: 'File uploaded successfully'
     });
     
   } catch (error: any) {
-    console.error('Upload error:', error);
+    console.error('❌ Upload error:', error);
     return NextResponse.json(
-      { success: false, error: 'Upload failed' },
+      { success: false, error: 'Upload failed: ' + (error.message || 'Unknown error') },
       { status: 500 }
     );
   }
 }
 
-// Delete uploaded image
+// Delete uploaded image from Vercel Blob storage
 export async function DELETE(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const filePath = searchParams.get('path');
+    const url = searchParams.get('url');
+    const path = searchParams.get('path');
     
-    if (!filePath) {
+    if (!url && !path) {
       return NextResponse.json(
-        { success: false, error: 'File path required' },
+        { success: false, error: 'File URL or path required' },
         { status: 400 }
       );
     }
     
-    // Security check - ensure path is within upload directory
-    const fullPath = path.resolve(filePath);
-    const uploadPath = path.resolve(UPLOAD_DIR);
+    console.log('🗑️ Deleting file:', url || path);
     
-    if (!fullPath.startsWith(uploadPath)) {
-      return NextResponse.json(
-        { success: false, error: 'Invalid file path' },
-        { status: 403 }
-      );
+    // Delete from Vercel Blob storage
+    if (url) {
+      await del(url);
+    } else if (path) {
+      // If only path is provided, we need to construct the blob URL
+      const blobs = await list({ prefix: path });
+      if (blobs.blobs.length > 0) {
+        await del(blobs.blobs[0].url);
+      }
     }
     
-    // Check if file exists
-    try {
-      await fs.access(fullPath);
-    } catch {
-      return NextResponse.json(
-        { success: false, error: 'File not found' },
-        { status: 404 }
-      );
-    }
-    
-    // Delete file
-    await fs.unlink(fullPath);
+    console.log('✅ Delete successful');
     
     return NextResponse.json({
       success: true,
@@ -161,63 +144,59 @@ export async function DELETE(request: NextRequest) {
     });
     
   } catch (error: any) {
-    console.error('Delete error:', error);
+    console.error('❌ Delete error:', error);
     return NextResponse.json(
-      { success: false, error: 'Delete failed' },
+      { success: false, error: 'Delete failed: ' + (error.message || 'Unknown error') },
       { status: 500 }
     );
   }
 }
 
-// List uploaded images
+// List uploaded images from Vercel Blob storage
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category') || 'general';
     
-    await ensureUploadDir();
-    const categoryDir = path.join(UPLOAD_DIR, category);
+    console.log('📂 Listing images for category:', category);
     
-    await fs.mkdir(categoryDir, { recursive: true });
-      const files = await fs.readdir(categoryDir);
-      
-      const imageFiles = await Promise.all(
-        files
-          .filter(file => {
-            const ext = path.extname(file).toLowerCase();
-            return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext);
-          })
-          .map(async (file) => {
-            const filePath = path.join(categoryDir, file);
-            const stats = await fs.stat(filePath);
-            
-            return {
-              fileName: file,
-              size: stats.size,
-              created: stats.birthtime,
-              modified: stats.mtime,
-              url: `/images/admin/${category}/${file}`,
-              path: filePath
-            };
-          })
-      );
-      
+    // List blobs with the admin/{category}/ prefix
+    const prefix = `admin/${category}/`;
+    const { blobs } = await list({ prefix });
+    
+    // Filter for image files and format response
+    const imageFiles = blobs
+      .filter(blob => {
+        const ext = path.extname(blob.pathname).toLowerCase();
+        return ['.jpg', '.jpeg', '.png', '.webp'].includes(ext);
+      })
+      .map(blob => ({
+        fileName: path.basename(blob.pathname),
+        size: blob.size,
+        created: new Date(blob.uploadedAt),
+        modified: new Date(blob.uploadedAt),
+        url: blob.url,
+        downloadUrl: blob.downloadUrl,
+        path: blob.pathname
+      }))
       // Sort by creation date (newest first)
-      imageFiles.sort((a, b) => b.created.getTime() - a.created.getTime());
-      
-      return NextResponse.json({
-        success: true,
-        data: {
-          category,
-          images: imageFiles,
-          total: imageFiles.length
-        }
-      });
+      .sort((a, b) => b.created.getTime() - a.created.getTime());
+    
+    console.log(`📊 Found ${imageFiles.length} images in category ${category}`);
+    
+    return NextResponse.json({
+      success: true,
+      data: {
+        category,
+        images: imageFiles,
+        total: imageFiles.length
+      }
+    });
     
   } catch (error: any) {
-    console.error('List images error:', error);
+    console.error('❌ List images error:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to list images' },
+      { success: false, error: 'Failed to list images: ' + (error.message || 'Unknown error') },
       { status: 500 }
     );
   }
