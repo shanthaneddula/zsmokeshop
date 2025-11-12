@@ -1,13 +1,49 @@
 # Z SMOKE SHOP - Session Development Log & Guide
 
-**Session Date**: July 23, 2025  
+**Latest Session**: November 12, 2025  
+**Previous Session**: July 23, 2025  
 **Developer**: Shanthan Eddula  
-**AI Assistant**: Cascade (Windsurf AI)  
-**Project**: Z Smoke Shop Website - Product Display Implementation & Rating System Removal
+**AI Assistant**: GitHub Copilot  
+**Latest Update**: Admin Settings Authentication & Redis Cloud Integration
 
 ---
 
-## 🎯 **SESSION OVERVIEW**
+## 🎯 **LATEST SESSION OVERVIEW (November 12, 2025)**
+
+### **CRITICAL ISSUE RESOLVED: Admin Settings 401 Authentication Error**
+
+**Problem**: Users experienced "Failed to update business settings" with 401 Unauthorized errors when saving contact numbers and store details in the admin panel.
+
+**Root Causes Identified**:
+1. **JWT Security Flaw**: Manual token parsing without cryptographic verification
+2. **Production Filesystem Limitation**: Vercel's read-only filesystem preventing local file writes  
+3. **Redis Connection Management Bug**: Multiple `connect()` calls causing "already connecting" errors
+
+**Complete Solution Implemented** ✅:
+- **JWT Security Fix**: Replaced manual base64 decoding with proper `jwt.verify()` cryptographic validation
+- **Redis Cloud Integration**: Added ioredis for persistent storage, eliminating Vercel filesystem dependency
+- **Connection Management Fix**: Removed `lazyConnect: true` to prevent race conditions and multiple connection attempts
+
+**Technical Implementation**:
+- Updated `src/lib/auth.ts` with secure JWT verification using jsonwebtoken library
+- Integrated Redis Cloud in `src/lib/settings-service.ts` with automatic connection handling
+- Implemented multi-tier storage fallback: Redis Cloud → Vercel KV → Local files
+- Added comprehensive error handling and logging throughout authentication flow
+
+**Production Verification** ✅:
+- Admin login working with username `admin` and password `Instagram@501`
+- Settings persistence confirmed (contact numbers, store details save successfully)
+- Zero authentication errors, EROFS errors, or Redis connection conflicts
+- Cross-session persistence verified across browser sessions and deployments
+
+**Files Modified**:
+- `src/lib/auth.ts`, `src/lib/settings-service.ts`, `src/app/api/admin/settings/route.ts`
+- Added ioredis dependency, configured Redis Cloud environment variables
+- Created comprehensive documentation: `REDIS_CONNECTION_MANAGEMENT_SOLUTION.md`
+
+---
+
+## 🎯 **PREVIOUS SESSION OVERVIEW (July 23, 2025)**
 
 This session completed the transformation of the Z Smoke Shop from category showcase to full e-commerce product browsing experience. Major accomplishments include implementing comprehensive product display with pagination, professional product cards, advanced filtering/sorting, and removing rating system for authentic new business presentation.
 
