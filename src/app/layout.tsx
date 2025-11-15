@@ -24,6 +24,10 @@ export const viewport: Viewport = {
 
 // SEO-friendly metadata
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NODE_ENV === 'production' 
+    ? 'https://zsmokeshop.com' 
+    : 'http://localhost:3000'
+  ),
   title: {
     default: "Z Smoke Shop | Premium Smoke Shop in Austin, TX",
     template: "%s | Z Smoke Shop",
@@ -35,7 +39,7 @@ export const metadata: Metadata = {
     description: "Your premier destination for quality smoke shop products and accessories in Austin, Texas.",
     type: "website",
     locale: "en_US",
-    url: "https://zsmokeshop.com", // Replace with actual domain
+    url: "/",
     images: [
       {
         url: "/images/og-image.jpg", // To be added later
