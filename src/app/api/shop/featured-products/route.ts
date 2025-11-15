@@ -2,6 +2,7 @@
 import { NextResponse } from 'next/server';
 import { AdminProduct } from '@/types/admin';
 import { Product } from '@/types';
+import * as ProductStorage from '@/lib/product-storage-service';
 
 // Convert AdminProduct to public Product format
 function convertToPublicProduct(adminProduct: AdminProduct): Product {
@@ -19,17 +20,6 @@ function convertToPublicProduct(adminProduct: AdminProduct): Product {
     badges: adminProduct.badges,
     rating: 4.5 // Default rating for now
   };
-}
-
-// Serverless-compatible function to read products
-async function readProductsServerless(): Promise<AdminProduct[]> {
-  try {
-    const productsData = await import('@/data/products.json');
-    return (productsData.default || []) as AdminProduct[];
-  } catch (error) {
-    console.error('Error reading products.json:', error);
-    return [];
-  }
 }
 
 // Read featured products settings (for now using defaults, later from settings file)
@@ -75,8 +65,8 @@ export async function GET() {
       });
     }
 
-    // Read all products
-    const allProducts = await readProductsServerless();
+    // Read all products from Redis/storage
+    const allProducts = await ProductStorage.readProducts();
     
     // Filter products based on settings
     let filteredProducts = allProducts.filter((product: AdminProduct) => {
