@@ -54,7 +54,7 @@ export function StorePhotosClient() {
         // Upload image to your storage service
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('folder', 'store-photos');
+        formData.append('category', 'store-photos');
 
         const uploadResponse = await fetch('/api/admin/upload', {
           method: 'POST',
@@ -78,7 +78,15 @@ export function StorePhotosClient() {
 
           if (createResponse.ok) {
             await fetchPhotos();
+          } else {
+            const errorData = await createResponse.json();
+            console.error('Failed to create store photo entry:', errorData);
+            alert(`Failed to save photo: ${errorData.error || 'Unknown error'}`);
           }
+        } else {
+          const errorData = await uploadResponse.json();
+          console.error('Upload failed:', errorData);
+          alert(`Failed to upload ${file.name}: ${errorData.error || 'Unknown error'}`);
         }
       }
     } catch (error) {

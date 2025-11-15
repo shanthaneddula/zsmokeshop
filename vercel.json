@@ -2,6 +2,15 @@
   "functions": {
     "src/app/api/**/*.ts": {
       "maxDuration": 30
+    },
+    "src/app/api/admin/upload/route.ts": {
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  },
+  "api": {
+    "bodyParser": {
+      "sizeLimit": "10mb"
     }
   }
 }

@@ -4,8 +4,12 @@ import { put, del, list } from '@vercel/blob';
 import path from 'path';
 import { verifyToken } from '@/lib/auth';
 
+// Route segment config - increase body size limit for image uploads
+export const runtime = 'nodejs';
+export const maxDuration = 60; // 60 seconds max execution time
+
 // Use Node.js runtime for file operations
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB (increased from 5MB)
 const ALLOWED_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
 // Generate unique filename
