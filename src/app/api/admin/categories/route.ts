@@ -150,7 +150,8 @@ export async function POST(request: NextRequest) {
       sortOrder: body.sortOrder !== undefined ? body.sortOrder : existingCategories.length,
       seoTitle: body.seoTitle?.trim() || body.name.trim(),
       seoDescription: body.seoDescription?.trim() || body.description?.trim() || '',
-      parentId: body.parentId?.trim() || undefined
+      parentId: body.parentId?.trim() || undefined,
+      productCount: 0
     };
 
     // Create the category
