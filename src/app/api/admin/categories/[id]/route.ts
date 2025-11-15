@@ -109,7 +109,7 @@ export async function PUT(
     }
 
     // Check if category exists
-    const existingCategory = await CategoriesJsonUtils.findCategoryById(id);
+    const existingCategory = await CategoryStorage.getCategory(id);
     if (!existingCategory) {
       return NextResponse.json({
         success: false,
