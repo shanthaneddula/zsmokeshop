@@ -263,7 +263,7 @@ export async function DELETE(
       // Reassign all products to the target category
       try {
         for (const product of productsInCategory) {
-          await ProductsJsonUtils.updateProduct(product.id, { 
+          await ProductStorage.updateProduct(product.id, { 
             category: targetCategory.slug,
             updatedBy: 'admin' // TODO: Get from auth context
           });
