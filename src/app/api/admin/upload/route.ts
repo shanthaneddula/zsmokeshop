@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { put, del, list } from '@vercel/blob';
 import path from 'path';
+import { verifyToken } from '@/lib/auth';
 
 // Use Node.js runtime for file operations
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -42,12 +43,44 @@ function validateFile(file: File): { valid: boolean; error?: string } {
 // Upload image to Vercel Blob storage
 export async function POST(request: NextRequest) {
   try {
-    console.log('��️ Starting file upload process...');
+    console.log('🖼️ Starting file upload process...');
+    
+    // Verify authentication
+    const token = request.cookies.get('admin-token')?.value;
+    if (!token) {
+      console.log('❌ No admin token provided');
+      return NextResponse.json(
+        { success: false, error: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+    
+    const user = verifyToken(token);
+    if (!user) {
+      console.log('❌ Invalid admin token');
+      return NextResponse.json(
+        { success: false, error: 'Invalid authentication' },
+        { status: 401 }
+      );
+    }
+    
+    console.log('✅ Admin authenticated:', user.username);
+    console.log('📋 Request headers:', Object.fromEntries(request.headers.entries()));
+    
     const formData = await request.formData();
+    console.log('📦 FormData received');
+    
     const file = formData.get('file') as File;
     const category = formData.get('category') as string || 'general';
     
+    console.log('📄 FormData contents:', {
+      file: file ? { name: file.name, size: file.size, type: file.type } : null,
+      category,
+      allKeys: Array.from(formData.keys())
+    });
+    
     if (!file) {
+      console.log('❌ No file provided in form data');
       return NextResponse.json(
         { success: false, error: 'No file provided' },
         { status: 400 }
