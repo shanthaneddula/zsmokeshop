@@ -3,7 +3,7 @@
 import { NextResponse } from 'next/server';
 import { AdminCategory } from '@/types/admin';
 import { Category } from '@/types';
-import { CategoriesJsonUtils } from '@/lib/admin/json-utils';
+import * as CategoryStorage from '@/lib/category-storage-service';
 
 // Convert AdminCategory to public Category format
 function convertToPublicCategory(adminCategory: AdminCategory): Category {
@@ -17,8 +17,8 @@ function convertToPublicCategory(adminCategory: AdminCategory): Category {
 
 export async function GET() {
   try {
-    // Read categories from storage (already using the right method)
-    const categories = await CategoriesJsonUtils.readCategories();
+    // Read categories from Redis storage
+    const categories = await CategoryStorage.readCategories();
     
     // Filter only active categories for public shop (show all active, even with 0 products)
     const activeCategories = categories

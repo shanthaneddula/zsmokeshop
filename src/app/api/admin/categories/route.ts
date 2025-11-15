@@ -1,6 +1,6 @@
-// Categories API routes - GET (list) and POST (create)
+// Admin categories API route - GET (list) and POST (create)
 import { NextRequest, NextResponse } from 'next/server';
-import { CategoriesJsonUtils } from '@/lib/admin/json-utils';
+import * as CategoryStorage from '@/lib/category-storage-service';
 import { AdminCategory } from '@/types/admin';
 
 // Generate slug from name
@@ -48,12 +48,12 @@ export async function GET(request: NextRequest) {
     const sortOrder = searchParams.get('sortOrder') || 'asc';
     const includeProductCount = searchParams.get('includeProductCount') === 'true';
 
-    let categories = await CategoriesJsonUtils.readCategories();
+    let categories = await CategoryStorage.readCategories();
 
     // Update product counts if requested
-    if (includeProductCount) {
-      await CategoriesJsonUtils.updateProductCounts();
-      categories = await CategoriesJsonUtils.readCategories();
+    if (updateCounts === 'true') {
+      await CategoryStorage.updateProductCounts();
+      categories = await CategoryStorage.readCategories();
     }
 
     // Apply filters
@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
     const slug = body.slug?.trim() || generateSlug(body.name);
 
     // Check for duplicate name or slug
-    const existingCategories = await CategoriesJsonUtils.readCategories();
+    const existingCategories = await CategoryStorage.readCategories();
     const duplicateName = existingCategories.find(c => 
       c.name.toLowerCase() === body.name.trim().toLowerCase()
     );
@@ -154,7 +154,7 @@ export async function POST(request: NextRequest) {
     };
 
     // Create the category
-    const newCategory = await CategoriesJsonUtils.createCategory(categoryData);
+    const newCategory = await CategoryStorage.createCategory(categoryData);
 
     return NextResponse.json({
       success: true,

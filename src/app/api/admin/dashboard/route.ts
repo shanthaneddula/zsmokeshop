@@ -2,15 +2,15 @@
 
 import { NextResponse } from 'next/server';
 import * as ProductStorage from '@/lib/product-storage-service';
-import { CategoriesJsonUtils } from '@/lib/admin/json-utils';
+import * as CategoryStorage from '@/lib/category-storage-service';
 import { DashboardStats } from '@/types/admin';
 
 export async function GET() {
   try {
-    // Read products from Redis and categories from storage
+    // Read products and categories from Redis storage
     const [products, categories] = await Promise.all([
       ProductStorage.readProducts(),
-      CategoriesJsonUtils.readCategories()
+      CategoryStorage.readCategories()
     ]);
 
     // Calculate statistics

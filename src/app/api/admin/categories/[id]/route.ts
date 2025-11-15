@@ -1,6 +1,6 @@
 // Individual Category API routes - GET, PUT, DELETE
 import { NextRequest, NextResponse } from 'next/server';
-import { CategoriesJsonUtils } from '@/lib/admin/json-utils';
+import * as CategoryStorage from '@/lib/category-storage-service';
 import * as ProductStorage from '@/lib/product-storage-service';
 import { AdminCategory } from '@/types/admin';
 
@@ -55,7 +55,7 @@ export async function GET(
       }, { status: 400 });
     }
 
-    const category = await CategoriesJsonUtils.findCategoryById(id);
+    const category = await CategoryStorage.getCategory(id);
 
     if (!category) {
       return NextResponse.json({
@@ -65,8 +65,8 @@ export async function GET(
     }
 
     // Update product count
-    await CategoriesJsonUtils.updateProductCounts();
-    const updatedCategory = await CategoriesJsonUtils.findCategoryById(id);
+    await CategoryStorage.updateProductCounts();
+    const updatedCategory = await CategoryStorage.getCategory(id);
 
     return NextResponse.json({
       success: true,
@@ -125,7 +125,7 @@ export async function PUT(
 
     // Check for duplicate name or slug if they're being updated
     if (body.name || newSlug) {
-      const allCategories = await CategoriesJsonUtils.readCategories();
+      const allCategories = await CategoryStorage.readCategories();
       
       if (body.name) {
         const duplicateName = allCategories.find(c => 
@@ -165,7 +165,7 @@ export async function PUT(
     if (body.parentId !== undefined) updateData.parentId = body.parentId?.trim() || undefined;
 
     // Update the category
-    const updatedCategory = await CategoriesJsonUtils.updateCategory(id, updateData);
+    const updatedCategory = await CategoryStorage.updateCategory(id, updateData);
 
     if (!updatedCategory) {
       return NextResponse.json({
@@ -252,7 +252,7 @@ export async function DELETE(
       }
 
       // Validate reassign target category
-      targetCategory = await CategoriesJsonUtils.findCategoryById(reassignTo);
+      targetCategory = await CategoryStorage.getCategory(reassignTo);
       if (!targetCategory) {
         return NextResponse.json({
           success: false,
@@ -279,14 +279,7 @@ export async function DELETE(
     }
 
     // Delete the category
-    const deleted = await CategoriesJsonUtils.deleteCategory(id);
-
-    if (!deleted) {
-      return NextResponse.json({
-        success: false,
-        error: 'Failed to delete category'
-      }, { status: 500 });
-    }
+    await CategoryStorage.deleteCategory(id);
 
     return NextResponse.json({
       success: true,
