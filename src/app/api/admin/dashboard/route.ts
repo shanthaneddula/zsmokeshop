@@ -1,15 +1,16 @@
 // Admin dashboard API route
 
 import { NextResponse } from 'next/server';
-import { readProducts, readCategories } from '@/lib/json-utils';
+import * as ProductStorage from '@/lib/product-storage-service';
+import { CategoriesJsonUtils } from '@/lib/admin/json-utils';
 import { DashboardStats } from '@/types/admin';
 
 export async function GET() {
   try {
-    // Read products and categories
+    // Read products from Redis and categories from storage
     const [products, categories] = await Promise.all([
-      readProducts(),
-      readCategories()
+      ProductStorage.readProducts(),
+      CategoriesJsonUtils.readCategories()
     ]);
 
     // Calculate statistics
