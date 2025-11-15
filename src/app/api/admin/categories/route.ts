@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get('status');
     const sortBy = searchParams.get('sortBy') || 'sortOrder';
     const sortOrder = searchParams.get('sortOrder') || 'asc';
-    const includeProductCount = searchParams.get('includeProductCount') === 'true';
+    const updateCounts = searchParams.get('updateCounts');
 
     let categories = await CategoryStorage.readCategories();
 
