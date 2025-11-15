@@ -236,9 +236,11 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
     try {
       const formData = new FormData();
       formData.append('file', file);
+      formData.append('category', 'general');
       
       const response = await fetch('/api/admin/upload', {
         method: 'POST',
+        credentials: 'include', // This ensures cookies are sent
         body: formData
       });
       
@@ -246,13 +248,14 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
         const data = await response.json();
         handleInputChange('image', data.data.url);
       } else {
-        throw new Error('Upload failed');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Upload failed with status ${response.status}`);
       }
     } catch (error) {
       console.error('Error uploading image:', error);
       setErrors(prev => ({
         ...prev,
-        image: 'Failed to upload image'
+        image: error instanceof Error ? error.message : 'Failed to upload image'
       }));
     } finally {
       setImageUploading(false);

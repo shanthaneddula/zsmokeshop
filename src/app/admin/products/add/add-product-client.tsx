@@ -14,6 +14,7 @@ export function AddProductClient() {
     try {
       const response = await fetch('/api/admin/products', {
         method: 'POST',
+        credentials: 'include', // Ensure cookies are sent
         headers: {
           'Content-Type': 'application/json',
         },

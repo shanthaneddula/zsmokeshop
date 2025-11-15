@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ProductsJsonUtils } from '@/lib/admin/json-utils';
 import { AdminProduct } from '@/types';
 import { generateSlug } from '@/lib/json-utils';
+import { verifyToken } from '@/lib/auth';
 
 // Validation schema for product data
 function validateProductData(data: any): { isValid: boolean; errors: string[] } {
@@ -155,11 +156,43 @@ export async function GET(request: NextRequest) {
 // POST /api/admin/products - Create new product
 export async function POST(request: NextRequest) {
   try {
+    console.log('🔍 Products API: Starting product creation...');
+    
+    // Check authentication first
+    const token = request.cookies.get('admin-token')?.value;
+    if (!token) {
+      console.log('❌ No admin token provided');
+      return NextResponse.json(
+        { success: false, error: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+    
+    const user = verifyToken(token);
+    if (!user) {
+      console.log('❌ Invalid admin token');
+      return NextResponse.json(
+        { success: false, error: 'Invalid authentication' },
+        { status: 401 }
+      );
+    }
+    
+    console.log('✅ Admin authenticated:', user.username);
+    
+    // Log request details
+    console.log('📋 Request headers:', Object.fromEntries(request.headers.entries()));
+    console.log('📋 Request method:', request.method);
+    console.log('📋 Request URL:', request.url);
+    
     const body = await request.json();
+    console.log('📦 Request body received:', JSON.stringify(body, null, 2));
 
     // Validate required fields
     const validation = validateProductData(body);
+    console.log('✅ Validation result:', validation);
+    
     if (!validation.isValid) {
+      console.log('❌ Validation failed:', validation.errors);
       return NextResponse.json({
         success: false,
         error: 'Validation failed',
@@ -185,24 +218,31 @@ export async function POST(request: NextRequest) {
       weight: body.weight,
       dimensions: body.dimensions,
       status: body.status || 'active' as const,
-      createdBy: 'admin', // TODO: Get from auth context
-      updatedBy: 'admin'
+      createdBy: user.username, // Use authenticated user
+      updatedBy: user.username
     };
+
+    console.log('🏗️ Prepared product data:', JSON.stringify(productData, null, 2));
 
     // Check for duplicate SKU if provided
     if (productData.sku) {
+      console.log('🔍 Checking for duplicate SKU:', productData.sku);
       const existingProducts = await ProductsJsonUtils.readProducts();
       const duplicateSku = existingProducts.find(p => p.sku === productData.sku);
       if (duplicateSku) {
+        console.log('❌ Duplicate SKU found:', duplicateSku.id);
         return NextResponse.json({
           success: false,
           error: 'Product with this SKU already exists'
         }, { status: 409 });
       }
+      console.log('✅ No duplicate SKU found');
     }
 
     // Create the product
+    console.log('🔄 Creating product...');
     const newProduct = await ProductsJsonUtils.createProduct(productData);
+    console.log('✅ Product created successfully:', newProduct.id);
 
     return NextResponse.json({
       success: true,
@@ -211,10 +251,14 @@ export async function POST(request: NextRequest) {
     }, { status: 201 });
 
   } catch (error) {
-    console.error('Error creating product:', error);
+    console.error('❌ Error creating product:', error);
+    console.error('❌ Error stack:', error instanceof Error ? error.stack : 'No stack trace');
+    console.error('❌ Error message:', error instanceof Error ? error.message : 'Unknown error');
+    
     return NextResponse.json({
       success: false,
-      error: 'Failed to create product'
+      error: 'Failed to create product',
+      details: error instanceof Error ? error.message : 'Unknown error'
     }, { status: 500 });
   }
 }
