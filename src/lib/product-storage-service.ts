@@ -61,9 +61,26 @@ export async function readProducts(): Promise<AdminProduct[]> {
     if (useKV) {
       // Use Vercel KV in production
       console.log('📡 Reading from Vercel KV...');
-      const products = await kv.get<AdminProduct[]>(KV_PRODUCTS_KEY);
-      console.log(`✅ Retrieved ${products?.length || 0} products from KV`);
-      return products || [];
+      
+      try {
+        const products = await kv.get<AdminProduct[]>(KV_PRODUCTS_KEY);
+        console.log(`✅ Retrieved ${products?.length || 0} products from KV`);
+        return products || [];
+      } catch (kvError) {
+        console.error('❌ Vercel KV error:', kvError);
+        
+        // If in production and KV fails, throw a helpful error
+        if (isProduction) {
+          throw new Error(
+            'Vercel KV is not configured. Please set up Vercel KV in your Vercel dashboard: ' +
+            'Dashboard → Storage → Create Database → KV (Redis) → Connect to Project. ' +
+            'Required environment variables: KV_REST_API_URL and KV_REST_API_TOKEN'
+          );
+        }
+        
+        // If KV config exists but failed, rethrow
+        throw kvError;
+      }
     } else {
       // Use JSON files in development
       console.log('📁 Reading from JSON file...');
@@ -85,7 +102,7 @@ export async function readProducts(): Promise<AdminProduct[]> {
     }
   } catch (error) {
     console.error('❌ Error reading products:', error);
-    throw new Error(`Failed to read products: ${error}`);
+    throw new Error(`Failed to read products: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 
@@ -101,8 +118,25 @@ export async function writeProducts(products: AdminProduct[]): Promise<void> {
     if (useKV) {
       // Use Vercel KV in production
       console.log('📡 Writing to Vercel KV...');
-      await kv.set(KV_PRODUCTS_KEY, products);
-      console.log(`✅ Saved ${products.length} products to KV`);
+      
+      try {
+        await kv.set(KV_PRODUCTS_KEY, products);
+        console.log(`✅ Saved ${products.length} products to KV`);
+      } catch (kvError) {
+        console.error('❌ Vercel KV error:', kvError);
+        
+        // If in production and KV fails, throw a helpful error
+        if (isProduction) {
+          throw new Error(
+            'Vercel KV is not configured. Please set up Vercel KV in your Vercel dashboard: ' +
+            'Dashboard → Storage → Create Database → KV (Redis) → Connect to Project. ' +
+            'Required environment variables: KV_REST_API_URL and KV_REST_API_TOKEN'
+          );
+        }
+        
+        // If KV config exists but failed, rethrow
+        throw kvError;
+      }
     } else {
       // Use JSON files in development
       console.log('📁 Writing to JSON file...');
@@ -115,7 +149,7 @@ export async function writeProducts(products: AdminProduct[]): Promise<void> {
     }
   } catch (error) {
     console.error('❌ Error writing products:', error);
-    throw new Error(`Failed to write products: ${error}`);
+    throw new Error(`Failed to write products: ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 
