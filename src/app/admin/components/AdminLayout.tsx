@@ -11,7 +11,8 @@ import {
   LogOut, 
   Menu, 
   X,
-  Home
+  Home,
+  Image
 } from 'lucide-react';
 
 interface AdminLayoutProps {
@@ -33,6 +34,11 @@ const navigation = [
     name: 'Categories',
     href: '/admin/categories',
     icon: FolderOpen,
+  },
+  {
+    name: 'Store Photos',
+    href: '/admin/store-photos',
+    icon: Image,
   },
   {
     name: 'Settings',
