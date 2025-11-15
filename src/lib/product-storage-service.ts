@@ -1,29 +1,58 @@
-// Product Storage Service - Handles products storage in Vercel KV (production) or JSON files (development)
+// Product Storage Service - Handles products storage in Redis (production) or JSON files (development)
 import { kv } from '@vercel/kv';
 import { AdminProduct } from '@/types/admin';
 import fs from 'fs/promises';
 import path from 'path';
+import Redis from 'ioredis';
 
 const KV_PRODUCTS_KEY = 'zsmokeshop:products';
 const DATA_DIR = path.join(process.cwd(), 'src/data');
 const PRODUCTS_FILE = path.join(DATA_DIR, 'products.json');
 const BACKUP_DIR = path.join(DATA_DIR, 'backup');
 
-// Determine if we should use KV based on environment
+// Initialize Redis client if REDIS_URL is provided
+let redisClient: Redis | null = null;
+if (process.env.REDIS_URL) {
+  try {
+    redisClient = new Redis(process.env.REDIS_URL, {
+      maxRetriesPerRequest: 3,
+      retryStrategy: (times) => {
+        const delay = Math.min(times * 50, 2000);
+        return delay;
+      },
+      reconnectOnError: (err) => {
+        const targetError = 'READONLY';
+        if (err.message.includes(targetError)) {
+          return true;
+        }
+        return false;
+      },
+    });
+    console.log('📊 Redis client initialized for products...');
+  } catch (error) {
+    console.error('❌ Failed to initialize Redis client:', error);
+  }
+}
+
+// Determine storage method based on environment and available services
 const isProduction = process.env.NODE_ENV === 'production';
+const hasRedis = !!process.env.REDIS_URL;
 const hasKVConfig = !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
-const useKV = isProduction || hasKVConfig;
+const useRedis = hasRedis; // Prefer Redis if available
+const useKV = !hasRedis && (isProduction || hasKVConfig); // Fallback to KV if no Redis
 
 console.log('🔧 Product Storage Service Initialized:', {
   environment: process.env.NODE_ENV,
+  hasRedis,
   hasKVConfig,
+  useRedis,
   useKV,
-  storageMethod: useKV ? 'Vercel KV (Redis)' : 'JSON Files'
+  storageMethod: useRedis ? 'Redis Cloud' : useKV ? 'Vercel KV' : 'JSON Files'
 });
 
 // Ensure directories exist (for file-based storage)
 async function ensureDirectories() {
-  if (!useKV) {
+  if (!useRedis && !useKV) {
     try {
       await fs.mkdir(DATA_DIR, { recursive: true });
       await fs.mkdir(BACKUP_DIR, { recursive: true });
@@ -35,7 +64,7 @@ async function ensureDirectories() {
 
 // Create backup of existing file (for file-based storage)
 async function createBackup(): Promise<void> {
-  if (!useKV) {
+  if (!useRedis && !useKV) {
     try {
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const backupPath = path.join(BACKUP_DIR, `products_${timestamp}.json`);
@@ -58,8 +87,25 @@ export async function readProducts(): Promise<AdminProduct[]> {
   try {
     console.log('📖 Reading products...');
     
-    if (useKV) {
-      // Use Vercel KV in production
+    if (useRedis && redisClient) {
+      // Use Redis Cloud in production
+      console.log('📡 Reading from Redis Cloud...');
+      
+      try {
+        const data = await redisClient.get(KV_PRODUCTS_KEY);
+        if (data) {
+          const products = JSON.parse(data);
+          console.log(`✅ Retrieved ${products?.length || 0} products from Redis`);
+          return products;
+        }
+        console.log('ℹ️ No products found in Redis, returning empty array');
+        return [];
+      } catch (redisError) {
+        console.error('❌ Redis error:', redisError);
+        throw redisError;
+      }
+    } else if (useKV) {
+      // Use Vercel KV as fallback
       console.log('📡 Reading from Vercel KV...');
       
       try {
@@ -72,13 +118,10 @@ export async function readProducts(): Promise<AdminProduct[]> {
         // If in production and KV fails, throw a helpful error
         if (isProduction) {
           throw new Error(
-            'Vercel KV is not configured. Please set up Vercel KV in your Vercel dashboard: ' +
-            'Dashboard → Storage → Create Database → KV (Redis) → Connect to Project. ' +
-            'Required environment variables: KV_REST_API_URL and KV_REST_API_TOKEN'
+            'Neither Redis nor Vercel KV is configured. Please set REDIS_URL or configure Vercel KV in your Vercel dashboard.'
           );
         }
         
-        // If KV config exists but failed, rethrow
         throw kvError;
       }
     } else {
@@ -115,8 +158,19 @@ export async function writeProducts(products: AdminProduct[]): Promise<void> {
       throw new Error('Products must be an array');
     }
     
-    if (useKV) {
-      // Use Vercel KV in production
+    if (useRedis && redisClient) {
+      // Use Redis Cloud in production
+      console.log('📡 Writing to Redis Cloud...');
+      
+      try {
+        await redisClient.set(KV_PRODUCTS_KEY, JSON.stringify(products));
+        console.log(`✅ Saved ${products.length} products to Redis`);
+      } catch (redisError) {
+        console.error('❌ Redis error:', redisError);
+        throw redisError;
+      }
+    } else if (useKV) {
+      // Use Vercel KV as fallback
       console.log('📡 Writing to Vercel KV...');
       
       try {
@@ -128,13 +182,10 @@ export async function writeProducts(products: AdminProduct[]): Promise<void> {
         // If in production and KV fails, throw a helpful error
         if (isProduction) {
           throw new Error(
-            'Vercel KV is not configured. Please set up Vercel KV in your Vercel dashboard: ' +
-            'Dashboard → Storage → Create Database → KV (Redis) → Connect to Project. ' +
-            'Required environment variables: KV_REST_API_URL and KV_REST_API_TOKEN'
+            'Neither Redis nor Vercel KV is configured. Please set REDIS_URL or configure Vercel KV in your Vercel dashboard.'
           );
         }
         
-        // If KV config exists but failed, rethrow
         throw kvError;
       }
     } else {
@@ -320,25 +371,29 @@ export async function getProductsByCategory(category: string): Promise<AdminProd
   }
 }
 
-// Migrate from JSON to KV (useful for deployment)
+// Migrate from JSON to Redis/KV (useful for deployment)
 export async function migrateToKV(): Promise<void> {
   try {
-    console.log('🔄 Starting migration from JSON to KV...');
+    console.log('🔄 Starting migration from JSON to storage...');
     
-    if (!hasKVConfig) {
-      throw new Error('KV configuration not available');
+    if (!hasRedis && !hasKVConfig) {
+      throw new Error('Redis or KV configuration not available');
     }
     
     // Read from JSON file
     const data = await fs.readFile(PRODUCTS_FILE, 'utf-8');
     const products = JSON.parse(data);
     
-    // Write to KV
-    await kv.set(KV_PRODUCTS_KEY, products);
-    
-    console.log(`✅ Migrated ${products.length} products to KV`);
+    // Write to Redis or KV
+    if (useRedis && redisClient) {
+      await redisClient.set(KV_PRODUCTS_KEY, JSON.stringify(products));
+      console.log(`✅ Migrated ${products.length} products to Redis`);
+    } else if (useKV) {
+      await kv.set(KV_PRODUCTS_KEY, products);
+      console.log(`✅ Migrated ${products.length} products to KV`);
+    }
   } catch (error) {
-    console.error('❌ Error migrating to KV:', error);
+    console.error('❌ Error migrating:', error);
     throw error;
   }
 }
