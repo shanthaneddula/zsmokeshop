@@ -1,6 +1,6 @@
 // Individual Product API routes - GET, PUT, DELETE
 import { NextRequest, NextResponse } from 'next/server';
-import { ProductsJsonUtils } from '@/lib/admin/json-utils';
+import * as ProductStorage from '@/lib/product-storage-service';
 import { AdminProduct } from '@/types';
 import { generateSlug } from '@/lib/json-utils';
 
@@ -69,7 +69,7 @@ export async function GET(
       }, { status: 400 });
     }
 
-    const product = await ProductsJsonUtils.findProductById(id);
+    const product = await ProductStorage.getProduct(id);
 
     if (!product) {
       return NextResponse.json({
@@ -119,7 +119,7 @@ export async function PUT(
     }
 
     // Check if product exists
-    const existingProduct = await ProductsJsonUtils.findProductById(id);
+    const existingProduct = await ProductStorage.getProduct(id);
     if (!existingProduct) {
       return NextResponse.json({
         success: false,
@@ -129,7 +129,7 @@ export async function PUT(
 
     // Check for duplicate SKU if SKU is being updated
     if (body.sku && body.sku !== existingProduct.sku) {
-      const allProducts = await ProductsJsonUtils.readProducts();
+      const allProducts = await ProductStorage.readProducts();
       const duplicateSku = allProducts.find(p => p.sku === body.sku && p.id !== id);
       if (duplicateSku) {
         return NextResponse.json({
@@ -166,7 +166,7 @@ export async function PUT(
     updateData.updatedBy = 'admin'; // TODO: Get from auth context
 
     // Update the product
-    const updatedProduct = await ProductsJsonUtils.updateProduct(id, updateData);
+    const updatedProduct = await ProductStorage.updateProduct(id, updateData);
 
     if (!updatedProduct) {
       return NextResponse.json({
@@ -206,7 +206,7 @@ export async function DELETE(
     }
 
     // Check if product exists before deletion
-    const existingProduct = await ProductsJsonUtils.findProductById(id);
+    const existingProduct = await ProductStorage.getProduct(id);
     if (!existingProduct) {
       return NextResponse.json({
         success: false,
@@ -215,14 +215,7 @@ export async function DELETE(
     }
 
     // Delete the product
-    const deleted = await ProductsJsonUtils.deleteProduct(id);
-
-    if (!deleted) {
-      return NextResponse.json({
-        success: false,
-        error: 'Failed to delete product'
-      }, { status: 500 });
-    }
+    await ProductStorage.deleteProduct(id);
 
     // TODO: Clean up associated images
     // This would be implemented in Phase 3 with image management

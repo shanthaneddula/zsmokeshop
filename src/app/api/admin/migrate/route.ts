@@ -1,7 +1,8 @@
 // Data migration API route - Convert existing data to admin-managed format
 
 import { NextRequest, NextResponse } from 'next/server';
-import { ProductsJsonUtils, CategoriesJsonUtils, JsonUtils } from '@/lib/admin/json-utils';
+import { CategoriesJsonUtils, JsonUtils } from '@/lib/admin/json-utils';
+import * as ProductStorage from '@/lib/product-storage-service';
 import { generateSlug } from '@/lib/json-utils';
 import { AdminProduct, AdminCategory } from '@/types/admin';
 import { categories, products } from '@/data/index';
@@ -9,7 +10,7 @@ import { categories, products } from '@/data/index';
 // Check migration status
 export async function GET() {
   try {
-    const existingProducts = await ProductsJsonUtils.readProducts();
+    const existingProducts = await ProductStorage.readProducts();
     const existingCategories = await CategoriesJsonUtils.readCategories();
     
     const status = {
@@ -57,7 +58,7 @@ export async function POST(request: NextRequest) {
     await JsonUtils.initializeDataFiles();
 
     // Check if migration already exists
-    const existingProducts = await ProductsJsonUtils.readProducts();
+    const existingProducts = await ProductStorage.readProducts();
     const existingCategories = await CategoriesJsonUtils.readCategories();
     
     if ((existingProducts.length > 0 || existingCategories.length > 0) && !force) {
@@ -126,7 +127,7 @@ export async function POST(request: NextRequest) {
         updatedBy: 'migration'
       }));
 
-      await ProductsJsonUtils.writeProducts(adminProducts);
+      await ProductStorage.writeProducts(adminProducts);
       migrationResults.productsMigrated = adminProducts.length;
     } catch (error) {
       migrationResults.errors.push(`Product migration failed: ${error}`);

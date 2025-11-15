@@ -1,11 +1,11 @@
 // Products API routes - GET (list) and POST (create)
 import { NextRequest, NextResponse } from 'next/server';
-import { ProductsJsonUtils } from '@/lib/admin/json-utils';
-import { AdminProduct } from '@/types';
+import * as ProductStorage from '@/lib/product-storage-service';
 import { generateSlug } from '@/lib/json-utils';
 import { verifyToken } from '@/lib/auth';
 
 // Validation schema for product data
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function validateProductData(data: any): { isValid: boolean; errors: string[] } {
   const errors: string[] = [];
 
@@ -75,7 +75,7 @@ export async function GET(request: NextRequest) {
       }, { status: 400 });
     }
 
-    let products = await ProductsJsonUtils.readProducts();
+    let products = await ProductStorage.readProducts();
 
     // Apply filters
     if (category) {
@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
     }
 
     if (search) {
-      const searchResults = await ProductsJsonUtils.searchProducts(search);
+      const searchResults = await ProductStorage.searchProducts(search);
       const searchIds = new Set(searchResults.map(p => p.id));
       products = products.filter(p => searchIds.has(p.id));
     }
@@ -227,7 +227,7 @@ export async function POST(request: NextRequest) {
     // Check for duplicate SKU if provided
     if (productData.sku) {
       console.log('🔍 Checking for duplicate SKU:', productData.sku);
-      const existingProducts = await ProductsJsonUtils.readProducts();
+      const existingProducts = await ProductStorage.readProducts();
       const duplicateSku = existingProducts.find(p => p.sku === productData.sku);
       if (duplicateSku) {
         console.log('❌ Duplicate SKU found:', duplicateSku.id);
@@ -241,7 +241,7 @@ export async function POST(request: NextRequest) {
 
     // Create the product
     console.log('🔄 Creating product...');
-    const newProduct = await ProductsJsonUtils.createProduct(productData);
+    const newProduct = await ProductStorage.createProduct(productData);
     console.log('✅ Product created successfully:', newProduct.id);
 
     return NextResponse.json({

@@ -1,6 +1,7 @@
 // Individual Category API routes - GET, PUT, DELETE
 import { NextRequest, NextResponse } from 'next/server';
-import { CategoriesJsonUtils, ProductsJsonUtils } from '@/lib/admin/json-utils';
+import { CategoriesJsonUtils } from '@/lib/admin/json-utils';
+import * as ProductStorage from '@/lib/product-storage-service';
 import { AdminCategory } from '@/types/admin';
 
 // Generate slug from name
@@ -235,7 +236,7 @@ export async function DELETE(
     }
 
     // Check for products using this category
-    const productsInCategory = await ProductsJsonUtils.getProductsByCategory(existingCategory.slug);
+    const productsInCategory = await ProductStorage.getProductsByCategory(existingCategory.slug);
     let targetCategory = null;
     
     if (productsInCategory.length > 0) {
