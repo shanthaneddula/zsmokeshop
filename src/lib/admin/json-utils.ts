@@ -269,8 +269,11 @@ export const CategoriesJsonUtils = {
   },
 
   async updateProductCounts(): Promise<void> {
+    // Import ProductStorage dynamically to avoid circular dependencies
+    const { readProducts } = await import('@/lib/product-storage-service');
+    
     const categories = await this.readCategories();
-    const products = await ProductsJsonUtils.readProducts();
+    const products = await readProducts();
     
     const updatedCategories = categories.map(category => ({
       ...category,
