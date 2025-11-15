@@ -1,20 +1,7 @@
 {
-  "version": 2,
-  "name": "zsmokeshop",
-  "builds": [
-    {
-      "src": "next.config.js",
-      "use": "@vercel/next"
-    }
-  ],
   "functions": {
-    "src/app/api/**": {
+    "src/app/api/**/*.ts": {
       "maxDuration": 30
     }
-  },
-  "regions": ["iad1"],
-  "env": {
-    "NODE_ENV": "production",
-    "NEXT_TELEMETRY_DISABLED": "1"
   }
 }
