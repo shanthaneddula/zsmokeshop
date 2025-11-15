@@ -177,11 +177,11 @@ export async function PUT(
     // If slug changed, we need to update all products using the old slug
     if (newSlug && newSlug !== existingCategory.slug) {
       try {
-        const products = await ProductsJsonUtils.readProducts();
+        const products = await ProductStorage.readProducts();
         const productsToUpdate = products.filter(p => p.category === existingCategory.slug);
         
         for (const product of productsToUpdate) {
-          await ProductsJsonUtils.updateProduct(product.id, { 
+          await ProductStorage.updateProduct(product.id, { 
             category: newSlug,
             updatedBy: 'admin' // TODO: Get from auth context
           });
