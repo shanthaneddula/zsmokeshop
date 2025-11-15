@@ -93,7 +93,15 @@ export const ProductsJsonUtils = {
   },
 
   async writeProducts(products: AdminProduct[]): Promise<void> {
-    return writeJsonFile('products.json', products);
+    try {
+      console.log('💾 ProductsJsonUtils.writeProducts - Starting...');
+      console.log('📊 ProductsJsonUtils.writeProducts - Products count:', products.length);
+      await writeJsonFile('products.json', products);
+      console.log('✅ ProductsJsonUtils.writeProducts - Success');
+    } catch (error) {
+      console.error('❌ ProductsJsonUtils.writeProducts - Error:', error);
+      throw error;
+    }
   },
 
   async findProductById(id: string): Promise<AdminProduct | null> {
@@ -102,20 +110,34 @@ export const ProductsJsonUtils = {
   },
 
   async createProduct(product: Omit<AdminProduct, 'id' | 'createdAt' | 'updatedAt'>): Promise<AdminProduct> {
-    const products = await this.readProducts();
-    
-    const newProduct: AdminProduct = {
-      ...product,
-      id: `prod_${Date.now()}`,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      imageHistory: product.image ? [product.image] : [],
-    };
-    
-    products.push(newProduct);
-    await this.writeProducts(products);
-    
-    return newProduct;
+    try {
+      console.log('🏗️ ProductsJsonUtils.createProduct - Starting...');
+      console.log('📦 ProductsJsonUtils.createProduct - Product data:', JSON.stringify(product, null, 2));
+      
+      const products = await this.readProducts();
+      console.log('📊 ProductsJsonUtils.createProduct - Existing products count:', products.length);
+      
+      const newProduct: AdminProduct = {
+        ...product,
+        id: `prod_${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        imageHistory: product.image ? [product.image] : [],
+      };
+      
+      console.log('🆕 ProductsJsonUtils.createProduct - New product:', JSON.stringify(newProduct, null, 2));
+      
+      products.push(newProduct);
+      console.log('📝 ProductsJsonUtils.createProduct - Writing products to file...');
+      
+      await this.writeProducts(products);
+      console.log('✅ ProductsJsonUtils.createProduct - Product created successfully');
+      
+      return newProduct;
+    } catch (error) {
+      console.error('❌ ProductsJsonUtils.createProduct - Error:', error);
+      throw error;
+    }
   },
 
   async updateProduct(id: string, updates: Partial<AdminProduct>): Promise<AdminProduct | null> {

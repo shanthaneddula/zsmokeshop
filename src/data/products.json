@@ -90,5 +90,29 @@
     "imageHistory": [
       "/images/admin/general/watermelon-zkittlez--1753476562749-0zgnmm.jpg"
     ]
+  },
+  {
+    "name": "jnklj",
+    "slug": "jnklj",
+    "category": "detox",
+    "price": 998.97,
+    "image": "https://j9jxbouddwjbcz7m.public.blob.vercel-storage.com/admin/general/b-pop-01-1200x-1763190328739-7v1r8i.png",
+    "shortDescription": "hgkhgkh",
+    "detailedDescription": "gvjhvkhv",
+    "brand": "ljknkl",
+    "inStock": true,
+    "badges": [
+      "new"
+    ],
+    "sku": "",
+    "status": "active",
+    "createdBy": "admin",
+    "updatedBy": "admin",
+    "id": "prod_1763190335875",
+    "createdAt": "2025-11-15T07:05:35.875Z",
+    "updatedAt": "2025-11-15T07:05:35.875Z",
+    "imageHistory": [
+      "https://j9jxbouddwjbcz7m.public.blob.vercel-storage.com/admin/general/b-pop-01-1200x-1763190328739-7v1r8i.png"
+    ]
   }
 ]
