@@ -3,6 +3,7 @@
 import { NextResponse } from 'next/server';
 import { AdminProduct } from '@/types/admin';
 import { Product } from '@/types';
+import * as ProductStorage from '@/lib/product-storage-service';
 
 // Convert AdminProduct to public Product format
 function convertToPublicProduct(adminProduct: AdminProduct): Product {
@@ -22,20 +23,6 @@ function convertToPublicProduct(adminProduct: AdminProduct): Product {
   };
 }
 
-// Serverless-compatible function to read products
-async function readProductsServerless(): Promise<AdminProduct[]> {
-  try {
-    // Use static import for reliability in serverless environments
-    // Cache-busting is handled by HTTP headers in the response
-    const productsData = await import('@/data/products.json');
-    return (productsData.default || []) as AdminProduct[];
-  } catch (error) {
-    console.error('Error reading products.json:', error);
-    // Fallback to empty array if file doesn't exist
-    return [];
-  }
-}
-
 export async function GET(request: Request) {
   try {
     // Parse query parameters
@@ -44,8 +31,8 @@ export async function GET(request: Request) {
     const category = searchParams.get('category');
     const limit = searchParams.get('limit');
     
-    // Read admin-managed products using serverless-compatible method
-    const adminProducts = await readProductsServerless();
+    // Read admin-managed products from Redis/storage
+    const adminProducts = await ProductStorage.readProducts();
     
     // Filter only active and in-stock products for public shop
     let filteredProducts = adminProducts

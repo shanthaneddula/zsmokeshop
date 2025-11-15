@@ -3,6 +3,7 @@
 import { NextResponse } from 'next/server';
 import { AdminCategory } from '@/types/admin';
 import { Category } from '@/types';
+import { CategoriesJsonUtils } from '@/lib/admin/json-utils';
 
 // Convert AdminCategory to public Category format
 function convertToPublicCategory(adminCategory: AdminCategory): Category {
@@ -14,24 +15,10 @@ function convertToPublicCategory(adminCategory: AdminCategory): Category {
   };
 }
 
-// Serverless-compatible function to read categories
-async function readCategoriesServerless(): Promise<AdminCategory[]> {
-  try {
-    // Use static import for reliability in serverless environments
-    // Cache-busting is handled by HTTP headers in the response
-    const categoriesData = await import('@/data/categories.json');
-    return (categoriesData.default || []) as AdminCategory[];
-  } catch (error) {
-    console.error('Error reading categories.json:', error);
-    // Fallback to empty array if file doesn't exist
-    return [];
-  }
-}
-
 export async function GET() {
   try {
-    // Read categories using serverless-compatible method
-    const categories = await readCategoriesServerless();
+    // Read categories from storage (already using the right method)
+    const categories = await CategoriesJsonUtils.readCategories();
     
     // Filter only active categories for public shop (show all active, even with 0 products)
     const activeCategories = categories

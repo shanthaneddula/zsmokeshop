@@ -1,14 +1,9 @@
 import { AdminProduct } from '@/types';
-import fs from 'fs/promises';
-import path from 'path';
-
-const PRODUCTS_FILE = path.join(process.cwd(), 'src/data/products.json');
+import * as ProductStorage from '@/lib/product-storage-service';
 
 export async function getAllProducts(): Promise<AdminProduct[]> {
   try {
-    const fileContents = await fs.readFile(PRODUCTS_FILE, 'utf8');
-    const data = JSON.parse(fileContents);
-    return Array.isArray(data) ? data : [];
+    return await ProductStorage.readProducts();
   } catch (error) {
     console.error('Error reading products:', error);
     return [];
