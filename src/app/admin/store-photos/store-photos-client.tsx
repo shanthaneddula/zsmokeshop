@@ -69,7 +69,7 @@ export function StorePhotosClient() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              url: uploadData.url,
+              url: uploadData.data.url,
               title: '',
               description: '',
               status: 'active',
