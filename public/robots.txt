@@ -44,10 +44,9 @@ User-agent: Googlebot-Image
 Allow: /images/
 Allow: /public/images/
 
-# Sitemap locations (update with your actual domain)
+# Sitemap locations (dynamically generated)
+# Main sitemap index
 Sitemap: https://zsmokeshop.com/sitemap.xml
-Sitemap: https://zsmokeshop.com/sitemap-products.xml
-Sitemap: https://zsmokeshop.com/sitemap-categories.xml
 
 # Crawl delay for respectful crawling
 Crawl-delay: 1

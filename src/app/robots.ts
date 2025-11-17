@@ -1,5 +1,5 @@
 export default function robots() {
-  const baseUrl = 'https://zsmokeshop.com' // Replace with your actual domain when deployed
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zsmokeshop.com'
 
   return {
     rules: {

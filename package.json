@@ -8,7 +8,9 @@
     "build:debug": "NODE_ENV=production NEXT_DEBUG=1 next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf .next node_modules/.cache"
+    "clean": "rm -rf .next node_modules/.cache",
+    "import-products": "tsx scripts/bulk-import-products.ts",
+    "remove-duplicates": "tsx scripts/remove-duplicate-products.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -37,8 +39,10 @@
     "@types/node": "^20.19.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   },
   "description": "A modern, mobile-first website for Z SMOKE SHOP built with Next.js, TypeScript, and Tailwind CSS.",
