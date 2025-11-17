@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 import { Category, Product } from '@/types';
 import ProductCard from '@/components/product/ProductCard';
 
@@ -11,6 +13,8 @@ export default function HomepageCatalogue() {
   const [activeCategory, setActiveCategory] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(true);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const mobileCarouselRef = useRef<HTMLDivElement>(null);
   
   const selectedCategory = categories.find(cat => cat.id === activeCategory);
   const categoryProducts = products.filter(product => product.category === selectedCategory?.slug);
@@ -69,6 +73,26 @@ export default function HomepageCatalogue() {
     
     return () => observer.disconnect();
   }, []);
+
+  // Scroll carousel left
+  const scrollLeft = useCallback(() => {
+    if (carouselRef.current && categoryProducts.length > 0) {
+      const cardWidth = 220;
+      const cardGap = 16;
+      const scrollAmount = cardWidth + cardGap;
+      carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    }
+  }, [categoryProducts.length]);
+
+  // Scroll carousel right
+  const scrollRight = useCallback(() => {
+    if (carouselRef.current && categoryProducts.length > 0) {
+      const cardWidth = 220;
+      const cardGap = 16;
+      const scrollAmount = cardWidth + cardGap;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  }, [categoryProducts.length]);
 
   return (
     <section id="homepage-catalogue" className="min-h-[90vh] flex flex-col justify-center py-8 md:py-12 bg-gray-50 dark:bg-gray-900">
@@ -150,19 +174,80 @@ export default function HomepageCatalogue() {
           transition={{ duration: 0.3 }}
           className="mt-12"
         >
-          {/* Products Grid */}
+          {/* Products Carousel */}
           {categoryProducts.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {categoryProducts.map((product, index) => (
-                <motion.div
-                  key={product.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+            <div className="relative">
+              {/* Mobile Carousel */}
+              <div className="block md:hidden">
+                <motion.div 
+                  ref={mobileCarouselRef}
+                  className="flex gap-3 overflow-x-auto pb-4 px-4 snap-x snap-mandatory scrollbar-hide scroll-smooth"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  <ProductCard product={product} viewMode="grid" />
+                  {categoryProducts.map((product) => (
+                    <div key={product.id} className="flex-shrink-0 w-[160px] snap-center">
+                      <ProductCard product={product} viewMode="grid" />
+                    </div>
+                  ))}
                 </motion.div>
-              ))}
+              </div>
+
+              {/* Desktop Carousel */}
+              <div className="hidden md:block relative group">
+                {/* Left Arrow - Only show if scrollable */}
+                {categoryProducts.length > 4 && (
+                  <button
+                    onClick={scrollLeft}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200 border border-gray-200 dark:border-gray-700"
+                    aria-label="Scroll left"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-gray-900 dark:text-white" />
+                  </button>
+                )}
+
+                {/* Carousel Container */}
+                <motion.div
+                  ref={carouselRef}
+                  className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  {categoryProducts.map((product) => (
+                    <div key={product.id} className="flex-shrink-0 w-[220px]">
+                      <ProductCard product={product} viewMode="grid" />
+                    </div>
+                  ))}
+                </motion.div>
+
+                {/* Right Arrow - Only show if scrollable */}
+                {categoryProducts.length > 4 && (
+                  <button
+                    onClick={scrollRight}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200 border border-gray-200 dark:border-gray-700"
+                    aria-label="Scroll right"
+                  >
+                    <ChevronRight className="w-6 h-6 text-gray-900 dark:text-white" />
+                  </button>
+                )}
+              </div>
+
+              {/* View All Products Button */}
+              <motion.div
+                className="text-center mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <Link
+                  href={`/shop?category=${selectedCategory?.slug || ''}`}
+                  className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-3 font-bold uppercase tracking-wider hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                >
+                  View All Products
+                </Link>
+              </motion.div>
             </div>
           ) : (
             /* No products message */
@@ -179,12 +264,12 @@ export default function HomepageCatalogue() {
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   Products coming soon
                 </p>
-                <a 
+                <Link 
                   href="/shop" 
                   className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-2 font-bold uppercase tracking-wider hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
                 >
                   View All Products
-                </a>
+                </Link>
               </div>
             </div>
           )}
