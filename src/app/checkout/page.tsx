@@ -66,16 +66,14 @@ export default function CheckoutPage() {
         },
         body: JSON.stringify({
           customerName: formData.customerName,
-          phoneNumber: formData.phoneNumber,
+          customerPhone: formData.phoneNumber,
           email: formData.email,
-          storeLocation: formData.storeLocation,
+          storeLocation: formData.storeLocation === '719 W William Cannon Dr #105, Austin, TX 78745' ? 'william-cannon' : 'cameron-rd',
           items: items.map(item => ({
             productId: item.product.id,
-            productName: item.product.name,
-            price: item.product.price,
             quantity: item.quantity,
+            replacementPreference: formData.replacementPreference,
           })),
-          replacementPreference: formData.replacementPreference,
         }),
       });
 
@@ -355,7 +353,7 @@ export default function CheckoutPage() {
                     <div className="flex items-start gap-2 text-xs text-gray-500 dark:text-gray-400">
                       <Phone className="h-4 w-4 flex-shrink-0 mt-0.5" />
                       <p className="uppercase tracking-wide">
-                        You'll receive an SMS when your order is ready for pickup (typically 15 minutes)
+                        You&apos;ll receive an SMS when your order is ready for pickup (typically 15 minutes)
                       </p>
                     </div>
                   </div>
