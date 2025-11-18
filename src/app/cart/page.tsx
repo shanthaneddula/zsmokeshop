@@ -48,7 +48,6 @@ export default function CartPage() {
   }
 
   return (
-  return (
     <main className="min-h-screen bg-white dark:bg-gray-900 pt-[6.7rem]">
       <div className="container-wide py-16">
         <div className="max-w-6xl mx-auto">
@@ -73,9 +72,9 @@ export default function CartPage() {
                   <div className="flex gap-6">
                     {/* Product Image */}
                     <div className="relative w-24 h-24 flex-shrink-0 border border-gray-200 dark:border-gray-700">
-                      {item.product.imageUrl ? (
+                      {item.product.image ? (
                         <Image
-                          src={item.product.imageUrl}
+                          src={item.product.image}
                           alt={item.product.name}
                           fill
                           className="object-cover"
