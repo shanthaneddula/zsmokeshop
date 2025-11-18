@@ -12,7 +12,8 @@ import {
   Menu, 
   X,
   Home,
-  Image
+  Image,
+  ShoppingBag
 } from 'lucide-react';
 
 interface AdminLayoutProps {
@@ -24,6 +25,11 @@ const navigation = [
     name: 'Dashboard',
     href: '/admin',
     icon: LayoutDashboard,
+  },
+  {
+    name: 'Orders',
+    href: '/admin/orders',
+    icon: ShoppingBag,
   },
   {
     name: 'Products',
