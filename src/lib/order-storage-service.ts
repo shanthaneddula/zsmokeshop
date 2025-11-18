@@ -25,13 +25,17 @@ if (process.env.REDIS_URL) {
         const delay = Math.min(times * 50, 2000);
         return delay;
       },
-      lazyConnect: true,
-      enableOfflineQueue: false,
+      lazyConnect: false,
+      enableOfflineQueue: true,
       connectTimeout: 10000,
     });
 
     redisClient.on('error', (err) => {
-      console.error('Redis Client Error:', err);
+      console.error('Redis Client Error (Orders):', err);
+    });
+
+    redisClient.on('connect', () => {
+      console.log('✅ Redis connected for orders');
     });
   } catch (error) {
     console.error('Failed to initialize Redis client:', error);
