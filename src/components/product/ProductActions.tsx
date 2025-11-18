@@ -2,6 +2,7 @@
 
 import { AdminProduct } from '@/types';
 import { useState } from 'react';
+import { useCart } from '@/contexts/CartContext';
 import { HeartIcon, ShareIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 
@@ -10,6 +11,7 @@ interface ProductActionsProps {
 }
 
 export default function ProductActions({ product }: ProductActionsProps) {
+  const { addToCart } = useCart();
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -17,13 +19,17 @@ export default function ProductActions({ product }: ProductActionsProps) {
   const handleAddToCart = async () => {
     setIsAddingToCart(true);
     
-    // Simulate cart addition (replace with actual cart logic)
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Here you would typically dispatch to a cart context or make an API call
-    console.log(`Added ${quantity} x ${product.name} to cart`);
+    try {
+      addToCart(product, quantity);
+      // Show success feedback
+      await new Promise(resolve => setTimeout(resolve, 500));
+    } catch (error) {
+      console.error('Failed to add to cart:', error);
+    }
     
     setIsAddingToCart(false);
+    // Reset quantity after adding
+    setQuantity(1);
   };
 
   const handleWishlist = () => {

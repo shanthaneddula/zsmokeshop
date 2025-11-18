@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useCart } from '@/contexts/CartContext';
 import OptimizedImage from '@/components/ui/OptimizedImage';
 import Link from 'next/link';
 import { ShoppingCart, Heart, Eye } from 'lucide-react';
@@ -13,8 +14,15 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
+  const { addToCart } = useCart();
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [imageError, setImageError] = useState(false);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent link navigation
+    e.stopPropagation();
+    addToCart(product, 1);
+  };
 
 
 
@@ -135,6 +143,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                 )}
               </div>
               <button
+                onClick={handleAddToCart}
                 disabled={!product.inStock}
                 className={`px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
                   product.inStock
@@ -235,6 +244,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
 
         {/* Add to Cart Button */}
         <button
+          onClick={handleAddToCart}
           disabled={!product.inStock}
           className={`w-full py-3 text-sm font-bold uppercase tracking-wide transition-colors ${
             product.inStock
