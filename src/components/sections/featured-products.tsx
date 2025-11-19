@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import OptimizedImage from '@/components/ui/OptimizedImage';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -22,6 +23,7 @@ interface Product {
 }
 
 export default function FeaturedProducts() {
+  const { settings } = useBusinessSettings();
   const carouselRef = useRef<HTMLDivElement>(null);
   const mobileCarouselRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -245,16 +247,18 @@ export default function FeaturedProducts() {
                         <h3 className="font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-wide text-xs line-clamp-2">
                           {product.name}
                         </h3>
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm font-bold text-gray-900 dark:text-white">
-                            ${product.price.toFixed(2)}
-                          </span>
-                          {product.salePrice && product.salePrice < product.price && (
-                            <span className="text-xs text-gray-500 line-through">
-                              ${product.salePrice.toFixed(2)}
+                        {settings?.showPrices !== false && (
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm font-bold text-gray-900 dark:text-white">
+                              ${product.price.toFixed(2)}
                             </span>
-                          )}
-                        </div>
+                            {product.salePrice && product.salePrice < product.price && (
+                              <span className="text-xs text-gray-500 line-through">
+                                ${product.salePrice.toFixed(2)}
+                              </span>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </motion.div>
                   </Link>
@@ -329,23 +333,27 @@ export default function FeaturedProducts() {
                         </h3>
 
                         {/* Price */}
-                        <div className="mb-4">
-                          <div className="flex items-center gap-3">
-                            <span className="text-lg font-bold text-gray-900 dark:text-white">
-                              ${product.price.toFixed(2)}
-                            </span>
-                            {product.salePrice && product.salePrice < product.price && (
-                              <span className="text-sm text-gray-500 line-through font-light">
-                                ${product.salePrice.toFixed(2)}
+                        {settings?.showPrices !== false && (
+                          <div className="mb-4">
+                            <div className="flex items-center gap-3">
+                              <span className="text-lg font-bold text-gray-900 dark:text-white">
+                                ${product.price.toFixed(2)}
                               </span>
-                            )}
+                              {product.salePrice && product.salePrice < product.price && (
+                                <span className="text-sm text-gray-500 line-through font-light">
+                                  ${product.salePrice.toFixed(2)}
+                                </span>
+                              )}
+                            </div>
                           </div>
-                        </div>
+                        )}
 
                         {/* Add to Cart Button */}
-                        <button className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3 px-4 font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors uppercase tracking-wide text-sm border border-gray-900 dark:border-white">
-                          Add to Cart
-                        </button>
+                        {settings?.enableCart !== false && (
+                          <button className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3 px-4 font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors uppercase tracking-wide text-sm border border-gray-900 dark:border-white">
+                            Add to Cart
+                          </button>
+                        )}
                       </div>
                     </motion.div>
                   </Link>

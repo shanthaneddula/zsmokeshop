@@ -71,6 +71,10 @@ interface StoreSettings {
   orderStartNumber: number;
   orderExpirationHours: number;
   
+  // Display Settings
+  enableCart: boolean;
+  showPrices: boolean;
+  
   // Featured Products
   featuredProducts: {
     enabled: boolean;
@@ -140,6 +144,10 @@ export default function SettingsClient() {
     orderStartNumber: 1000,
     orderExpirationHours: 24,
     
+    // Display Settings
+    enableCart: true,
+    showPrices: true,
+    
     // Featured Products
     featuredProducts: {
       enabled: true,
@@ -186,6 +194,7 @@ export default function SettingsClient() {
     { id: 'store', name: 'Store Info', icon: Store },
     { id: 'locations', name: 'Locations', icon: MapPin },
     { id: 'orders', name: 'Orders', icon: Calculator },
+    { id: 'display', name: 'Display', icon: Eye },
     { id: 'featured', name: 'Featured Products', icon: TrendingUp },
     { id: 'compliance', name: 'Compliance', icon: Shield },
     { id: 'notifications', name: 'Notifications', icon: Bell },
@@ -748,6 +757,72 @@ export default function SettingsClient() {
                   />
                   <span>System Alerts</span>
                 </label>
+              </div>
+            </div>
+          )}
+
+          {/* Featured Products Tab */}
+          {activeTab === 'display' && (
+            <div className="space-y-6">
+              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+                Display Settings
+              </h2>
+              
+              <div className="space-y-6">
+                {/* Enable/Disable Cart */}
+                <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700">
+                  <label className="flex items-start">
+                    <input
+                      type="checkbox"
+                      checked={settings.enableCart}
+                      onChange={(e) => updateSettings('enableCart', e.target.checked)}
+                      className="mr-3 mt-1 accent-gray-900 dark:accent-white"
+                    />
+                    <div>
+                      <span className="block font-bold uppercase tracking-wide text-gray-900 dark:text-white">
+                        Enable Shopping Cart
+                      </span>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        Show or hide the &quot;Add to Cart&quot; button on product pages and shop. When disabled, customers can browse products but cannot add them to cart or checkout.
+                      </p>
+                    </div>
+                  </label>
+                </div>
+
+                {/* Show/Hide Prices */}
+                <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700">
+                  <label className="flex items-start">
+                    <input
+                      type="checkbox"
+                      checked={settings.showPrices}
+                      onChange={(e) => updateSettings('showPrices', e.target.checked)}
+                      className="mr-3 mt-1 accent-gray-900 dark:accent-white"
+                    />
+                    <div>
+                      <span className="block font-bold uppercase tracking-wide text-gray-900 dark:text-white">
+                        Show Product Prices
+                      </span>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        Display or hide prices on all products. When disabled, product cards and detail pages will not show pricing information. Useful for catalog browsing mode.
+                      </p>
+                    </div>
+                  </label>
+                </div>
+
+                {/* Info Box */}
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
+                  <div className="flex gap-3">
+                    <AlertTriangle className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <h3 className="font-bold text-blue-900 dark:text-blue-100 uppercase tracking-wide text-sm mb-1">
+                        Display Settings Info
+                      </h3>
+                      <p className="text-sm text-blue-800 dark:text-blue-200">
+                        These settings control what customers see on your website. Changes take effect immediately and apply to all product displays, including shop pages, category pages, and product details.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           )}

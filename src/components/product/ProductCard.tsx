@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useCart } from '@/contexts/CartContext';
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import OptimizedImage from '@/components/ui/OptimizedImage';
 import Link from 'next/link';
 import { ShoppingCart, Heart, Eye } from 'lucide-react';
@@ -15,6 +16,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
   const { addToCart } = useCart();
+  const { settings } = useBusinessSettings();
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -132,34 +134,38 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
 
             {/* Price and Actions */}
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <span className="text-lg font-black text-gray-900 dark:text-white">
-                  ${product.salePrice ? product.salePrice.toFixed(2) : product.price.toFixed(2)}
-                </span>
-                {product.salePrice && (
-                  <span className="text-sm text-gray-500 line-through">
-                    ${product.price.toFixed(2)}
+              {settings?.showPrices !== false && (
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-black text-gray-900 dark:text-white">
+                    ${product.salePrice ? product.salePrice.toFixed(2) : product.price.toFixed(2)}
                   </span>
-                )}
-              </div>
-              <button
-                onClick={handleAddToCart}
-                disabled={!product.inStock}
-                className={`px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
-                  product.inStock
-                    ? 'bg-gray-900 text-white hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500'
-                }`}
-              >
-                {product.inStock ? (
-                  <>
-                    <ShoppingCart className="h-3 w-3 inline mr-1" />
-                    Add to Cart
-                  </>
-                ) : (
-                  'Out of Stock'
-                )}
-              </button>
+                  {product.salePrice && (
+                    <span className="text-sm text-gray-500 line-through">
+                      ${product.price.toFixed(2)}
+                    </span>
+                  )}
+                </div>
+              )}
+              {settings?.enableCart !== false && (
+                <button
+                  onClick={handleAddToCart}
+                  disabled={!product.inStock}
+                  className={`px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
+                    product.inStock
+                      ? 'bg-gray-900 text-white hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200'
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500'
+                  } ${settings?.showPrices === false ? 'ml-auto' : ''}`}
+                >
+                  {product.inStock ? (
+                    <>
+                      <ShoppingCart className="h-3 w-3 inline mr-1" />
+                      Add to Cart
+                    </>
+                  ) : (
+                    'Out of Stock'
+                  )}
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -231,36 +237,40 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
 
 
         {/* Price */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-lg font-black text-gray-900 dark:text-white">
-            ${product.salePrice ? product.salePrice.toFixed(2) : product.price.toFixed(2)}
-          </span>
-          {product.salePrice && (
-            <span className="text-sm text-gray-500 line-through">
-              ${product.price.toFixed(2)}
+        {settings?.showPrices !== false && (
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-lg font-black text-gray-900 dark:text-white">
+              ${product.salePrice ? product.salePrice.toFixed(2) : product.price.toFixed(2)}
             </span>
-          )}
-        </div>
+            {product.salePrice && (
+              <span className="text-sm text-gray-500 line-through">
+                ${product.price.toFixed(2)}
+              </span>
+            )}
+          </div>
+        )}
 
         {/* Add to Cart Button */}
-        <button
-          onClick={handleAddToCart}
-          disabled={!product.inStock}
-          className={`w-full py-3 text-sm font-bold uppercase tracking-wide transition-colors ${
-            product.inStock
-              ? 'bg-gray-900 text-white hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200'
-              : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500'
-          }`}
-        >
-          {product.inStock ? (
-            <>
-              <ShoppingCart className="h-4 w-4 inline mr-2" />
-              Add to Cart
-            </>
-          ) : (
-            'Out of Stock'
-          )}
-        </button>
+        {settings?.enableCart !== false && (
+          <button
+            onClick={handleAddToCart}
+            disabled={!product.inStock}
+            className={`w-full py-3 text-sm font-bold uppercase tracking-wide transition-colors ${
+              product.inStock
+                ? 'bg-gray-900 text-white hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200'
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500'
+            }`}
+          >
+            {product.inStock ? (
+              <>
+                <ShoppingCart className="h-4 w-4 inline mr-2" />
+                Add to Cart
+              </>
+            ) : (
+              'Out of Stock'
+            )}
+          </button>
+        )}
       </div>
       </Link>
     </motion.div>

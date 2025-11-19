@@ -3,6 +3,7 @@
 import { AdminProduct } from '@/types';
 import { useState } from 'react';
 import { useCart } from '@/contexts/CartContext';
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import { HeartIcon, ShareIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 
@@ -12,6 +13,7 @@ interface ProductActionsProps {
 
 export default function ProductActions({ product }: ProductActionsProps) {
   const { addToCart } = useCart();
+  const { settings } = useBusinessSettings();
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -98,28 +100,30 @@ export default function ProductActions({ product }: ProductActionsProps) {
       {/* Action Buttons */}
       <div className="space-y-3">
         {/* Add to Cart */}
-        <button
-          onClick={handleAddToCart}
-          disabled={!product.inStock || isAddingToCart}
-          className={`
-            w-full py-4 px-6 font-black uppercase tracking-wide text-sm
-            transition-colors duration-200 flex items-center justify-center space-x-2
-            ${product.inStock 
-              ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100' 
-              : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-            }
-          `}
-        >
-          <ShoppingCartIcon className="w-5 h-5" />
-          <span>
-            {isAddingToCart 
-              ? 'Adding...' 
-              : product.inStock 
-              ? 'Add to Cart' 
-              : 'Out of Stock'
-            }
-          </span>
-        </button>
+        {settings?.enableCart !== false && (
+          <button
+            onClick={handleAddToCart}
+            disabled={!product.inStock || isAddingToCart}
+            className={`
+              w-full py-4 px-6 font-black uppercase tracking-wide text-sm
+              transition-colors duration-200 flex items-center justify-center space-x-2
+              ${product.inStock 
+                ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100' 
+                : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+              }
+            `}
+          >
+            <ShoppingCartIcon className="w-5 h-5" />
+            <span>
+              {isAddingToCart 
+                ? 'Adding...' 
+                : product.inStock 
+                ? 'Add to Cart' 
+                : 'Out of Stock'
+              }
+            </span>
+          </button>
+        )}
 
         {/* Secondary Actions */}
         <div className="grid grid-cols-2 gap-3">
