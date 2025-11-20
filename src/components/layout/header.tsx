@@ -7,9 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, User, ShoppingCart, Sun, Moon, Search, ChevronRight } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useBanner } from "@/contexts/BannerContext";
+import { useCart } from "@/contexts/CartContext";
 import { Category, Product } from "@/types";
 
 export default function Header() {
+  const { itemCount } = useCart();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
@@ -274,9 +276,11 @@ export default function Header() {
             aria-label="Shopping cart"
           >
             <ShoppingCart className="h-4 w-4" />
-            <span className="absolute -right-0 -top-0 flex h-4 w-4 items-center justify-center rounded-full bg-gray-900 dark:bg-white text-xs text-white dark:text-gray-900 font-bold">
-              0
-            </span>
+            {itemCount > 0 && (
+              <span className="absolute -right-0 -top-0 flex h-4 w-4 items-center justify-center rounded-full bg-gray-900 dark:bg-white text-xs text-white dark:text-gray-900 font-bold">
+                {itemCount}
+              </span>
+            )}
           </Link>
 
           {/* Mobile menu button */}
@@ -491,7 +495,7 @@ export default function Header() {
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       <ShoppingCart className="h-5 w-5" />
-                      <span>View Cart (0)</span>
+                      <span>View Cart ({itemCount})</span>
                     </Link>
                   </div>
 

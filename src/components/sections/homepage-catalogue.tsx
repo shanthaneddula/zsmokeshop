@@ -1,9 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Link from 'next/link';
 import { Category, Product } from '@/types';
 import ProductCard from '@/components/product/ProductCard';
 
@@ -13,8 +11,6 @@ export default function HomepageCatalogue() {
   const [activeCategory, setActiveCategory] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(true);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const mobileCarouselRef = useRef<HTMLDivElement>(null);
   
   const selectedCategory = categories.find(cat => cat.id === activeCategory);
   const categoryProducts = products.filter(product => product.category === selectedCategory?.slug);
@@ -74,36 +70,11 @@ export default function HomepageCatalogue() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll carousel left
-  const scrollLeft = useCallback(() => {
-    if (carouselRef.current && categoryProducts.length > 0) {
-      const cardWidth = 220;
-      const cardGap = 16;
-      const scrollAmount = cardWidth + cardGap;
-      carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    }
-  }, [categoryProducts.length]);
-
-  // Scroll carousel right
-  const scrollRight = useCallback(() => {
-    if (carouselRef.current && categoryProducts.length > 0) {
-      const cardWidth = 220;
-      const cardGap = 16;
-      const scrollAmount = cardWidth + cardGap;
-      carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  }, [categoryProducts.length]);
-
   return (
-    <section id="homepage-catalogue" className="min-h-[90vh] flex flex-col justify-center py-8 md:py-12 bg-gray-50 dark:bg-gray-900">
+    <section id="homepage-catalogue" className="relative min-h-[90vh] flex flex-col justify-center py-8 md:py-12 bg-gray-50 dark:bg-gray-900 z-10">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8"
-        >
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
             Product Catalogue
           </h2>
@@ -111,35 +82,22 @@ export default function HomepageCatalogue() {
           <p className="text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto uppercase tracking-wide">
             Explore our premium selection across all categories
           </p>
-        </motion.div>
+        </div>
 
         {/* Loading State */}
         {loading ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
-          >
+          <div className="text-center py-16">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white"></div>
             <p className="mt-4 text-gray-600 dark:text-gray-400 uppercase tracking-wide">Loading products...</p>
-          </motion.div>
+          </div>
         ) : categories.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
-          >
+          <div className="text-center py-16">
             <p className="text-gray-600 dark:text-gray-400 uppercase tracking-wide">No categories available</p>
-          </motion.div>
+          </div>
         ) : (
           <>
             {/* Category Tabs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8"
-            >
+            <div className="mb-8">
               <div className="overflow-x-auto scrollbar-hide">
                 <div className="flex space-x-6 md:space-x-8 min-w-max px-4 md:px-0 md:justify-center">
                   {categories.map((category) => (
@@ -164,90 +122,38 @@ export default function HomepageCatalogue() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
         
         {/* Category Content */}
-        <motion.div
+        <div
           key={activeCategory}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
           className="mt-12"
         >
-          {/* Products Carousel */}
+          {/* Products Grid */}
           {categoryProducts.length > 0 ? (
             <div className="relative">
-              {/* Mobile Carousel */}
-              <div className="block md:hidden">
-                <motion.div 
-                  ref={mobileCarouselRef}
-                  className="flex gap-3 overflow-x-auto pb-4 px-4 snap-x snap-mandatory scrollbar-hide scroll-smooth"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  {categoryProducts.map((product) => (
-                    <div key={product.id} className="flex-shrink-0 w-[160px] snap-center">
+              {/* Horizontal Scrollable Carousel */}
+              <div className="overflow-x-auto scrollbar-hide">
+                <div className="flex gap-4 pb-4">
+                  {categoryProducts.slice(0, 12).map((product) => (
+                    <div key={product.id} className="flex-none w-[180px] md:w-[220px]">
                       <ProductCard product={product} viewMode="grid" />
                     </div>
                   ))}
-                </motion.div>
+                </div>
               </div>
-
-              {/* Desktop Carousel */}
-              <div className="hidden md:block relative group">
-                {/* Left Arrow - Only show if scrollable */}
-                {categoryProducts.length > 4 && (
-                  <button
-                    onClick={scrollLeft}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200 border border-gray-200 dark:border-gray-700"
-                    aria-label="Scroll left"
+              
+              {/* View All Button */}
+              {categoryProducts.length > 0 && (
+                <div className="text-center mt-6">
+                  <a 
+                    href={`/shop?category=${selectedCategory?.slug}`}
+                    className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-3 font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
                   >
-                    <ChevronLeft className="w-6 h-6 text-gray-900 dark:text-white" />
-                  </button>
-                )}
-
-                {/* Carousel Container */}
-                <motion.div
-                  ref={carouselRef}
-                  className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  {categoryProducts.map((product) => (
-                    <div key={product.id} className="flex-shrink-0 w-[220px]">
-                      <ProductCard product={product} viewMode="grid" />
-                    </div>
-                  ))}
-                </motion.div>
-
-                {/* Right Arrow - Only show if scrollable */}
-                {categoryProducts.length > 4 && (
-                  <button
-                    onClick={scrollRight}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200 border border-gray-200 dark:border-gray-700"
-                    aria-label="Scroll right"
-                  >
-                    <ChevronRight className="w-6 h-6 text-gray-900 dark:text-white" />
-                  </button>
-                )}
-              </div>
-
-              {/* View All Products Button */}
-              <motion.div
-                className="text-center mt-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <Link
-                  href={`/shop?category=${selectedCategory?.slug || ''}`}
-                  className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-3 font-bold uppercase tracking-wider hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
-                >
-                  View All Products
-                </Link>
-              </motion.div>
+                    View All {selectedCategory?.name}
+                  </a>
+                </div>
+              )}
             </div>
           ) : (
             /* No products message */
@@ -264,16 +170,16 @@ export default function HomepageCatalogue() {
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   Products coming soon
                 </p>
-                <Link 
+                <a 
                   href="/shop" 
                   className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-2 font-bold uppercase tracking-wider hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
                 >
                   View All Products
-                </Link>
+                </a>
               </div>
             </div>
           )}
-        </motion.div>
+        </div>
             </>
         )}
       </div>

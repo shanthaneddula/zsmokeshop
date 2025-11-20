@@ -57,6 +57,9 @@ interface BusinessSettings {
   orderPrefix?: string;
   orderStartNumber?: number;
   orderExpirationHours?: number;
+  // Cart and Pricing Display Settings
+  enableCart?: boolean;
+  showPrices?: boolean;
 }
 
 export class SettingsService {
@@ -203,7 +206,9 @@ export class SettingsService {
         enableYelpReviews: true,
         enableAppleReviews: true,
         autoRefreshInterval: 24
-      }
+      },
+      enableCart: true,
+      showPrices: true
     };
   }
 }

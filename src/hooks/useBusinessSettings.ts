@@ -29,6 +29,8 @@ interface BusinessSettings {
     enableAppleReviews: boolean;
     autoRefreshInterval: number;
   };
+  enableCart?: boolean;
+  showPrices?: boolean;
 }
 
 export function useBusinessSettings() {
