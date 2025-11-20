@@ -71,15 +71,10 @@ export default function HomepageCatalogue() {
   }, []);
 
   return (
-    <section id="homepage-catalogue" className="min-h-[90vh] flex flex-col justify-center py-8 md:py-12 bg-gray-50 dark:bg-gray-900">
+    <section id="homepage-catalogue" className="relative min-h-[90vh] flex flex-col justify-center py-8 md:py-12 bg-gray-50 dark:bg-gray-900 z-10">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8"
-        >
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
             Product Catalogue
           </h2>
@@ -87,35 +82,22 @@ export default function HomepageCatalogue() {
           <p className="text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto uppercase tracking-wide">
             Explore our premium selection across all categories
           </p>
-        </motion.div>
+        </div>
 
         {/* Loading State */}
         {loading ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
-          >
+          <div className="text-center py-16">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-white"></div>
             <p className="mt-4 text-gray-600 dark:text-gray-400 uppercase tracking-wide">Loading products...</p>
-          </motion.div>
+          </div>
         ) : categories.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-16"
-          >
+          <div className="text-center py-16">
             <p className="text-gray-600 dark:text-gray-400 uppercase tracking-wide">No categories available</p>
-          </motion.div>
+          </div>
         ) : (
           <>
             {/* Category Tabs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8"
-            >
+            <div className="mb-8">
               <div className="overflow-x-auto scrollbar-hide">
                 <div className="flex space-x-6 md:space-x-8 min-w-max px-4 md:px-0 md:justify-center">
                   {categories.map((category) => (
@@ -140,29 +122,38 @@ export default function HomepageCatalogue() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
         
         {/* Category Content */}
-        <motion.div
+        <div
           key={activeCategory}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
           className="mt-12"
         >
           {/* Products Grid */}
           {categoryProducts.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {categoryProducts.map((product, index) => (
-                <motion.div
-                  key={product.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <ProductCard product={product} viewMode="grid" />
-                </motion.div>
-              ))}
+            <div className="relative">
+              {/* Horizontal Scrollable Carousel */}
+              <div className="overflow-x-auto scrollbar-hide">
+                <div className="flex gap-4 pb-4">
+                  {categoryProducts.slice(0, 12).map((product) => (
+                    <div key={product.id} className="flex-none w-[180px] md:w-[220px]">
+                      <ProductCard product={product} viewMode="grid" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              {/* View All Button */}
+              {categoryProducts.length > 0 && (
+                <div className="text-center mt-6">
+                  <a 
+                    href={`/shop?category=${selectedCategory?.slug}`}
+                    className="inline-block bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-3 font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                  >
+                    View All {selectedCategory?.name}
+                  </a>
+                </div>
+              )}
             </div>
           ) : (
             /* No products message */
@@ -188,7 +179,7 @@ export default function HomepageCatalogue() {
               </div>
             </div>
           )}
-        </motion.div>
+        </div>
             </>
         )}
       </div>
