@@ -107,7 +107,7 @@ export default function SettingsClient() {
     // Store Information
     storeName: 'Z Smoke Shop',
     storeDescription: 'Premium smoke shop serving Austin, Texas with quality products and exceptional service.',
-    businessPhone: '(512) 555-0123',
+    businessPhone: '(512) 766-3707',
     businessEmail: 'info@zsmokeshop.com',
     
     // Store Locations
@@ -115,9 +115,9 @@ export default function SettingsClient() {
       {
         id: '1',
         name: 'Z SMOKE SHOP',
-        address: '5318 Cameron Rd, Austin, TX 78723',
-        phone: '(512) 555-0123',
-        hours: 'Mon-Thu, Sun: 10:00 AM - 11:00 PM | Fri-Sat: 10:00 AM - 12:00 AM',
+        address: '719 W William Cannon Dr #105, Austin, TX 78745',
+        phone: '(512) 766-3707',
+        hours: 'Mon-Thu, Sun: 10:00 AM - 11:00 PM\nFri-Sat: 10:00 AM - 12:00 AM',
         isActive: true
       },
       {
@@ -125,7 +125,7 @@ export default function SettingsClient() {
         name: '5 STAR SMOKE SHOP & GIFTS',
         address: '5318 Cameron Rd, Austin, TX 78723',
         phone: '(661) 371-1413',
-        hours: 'Mon-Thu, Sun: 10:00 AM - 11:00 PM | Fri-Sat: 10:00 AM - 12:00 AM',
+        hours: 'Mon-Thu, Sun: 10:00 AM - 11:00 PM\nFri-Sat: 10:00 AM - 12:00 AM',
         isActive: true
       }
     ],
