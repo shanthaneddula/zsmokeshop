@@ -65,146 +65,125 @@ export default function HelpAndReviews() {
           </div>
         </div>
 
-        {/* Store Locations Section */}
-        <div className="space-y-8">
+        {/* Visit Our Store & See Reviews Section */}
+        <div className="space-y-12">
+          {/* Header */}
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 tracking-wide uppercase">
-              Visit Our Stores
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4 tracking-tight uppercase">
+              Visit Our Store & See Reviews
             </h2>
-            <div className="w-12 h-0.5 bg-gray-900 dark:bg-white mx-auto mb-6"></div>
-            <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-              Two convenient locations in Austin to serve you better
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Find us on Google Maps and read authentic customer reviews
             </p>
           </div>
 
-          {/* Two Locations Side by Side */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-            {/* Location 1: William Cannon */}
-            <div className="space-y-4">
-              {/* Store Info */}
-              <div className="bg-gray-50 dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-600">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+          {/* Two Maps Side by Side */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-7xl mx-auto">
+            {/* Location 1: William Cannon - Map */}
+            <div className="relative w-full bg-gray-100 dark:bg-gray-800" style={{ paddingBottom: '75%' }}>
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.4140832592784!2d-97.7885041!3d30.1967269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b4d6715b70a87%3A0x19df64376b6b2a4c!2sZ%20smoke%20shop!5e0!3m2!1sen!2sus!4v1756019395461!5m2!1sen!2sus&maptype=roadmap&zoom=15"
+                className="absolute top-0 left-0 w-full h-full border-0"
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Z Smoke Shop - William Cannon Location"
+              />
+            </div>
+
+            {/* Location 2: Cameron Rd - Map */}
+            <div className="relative w-full bg-gray-100 dark:bg-gray-800" style={{ paddingBottom: '75%' }}>
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3443.8632486916844!2d-97.6958!3d30.3037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644ca1a3c90d0c1%3A0x7c4e8c3f5b1a2e3d!2s5318%20Cameron%20Rd%2C%20Austin%2C%20TX%2078723!5e0!3m2!1sen!2sus!4v1756019395462!5m2!1sen!2sus&maptype=roadmap&zoom=15"
+                className="absolute top-0 left-0 w-full h-full border-0"
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="5 Star Smoke Shop - Cameron Rd Location"
+              />
+            </div>
+          </div>
+
+          {/* Store Information Below Maps - Adidas Style */}
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-7xl mx-auto">
+            {/* Location 1: William Cannon - Info */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3 tracking-tight uppercase">
                   Z SMOKE SHOP
                 </h3>
-                <div className="space-y-2 text-gray-700 dark:text-gray-200">
-                  <p>
-                    <strong>Address:</strong><br />
-                    719 W William Cannon Dr #105<br />
-                    Austin, TX 78745
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> (512) 766-3707
-                  </p>
-                  <div>
-                    <strong>Hours:</strong>
-                    <div className="mt-1 text-sm">
-                      Mon-Thu, Sun: 10:00 AM - 11:00 PM<br />
-                      Fri-Sat: 10:00 AM - 12:00 AM
-                    </div>
-                  </div>
+                <div className="space-y-1 text-gray-700 dark:text-gray-300">
+                  <p className="text-base font-medium">719 W William Cannon Dr #105</p>
+                  <p className="text-base font-medium">Austin, TX 78745</p>
+                  <p className="text-base font-medium mt-2">(512) 766-3707</p>
                 </div>
               </div>
               
-              {/* Map */}
-              <div className="relative w-full" style={{ paddingBottom: '75%' }}>
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.4140832592784!2d-97.7885041!3d30.1967269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b4d6715b70a87%3A0x19df64376b6b2a4c!2sZ%20smoke%20shop!5e0!3m2!1sen!2sus!4v1756019395461!5m2!1sen!2sus&maptype=roadmap&zoom=15"
-                  className="absolute top-0 left-0 w-full h-full border-0"
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Z Smoke Shop - William Cannon Location"
-                />
+              <div>
+                <p className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">Hours</p>
+                <div className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+                  <p>Mon-Thu, Sun: 10:00 AM - 11:00 PM</p>
+                  <p>Fri-Sat: 10:00 AM - 12:00 AM</p>
+                </div>
               </div>
 
-              {/* Buttons */}
-              <div className="flex gap-3">
+              <div className="flex gap-3 pt-2">
                 <a
                   href="https://www.google.com/maps/place/Z+smoke+shop/@30.1967269,-97.7885041,17z/data=!4m8!3m7!1s0x865b4d6715b70a87:0x19df64376b6b2a4c!8m2!3d30.1967269!4d-97.7885041!9m1!1b1!16s%2Fg%2F11x13gx5kq?entry=ttu&g_ep=EgoyMDI1MDgxOS4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-blue-700"
+                  className="flex-1 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 text-sm font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
                 >
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                  </svg>
-                  Directions
+                  Get Directions
                 </a>
                 <a
                   href="https://www.yelp.com/biz/z-smoke-shop-austin-2"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-red-600 text-white px-4 py-2 text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-red-700"
+                  className="flex-1 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white px-6 py-3 text-sm font-bold uppercase tracking-wide hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
                 >
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                  </svg>
-                  Reviews
+                  Read Reviews
                 </a>
               </div>
             </div>
 
-            {/* Location 2: Cameron Rd */}
-            <div className="space-y-4">
-              {/* Store Info */}
-              <div className="bg-gray-50 dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-600">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 uppercase tracking-wide">
+            {/* Location 2: Cameron Rd - Info */}
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3 tracking-tight uppercase">
                   5 STAR SMOKE SHOP & GIFTS
                 </h3>
-                <div className="space-y-2 text-gray-700 dark:text-gray-200">
-                  <p>
-                    <strong>Address:</strong><br />
-                    5318 Cameron Rd<br />
-                    Austin, TX 78723
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> (661) 371-1413
-                  </p>
-                  <div>
-                    <strong>Hours:</strong>
-                    <div className="mt-1 text-sm">
-                      Mon-Thu, Sun: 10:00 AM - 11:00 PM<br />
-                      Fri-Sat: 10:00 AM - 12:00 AM
-                    </div>
-                  </div>
+                <div className="space-y-1 text-gray-700 dark:text-gray-300">
+                  <p className="text-base font-medium">5318 Cameron Rd</p>
+                  <p className="text-base font-medium">Austin, TX 78723</p>
+                  <p className="text-base font-medium mt-2">(661) 371-1413</p>
                 </div>
               </div>
               
-              {/* Map */}
-              <div className="relative w-full" style={{ paddingBottom: '75%' }}>
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3443.8632486916844!2d-97.6958!3d30.3037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644ca1a3c90d0c1%3A0x7c4e8c3f5b1a2e3d!2s5318%20Cameron%20Rd%2C%20Austin%2C%20TX%2078723!5e0!3m2!1sen!2sus!4v1756019395462!5m2!1sen!2sus&maptype=roadmap&zoom=15"
-                  className="absolute top-0 left-0 w-full h-full border-0"
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="5 Star Smoke Shop - Cameron Rd Location"
-                />
+              <div>
+                <p className="text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">Hours</p>
+                <div className="text-sm text-gray-700 dark:text-gray-300 space-y-0.5">
+                  <p>Mon-Thu, Sun: 10:00 AM - 11:00 PM</p>
+                  <p>Fri-Sat: 10:00 AM - 12:00 AM</p>
+                </div>
               </div>
 
-              {/* Buttons */}
-              <div className="flex gap-3">
+              <div className="flex gap-3 pt-2">
                 <a
                   href="https://www.google.com/maps/place/5318+Cameron+Rd,+Austin,+TX+78723/@30.3037,-97.6958,17z"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-blue-700"
+                  className="flex-1 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 text-sm font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
                 >
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                  </svg>
-                  Directions
+                  Get Directions
                 </a>
                 <a
                   href="https://www.yelp.com/search?find_desc=5+star+smoke+shop&find_loc=5318+Cameron+Rd%2C+Austin%2C+TX+78723"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-red-600 text-white px-4 py-2 text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-red-700"
+                  className="flex-1 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white px-6 py-3 text-sm font-bold uppercase tracking-wide hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
                 >
-                  <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
-                  </svg>
-                  Reviews
+                  Read Reviews
                 </a>
               </div>
             </div>
