@@ -41,10 +41,14 @@ export function useBusinessSettings() {
   useEffect(() => {
     async function fetchSettings() {
       try {
-        const response = await fetch('/api/admin/settings', {
+        // Add timestamp to prevent caching
+        const timestamp = Date.now();
+        const response = await fetch(`/api/admin/settings?_t=${timestamp}`, {
           cache: 'no-store',
           headers: {
-            'Cache-Control': 'no-cache',
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0',
           },
         });
         if (!response.ok) {
@@ -87,6 +91,28 @@ export function useBusinessSettings() {
     }
 
     fetchSettings();
+
+    // Listen for settings updates from admin panel
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'settings-updated') {
+        console.log('🔄 Settings updated, refreshing...');
+        fetchSettings();
+      }
+    };
+
+    // Also listen for local storage changes in the same window
+    const handleLocalUpdate = () => {
+      console.log('🔄 Local settings update detected, refreshing...');
+      fetchSettings();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('settings-refresh', handleLocalUpdate as EventListener);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('settings-refresh', handleLocalUpdate as EventListener);
+    };
   }, []);
 
   // Helper function to format phone number

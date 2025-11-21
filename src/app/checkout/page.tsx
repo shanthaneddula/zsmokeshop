@@ -18,6 +18,7 @@ export default function CheckoutPage() {
     email: '',
     storeLocation: '719 W William Cannon Dr #105, Austin, TX 78745',
     replacementPreference: 'call',
+    notificationMethod: 'email' as 'email' | 'sms',
     smsConsent: false,
   });
 
@@ -67,7 +68,8 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           customerName: formData.customerName,
           customerPhone: formData.phoneNumber,
-          email: formData.email,
+          customerEmail: formData.email,
+          notificationMethod: formData.notificationMethod,
           storeLocation: formData.storeLocation === '719 W William Cannon Dr #105, Austin, TX 78745' ? 'william-cannon' : 'cameron-rd',
           items: items.map(item => ({
             productId: item.product.id,
@@ -145,12 +147,12 @@ export default function CheckoutPage() {
 
                     <div>
                       <label htmlFor="phoneNumber" className="block text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">
-                        Phone Number *
+                        Phone Number {formData.notificationMethod === 'sms' ? '*' : '(Optional)'}
                       </label>
                       <input
                         type="tel"
                         id="phoneNumber"
-                        required
+                        required={formData.notificationMethod === 'sms'}
                         value={formData.phoneNumber}
                         onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                         className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:border-gray-900 dark:focus:border-white outline-none transition-colors"
@@ -160,17 +162,72 @@ export default function CheckoutPage() {
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">
-                        Email (Optional)
+                        Email {formData.notificationMethod === 'email' ? '*' : '(Optional)'}
                       </label>
                       <input
                         type="email"
                         id="email"
+                        required={formData.notificationMethod === 'email'}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full px-4 py-3 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:border-gray-900 dark:focus:border-white outline-none transition-colors"
                         placeholder="john@example.com"
                       />
                     </div>
+                  </div>
+                </div>
+
+                {/* Notification Method */}
+                <div className="bg-white dark:bg-gray-800 border-2 border-gray-900 dark:border-white p-6">
+                  <h2 className="text-2xl font-black text-gray-900 dark:text-white uppercase mb-6 flex items-center gap-2">
+                    <Mail className="h-6 w-6" />
+                    Order Updates
+                  </h2>
+
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    How would you like to receive order status updates?
+                  </p>
+
+                  <div className="space-y-3">
+                    <label className="flex items-start gap-3 p-4 border-2 border-gray-900 dark:border-white cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                      <input
+                        type="radio"
+                        name="notificationMethod"
+                        value="email"
+                        checked={formData.notificationMethod === 'email'}
+                        onChange={(e) => setFormData({ ...formData, notificationMethod: e.target.value as 'email' | 'sms' })}
+                        className="mt-1 accent-gray-900 dark:accent-white"
+                      />
+                      <div className="flex-1">
+                        <p className="font-bold text-gray-900 dark:text-white uppercase flex items-center gap-2">
+                          <Mail className="h-5 w-5" />
+                          Email Notifications
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          Get detailed order updates via email (Recommended)
+                        </p>
+                      </div>
+                    </label>
+
+                    <label className="flex items-start gap-3 p-4 border-2 border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                      <input
+                        type="radio"
+                        name="notificationMethod"
+                        value="sms"
+                        checked={formData.notificationMethod === 'sms'}
+                        onChange={(e) => setFormData({ ...formData, notificationMethod: e.target.value as 'email' | 'sms' })}
+                        className="mt-1 accent-gray-900 dark:accent-white"
+                      />
+                      <div className="flex-1">
+                        <p className="font-bold text-gray-900 dark:text-white uppercase flex items-center gap-2">
+                          <Phone className="h-5 w-5" />
+                          SMS Text Messages
+                        </p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          Receive quick text message updates
+                        </p>
+                      </div>
+                    </label>
                   </div>
                 </div>
 
@@ -261,31 +318,33 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                {/* SMS Consent */}
-                <div className="bg-white dark:bg-gray-800 border-2 border-gray-900 dark:border-white p-6">
-                  <label className="flex items-start gap-3 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      required
-                      checked={formData.smsConsent}
-                      onChange={(e) => setFormData({ ...formData, smsConsent: e.target.checked })}
-                      className="mt-1 accent-gray-900 dark:accent-white"
-                    />
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      <p className="mb-2">
-                        <span className="font-bold text-gray-900 dark:text-white">I consent to receive SMS notifications</span> about my order status, including order confirmation, preparation updates, and pickup reminders. *
-                      </p>
-                      <p className="text-xs">
-                        Message and data rates may apply. You can opt out at any time by replying STOP. 
-                        View our{' '}
-                        <a href="/sms-terms.html" target="_blank" className="underline hover:text-gray-900 dark:hover:text-white">
-                          SMS Terms
-                        </a>
-                        .
-                      </p>
-                    </div>
-                  </label>
-                </div>
+                {/* SMS Consent - Only show if SMS is selected */}
+                {formData.notificationMethod === 'sms' && (
+                  <div className="bg-white dark:bg-gray-800 border-2 border-gray-900 dark:border-white p-6">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={formData.smsConsent}
+                        onChange={(e) => setFormData({ ...formData, smsConsent: e.target.checked })}
+                        className="mt-1 accent-gray-900 dark:accent-white"
+                      />
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="mb-2">
+                          <span className="font-bold text-gray-900 dark:text-white">I consent to receive SMS notifications</span> about my order status, including order confirmation, preparation updates, and pickup reminders. *
+                        </p>
+                        <p className="text-xs">
+                          Message and data rates may apply. You can opt out at any time by replying STOP. 
+                          View our{' '}
+                          <a href="/sms-terms.html" target="_blank" className="underline hover:text-gray-900 dark:hover:text-white">
+                            SMS Terms
+                          </a>
+                          .
+                        </p>
+                      </div>
+                    </label>
+                  </div>
+                )}
 
                 {error && (
                   <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-600 p-4">
