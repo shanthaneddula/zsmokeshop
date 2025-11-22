@@ -507,3 +507,112 @@ export function isValidEmail(email: string): boolean {
 export function getStoreLocationInfo(location: StoreLocation) {
   return STORE_LOCATIONS[location];
 }
+
+/**
+ * Send order status update email (generic function for all status updates)
+ */
+export async function sendOrderStatusUpdateEmail(
+  customerEmail: string,
+  customerName: string,
+  orderNumber: string,
+  status: 'ready' | 'cancelled' | 'no-show' | 'confirmed',
+  subject: string,
+  message: string,
+  pickupDeadline?: Date
+): Promise<Communication> {
+  const statusColors = {
+    ready: '#059669', // green
+    cancelled: '#dc2626', // red
+    'no-show': '#dc2626', // red
+    confirmed: '#2563eb', // blue
+  };
+
+  const statusLabels = {
+    ready: 'Ready for Pickup',
+    cancelled: 'Cancelled',
+    'no-show': 'Pickup Expired',
+    confirmed: 'Confirmed',
+  };
+
+  const html = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>${subject}</title>
+      </head>
+      <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f3f4f6;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: white;">
+          <!-- Header -->
+          <div style="background: linear-gradient(135deg, #1f2937 0%, #111827 100%); color: white; padding: 40px 30px; text-align: center;">
+            <h1 style="margin: 0; font-size: 32px; font-weight: bold; letter-spacing: 2px;">Z SMOKE SHOP</h1>
+            <p style="margin: 10px 0 0; font-size: 14px; opacity: 0.8; letter-spacing: 1px;">AUSTIN, TEXAS</p>
+          </div>
+
+          <!-- Status Banner -->
+          <div style="background-color: ${statusColors[status]}; color: white; padding: 20px 30px; text-align: center;">
+            <h2 style="margin: 0; font-size: 24px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+              ${statusLabels[status]}
+            </h2>
+            <p style="margin: 10px 0 0; font-size: 16px; opacity: 0.9;">Order #${orderNumber}</p>
+          </div>
+
+          <!-- Content -->
+          <div style="padding: 40px 30px;">
+            <p style="margin: 0 0 20px; font-size: 18px; color: #1f2937;">Hello ${customerName},</p>
+            
+            <div style="background-color: #f9fafb; border-left: 4px solid ${statusColors[status]}; padding: 20px; margin: 20px 0;">
+              <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #374151;">${message}</p>
+            </div>
+
+            ${pickupDeadline ? `
+              <div style="background-color: #fef3c7; border: 1px solid #f59e0b; border-radius: 6px; padding: 15px; margin: 20px 0;">
+                <p style="margin: 0; font-size: 14px; color: #92400e;">
+                  <strong>⏰ Pickup Deadline:</strong> ${formatDate(pickupDeadline)} at ${formatTime(pickupDeadline)}
+                </p>
+              </div>
+            ` : ''}
+
+            <div style="margin-top: 30px;">
+              <h3 style="margin: 0 0 15px; font-size: 18px; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">Order Details</h3>
+              <p style="margin: 5px 0; color: #6b7280;"><strong>Order Number:</strong> ${orderNumber}</p>
+              <p style="margin: 5px 0; color: #6b7280;"><strong>Status:</strong> ${statusLabels[status]}</p>
+            </div>
+
+            <!-- Store Locations -->
+            <div style="margin-top: 40px; padding: 20px; background-color: #f9fafb; border-radius: 6px;">
+              <h3 style="margin: 0 0 20px; font-size: 18px; color: #1f2937;">Our Locations</h3>
+              
+              <div style="margin-bottom: 20px;">
+                <h4 style="margin: 0 0 5px; font-size: 16px; color: #1f2937;">William Cannon</h4>
+                <p style="margin: 0; font-size: 14px; color: #6b7280;">719 W William Cannon Dr #105<br>Austin, TX 78745</p>
+              </div>
+              
+              <div>
+                <h4 style="margin: 0 0 5px; font-size: 16px; color: #1f2937;">Cameron Rd</h4>
+                <p style="margin: 0; font-size: 14px; color: #6b7280;">5318 Cameron Rd<br>Austin, TX 78723</p>
+              </div>
+            </div>
+
+            <!-- Contact -->
+            <div style="margin-top: 30px; text-align: center; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+              <p style="margin: 0; font-size: 14px; color: #6b7280;">
+                Questions? Contact us or visit our website for more information.
+              </p>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div style="background-color: #1f2937; color: white; padding: 20px 30px; text-align: center;">
+            <p style="margin: 0; font-size: 12px; opacity: 0.7;">
+              © ${new Date().getFullYear()} Z SMOKE SHOP. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </body>
+    </html>
+  `;
+
+  return await sendEmail(customerEmail, subject, html);
+}

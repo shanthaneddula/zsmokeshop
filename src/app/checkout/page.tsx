@@ -87,7 +87,16 @@ export default function CheckoutPage() {
 
       // Clear cart and redirect to tracking page
       clearCart();
-      router.push(`/orders/track?orderId=${data.orderId}`);
+      
+      // Build tracking URL with contact info
+      const contactParam = formData.notificationMethod === 'sms' && formData.phoneNumber
+        ? `phone=${encodeURIComponent(formData.phoneNumber)}`
+        : formData.email 
+          ? `email=${encodeURIComponent(formData.email)}`
+          : '';
+      
+      const trackingUrl = `/orders/track?orderId=${data.orderId}${contactParam ? '&' + contactParam : ''}`;
+      router.push(trackingUrl);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
       setIsSubmitting(false);

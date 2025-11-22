@@ -1,17 +1,61 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Package, Phone, Search, CheckCircle, Clock, XCircle, AlertCircle, MapPin, ShoppingBag } from 'lucide-react';
 import { PickupOrder, OrderStatus } from '@/types/orders';
 import Image from 'next/image';
 
-export default function OrderTrackingPage() {
+function OrderTrackingContent() {
+  const searchParams = useSearchParams();
   const [orderNumber, setOrderNumber] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [order, setOrder] = useState<PickupOrder | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [searched, setSearched] = useState(false);
+  const [autoLoaded, setAutoLoaded] = useState(false);
+
+  // Auto-load order if coming from checkout
+  useEffect(() => {
+    const orderId = searchParams.get('orderId');
+    const phone = searchParams.get('phone');
+    const email = searchParams.get('email');
+    
+    if (orderId && (phone || email) && !autoLoaded) {
+      setOrderNumber(orderId);
+      if (phone) {
+        setPhoneNumber(phone);
+      }
+      setAutoLoaded(true);
+      
+      // Auto-search the order
+      const autoSearch = async () => {
+        setLoading(true);
+        setError('');
+        setSearched(true);
+        
+        try {
+          const contactParam = phone ? `phone=${encodeURIComponent(phone)}` : `email=${encodeURIComponent(email || '')}`;
+          const res = await fetch(`/api/orders/track?orderNumber=${encodeURIComponent(orderId)}&${contactParam}`);
+          
+          if (!res.ok) {
+            const data = await res.json();
+            throw new Error(data.error || 'Order not found');
+          }
+
+          const data = await res.json();
+          setOrder(data.order);
+        } catch (err) {
+          setError(err instanceof Error ? err.message : 'Failed to find order');
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+      autoSearch();
+    }
+  }, [searchParams, autoLoaded]);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +65,12 @@ export default function OrderTrackingPage() {
     setOrder(null);
 
     try {
-      const res = await fetch(`/api/orders/track?orderNumber=${encodeURIComponent(orderNumber.trim())}&phone=${encodeURIComponent(phoneNumber.trim())}`);
+      // Use phone if provided, otherwise fall back to email field as phone
+      const contactParam = phoneNumber.includes('@') 
+        ? `email=${encodeURIComponent(phoneNumber.trim())}`
+        : `phone=${encodeURIComponent(phoneNumber.trim())}`;
+        
+      const res = await fetch(`/api/orders/track?orderNumber=${encodeURIComponent(orderNumber.trim())}&${contactParam}`);
       
       if (!res.ok) {
         const data = await res.json();
@@ -170,15 +219,15 @@ export default function OrderTrackingPage() {
 
             <div>
               <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
-                Phone Number
+                Phone Number or Email Address
               </label>
               <div className="relative">
                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600" />
                 <input
-                  type="tel"
+                  type="text"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
-                  placeholder="+1 (512) 555-0123"
+                  placeholder="+1 (512) 555-0123 or email@example.com"
                   className="w-full pl-12 pr-4 py-4 bg-black border-2 border-gray-700 focus:border-white text-white placeholder-gray-600 transition-colors"
                   required
                 />
@@ -425,5 +474,20 @@ export default function OrderTrackingPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function OrderTrackingPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-2 border-white border-t-transparent mx-auto mb-4"></div>
+          <p className="text-gray-400">Loading...</p>
+        </div>
+      </div>
+    }>
+      <OrderTrackingContent />
+    </Suspense>
   );
 }

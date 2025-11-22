@@ -6,10 +6,11 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
     const orderNumber = searchParams.get('orderNumber');
     const phone = searchParams.get('phone');
+    const email = searchParams.get('email');
 
-    if (!orderNumber || !phone) {
+    if (!orderNumber || (!phone && !email)) {
       return NextResponse.json(
-        { error: 'Order number and phone number are required' },
+        { error: 'Order number and phone number or email address are required' },
         { status: 400 }
       );
     }
@@ -24,14 +25,25 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Verify phone number matches (normalize both for comparison)
-    const normalizePhone = (p: string) => p.replace(/\D/g, '');
-    const orderPhone = normalizePhone(order.customerPhone);
-    const inputPhone = normalizePhone(phone);
+    // Verify contact info matches
+    let contactMatches = false;
+    
+    if (phone) {
+      // Verify phone number matches (normalize both for comparison)
+      const normalizePhone = (p: string) => p.replace(/\D/g, '');
+      const orderPhone = normalizePhone(order.customerPhone || '');
+      const inputPhone = normalizePhone(phone);
+      contactMatches = orderPhone === inputPhone;
+    } else if (email) {
+      // Verify email matches (case-insensitive)
+      const orderEmail = (order.customerEmail || '').toLowerCase().trim();
+      const inputEmail = email.toLowerCase().trim();
+      contactMatches = orderEmail === inputEmail;
+    }
 
-    if (orderPhone !== inputPhone) {
+    if (!contactMatches) {
       return NextResponse.json(
-        { error: 'Phone number does not match order' },
+        { error: 'Contact information does not match order' },
         { status: 403 }
       );
     }
