@@ -18,7 +18,7 @@ function OrderTrackingContent() {
 
   // Auto-load order if coming from checkout
   useEffect(() => {
-    const orderId = searchParams.get('orderId');
+    const orderId = searchParams.get('orderId') || searchParams.get('orderNumber');
     const phone = searchParams.get('phone');
     const email = searchParams.get('email');
     

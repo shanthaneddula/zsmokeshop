@@ -95,7 +95,7 @@ export default function CheckoutPage() {
           ? `email=${encodeURIComponent(formData.email)}`
           : '';
       
-      const trackingUrl = `/orders/track?orderId=${data.orderId}${contactParam ? '&' + contactParam : ''}`;
+      const trackingUrl = `/orders/track?orderNumber=${data.order.orderNumber}${contactParam ? '&' + contactParam : ''}`;
       router.push(trackingUrl);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
