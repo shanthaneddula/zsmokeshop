@@ -6,6 +6,11 @@ import {
   formatPhoneNumber,
   isValidPhoneNumber 
 } from '@/lib/twilio-service';
+import {
+  sendOrderConfirmationEmail,
+  sendStoreNotificationEmail,
+  isValidEmail
+} from '@/lib/resend-service';
 import { CreateOrderRequest, PickupOrder, OrderItem } from '@/types/orders';
 import { getProduct } from '@/lib/product-storage-service';
 
@@ -18,17 +23,43 @@ export async function POST(request: NextRequest) {
     const body: CreateOrderRequest = await request.json();
 
     // Validate required fields
-    if (!body.customerName || !body.customerPhone || !body.items || body.items.length === 0) {
+    if (!body.customerName || !body.items || body.items.length === 0 || !body.notificationMethod) {
       return NextResponse.json(
-        { error: 'Missing required fields: customerName, customerPhone, and items are required' },
+        { error: 'Missing required fields: customerName, items, and notificationMethod are required' },
         { status: 400 }
       );
     }
 
-    // Validate phone number
-    if (!isValidPhoneNumber(body.customerPhone)) {
+    // Validate notification method and contact info
+    if (body.notificationMethod === 'sms') {
+      if (!body.customerPhone) {
+        return NextResponse.json(
+          { error: 'Phone number is required for SMS notifications' },
+          { status: 400 }
+        );
+      }
+      if (!isValidPhoneNumber(body.customerPhone)) {
+        return NextResponse.json(
+          { error: 'Invalid phone number format. Please use a 10-digit US phone number.' },
+          { status: 400 }
+        );
+      }
+    } else if (body.notificationMethod === 'email') {
+      if (!body.customerEmail) {
+        return NextResponse.json(
+          { error: 'Email address is required for email notifications' },
+          { status: 400 }
+        );
+      }
+      if (!isValidEmail(body.customerEmail)) {
+        return NextResponse.json(
+          { error: 'Invalid email address format' },
+          { status: 400 }
+        );
+      }
+    } else {
       return NextResponse.json(
-        { error: 'Invalid phone number format. Please use a 10-digit US phone number.' },
+        { error: 'Invalid notification method. Must be "email" or "sms"' },
         { status: 400 }
       );
     }
@@ -82,7 +113,9 @@ export async function POST(request: NextRequest) {
     const now = new Date().toISOString();
     const order: Omit<PickupOrder, 'id' | 'orderNumber' | 'createdAt' | 'updatedAt'> = {
       customerName: body.customerName.trim(),
-      customerPhone: formatPhoneNumber(body.customerPhone),
+      customerPhone: body.customerPhone ? formatPhoneNumber(body.customerPhone) : '',
+      customerEmail: body.customerEmail?.trim(),
+      notificationMethod: body.notificationMethod,
       items: orderItems,
       subtotal,
       tax,
@@ -98,39 +131,75 @@ export async function POST(request: NextRequest) {
 
     const createdOrder = await createOrder(order);
 
-    // Send SMS notifications
+    // Send notifications based on customer preference
     try {
-      // Send confirmation to customer
-      const customerSMS = await sendOrderConfirmationSMS(
-        createdOrder.customerPhone,
-        createdOrder.orderNumber,
-        createdOrder.storeLocation,
-        estimatedReadyTime
-      );
+      if (body.notificationMethod === 'sms' && createdOrder.customerPhone) {
+        // Send SMS notifications
+        const customerSMS = await sendOrderConfirmationSMS(
+          createdOrder.customerPhone,
+          createdOrder.orderNumber,
+          createdOrder.storeLocation,
+          estimatedReadyTime
+        );
 
-      // Send notification to store
-      const storeSMS = await sendStoreNotificationSMS(
-        createdOrder.storeLocation,
-        createdOrder.orderNumber,
-        createdOrder.customerName,
-        orderItems.reduce((sum, item) => sum + item.quantity, 0),
-        createdOrder.total
-      );
+        const storeSMS = await sendStoreNotificationSMS(
+          createdOrder.storeLocation,
+          createdOrder.orderNumber,
+          createdOrder.customerName,
+          orderItems.reduce((sum, item) => sum + item.quantity, 0),
+          createdOrder.total
+        );
 
-      // Add communications to order
-      createdOrder.communications = [customerSMS, storeSMS];
+        createdOrder.communications = [customerSMS, storeSMS];
+      } else if (body.notificationMethod === 'email' && createdOrder.customerEmail) {
+        // Send email notifications
+        const customerEmail = await sendOrderConfirmationEmail(
+          createdOrder.customerEmail,
+          createdOrder.customerName,
+          createdOrder.orderNumber,
+          createdOrder.storeLocation,
+          estimatedReadyTime,
+          orderItems.map(item => ({
+            name: item.productName,
+            quantity: item.quantity,
+            price: item.totalPrice,
+          })),
+          createdOrder.total
+        );
+
+        const storeEmail = await sendStoreNotificationEmail(
+          createdOrder.storeLocation,
+          createdOrder.orderNumber,
+          createdOrder.customerName,
+          createdOrder.customerEmail,
+          orderItems.map(item => ({
+            name: item.productName,
+            quantity: item.quantity,
+            price: item.totalPrice,
+          })),
+          createdOrder.total,
+          'email'
+        );
+
+        createdOrder.communications = [customerEmail, storeEmail];
+      }
       
       // Note: In a production app, you'd want to update the order with communications
       // For now, we'll just include them in the response
-    } catch (smsError) {
-      console.error('Error sending SMS notifications:', smsError);
-      // Order is still created even if SMS fails
+    } catch (notificationError) {
+      console.error('Error sending notifications:', notificationError);
+      // Order is still created even if notifications fail
     }
+
+    const notificationMessage = body.notificationMethod === 'email' 
+      ? 'Order placed successfully! Check your email for confirmation.'
+      : 'Order placed successfully! Check your phone for confirmation.';
 
     return NextResponse.json({
       success: true,
       order: createdOrder,
-      message: 'Order placed successfully! Check your phone for confirmation.',
+      orderId: createdOrder.id,
+      message: notificationMessage,
     }, { status: 201 });
 
   } catch (error) {

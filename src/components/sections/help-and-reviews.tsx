@@ -110,12 +110,12 @@ export default function HelpAndReviews() {
             <div className="space-y-6">
               <div>
                 <h3 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3 tracking-tight uppercase">
-                  Z SMOKE SHOP
+                  {getActiveLocations()[0]?.name || 'Z SMOKE SHOP'}
                 </h3>
                 <div className="space-y-1 text-gray-700 dark:text-gray-300">
-                  <p className="text-base font-medium">719 W William Cannon Dr #105</p>
-                  <p className="text-base font-medium">Austin, TX 78745</p>
-                  <p className="text-base font-medium mt-2">(512) 766-3707</p>
+                  <p className="text-base font-medium">{getActiveLocations()[0]?.address.split(',')[0] || '719 W William Cannon Dr #105'}</p>
+                  <p className="text-base font-medium">{getActiveLocations()[0]?.address.split(',').slice(1).join(',') || 'Austin, TX 78745'}</p>
+                  <p className="text-base font-medium mt-2">{getActiveLocations()[0]?.phone || businessPhone}</p>
                 </div>
               </div>
               
@@ -151,12 +151,12 @@ export default function HelpAndReviews() {
             <div className="space-y-6">
               <div>
                 <h3 className="text-2xl md:text-3xl font-black text-gray-900 dark:text-white mb-3 tracking-tight uppercase">
-                  5 STAR SMOKE SHOP & GIFTS
+                  {getActiveLocations()[1]?.name || '5 STAR SMOKE SHOP & GIFTS'}
                 </h3>
                 <div className="space-y-1 text-gray-700 dark:text-gray-300">
-                  <p className="text-base font-medium">5318 Cameron Rd</p>
-                  <p className="text-base font-medium">Austin, TX 78723</p>
-                  <p className="text-base font-medium mt-2">(661) 371-1413</p>
+                  <p className="text-base font-medium">{getActiveLocations()[1]?.address.split(',')[0] || '5318 Cameron Rd'}</p>
+                  <p className="text-base font-medium">{getActiveLocations()[1]?.address.split(',').slice(1).join(',') || 'Austin, TX 78723'}</p>
+                  <p className="text-base font-medium mt-2">{getActiveLocations()[1]?.phone || '(661) 371-1413'}</p>
                 </div>
               </div>
               

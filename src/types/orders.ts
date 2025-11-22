@@ -41,9 +41,10 @@ export interface Communication {
   timestamp: string; // ISO timestamp
   direction: 'to-customer' | 'to-store' | 'from-customer' | 'from-store';
   message: string;
-  method: 'sms' | 'web' | 'system';
+  method: 'sms' | 'email' | 'web' | 'system';
   status?: 'sent' | 'delivered' | 'failed';
   twilioMessageSid?: string;
+  emailId?: string;
 }
 
 export interface OrderTimeline {
@@ -62,6 +63,8 @@ export interface PickupOrder {
   // Customer info
   customerName: string;
   customerPhone: string;         // E.164 format: +15125551234
+  customerEmail?: string;        // Email address (if using email notifications)
+  notificationMethod: 'sms' | 'email'; // Customer's preferred notification method
   
   // Order details
   items: OrderItem[];
@@ -91,6 +94,8 @@ export interface PickupOrder {
 export interface CreateOrderRequest {
   customerName: string;
   customerPhone: string;
+  customerEmail?: string;
+  notificationMethod: 'sms' | 'email';
   items: Array<{
     productId: string;
     quantity: number;

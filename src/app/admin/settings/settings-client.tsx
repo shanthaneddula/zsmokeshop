@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Store, 
   Shield, 
@@ -190,6 +190,29 @@ export default function SettingsClient() {
   const [passwordStatus, setPasswordStatus] = useState<'idle' | 'changing' | 'success' | 'error'>('idle');
   const [passwordError, setPasswordError] = useState('');
 
+  // Load settings on mount
+  useEffect(() => {
+    const loadSettings = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('/api/admin/settings');
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success && result.data) {
+            console.log('✅ Loaded settings from API:', result.data);
+            setSettings(result.data);
+          }
+        }
+      } catch (error) {
+        console.error('❌ Error loading settings:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadSettings();
+  }, []);
+
   const tabs = [
     { id: 'store', name: 'Store Info', icon: Store },
     { id: 'locations', name: 'Locations', icon: MapPin },
@@ -228,6 +251,15 @@ export default function SettingsClient() {
       console.log('✅ Settings saved successfully:', result);
       
       setSaveStatus('saved');
+      
+      // Force refresh all pages by invalidating Next.js cache
+      // This will make components reload with new settings
+      if (typeof window !== 'undefined') {
+        // Broadcast message to all tabs/windows to refresh settings
+        window.localStorage.setItem('settings-updated', Date.now().toString());
+        console.log('📢 Broadcasting settings update to all pages');
+      }
+      
       setTimeout(() => setSaveStatus('idle'), 2000);
     } catch (error) {
       console.error('💥 Save error:', error);

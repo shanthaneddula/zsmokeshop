@@ -5,6 +5,9 @@ import {
   sendOrderCancelledSMS, 
   sendNoShowSMS 
 } from '@/lib/twilio-service';
+import {
+  sendOrderStatusUpdateEmail
+} from '@/lib/resend-service';
 import { UpdateOrderStatusRequest } from '@/types/orders';
 
 /**
@@ -36,13 +39,14 @@ export async function POST(
       );
     }
 
-    // Send appropriate SMS notification
+    // Send appropriate notifications (SMS and Email)
     try {
-      let smsComm;
+      let smsComm, emailComm;
 
       switch (body.status) {
         case 'ready':
-          if (updatedOrder.timeline.pickupDeadline) {
+          // Send SMS notification
+          if (updatedOrder.customerPhone && updatedOrder.timeline.pickupDeadline) {
             smsComm = await sendOrderReadySMS(
               updatedOrder.customerPhone,
               updatedOrder.orderNumber,
@@ -50,33 +54,80 @@ export async function POST(
               new Date(updatedOrder.timeline.pickupDeadline)
             );
           }
+          
+          // Send Email notification
+          if (updatedOrder.customerEmail) {
+            emailComm = await sendOrderStatusUpdateEmail(
+              updatedOrder.customerEmail,
+              updatedOrder.customerName,
+              updatedOrder.orderNumber,
+              'ready',
+              'Your order is ready for pickup!',
+              `Your order is ready and waiting for you at our ${updatedOrder.storeLocation === 'william-cannon' ? 'William Cannon' : 'Cameron Rd'} location. Please pick it up within the next hour.`,
+              updatedOrder.timeline.pickupDeadline ? new Date(updatedOrder.timeline.pickupDeadline) : undefined
+            );
+          }
           break;
 
         case 'cancelled':
-          smsComm = await sendOrderCancelledSMS(
-            updatedOrder.customerPhone,
-            updatedOrder.orderNumber,
-            body.storeNotes
-          );
+          // Send SMS notification
+          if (updatedOrder.customerPhone) {
+            smsComm = await sendOrderCancelledSMS(
+              updatedOrder.customerPhone,
+              updatedOrder.orderNumber,
+              body.storeNotes
+            );
+          }
+          
+          // Send Email notification
+          if (updatedOrder.customerEmail) {
+            emailComm = await sendOrderStatusUpdateEmail(
+              updatedOrder.customerEmail,
+              updatedOrder.customerName,
+              updatedOrder.orderNumber,
+              'cancelled',
+              'Your order has been cancelled',
+              body.storeNotes || 'Your order has been cancelled. Please contact the store if you have any questions.'
+            );
+          }
           break;
 
         case 'no-show':
-          smsComm = await sendNoShowSMS(
-            updatedOrder.customerPhone,
-            updatedOrder.orderNumber
-          );
+          // Send SMS notification
+          if (updatedOrder.customerPhone) {
+            smsComm = await sendNoShowSMS(
+              updatedOrder.customerPhone,
+              updatedOrder.orderNumber
+            );
+          }
+          
+          // Send Email notification
+          if (updatedOrder.customerEmail) {
+            emailComm = await sendOrderStatusUpdateEmail(
+              updatedOrder.customerEmail,
+              updatedOrder.customerName,
+              updatedOrder.orderNumber,
+              'no-show',
+              'Order pickup window expired',
+              'Your order pickup window has expired. Please contact the store to reschedule or arrange for a refund.'
+            );
+          }
           break;
       }
 
-      // Add SMS communication to order if sent
-      if (smsComm) {
+      // Add communications to order if sent
+      const newCommunications = [...updatedOrder.communications];
+      if (smsComm) newCommunications.push(smsComm);
+      if (emailComm) newCommunications.push(emailComm);
+      
+      if (newCommunications.length > updatedOrder.communications.length) {
         await updateOrder(orderId, {
-          communications: [...updatedOrder.communications, smsComm],
+          communications: newCommunications,
         });
       }
-    } catch (smsError) {
-      console.error('Error sending SMS notification:', smsError);
-      // Status update still succeeds even if SMS fails
+    } catch (notificationError) {
+      console.error('Error sending notifications:', notificationError);
+      // Status update still succeeds even if notifications fail
     }
 
     return NextResponse.json({
