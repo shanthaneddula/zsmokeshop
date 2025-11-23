@@ -8,10 +8,12 @@ import { Menu, X, User, ShoppingCart, Sun, Moon, Search, ChevronRight } from "lu
 import { useTheme } from "next-themes";
 import { useBanner } from "@/contexts/BannerContext";
 import { useCart } from "@/contexts/CartContext";
+import { useBusinessSettings } from "@/hooks/useBusinessSettings";
 import { Category, Product } from "@/types";
 
 export default function Header() {
   const { itemCount } = useCart();
+  const { settings } = useBusinessSettings();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
@@ -269,19 +271,21 @@ export default function Header() {
             <User className="h-4 w-4" />
           </Link>
 
-          {/* Cart */}
-          <Link
-            href="/cart"
-            className="relative p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
-            aria-label="Shopping cart"
-          >
-            <ShoppingCart className="h-4 w-4" />
-            {itemCount > 0 && (
-              <span className="absolute -right-0 -top-0 flex h-4 w-4 items-center justify-center rounded-full bg-gray-900 dark:bg-white text-xs text-white dark:text-gray-900 font-bold">
-                {itemCount}
-              </span>
-            )}
-          </Link>
+          {/* Cart - Only show if cart is enabled */}
+          {settings?.enableCart !== false && (
+            <Link
+              href="/cart"
+              className="relative p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
+              aria-label="Shopping cart"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              {itemCount > 0 && (
+                <span className="absolute -right-0 -top-0 flex h-4 w-4 items-center justify-center rounded-full bg-gray-900 dark:bg-white text-xs text-white dark:text-gray-900 font-bold">
+                  {itemCount}
+                </span>
+              )}
+            </Link>
+          )}
 
           {/* Mobile menu button */}
           <button
@@ -487,17 +491,19 @@ export default function Header() {
                     </nav>
                   </div>
 
-                  {/* Cart Button */}
-                  <div className="mt-8 px-6">
-                    <Link
-                      href="/cart"
-                      className="flex w-full items-center justify-center gap-2 border border-gray-900 dark:border-white px-6 py-3 text-sm font-bold text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors uppercase tracking-wide"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      <ShoppingCart className="h-5 w-5" />
-                      <span>View Cart ({itemCount})</span>
-                    </Link>
-                  </div>
+                  {/* Cart Button - Only show if cart is enabled */}
+                  {settings?.enableCart !== false && (
+                    <div className="mt-8 px-6">
+                      <Link
+                        href="/cart"
+                        className="flex w-full items-center justify-center gap-2 border border-gray-900 dark:border-white px-6 py-3 text-sm font-bold text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors uppercase tracking-wide"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        <ShoppingCart className="h-5 w-5" />
+                        <span>View Cart ({itemCount})</span>
+                      </Link>
+                    </div>
+                  )}
 
                   {/* Country/Region */}
                   <div className="mt-6 px-6 pb-6">

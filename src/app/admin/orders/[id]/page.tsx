@@ -190,7 +190,9 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Order {order.orderNumber}</h1>
-            <p className="text-gray-600 mt-1">Placed {formatTime(order.timeline.placedAt)}</p>
+            <p className="text-gray-600 mt-1">
+              Placed {order.timeline?.placedAt ? formatTime(order.timeline.placedAt) : formatTime(order.createdAt)}
+            </p>
           </div>
           
           <div className="mt-4 sm:mt-0">
@@ -286,7 +288,9 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
             
             <div className="space-y-4">
               {order.items.map((item, index) => (
-                <div key={index} className="flex items-start border-b border-gray-100 last:border-0 pb-4 last:pb-0">
+                <div key={index} className={`flex items-start border-b border-gray-100 last:border-0 pb-4 last:pb-0 ${
+                  order.status === 'pending' && !item.wasReplaced ? 'bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400' : ''
+                }`}>
                   {item.productImage && (
                     <img
                       src={item.productImage}
@@ -296,8 +300,18 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
                   )}
                   
                   <div className="flex-1">
-                    <h3 className="font-medium text-gray-900">{item.productName}</h3>
-                    <p className="text-sm text-gray-600">{item.category}</p>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h3 className="font-medium text-gray-900">{item.productName}</h3>
+                        <p className="text-sm text-gray-600">{item.category}</p>
+                        {order.status === 'pending' && !item.wasReplaced && (
+                          <div className="flex items-center mt-2">
+                            <AlertTriangle className="w-4 h-4 text-yellow-600 mr-1" />
+                            <span className="text-sm text-yellow-700 font-medium">Needs attention - Check availability</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
                     <p className="text-sm text-gray-600 mt-1">
                       Quantity: {item.quantity} × ${item.pricePerUnit.toFixed(2)}
                     </p>
@@ -321,6 +335,23 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
                   
                   <div className="text-right ml-4">
                     <p className="font-semibold text-gray-900">${item.totalPrice.toFixed(2)}</p>
+                    
+                    {!item.wasReplaced && order.status === 'pending' && (
+                      <div className="mt-2 space-y-2">
+                        <button
+                          onClick={() => setSelectedProduct(item.productId)}
+                          className="block w-full text-sm bg-amber-600 hover:bg-amber-700 text-white px-3 py-2 rounded font-medium transition-colors"
+                        >
+                          Adjust Order
+                        </button>
+                        <button
+                          onClick={() => updateStatus('confirmed')}
+                          className="block w-full text-sm bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded font-medium transition-colors"
+                        >
+                          Confirm Order
+                        </button>
+                      </div>
+                    )}
                     
                     {!item.wasReplaced && order.status === 'confirmed' && (
                       <button

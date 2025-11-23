@@ -10,12 +10,14 @@ interface StickyBottomActionBarProps {
   product: AdminProduct;
   onAddToCart: () => void;
   isAddingToCart: boolean;
+  enableCart?: boolean;
 }
 
 export default function StickyBottomActionBar({ 
   product, 
   onAddToCart,
-  isAddingToCart 
+  isAddingToCart,
+  enableCart = true
 }: StickyBottomActionBarProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -68,14 +70,46 @@ export default function StickyBottomActionBar({
           </div>
 
           {/* Add to Cart Button - Mobile Only */}
-          <div className="flex items-center">
-            {/* Add to Cart Button */}
+          {enableCart && (
+            <div className="flex items-center">
+              {/* Add to Cart Button */}
+              <button
+                onClick={onAddToCart}
+                disabled={!product.inStock || isAddingToCart}
+                className={`
+                  px-6 py-3 font-black uppercase tracking-wide text-sm transition-colors
+                  flex items-center space-x-2 min-w-[120px] justify-center
+                  ${product.inStock && !isAddingToCart
+                    ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'
+                    : 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                  }
+                `}
+              >
+                {isAddingToCart ? (
+                  <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                ) : (
+                  <>
+                    <ShoppingCartIcon className="w-5 h-5" />
+                    <span>{product.inStock ? 'Add to Cart' : 'Out of Stock'}</span>
+                  </>
+                )}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Desktop Actions - Hidden on mobile */}
+      <div className="hidden md:block space-y-6">
+        {/* Desktop Action Buttons */}
+        <div className="space-y-3">
+          {enableCart && (
             <button
               onClick={onAddToCart}
               disabled={!product.inStock || isAddingToCart}
               className={`
-                px-6 py-3 font-black uppercase tracking-wide text-sm transition-colors
-                flex items-center space-x-2 min-w-[120px] justify-center
+                w-full py-4 px-6 font-black uppercase tracking-wide text-sm transition-colors duration-200
+                flex items-center justify-center space-x-2
                 ${product.inStock && !isAddingToCart
                   ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'
                   : 'bg-gray-400 text-gray-600 cursor-not-allowed'
@@ -91,35 +125,7 @@ export default function StickyBottomActionBar({
                 </>
               )}
             </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Actions - Hidden on mobile */}
-      <div className="hidden md:block space-y-6">
-        {/* Desktop Action Buttons */}
-        <div className="space-y-3">
-          <button
-            onClick={onAddToCart}
-            disabled={!product.inStock || isAddingToCart}
-            className={`
-              w-full py-4 px-6 font-black uppercase tracking-wide text-sm transition-colors duration-200
-              flex items-center justify-center space-x-2
-              ${product.inStock && !isAddingToCart
-                ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'
-                : 'bg-gray-400 text-gray-600 cursor-not-allowed'
-              }
-            `}
-          >
-            {isAddingToCart ? (
-              <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
-            ) : (
-              <>
-                <ShoppingCartIcon className="w-5 h-5" />
-                <span>{product.inStock ? 'Add to Cart' : 'Out of Stock'}</span>
-              </>
-            )}
-          </button>
+          )}
 
           <div className="grid grid-cols-2 gap-3">
             <button

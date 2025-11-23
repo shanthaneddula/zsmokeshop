@@ -190,21 +190,24 @@ function OrderTrackingContent() {
   const locationInfo = order ? getLocationInfo(order.storeLocation) : null;
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black">
       {/* Header */}
-      <div className="border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-black uppercase tracking-wider">Track Your Order</h1>
-          <p className="text-gray-400 mt-2 font-light">Enter your details to check order status</p>
+      <div className="border-b border-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center">
+            <Package className="w-20 h-20 text-white mx-auto mb-6" />
+            <h1 className="text-5xl font-black text-white mb-4 tracking-wider uppercase">Track Your Order</h1>
+            <p className="text-gray-300 text-xl font-light">Enter your details to check order status</p>
+          </div>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Search Form */}
-        <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-none p-8 mb-8">
+        <div className="bg-white border-4 border-black p-8 mb-8">
           <form onSubmit={handleSearch} className="space-y-6">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
+              <label className="block text-sm font-black text-black mb-2 uppercase tracking-wider">
                 Order Number
               </label>
               <input
@@ -212,23 +215,23 @@ function OrderTrackingContent() {
                 value={orderNumber}
                 onChange={(e) => setOrderNumber(e.target.value)}
                 placeholder="ZS-000001"
-                className="w-full px-4 py-4 bg-black border-2 border-gray-700 focus:border-white text-white placeholder-gray-600 transition-colors font-mono text-lg uppercase tracking-wider"
+                className="w-full px-4 py-4 border-2 border-black bg-white text-black placeholder-gray-600 focus:outline-none focus:border-gray-700 font-mono text-lg tracking-wider transition-all"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">
+              <label className="block text-sm font-black text-black mb-2 uppercase tracking-wider">
                 Phone Number or Email Address
               </label>
               <div className="relative">
-                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600" />
+                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-black" />
                 <input
                   type="text"
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   placeholder="+1 (512) 555-0123 or email@example.com"
-                  className="w-full pl-12 pr-4 py-4 bg-black border-2 border-gray-700 focus:border-white text-white placeholder-gray-600 transition-colors"
+                  className="w-full pl-12 pr-4 py-4 border-2 border-black bg-white text-black placeholder-gray-600 focus:outline-none focus:border-gray-700 transition-all"
                   required
                 />
               </div>
@@ -237,11 +240,11 @@ function OrderTrackingContent() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 bg-white text-black font-black uppercase tracking-widest hover:bg-gray-200 disabled:bg-gray-700 disabled:text-gray-500 transition-colors flex items-center justify-center space-x-3"
+              className="w-full py-4 bg-black text-white font-black uppercase tracking-wider hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center space-x-3"
             >
               {loading ? (
                 <>
-                  <div className="animate-spin rounded-full h-5 w-5 border-2 border-black border-t-transparent"></div>
+                  <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
                   <span>Searching...</span>
                 </>
               ) : (
@@ -254,11 +257,11 @@ function OrderTrackingContent() {
           </form>
 
           {error && (
-            <div className="mt-6 p-4 bg-red-900/20 border-2 border-red-600 flex items-start space-x-3">
+            <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start space-x-3">
               <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-bold text-red-500 uppercase tracking-wide text-sm">Error</p>
-                <p className="text-red-400 text-sm mt-1">{error}</p>
+                <p className="font-semibold text-red-800 text-sm">Error</p>
+                <p className="text-red-700 text-sm mt-1">{error}</p>
               </div>
             </div>
           )}
@@ -268,19 +271,23 @@ function OrderTrackingContent() {
         {order && statusInfo && StatusIcon && locationInfo && (
           <div className="space-y-6">
             {/* Status Banner */}
-            <div className={`${statusInfo.bgColor} ${statusInfo.borderColor} border-4 p-8`}>
-              <div className="flex items-start space-x-4">
-                <StatusIcon className={`w-12 h-12 ${statusInfo.color} flex-shrink-0`} />
+            <div className="bg-black border-4 border-white p-8">
+              <div className="flex items-start space-x-6">
+                <div className="w-20 h-20 bg-white flex items-center justify-center">
+                  <StatusIcon className="w-10 h-10 text-black" />
+                </div>
                 <div className="flex-1">
-                  <h2 className={`text-2xl font-black uppercase tracking-wider ${statusInfo.color}`}>
+                  <h2 className="text-4xl font-black text-white mb-2 uppercase tracking-wider">
                     {statusInfo.label}
                   </h2>
-                  <p className={`mt-2 ${statusInfo.color} font-medium`}>{statusInfo.message}</p>
+                  <p className="text-gray-300 text-xl mb-6 font-light">{statusInfo.message}</p>
                   
                   {order.status === 'ready' && (
-                    <div className="mt-4 inline-block bg-black text-white px-4 py-2 font-mono font-bold">
-                      <Clock className="inline w-4 h-4 mr-2" />
-                      PICKUP IN: {getTimeRemaining()}
+                    <div className="bg-white border-2 border-black px-6 py-3 inline-flex items-center">
+                      <Clock className="w-5 h-5 mr-3 text-black" />
+                      <span className="text-black font-black uppercase tracking-wider">
+                        Pickup within: {getTimeRemaining()}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -290,147 +297,152 @@ function OrderTrackingContent() {
             {/* Order Info Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Order Details */}
-              <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 p-6">
-                <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">
+              <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
                   Order Details
                 </h3>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <div>
-                    <p className="text-xs uppercase text-gray-500">Order Number</p>
-                    <p className="text-xl font-mono font-bold tracking-wider">{order.orderNumber}</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Order Number</p>
+                    <p className="text-2xl font-bold text-gray-900 font-mono tracking-wider">{order.orderNumber}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase text-gray-500">Placed</p>
-                    <p className="font-medium">{formatTime(order.timeline.placedAt)}</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Placed</p>
+                    <p className="text-lg font-medium text-gray-900">{formatTime(order.timeline.placedAt)}</p>
                   </div>
                   <div>
-                    <p className="text-xs uppercase text-gray-500">Total Amount</p>
-                    <p className="text-2xl font-black">${order.total.toFixed(2)}</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Total Amount</p>
+                    <p className="text-3xl font-bold text-green-600">${order.total.toFixed(2)}</p>
                   </div>
                 </div>
               </div>
 
               {/* Pickup Location */}
-              <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 p-6">
-                <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-4">
+              <div className="bg-white border-4 border-black p-8">
+                <h3 className="text-sm font-black text-black uppercase tracking-wider mb-6">
                   Pickup Location
                 </h3>
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-white mt-1 flex-shrink-0" />
+                <div className="flex items-start space-x-6">
+                  <div className="w-16 h-16 bg-black flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-8 h-8 text-white" />
+                  </div>
                   <div>
-                    <p className="font-bold text-lg">{locationInfo.name}</p>
-                    <p className="text-gray-400 text-sm mt-1">{locationInfo.address}</p>
-                    <p className="text-gray-400 text-sm">{locationInfo.city}</p>
+                    <p className="text-2xl font-black text-black uppercase tracking-wide">{locationInfo.name}</p>
+                    <p className="text-black mt-2 font-medium text-lg">{locationInfo.address}</p>
+                    <p className="text-black font-medium text-lg">{locationInfo.city}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Timeline */}
-            <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 p-6">
-              <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-6">
+            <div className="bg-white border-4 border-black p-8">
+              <h3 className="text-sm font-black text-black uppercase tracking-wider mb-8">
                 Order Timeline
               </h3>
               
-              <div className="space-y-6">
-                {/* Placed */}
-                <div className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    order.timeline.placedAt ? 'bg-white' : 'bg-gray-800'
-                  }`}>
-                    <ShoppingBag className={order.timeline.placedAt ? 'text-black' : 'text-gray-600'} size={20} />
+              <div className="relative">
+                {/* Timeline line */}
+                <div className="absolute left-8 top-0 bottom-0 w-1 bg-black"></div>
+                
+                <div className="space-y-10">
+                  {/* Placed */}
+                  <div className="flex items-start space-x-6 relative">
+                    <div className={`w-16 h-16 flex items-center justify-center flex-shrink-0 z-10 ${
+                      order.timeline.placedAt ? 'bg-black border-4 border-white' : 'bg-gray-400 border-4 border-gray-200'
+                    }`}>
+                      <ShoppingBag className={order.timeline.placedAt ? 'text-white' : 'text-gray-600'} size={24} />
+                    </div>
+                    <div className="flex-1 pt-3">
+                      <p className="text-xl font-black text-black uppercase tracking-wide">Order Placed</p>
+                      {order.timeline.placedAt && (
+                        <p className="text-gray-700 mt-2 font-medium">{formatTime(order.timeline.placedAt)}</p>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex-1 pt-2">
-                    <p className="font-bold uppercase tracking-wide">Order Placed</p>
-                    {order.timeline.placedAt && (
-                      <p className="text-gray-400 text-sm mt-1">{formatTime(order.timeline.placedAt)}</p>
-                    )}
-                  </div>
-                </div>
 
-                {/* Confirmed */}
-                <div className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    order.timeline.confirmedAt ? 'bg-white' : 'bg-gray-800'
-                  }`}>
-                    <CheckCircle className={order.timeline.confirmedAt ? 'text-black' : 'text-gray-600'} size={20} />
+                  {/* Confirmed */}
+                  <div className="flex items-start space-x-6 relative">
+                    <div className={`w-16 h-16 flex items-center justify-center flex-shrink-0 z-10 ${
+                      order.timeline.confirmedAt ? 'bg-black border-4 border-white' : 'bg-gray-400 border-4 border-gray-200'
+                    }`}>
+                      <CheckCircle className={order.timeline.confirmedAt ? 'text-white' : 'text-gray-600'} size={24} />
+                    </div>
+                    <div className="flex-1 pt-3">
+                      <p className="text-xl font-black text-black uppercase tracking-wide">Order Confirmed</p>
+                      {order.timeline.confirmedAt ? (
+                        <p className="text-gray-700 mt-2 font-medium">{formatTime(order.timeline.confirmedAt)}</p>
+                      ) : (
+                        <p className="text-gray-500 mt-2 font-medium">Awaiting confirmation</p>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex-1 pt-2">
-                    <p className="font-bold uppercase tracking-wide">Confirmed</p>
-                    {order.timeline.confirmedAt ? (
-                      <p className="text-gray-400 text-sm mt-1">{formatTime(order.timeline.confirmedAt)}</p>
-                    ) : (
-                      <p className="text-gray-600 text-sm mt-1">Awaiting confirmation</p>
-                    )}
-                  </div>
-                </div>
 
-                {/* Ready */}
-                <div className="flex items-start space-x-4">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    order.timeline.readyAt ? 'bg-white' : 'bg-gray-800'
-                  }`}>
-                    <Package className={order.timeline.readyAt ? 'text-black' : 'text-gray-600'} size={20} />
-                  </div>
-                  <div className="flex-1 pt-2">
-                    <p className="font-bold uppercase tracking-wide">Ready for Pickup</p>
-                    {order.timeline.readyAt ? (
-                      <p className="text-gray-400 text-sm mt-1">{formatTime(order.timeline.readyAt)}</p>
-                    ) : (
-                      <p className="text-gray-600 text-sm mt-1">Being prepared</p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Picked Up */}
-                {order.timeline.completedAt && order.status === 'picked-up' && (
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center flex-shrink-0">
-                      <CheckCircle className="text-black" size={20} />
+                  {/* Ready */}
+                  <div className="flex items-start space-x-4 relative">
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 z-10 ${
+                      order.timeline.readyAt ? 'bg-green-100 border-4 border-green-500' : 'bg-gray-100 border-4 border-gray-300'
+                    }`}>
+                      <Package className={order.timeline.readyAt ? 'text-green-600' : 'text-gray-400'} size={20} />
                     </div>
                     <div className="flex-1 pt-2">
-                      <p className="font-bold uppercase tracking-wide">Picked Up</p>
-                      <p className="text-gray-400 text-sm mt-1">{formatTime(order.timeline.completedAt)}</p>
+                      <p className="text-lg font-semibold text-gray-900">Ready for Pickup</p>
+                      {order.timeline.readyAt ? (
+                        <p className="text-gray-600 mt-1">{formatTime(order.timeline.readyAt)}</p>
+                      ) : (
+                        <p className="text-gray-500 mt-1">Being prepared</p>
+                      )}
                     </div>
                   </div>
-                )}
-              </div>
-            </div>
 
-            {/* Order Items */}
-            <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 p-6">
-              <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 mb-6">
+                  {/* Picked Up */}
+                  {order.timeline.completedAt && order.status === 'picked-up' && (
+                    <div className="flex items-start space-x-4 relative">
+                      <div className="w-12 h-12 rounded-full bg-green-100 border-4 border-green-500 flex items-center justify-center flex-shrink-0 z-10">
+                        <CheckCircle className="text-green-600" size={20} />
+                      </div>
+                      <div className="flex-1 pt-2">
+                        <p className="text-lg font-semibold text-gray-900">Order Completed</p>
+                        <p className="text-gray-600 mt-1">{formatTime(order.timeline.completedAt)}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>            {/* Order Items */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-6">
                 Items in Order
               </h3>
               
               <div className="space-y-4">
                 {order.items.map((item, index) => (
-                  <div key={index} className="flex items-start space-x-4 pb-4 border-b border-gray-800 last:border-0 last:pb-0">
+                  <div key={index} className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl">
                     {item.productImage && (
-                      <div className="w-20 h-20 bg-gray-800 flex-shrink-0 overflow-hidden">
+                      <div className="w-16 h-16 bg-white rounded-xl shadow-sm flex-shrink-0 overflow-hidden">
                         <Image
                           src={item.productImage}
                           alt={item.productName}
-                          width={80}
-                          height={80}
-                          className="w-full h-full object-cover"
+                          width={64}
+                          height={64}
+                          className="w-full h-full object-cover rounded-xl"
                         />
                       </div>
                     )}
                     
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-white truncate">{item.productName}</h4>
-                      <p className="text-sm text-gray-500 uppercase mt-1">{item.category}</p>
-                      <div className="flex items-center justify-between mt-2">
-                        <p className="text-sm text-gray-400">
-                          Qty: <span className="font-bold text-white">{item.quantity}</span>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-1">{item.productName}</h4>
+                      <p className="text-sm text-gray-500 mb-2">{item.category}</p>
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm text-gray-600">
+                          Qty: <span className="font-semibold text-gray-900">{item.quantity}</span>
                         </p>
-                        <p className="font-mono font-bold text-white">${item.totalPrice.toFixed(2)}</p>
+                        <p className="text-lg font-bold text-green-600">${item.totalPrice.toFixed(2)}</p>
                       </div>
                       
                       {item.wasReplaced && item.replacementProductName && (
-                        <div className="mt-2 p-2 bg-blue-900/20 border border-blue-600">
-                          <p className="text-xs text-blue-400 font-bold uppercase">
+                        <div className="mt-2 p-2 bg-blue-50 border border-blue-200 rounded-lg">
+                          <p className="text-xs text-blue-800 font-semibold">
                             Replaced with: {item.replacementProductName}
                           </p>
                         </div>
@@ -440,21 +452,21 @@ function OrderTrackingContent() {
                 ))}
               </div>
 
-              <div className="border-t-2 border-white mt-6 pt-4">
+              <div className="border-t border-gray-200 mt-6 pt-6">
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-black uppercase tracking-wider">Total</span>
-                  <span className="text-3xl font-black font-mono">${order.total.toFixed(2)}</span>
+                  <span className="text-xl font-bold text-gray-900">Total</span>
+                  <span className="text-2xl font-bold text-green-600">${order.total.toFixed(2)}</span>
                 </div>
               </div>
             </div>
 
             {/* Contact Info */}
             {(order.status === 'ready' || order.status === 'confirmed') && (
-              <div className="bg-gradient-to-r from-amber-600 to-amber-500 border-4 border-amber-400 p-6">
-                <h3 className="text-lg font-black uppercase tracking-wider text-white mb-2">
+              <div className="bg-green-50 border-l-4 border-green-400 rounded-xl p-6">
+                <h3 className="text-lg font-semibold text-green-800 mb-2">
                   Need Help?
                 </h3>
-                <p className="text-amber-50 font-medium">
+                <p className="text-green-700">
                   Contact us at {order.storeLocation === 'william-cannon' ? '(512) XXX-XXXX' : '(512) XXX-XXXX'}
                 </p>
               </div>
@@ -464,12 +476,12 @@ function OrderTrackingContent() {
 
         {/* No Results */}
         {searched && !loading && !order && !error && (
-          <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 p-12 text-center">
-            <Package className="w-16 h-16 text-gray-700 mx-auto mb-4" />
-            <h3 className="text-xl font-black uppercase tracking-wider text-gray-400">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-12 text-center">
+            <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
               No Orders Found
             </h3>
-            <p className="text-gray-600 mt-2">Check your order number and phone number</p>
+            <p className="text-gray-600">Check your order number and phone number</p>
           </div>
         )}
       </div>
@@ -480,10 +492,10 @@ function OrderTrackingContent() {
 export default function OrderTrackingPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-2 border-white border-t-transparent mx-auto mb-4"></div>
-          <p className="text-gray-400">Loading...</p>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-white border-t-transparent mx-auto mb-6"></div>
+          <p className="text-white text-xl font-black uppercase tracking-wider">Loading...</p>
         </div>
       </div>
     }>

@@ -196,11 +196,11 @@ export function StorePhotosClient() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-8">
+    <div className="p-6 sm:p-8">
+      <div>
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white mb-2">
             Store Photos
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
@@ -209,11 +209,11 @@ export function StorePhotosClient() {
         </div>
 
         {/* Actions Bar */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-6">
+        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 mb-6">
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
             <div className="flex items-center gap-4">
               {/* Upload Button */}
-              <label className="flex items-center gap-2 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg cursor-pointer transition-colors">
+              <label className="flex items-center gap-2 px-6 py-3 bg-black hover:bg-gray-800 text-white uppercase font-bold tracking-wide text-sm rounded cursor-pointer transition-colors">
                 <Upload className="w-5 h-5" />
                 <span>{uploading ? 'Uploading...' : 'Upload Photos'}</span>
                 <input
@@ -230,7 +230,7 @@ export function StorePhotosClient() {
               {photos.length > 0 && (
                 <button
                   onClick={handleSelectAll}
-                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                  className="px-4 py-2 text-gray-900 dark:text-gray-300 border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 uppercase font-medium text-sm tracking-wide rounded transition-colors"
                 >
                   {selectedPhotos.length === photos.length ? 'Deselect All' : 'Select All'}
                 </button>
@@ -240,12 +240,12 @@ export function StorePhotosClient() {
             {/* Bulk Actions */}
             {selectedPhotos.length > 0 && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
                   {selectedPhotos.length} selected
                 </span>
                 <button
                   onClick={handleBulkDelete}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-gray-900 hover:bg-black text-white uppercase font-bold text-sm tracking-wide rounded transition-colors"
                 >
                   <Trash2 className="w-4 h-4" />
                   Delete Selected
@@ -258,12 +258,12 @@ export function StorePhotosClient() {
         {/* Photos Grid */}
         {loading ? (
           <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-500"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
           </div>
         ) : photos.length === 0 ? (
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-12 text-center">
+          <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-12 text-center">
             <Upload className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            <h3 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white mb-2">
               No Store Photos
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
@@ -275,7 +275,7 @@ export function StorePhotosClient() {
             {photos.map((photo) => (
               <div
                 key={photo.id}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden group relative"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden group relative"
               >
                 {/* Selection Checkbox */}
                 <div className="absolute top-3 left-3 z-10">
@@ -283,17 +283,17 @@ export function StorePhotosClient() {
                     type="checkbox"
                     checked={selectedPhotos.includes(photo.id)}
                     onChange={() => handleSelectPhoto(photo.id)}
-                    className="w-5 h-5 rounded border-gray-300 text-yellow-500 focus:ring-yellow-500"
+                    className="w-5 h-5 border-2 border-gray-300 text-black focus:ring-black"
                   />
                 </div>
 
                 {/* Status Badge */}
                 <div className="absolute top-3 right-3 z-10">
                   <span
-                    className={`px-2 py-1 text-xs font-semibold rounded ${
+                    className={`px-2 py-1 text-xs font-bold uppercase tracking-wide ${
                       photo.status === 'active'
-                        ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                        : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+                        ? 'bg-black text-white'
+                        : 'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
                     }`}
                   >
                     {photo.status}
@@ -327,13 +327,13 @@ export function StorePhotosClient() {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleEditPhoto(photo)}
-                      className="flex-1 px-3 py-2 text-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
+                      className="flex-1 px-3 py-2 text-sm bg-black hover:bg-gray-800 text-white uppercase font-bold tracking-wide transition-colors"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleToggleStatus(photo.id, photo.status)}
-                      className="px-3 py-2 text-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
+                      className="px-3 py-2 text-sm border-2 border-gray-300 hover:border-black dark:border-gray-600 dark:hover:border-white text-gray-700 dark:text-gray-300 transition-colors"
                       title={photo.status === 'active' ? 'Hide' : 'Show'}
                     >
                       {photo.status === 'active' ? (
@@ -344,7 +344,7 @@ export function StorePhotosClient() {
                     </button>
                     <button
                       onClick={() => handleDeletePhoto(photo.id)}
-                      className="px-3 py-2 text-sm bg-red-100 hover:bg-red-200 dark:bg-red-900 dark:hover:bg-red-800 text-red-700 dark:text-red-200 rounded-lg transition-colors"
+                      className="px-3 py-2 text-sm bg-gray-800 hover:bg-black dark:bg-gray-900 dark:hover:bg-black text-white transition-colors"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -358,15 +358,15 @@ export function StorePhotosClient() {
         {/* Edit Modal */}
         {editingPhoto && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-white dark:bg-gray-800 border-2 border-black dark:border-white max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-2xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                     Edit Photo
                   </h2>
                   <button
                     onClick={() => setEditingPhoto(null)}
-                    className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                    className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -374,7 +374,7 @@ export function StorePhotosClient() {
 
                 <div className="space-y-4">
                   {/* Photo Preview */}
-                  <div className="relative h-64 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
+                  <div className="relative h-64 bg-gray-100 dark:bg-gray-700 overflow-hidden border-2 border-gray-300 dark:border-gray-600">
                     <OptimizedImage
                       src={editingPhoto.url}
                       alt={editTitle || 'Store photo'}
@@ -385,7 +385,7 @@ export function StorePhotosClient() {
 
                   {/* Title Input */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-bold uppercase tracking-wide text-gray-700 dark:text-gray-300 mb-2">
                       Title (Optional)
                     </label>
                     <input
@@ -393,13 +393,13 @@ export function StorePhotosClient() {
                       value={editTitle}
                       onChange={(e) => setEditTitle(e.target.value)}
                       placeholder="e.g., Store Front"
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-yellow-500"
+                      className="w-full px-4 py-2 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-black focus:border-black"
                     />
                   </div>
 
                   {/* Description Input */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-bold uppercase tracking-wide text-gray-700 dark:text-gray-300 mb-2">
                       Description (Optional)
                     </label>
                     <textarea
@@ -407,7 +407,7 @@ export function StorePhotosClient() {
                       onChange={(e) => setEditDescription(e.target.value)}
                       placeholder="Add a description..."
                       rows={3}
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-yellow-500"
+                      className="w-full px-4 py-2 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-black focus:border-black"
                     />
                   </div>
 
@@ -415,14 +415,14 @@ export function StorePhotosClient() {
                   <div className="flex gap-3 pt-4">
                     <button
                       onClick={handleSaveEdit}
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg transition-colors"
+                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-black hover:bg-gray-800 text-white uppercase font-bold tracking-wide transition-colors"
                     >
                       <Save className="w-5 h-5" />
                       Save Changes
                     </button>
                     <button
                       onClick={() => setEditingPhoto(null)}
-                      className="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
+                      className="px-6 py-3 bg-white border-2 border-gray-300 hover:border-black dark:bg-gray-800 dark:border-gray-600 dark:hover:border-white text-gray-900 dark:text-white uppercase font-bold tracking-wide transition-colors"
                     >
                       Cancel
                     </button>

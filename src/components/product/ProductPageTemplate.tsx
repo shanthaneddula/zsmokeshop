@@ -2,6 +2,7 @@
 
 import { AdminProduct } from '@/types';
 import { useState, useEffect } from 'react';
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 
 import { generateStructuredData, generateBreadcrumbStructuredData } from '@/lib/seo-utils';
 import MobileProductImageGallery from './MobileProductImageGallery';
@@ -26,6 +27,7 @@ export default function ProductPageTemplate({
   showRatings = false,
   showStockStatus = false
 }: ProductPageTemplateProps) {
+  const { settings } = useBusinessSettings();
   const [relatedProducts, setRelatedProducts] = useState<AdminProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
@@ -111,6 +113,7 @@ export default function ProductPageTemplate({
           product={product} 
           onAddToCart={handleAddToCart}
           isAddingToCart={isAddingToCart}
+          enableCart={settings?.enableCart !== false}
         />
       </div>
 
@@ -196,34 +199,36 @@ export default function ProductPageTemplate({
                 detailedDescription={product.detailedDescription}
               />
 
-              {/* Desktop Add to Cart */}
-              <div className="space-y-4">
-                <button
-                  onClick={handleAddToCart}
-                  disabled={!product.inStock || isAddingToCart}
-                  className={`
-                    w-full flex items-center justify-center space-x-2 py-4 px-6 rounded-lg font-bold uppercase tracking-wide text-sm transition-all duration-200
-                    ${product.inStock && !isAddingToCart
-                      ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'
-                      : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
-                    }
-                  `}
-                >
-                  {isAddingToCart ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                      <span>Adding...</span>
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                      </svg>
-                      <span>{product.inStock ? 'Add to Cart' : 'Out of Stock'}</span>
-                    </>
-                  )}
-                </button>
-              </div>
+              {/* Desktop Add to Cart - Only show if cart is enabled */}
+              {settings?.enableCart !== false && (
+                <div className="space-y-4">
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={!product.inStock || isAddingToCart}
+                    className={`
+                      w-full flex items-center justify-center space-x-2 py-4 px-6 rounded-lg font-bold uppercase tracking-wide text-sm transition-all duration-200
+                      ${product.inStock && !isAddingToCart
+                        ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'
+                        : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                      }
+                    `}
+                  >
+                    {isAddingToCart ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                        <span>Adding...</span>
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <span>{product.inStock ? 'Add to Cart' : 'Out of Stock'}</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
