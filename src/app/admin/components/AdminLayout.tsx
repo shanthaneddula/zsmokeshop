@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { 
@@ -13,14 +13,24 @@ import {
   X,
   Home,
   Image,
-  ShoppingBag
+  ShoppingBag,
+  Users
 } from 'lucide-react';
+import { User, UserPermissions } from '@/types/users';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-const navigation = [
+interface NavItem {
+  name: string;
+  href: string;
+  icon: any;
+  adminOnly?: boolean;
+  requiredPermission?: keyof UserPermissions;
+}
+
+const navigation: NavItem[] = [
   {
     name: 'Dashboard',
     href: '/admin',
@@ -30,26 +40,37 @@ const navigation = [
     name: 'Orders',
     href: '/admin/orders',
     icon: ShoppingBag,
+    requiredPermission: 'viewOrders',
   },
   {
     name: 'Products',
     href: '/admin/products',
     icon: Package,
+    requiredPermission: 'viewProducts',
   },
   {
     name: 'Categories',
     href: '/admin/categories',
     icon: FolderOpen,
+    requiredPermission: 'viewCategories',
   },
   {
     name: 'Store Photos',
     href: '/admin/store-photos',
     icon: Image,
+    requiredPermission: 'viewStorePhotos',
+  },
+  {
+    name: 'Users',
+    href: '/admin/users',
+    icon: Users,
+    adminOnly: true,
   },
   {
     name: 'Settings',
     href: '/admin/settings',
     icon: Settings,
+    requiredPermission: 'viewSettings',
   },
 ];
 
@@ -57,6 +78,47 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
+
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await fetch('/api/admin/auth/me');
+      const data = await response.json();
+      if (data.success && data.user) {
+        setCurrentUser(data.user);
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const hasPermission = (item: NavItem): boolean => {
+    // If user data is still loading, don't show anything
+    if (loading || !currentUser) return false;
+
+    // Main admin has access to everything
+    const isMainAdmin = !('permissions' in currentUser);
+    if (isMainAdmin) return true;
+
+    // Check admin-only items
+    if (item.adminOnly) return false;
+
+    // Check required permission
+    if (item.requiredPermission && 'permissions' in currentUser) {
+      return currentUser.permissions[item.requiredPermission] === true;
+    }
+
+    return true;
+  };
+
+  const filteredNavigation = navigation.filter(hasPermission);
 
   const handleLogout = async () => {
     try {
@@ -106,7 +168,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
         {/* Navigation */}
         <nav className="flex-1 px-4 py-6 space-y-2">
-          {navigation.map((item) => {
+          {filteredNavigation.map((item) => {
             const isActive = pathname === item.href || 
               (item.href !== '/admin' && pathname.startsWith(item.href));
             

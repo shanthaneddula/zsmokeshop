@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import * as ProductStorage from '@/lib/product-storage-service';
 import { AdminProduct } from '@/types';
 import { generateSlug } from '@/lib/json-utils';
+import { verifyAdminAuth } from '@/lib/auth-server';
+import { logActivity } from '@/lib/activity-log-service';
 
 // Validation schema for product updates
 function validateProductUpdateData(data: any): { isValid: boolean; errors: string[] } {
@@ -99,6 +101,26 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
+    
+    // Check authentication
+    const authResult = await verifyAdminAuth(request);
+    if (!authResult.isAuthenticated || !authResult.user) {
+      return NextResponse.json(
+        { success: false, error: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+
+    const user = authResult.user;
+
+    // Check edit permission for employee users
+    if ('permissions' in user && !user.permissions.editProducts) {
+      return NextResponse.json(
+        { success: false, error: 'Insufficient permissions to edit products' },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
 
     if (!id) {
@@ -139,31 +161,55 @@ export async function PUT(
       }
     }
 
+    // Track changes for activity log
+    const changes: Record<string, { old: any; new: any }> = {};
+
     // Prepare update data
     const updateData: Partial<AdminProduct> = {};
     
     // Only include fields that are being updated
-    if (body.name !== undefined) {
+    if (body.name !== undefined && body.name !== existingProduct.name) {
       updateData.name = body.name.trim();
       updateData.slug = generateSlug(body.name.trim());
+      changes.name = { old: existingProduct.name, new: body.name.trim() };
     }
-    if (body.category !== undefined) updateData.category = body.category.trim();
-    if (body.price !== undefined) updateData.price = body.price;
-    if (body.salePrice !== undefined) updateData.salePrice = body.salePrice;
-    if (body.image !== undefined) updateData.image = body.image.trim();
-
+    if (body.category !== undefined && body.category !== existingProduct.category) {
+      updateData.category = body.category.trim();
+      changes.category = { old: existingProduct.category, new: body.category.trim() };
+    }
+    if (body.price !== undefined && body.price !== existingProduct.price) {
+      updateData.price = body.price;
+      changes.price = { old: existingProduct.price, new: body.price };
+    }
+    if (body.salePrice !== undefined && body.salePrice !== existingProduct.salePrice) {
+      updateData.salePrice = body.salePrice;
+      changes.salePrice = { old: existingProduct.salePrice, new: body.salePrice };
+    }
+    if (body.image !== undefined && body.image !== existingProduct.image) {
+      updateData.image = body.image.trim();
+      changes.image = { old: existingProduct.image, new: body.image.trim() };
+    }
     if (body.shortDescription !== undefined) updateData.shortDescription = body.shortDescription?.trim() || '';
     if (body.detailedDescription !== undefined) updateData.detailedDescription = body.detailedDescription?.trim() || '';
-    if (body.brand !== undefined) updateData.brand = body.brand?.trim() || '';
-    if (body.inStock !== undefined) updateData.inStock = body.inStock;
+    if (body.brand !== undefined && body.brand !== existingProduct.brand) {
+      updateData.brand = body.brand?.trim() || '';
+      changes.brand = { old: existingProduct.brand, new: body.brand?.trim() || '' };
+    }
+    if (body.inStock !== undefined && body.inStock !== existingProduct.inStock) {
+      updateData.inStock = body.inStock;
+      changes.inStock = { old: existingProduct.inStock, new: body.inStock };
+    }
     if (body.badges !== undefined) updateData.badges = body.badges;
     if (body.sku !== undefined) updateData.sku = body.sku?.trim() || '';
     if (body.weight !== undefined) updateData.weight = body.weight;
     if (body.dimensions !== undefined) updateData.dimensions = body.dimensions;
-    if (body.status !== undefined) updateData.status = body.status;
+    if (body.status !== undefined && body.status !== existingProduct.status) {
+      updateData.status = body.status;
+      changes.status = { old: existingProduct.status, new: body.status };
+    }
     
     // Add metadata
-    updateData.updatedBy = 'admin'; // TODO: Get from auth context
+    updateData.updatedBy = user.username;
 
     // Update the product
     const updatedProduct = await ProductStorage.updateProduct(id, updateData);
@@ -173,6 +219,19 @@ export async function PUT(
         success: false,
         error: 'Failed to update product'
       }, { status: 500 });
+    }
+
+    // Log activity if there were changes
+    if (Object.keys(changes).length > 0) {
+      await logActivity(
+        'id' in user ? user.id : 'admin',
+        user.username,
+        'UPDATE_PRODUCT',
+        'product',
+        `Updated product: ${updatedProduct.name}`,
+        id,
+        changes
+      );
     }
 
     return NextResponse.json({
@@ -198,6 +257,25 @@ export async function DELETE(
   try {
     const { id } = await params;
 
+    // Check authentication
+    const authResult = await verifyAdminAuth(request);
+    if (!authResult.isAuthenticated || !authResult.user) {
+      return NextResponse.json(
+        { success: false, error: 'Authentication required' },
+        { status: 401 }
+      );
+    }
+
+    const user = authResult.user;
+
+    // Check delete permission for employee users
+    if ('permissions' in user && !user.permissions.deleteProducts) {
+      return NextResponse.json(
+        { success: false, error: 'Insufficient permissions to delete products' },
+        { status: 403 }
+      );
+    }
+
     if (!id) {
       return NextResponse.json({
         success: false,
@@ -216,6 +294,20 @@ export async function DELETE(
 
     // Delete the product
     await ProductStorage.deleteProduct(id);
+
+    // Log activity
+    await logActivity(
+      'id' in user ? user.id : 'admin',
+      user.username,
+      'DELETE_PRODUCT',
+      'product',
+      `Deleted product: ${existingProduct.name}`,
+      id,
+      {
+        name: { old: existingProduct.name, new: null },
+        category: { old: existingProduct.category, new: null },
+      }
+    );
 
     // TODO: Clean up associated images
     // This would be implemented in Phase 3 with image management

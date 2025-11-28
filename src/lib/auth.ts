@@ -2,6 +2,7 @@
 
 import jwt from 'jsonwebtoken';
 import { AdminUser, LoginCredentials, AuthResponse } from '@/types/admin';
+import { User } from '@/types/users';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-key';
 const SESSION_DURATION = '24h';
@@ -55,7 +56,7 @@ export async function validateCredentials(credentials: LoginCredentials): Promis
 }
 
 // Create JWT token
-export function createToken(user: AdminUser): string {
+export function createToken(user: AdminUser | User): string {
   return jwt.sign(
     {
       id: user.id,

@@ -4,7 +4,11 @@
 import bcrypt from 'bcryptjs';
 import fs from 'fs';
 import path from 'path';
+import { NextRequest } from 'next/server';
 import { AdminUser } from '@/types/admin';
+import { User } from '@/types/users';
+import { getUserByUsername, verifyUserCredentials } from './user-storage-service';
+import { verifyToken } from './auth';
 
 const ADMIN_CONFIG_PATH = path.join(process.cwd(), 'src/data/admin-config.json');
 
@@ -52,38 +56,49 @@ function saveAdminConfig(config: AdminConfig): void {
 }
 
 // Validate credentials with bcrypt (server-side only)
-export async function validateCredentialsWithBcrypt(username: string, password: string): Promise<{ success: boolean; user?: AdminUser; error?: string }> {
+// Supports both main admin and employee users
+export async function validateCredentialsWithBcrypt(username: string, password: string): Promise<{ success: boolean; user?: AdminUser | User; error?: string }> {
   try {
+    // First, check if it's the main admin from config file
     const config = loadAdminConfig();
     const adminUser = config.admin;
     
-    if (username !== adminUser.username) {
+    if (username === adminUser.username) {
+      const isValidPassword = await bcrypt.compare(password, adminUser.passwordHash);
+      
+      if (!isValidPassword) {
+        return {
+          success: false,
+          error: 'Invalid username or password'
+        };
+      }
+      
+      const user: AdminUser = {
+        id: adminUser.id,
+        username: adminUser.username,
+        role: adminUser.role as 'admin',
+        lastLogin: new Date().toISOString()
+      };
+      
+      return {
+        success: true,
+        user
+      };
+    }
+    
+    // If not main admin, check employee users from KV
+    const employeeUser = await verifyUserCredentials(username, password);
+    
+    if (!employeeUser) {
       return {
         success: false,
         error: 'Invalid username or password'
       };
     }
-    
-    // Verify password against hash
-    const isValidPassword = await bcrypt.compare(password, adminUser.passwordHash);
-    
-    if (!isValidPassword) {
-      return {
-        success: false,
-        error: 'Invalid username or password'
-      };
-    }
-    
-    const user: AdminUser = {
-      id: adminUser.id,
-      username: adminUser.username,
-      role: adminUser.role as 'admin',
-      lastLogin: new Date().toISOString()
-    };
     
     return {
       success: true,
-      user
+      user: employeeUser
     };
   } catch (error) {
     console.error('Error validating credentials:', error);
@@ -155,5 +170,46 @@ export function getAdminInfo(): { username: string; lastPasswordChange: string }
       username: 'admin',
       lastPasswordChange: new Date().toISOString()
     };
+  }
+}
+
+// Verify admin authentication from request
+export async function verifyAdminAuth(request: NextRequest): Promise<{ isAuthenticated: boolean; user?: User | AdminUser }> {
+  try {
+    const token = request.cookies.get('admin-token')?.value;
+    
+    if (!token) {
+      return { isAuthenticated: false };
+    }
+    
+    const payload = verifyToken(token);
+    
+    if (!payload || !payload.id || !payload.username) {
+      return { isAuthenticated: false };
+    }
+    
+    // Check if it's the main admin
+    const config = loadAdminConfig();
+    if (payload.username === config.admin.username) {
+      const adminUser: AdminUser = {
+        id: payload.id,
+        username: payload.username,
+        role: 'admin',
+        lastLogin: new Date().toISOString(),
+      };
+      return { isAuthenticated: true, user: adminUser };
+    }
+    
+    // Check if it's an employee user
+    const employeeUser = await getUserByUsername(payload.username);
+    
+    if (!employeeUser || !employeeUser.isActive) {
+      return { isAuthenticated: false };
+    }
+    
+    return { isAuthenticated: true, user: employeeUser };
+  } catch (error) {
+    console.error('Error verifying admin auth:', error);
+    return { isAuthenticated: false };
   }
 }
