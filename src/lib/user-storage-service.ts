@@ -3,19 +3,40 @@
  * Manages user accounts in Redis KV
  */
 
-import { kv } from '@vercel/kv';
+import Redis from 'ioredis';
 import { User, CreateUserRequest, UpdateUserRequest, DEFAULT_PERMISSIONS } from '@/types/users';
 import bcrypt from 'bcryptjs';
 
-const USERS_KEY = 'users';
+const USERS_KEY = 'zsmokeshop:users';
+
+// Initialize Redis client
+let redisClient: Redis | null = null;
+if (process.env.REDIS_URL) {
+  redisClient = new Redis(process.env.REDIS_URL, {
+    maxRetriesPerRequest: 3,
+    retryStrategy: (times) => {
+      const delay = Math.min(times * 50, 2000);
+      return delay;
+    },
+  });
+}
 
 /**
  * Get all users
  */
 export async function getAllUsers(): Promise<User[]> {
   try {
-    const users = await kv.get<User[]>(USERS_KEY);
-    return users || [];
+    if (!redisClient) {
+      console.error('Redis client not initialized');
+      return [];
+    }
+    
+    const data = await redisClient.get(USERS_KEY);
+    if (!data) {
+      return [];
+    }
+    
+    return JSON.parse(data);
   } catch (error) {
     console.error('Error fetching users:', error);
     return [];
@@ -106,7 +127,10 @@ export async function createUser(data: CreateUserRequest, createdBy: string): Pr
     // Add to users list
     const users = await getAllUsers();
     users.push(newUser);
-    await kv.set(USERS_KEY, users);
+    
+    if (redisClient) {
+      await redisClient.set(USERS_KEY, JSON.stringify(users));
+    }
 
     return newUser;
   } catch (error) {
@@ -156,7 +180,9 @@ export async function updateUser(userId: string, data: UpdateUserRequest): Promi
       updatedAt: new Date().toISOString(),
     };
 
-    await kv.set(USERS_KEY, users);
+    if (redisClient) {
+      await redisClient.set(USERS_KEY, JSON.stringify(users));
+    }
 
     return users[userIndex];
   } catch (error) {
@@ -177,7 +203,10 @@ export async function deleteUser(userId: string): Promise<boolean> {
       throw new Error('User not found');
     }
 
-    await kv.set(USERS_KEY, filteredUsers);
+    if (redisClient) {
+      await redisClient.set(USERS_KEY, JSON.stringify(filteredUsers));
+    }
+    
     return true;
   } catch (error) {
     console.error('Error deleting user:', error);
@@ -222,7 +251,9 @@ async function updateUserLastLogin(userId: string): Promise<void> {
 
     if (userIndex !== -1) {
       users[userIndex].lastLogin = new Date().toISOString();
-      await kv.set(USERS_KEY, users);
+      if (redisClient) {
+        await redisClient.set(USERS_KEY, JSON.stringify(users));
+      }
     }
   } catch (error) {
     console.error('Error updating last login:', error);

@@ -3,11 +3,23 @@
  * Tracks all user actions for admin visibility
  */
 
-import { kv } from '@vercel/kv';
+import Redis from 'ioredis';
 import { ActivityLog } from '@/types/users';
 
-const ACTIVITY_LOGS_KEY = 'activity_logs';
+const ACTIVITY_LOGS_KEY = 'zsmokeshop:activity_logs';
 const MAX_LOGS = 1000; // Keep last 1000 activities
+
+// Initialize Redis client
+let redisClient: Redis | null = null;
+if (process.env.REDIS_URL) {
+  redisClient = new Redis(process.env.REDIS_URL, {
+    maxRetriesPerRequest: 3,
+    retryStrategy: (times) => {
+      const delay = Math.min(times * 50, 2000);
+      return delay;
+    },
+  });
+}
 
 /**
  * Log an activity
@@ -42,7 +54,9 @@ export async function logActivity(
     // Keep only last MAX_LOGS entries
     const trimmedLogs = logs.slice(0, MAX_LOGS);
 
-    await kv.set(ACTIVITY_LOGS_KEY, trimmedLogs);
+    if (redisClient) {
+      await redisClient.set(ACTIVITY_LOGS_KEY, JSON.stringify(trimmedLogs));
+    }
   } catch (error) {
     console.error('Error logging activity:', error);
   }
@@ -53,8 +67,17 @@ export async function logActivity(
  */
 export async function getAllActivityLogs(): Promise<ActivityLog[]> {
   try {
-    const logs = await kv.get<ActivityLog[]>(ACTIVITY_LOGS_KEY);
-    return logs || [];
+    if (!redisClient) {
+      console.error('Redis client not initialized');
+      return [];
+    }
+    
+    const data = await redisClient.get(ACTIVITY_LOGS_KEY);
+    if (!data) {
+      return [];
+    }
+    
+    return JSON.parse(data);
   } catch (error) {
     console.error('Error fetching activity logs:', error);
     return [];
@@ -119,7 +142,9 @@ export async function clearOldActivityLogs(daysToKeep: number = 30): Promise<voi
 
     const recentLogs = logs.filter(log => new Date(log.timestamp) > cutoffDate);
 
-    await kv.set(ACTIVITY_LOGS_KEY, recentLogs);
+    if (redisClient) {
+      await redisClient.set(ACTIVITY_LOGS_KEY, JSON.stringify(recentLogs));
+    }
   } catch (error) {
     console.error('Error clearing old activity logs:', error);
   }
