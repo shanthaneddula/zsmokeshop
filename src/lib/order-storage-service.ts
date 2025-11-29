@@ -283,6 +283,14 @@ export async function getOrders(filters?: OrderFilters): Promise<PickupOrder[]> 
       orders = orders.filter(order => order.storeLocation === filters.storeLocation);
     }
 
+    if (filters.since) {
+      const sinceDate = new Date(filters.since);
+      orders = orders.filter(order => {
+        const orderDate = new Date(order.timeline.placedAt || order.createdAt);
+        return orderDate > sinceDate;
+      });
+    }
+
     if (filters.dateFrom) {
       const fromDate = new Date(filters.dateFrom);
       orders = orders.filter(order => new Date(order.createdAt) >= fromDate);

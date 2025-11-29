@@ -112,7 +112,7 @@ export async function createUser(data: CreateUserRequest, createdBy: string): Pr
       id: `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
       username: data.username,
       email: data.email,
-      password: hashedPassword,
+      passwordHash: hashedPassword,
       role: data.role,
       permissions,
       firstName: data.firstName,
@@ -154,8 +154,8 @@ export async function updateUser(userId: string, data: UpdateUserRequest): Promi
     const user = users[userIndex];
 
     // Update password if provided
-    if (data.password) {
-      data.password = await bcrypt.hash(data.password, 10);
+    if (data.passwordHash) {
+      data.passwordHash = await bcrypt.hash(data.passwordHash, 10);
     }
 
     // Update role permissions if role changed
@@ -225,7 +225,15 @@ export async function verifyUserCredentials(username: string, password: string):
       return null;
     }
 
-    const isValid = await bcrypt.compare(password, user.password);
+    // Handle both old 'password' field and new 'passwordHash' field for backwards compatibility
+    const storedHash = user.passwordHash || (user as any).password;
+    
+    if (!storedHash) {
+      console.error('No password hash found for user:', username);
+      return null;
+    }
+
+    const isValid = await bcrypt.compare(password, storedHash);
     
     if (!isValid) {
       return null;

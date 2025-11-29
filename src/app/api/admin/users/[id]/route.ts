@@ -49,7 +49,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     // Remove password from response
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...safeUser } = user;
+    const { passwordHash, ...safeUser } = user;
 
     return NextResponse.json({
       success: true,
@@ -120,7 +120,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
     // Remove password from response
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...safeUser } = updatedUser;
+    const { passwordHash, ...safeUser } = updatedUser;
 
     return NextResponse.json({
       success: true,

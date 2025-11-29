@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-
 import { Eye, EyeOff, AlertCircle, Loader2 } from 'lucide-react';
 
 interface LoginFormData {
@@ -10,7 +9,6 @@ interface LoginFormData {
 }
 
 export default function LoginForm() {
-
   const [formData, setFormData] = useState<LoginFormData>({
     username: process.env.NODE_ENV === 'development' ? 'admin' : '',
     password: process.env.NODE_ENV === 'development' ? 'admin123' : ''
@@ -34,23 +32,18 @@ export default function LoginForm() {
       });
 
       const data = await response.json();
-      console.log('Login response:', data);
 
       if (data.success) {
-        console.log('Login successful, user role:', data.user?.role);
         // Add a small delay to ensure cookie is set
         await new Promise(resolve => setTimeout(resolve, 100));
         
-        // Redirect based on user role
+        // Redirect based on user role - all users go to their appropriate dashboard
         if (data.user?.role === 'orders-manager' || data.user?.role === 'inventory-manager') {
-          console.log('Redirecting employee to /admin/my-dashboard');
           window.location.href = '/admin/my-dashboard';
         } else {
-          console.log('Redirecting admin to /admin');
-          window.location.href = '/admin';
+          window.location.href = '/admin/dashboard';
         }
       } else {
-        console.log('Login failed:', data.error);
         setError(data.error || 'Login failed');
       }
     } catch {
@@ -66,7 +59,6 @@ export default function LoginForm() {
       ...prev,
       [name]: value
     }));
-    // Clear error when user starts typing
     if (error) setError('');
   };
 
@@ -93,7 +85,7 @@ export default function LoginForm() {
             required
             value={formData.username}
             onChange={handleChange}
-            className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-gray-900 dark:focus:border-white focus:outline-none transition-colors"
+            className="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 text-sm font-medium text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 transition-all"
             placeholder="Enter your username"
             disabled={isLoading}
           />
@@ -112,14 +104,14 @@ export default function LoginForm() {
               required
               value={formData.password}
               onChange={handleChange}
-              className="w-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-3 pr-12 text-sm font-medium text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-gray-900 dark:focus:border-white focus:outline-none transition-colors"
+              className="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 pr-12 text-sm font-medium text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 transition-all"
               placeholder="Enter your password"
               disabled={isLoading}
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               disabled={isLoading}
             >
               {showPassword ? (
@@ -136,7 +128,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isLoading || !formData.username || !formData.password}
-        className="w-full flex items-center justify-center border border-gray-900 dark:border-white bg-gray-900 dark:bg-white px-6 py-3 text-sm font-black uppercase tracking-wide text-white dark:text-gray-900 hover:bg-white hover:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-900 disabled:hover:text-white dark:disabled:hover:bg-white dark:disabled:hover:text-gray-900"
+        className="w-full flex items-center justify-center border border-gray-900 dark:border-white bg-gray-900 dark:bg-white px-6 py-3 text-sm font-black uppercase tracking-wide text-white dark:text-gray-900 hover:bg-white hover:text-gray-900 dark:hover:bg-gray-900 dark:hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isLoading ? (
           <>
@@ -147,7 +139,6 @@ export default function LoginForm() {
           'Sign In'
         )}
       </button>
-
     </form>
   );
 }

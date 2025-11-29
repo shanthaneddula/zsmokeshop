@@ -13,10 +13,15 @@ import {
   XCircle,
   Send,
   RefreshCw,
-  AlertTriangle
+  AlertTriangle,
+  ThumbsUp,
+  ThumbsDown,
+  ArrowRight
 } from 'lucide-react';
 import { PickupOrder, OrderStatus } from '@/types/orders';
+import { Product } from '@/types';
 import { formatRemainingTime, getRemainingTime, isOrderExpiringSoon } from '@/lib/order-timer-utils';
+import ReplacementProductSearch from '@/components/admin/ReplacementProductSearch';
 
 interface OrderDetailPageProps {
   params: Promise<{ id: string }>;
@@ -29,9 +34,11 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [updating, setUpdating] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
-  const [replacementProductId, setReplacementProductId] = useState('');
+  const [selectedProductIndex, setSelectedProductIndex] = useState<number | null>(null);
+  const [showProductSearch, setShowProductSearch] = useState(false);
   const [replacementNote, setReplacementNote] = useState('');
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [rejectReason, setRejectReason] = useState('');
 
   useEffect(() => {
     params.then(p => {
@@ -91,26 +98,78 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
     }
   };
 
-  const suggestReplacement = async () => {
-    if (!order || !selectedProduct || !replacementProductId) return;
+  const handleAcceptOrder = async () => {
+    if (!order || order.status !== 'pending') return;
+    
+    try {
+      setUpdating(true);
+      const res = await fetch(`/api/admin/orders/${order.id}/actions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'accept' }),
+      });
+
+      if (!res.ok) throw new Error('Failed to accept order');
+
+      await fetchOrder(order.id);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to accept order');
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  const handleRejectOrder = async () => {
+    if (!order || order.status !== 'pending') return;
+    
+    try {
+      setUpdating(true);
+      const res = await fetch(`/api/admin/orders/${order.id}/actions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          action: 'reject',
+          reason: rejectReason || 'Items unavailable'
+        }),
+      });
+
+      if (!res.ok) throw new Error('Failed to reject order');
+
+      setShowRejectModal(false);
+      setRejectReason('');
+      await fetchOrder(order.id);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Failed to reject order');
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  const handleSuggestReplacement = async (replacementProduct: Product) => {
+    if (!order || selectedProductIndex === null) return;
 
     try {
       setUpdating(true);
-      const res = await fetch(`/api/orders/${order.id}/suggest-replacement`, {
+      const res = await fetch(`/api/admin/orders/${order.id}/actions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          originalProductId: selectedProduct,
-          replacementProductId,
-          note: replacementNote,
+          action: 'suggest-replacement',
+          productIndex: selectedProductIndex,
+          replacementProduct: {
+            id: replacementProduct.id,
+            name: replacementProduct.name,
+            price: replacementProduct.price,
+          },
+          replacementNote,
         }),
       });
 
       if (!res.ok) throw new Error('Failed to suggest replacement');
 
       await fetchOrder(order.id);
-      setSelectedProduct(null);
-      setReplacementProductId('');
+      setShowProductSearch(false);
+      setSelectedProductIndex(null);
       setReplacementNote('');
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Failed to suggest replacement');
@@ -339,7 +398,10 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
                     {!item.wasReplaced && order.status === 'pending' && (
                       <div className="mt-2 space-y-2">
                         <button
-                          onClick={() => setSelectedProduct(item.productId)}
+                          onClick={() => {
+                            setSelectedProductIndex(index);
+                            setShowProductSearch(true);
+                          }}
                           className="block w-full text-sm bg-amber-600 hover:bg-amber-700 text-white px-3 py-2 rounded font-medium transition-colors"
                         >
                           Adjust Order
@@ -355,7 +417,10 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
                     
                     {!item.wasReplaced && order.status === 'confirmed' && (
                       <button
-                        onClick={() => setSelectedProduct(item.productId)}
+                        onClick={() => {
+                          setSelectedProductIndex(index);
+                          setShowProductSearch(true);
+                        }}
                         className="mt-2 text-sm text-amber-600 hover:text-amber-700 font-medium"
                       >
                         Suggest Replacement
@@ -553,62 +618,16 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
       </div>
 
       {/* Replacement Suggestion Modal */}
-      {selectedProduct && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Suggest Replacement</h3>
-            
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Replacement Product ID
-                </label>
-                <input
-                  type="text"
-                  value={replacementProductId}
-                  onChange={(e) => setReplacementProductId(e.target.value)}
-                  placeholder="Enter product ID"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Note to Customer (Optional)
-                </label>
-                <textarea
-                  value={replacementNote}
-                  onChange={(e) => setReplacementNote(e.target.value)}
-                  placeholder="e.g., Similar flavor and nicotine strength"
-                  rows={3}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-                />
-              </div>
-              
-              <div className="flex space-x-3">
-                <button
-                  onClick={suggestReplacement}
-                  disabled={!replacementProductId || updating}
-                  className="flex-1 flex items-center justify-center px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 disabled:opacity-50"
-                >
-                  <Send className="w-4 h-4 mr-2" />
-                  Send SMS
-                </button>
-                
-                <button
-                  onClick={() => {
-                    setSelectedProduct(null);
-                    setReplacementProductId('');
-                    setReplacementNote('');
-                  }}
-                  className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      {showProductSearch && selectedProductIndex !== null && (
+        <ReplacementProductSearch
+          category={order.items[selectedProductIndex]?.category}
+          onSelect={handleSuggestReplacement}
+          onCancel={() => {
+            setShowProductSearch(false);
+            setSelectedProductIndex(null);
+            setReplacementNote('');
+          }}
+        />
       )}
     </div>
   );

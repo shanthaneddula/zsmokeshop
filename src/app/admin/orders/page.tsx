@@ -96,7 +96,8 @@ function AdminOrdersContent() {
         if (selectedOrder?.id === orderId) {
           const res = await fetch(`/api/orders/${orderId}`);
           const data = await res.json();
-          setSelectedOrder(data);
+          // Check if data has the order property or is the order itself
+          setSelectedOrder(data.order || data);
         }
       }
     } catch (error) {
@@ -295,7 +296,7 @@ function AdminOrdersContent() {
                       </div>
                       <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold border ${getStatusColor(order.status)}`}>
                         {getStatusIcon(order.status)}
-                        {order.status.charAt(0).toUpperCase() + order.status.slice(1).replace('-', ' ')}
+                        {order.status ? order.status.charAt(0).toUpperCase() + order.status.slice(1).replace('-', ' ') : 'Unknown'}
                       </span>
                     </div>
                     
@@ -340,7 +341,7 @@ function AdminOrdersContent() {
                   </div>
                   <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg border font-semibold ${getStatusColor(selectedOrder.status)}`}>
                     {getStatusIcon(selectedOrder.status)}
-                    {selectedOrder.status.toUpperCase().replace('-', ' ')}
+                    {selectedOrder.status?.toUpperCase().replace('-', ' ') || 'UNKNOWN'}
                   </span>
                 </div>
 

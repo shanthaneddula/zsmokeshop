@@ -14,9 +14,12 @@ import {
   Home,
   Image,
   ShoppingBag,
-  Users
+  Users,
+  UserCircle,
+  Clock
 } from 'lucide-react';
 import { User, UserPermissions } from '@/types/users';
+import AdminHeader from './AdminHeader';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -33,8 +36,15 @@ interface NavItem {
 const navigation: NavItem[] = [
   {
     name: 'Dashboard',
-    href: '/admin',
+    href: '/admin/dashboard',
     icon: LayoutDashboard,
+    adminOnly: true, // Only admin can see the main dashboard
+  },
+  {
+    name: 'My Dashboard',
+    href: '/admin/my-dashboard',
+    icon: Home,
+    // Available to all employees (not admin-only)
   },
   {
     name: 'Orders',
@@ -70,7 +80,19 @@ const navigation: NavItem[] = [
     name: 'Settings',
     href: '/admin/settings',
     icon: Settings,
-    requiredPermission: 'viewSettings',
+    adminOnly: true, // Only admin can access global settings
+  },
+  {
+    name: 'Timesheet',
+    href: '/admin/timesheet',
+    icon: Clock,
+    // No permission required - everyone can track their time
+  },
+  {
+    name: 'Profile',
+    href: '/admin/profile',
+    icon: UserCircle,
+    // No permission required - everyone can access their profile
   },
 ];
 
@@ -84,6 +106,59 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   useEffect(() => {
     fetchCurrentUser();
   }, []);
+
+  // Redirect users to their appropriate default route if they don't have permission
+  useEffect(() => {
+    if (loading || !currentUser) return;
+
+    const isMainAdmin = !('permissions' in currentUser);
+    
+    // Main admin can access everything
+    if (isMainAdmin) return;
+
+    // Profile, timesheet, and my-dashboard routes are always allowed for everyone
+    if (pathname.startsWith('/admin/profile') || 
+        pathname.startsWith('/admin/timesheet') || 
+        pathname.startsWith('/admin/my-dashboard')) {
+      return;
+    }
+
+    // Check if current route is allowed for this user
+    const currentRoute = navigation.find(item => {
+      // Exact match
+      if (pathname === item.href) return true;
+      // Sub-route match (e.g., /admin/orders/123 matches /admin/orders)
+      if (item.href !== '/admin' && item.href !== '/admin/dashboard' && pathname.startsWith(item.href + '/')) return true;
+      return false;
+    });
+
+    // If route not found in navigation, allow it (could be a dynamic route)
+    if (!currentRoute) return;
+
+    // If current route requires admin-only access, redirect
+    if (currentRoute.adminOnly) {
+      router.push('/admin/my-dashboard');
+      return;
+    }
+
+    // If current route requires a permission the user doesn't have, redirect
+    if (currentRoute.requiredPermission && 'permissions' in currentUser) {
+      if (!currentUser.permissions[currentRoute.requiredPermission]) {
+        router.push('/admin/my-dashboard');
+        return;
+      }
+    }
+
+    // If user is on /admin (dashboard) and is not main admin, redirect
+    if (pathname === '/admin' && !isMainAdmin) {
+      router.push('/admin/my-dashboard');
+    }
+    
+    // If user is on old /admin route (now should be /admin/dashboard), redirect
+    if (pathname === '/admin' && isMainAdmin) {
+      router.push('/admin/dashboard');
+    }
+  }, [currentUser, loading, pathname, router]);
 
   const fetchCurrentUser = async () => {
     try {
@@ -120,113 +195,88 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
   const filteredNavigation = navigation.filter(hasPermission);
 
-  const handleLogout = async () => {
-    try {
-      await fetch('/api/admin/auth/logout', {
-        method: 'POST',
-      });
-      router.push('/admin/login');
-      router.refresh();
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div 
-          className="fixed inset-0 z-10 bg-black bg-opacity-50 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
+      {/* Admin Header */}
+      <AdminHeader onMenuClick={() => setSidebarOpen(true)} />
 
-      {/* Sidebar */}
-      <div className={`
-        fixed top-[4.125rem] left-0 z-20 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0
-        ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-        h-[calc(100vh-4.125rem-8rem)]
-      `}>
-        {/* Sidebar header */}
-        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 border-2 border-gray-900 dark:border-white flex items-center justify-center">
-              <span className="text-lg font-black text-gray-900 dark:text-white">Z</span>
-            </div>
-            <span className="text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white">
-              Admin
-            </span>
-          </div>
-          <button
+      <div className="flex">
+        {/* Mobile sidebar overlay */}
+        {sidebarOpen && (
+          <div 
+            className="fixed inset-0 z-30 bg-black bg-opacity-50 lg:hidden"
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
+          />
+        )}
 
-        {/* Navigation */}
-        <nav className="flex-1 px-4 py-6 space-y-2">
-          {filteredNavigation.map((item) => {
-            const isActive = pathname === item.href || 
-              (item.href !== '/admin' && pathname.startsWith(item.href));
-            
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setSidebarOpen(false)}
-                className={`
-                  flex items-center px-3 py-2 text-sm font-medium uppercase tracking-wide transition-colors
-                  ${isActive 
-                    ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900 border-l-2 border-gray-900 dark:border-white' 
-                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
-                  }
-                `}
-              >
-                <item.icon className="w-5 h-5 mr-3" />
-                {item.name}
-              </Link>
-            );
-          })}
-        </nav>
+        {/* Sidebar */}
+        <aside className={`
+          fixed top-16 left-0 z-40 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-transform duration-300 ease-in-out lg:translate-x-0
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+          h-[calc(100vh-4rem)] overflow-y-auto
+        `}>
+          {/* Sidebar header */}
+          <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 border border-gray-900 dark:border-white flex items-center justify-center">
+                <span className="text-lg font-black text-gray-900 dark:text-white">Z</span>
+              </div>
+              <span className="text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white">
+                Admin
+              </span>
+            </div>
+            <button
+              onClick={() => setSidebarOpen(false)}
+              className="lg:hidden p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
 
-        {/* Sidebar footer */}
-        <div className="border-t border-gray-200 dark:border-gray-700 p-4 space-y-2">
-          <Link
-            href="/"
-            target="_blank"
-            className="flex items-center px-3 py-2 text-sm font-medium uppercase tracking-wide text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-          >
-            <Home className="w-5 h-5 mr-3" />
-            View Site
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center px-3 py-2 text-sm font-medium uppercase tracking-wide text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors"
-          >
-            <LogOut className="w-5 h-5 mr-3" />
-            Logout
-          </button>
-        </div>
-      </div>
+          {/* Navigation */}
+          <nav className="flex-1 px-4 py-6 space-y-1">
+            {filteredNavigation.map((item) => {
+              const isActive = pathname === item.href || 
+                (item.href !== '/admin' && item.href !== '/admin/dashboard' && pathname.startsWith(item.href));
+              
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setSidebarOpen(false)}
+                  className={`
+                    flex items-center px-4 py-3 text-sm font-black uppercase tracking-wide transition-all
+                    ${isActive 
+                      ? 'bg-gray-900 text-white dark:bg-white dark:text-gray-900' 
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }
+                  `}
+                >
+                  <item.icon className="w-5 h-5 mr-3" />
+                  {item.name}
+                </Link>
+              );
+            })}
+          </nav>
 
-      {/* Main content */}
-      <div className="lg:pl-64">
-        {/* Mobile menu button - only show on mobile */}
-        <div className="lg:hidden sticky top-[4.125rem] z-30 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2">
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="p-2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-          >
-            <Menu className="w-5 h-5" />
-          </button>
-        </div>
+          {/* Sidebar footer */}
+          <div className="border-t border-gray-200 dark:border-gray-700 p-4">
+            <Link
+              href="/"
+              target="_blank"
+              className="flex items-center px-4 py-3 text-sm font-medium uppercase tracking-wide text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              <Home className="w-5 h-5 mr-3" />
+              View Store
+            </Link>
+          </div>
+        </aside>
 
-        {/* Page content */}
-        <main className="flex-1 pt-[4.125rem]">
-          {children}
+        {/* Main content */}
+        <main className="flex-1 lg:ml-64">
+          <div className="p-6 lg:p-8">
+            {children}
+          </div>
         </main>
       </div>
     </div>

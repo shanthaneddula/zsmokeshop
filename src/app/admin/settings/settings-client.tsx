@@ -352,10 +352,10 @@ export default function SettingsClient() {
   };
 
   return (
-    <div className="p-6 sm:p-8">
+    <div className="max-w-7xl mx-auto">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
               Settings
@@ -370,12 +370,12 @@ export default function SettingsClient() {
             onClick={handleSave}
             disabled={isLoading}
             className={`
-              flex items-center px-6 py-3 font-bold uppercase tracking-wide transition-all duration-200
+              flex items-center px-6 py-3 font-bold uppercase tracking-wide transition-all duration-200 whitespace-nowrap
               ${saveStatus === 'saved' 
-                ? 'bg-green-600 text-white' 
+                ? 'bg-green-600 text-white border border-green-600' 
                 : saveStatus === 'error'
-                ? 'bg-red-600 text-white'
-                : 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'
+                ? 'bg-red-600 text-white border border-red-600'
+                : 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-gray-900 dark:border-white hover:bg-gray-800 dark:hover:bg-gray-100'
               }
               ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
             `}
@@ -394,14 +394,14 @@ export default function SettingsClient() {
         </div>
 
         {/* Tabs */}
-        <div className="border-b border-gray-200 dark:border-gray-700">
-          <nav className="flex space-x-8 overflow-x-auto">
+        <div className="border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+          <nav className="flex space-x-8 min-w-max">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  flex items-center py-4 px-1 border-b-2 font-medium text-sm uppercase tracking-wide whitespace-nowrap
+                  flex items-center py-4 px-1 border-b-2 font-medium text-sm uppercase tracking-wide whitespace-nowrap transition-colors
                   ${activeTab === tab.id
                     ? 'border-gray-900 dark:border-white text-gray-900 dark:text-white'
                     : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'

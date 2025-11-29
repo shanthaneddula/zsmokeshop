@@ -36,14 +36,16 @@ export interface User {
   id: string;
   username: string;
   email: string;
-  password: string; // Hashed password
+  passwordHash: string; // Hashed password (renamed from password)
   role: UserRole;
   permissions: UserPermissions;
   
   // Profile info
   firstName: string;
   lastName: string;
+  fullName?: string; // Optional full name field
   phone?: string;
+  profilePhoto?: string; // URL to profile photo
   
   // Status
   isActive: boolean;
@@ -68,11 +70,13 @@ export interface CreateUserRequest {
 
 export interface UpdateUserRequest {
   email?: string;
-  password?: string;
+  passwordHash?: string;
   role?: UserRole;
   firstName?: string;
   lastName?: string;
+  fullName?: string;
   phone?: string;
+  profilePhoto?: string;
   permissions?: Partial<UserPermissions>;
   isActive?: boolean;
 }
@@ -138,3 +142,26 @@ export const DEFAULT_PERMISSIONS: Record<UserRole, UserPermissions> = {
     manageUsers: false,
   },
 };
+
+// Timesheet types for clock in/out tracking
+export interface TimesheetEntry {
+  id: string;
+  userId: string;
+  username: string;
+  clockIn: string; // ISO timestamp
+  clockOut?: string; // ISO timestamp (undefined if still clocked in)
+  hoursWorked?: number; // Calculated hours
+  notes?: string;
+  location?: 'William Cannon' | 'Cameron Rd';
+}
+
+export interface TimesheetSummary {
+  userId: string;
+  username: string;
+  totalHoursToday: number;
+  totalHoursThisWeek: number;
+  totalHoursThisMonth: number;
+  currentlyClockedIn: boolean;
+  currentEntry?: TimesheetEntry;
+  recentEntries: TimesheetEntry[];
+}
