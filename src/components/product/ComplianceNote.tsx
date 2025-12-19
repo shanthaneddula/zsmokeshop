@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { AlertTriangle, Shield, Clock, Info } from 'lucide-react';
 
 interface ComplianceNoteProps {

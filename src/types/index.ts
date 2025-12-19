@@ -36,6 +36,7 @@ export interface Product {
   description?: string;
   brand?: string;
   inStock: boolean;
+  stockQuantity?: number; // Number of items in stock
   badges?: string[]; // e.g., ['new', 'best-seller', 'sale', 'out-of-stock']
   rating?: number;
 }
@@ -62,8 +63,10 @@ export interface AdminProduct {
   detailedDescription?: string; // Full detailed description with formatting
   brand?: string;
   inStock: boolean;
+  stockQuantity?: number; // Number of items in stock
   badges?: string[];
   sku?: string;
+  barcode?: string; // UPC/EAN barcode for product identification
   status: 'active' | 'inactive' | 'draft';
   weight?: string;
   dimensions?: string;

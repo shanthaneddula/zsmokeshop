@@ -8,27 +8,18 @@ export function middleware(request: NextRequest) {
   
   // Only protect admin routes
   if (pathname.startsWith('/admin')) {
-    // Allow access to login page
+    // Allow access to login page (now handled at /login, not /admin/login)
+    // If someone tries to access /admin/login, redirect to /login
     if (pathname === '/admin/login') {
-      // Simple token presence check (detailed verification moved to route handlers)
-      const token = request.cookies.get('admin-token')?.value;
-      if (token) {
-        return NextResponse.redirect(new URL('/admin', request.url));
-      }
-      return NextResponse.next();
+      return NextResponse.redirect(new URL('/login', request.url));
     }
     
-    // Check authentication for all other admin routes
+    // Check authentication for all admin routes
     const token = request.cookies.get('admin-token')?.value;
-    const allCookies = request.cookies.toString();
-    console.log('🔍 Middleware - Checking admin route:', request.url);
-    console.log('🍪 Middleware - All cookies:', allCookies);
-    console.log('🍪 Middleware - Admin token found:', !!token);
-    console.log('🔑 Middleware - Token value:', token ? `${token.substring(0, 20)}...` : 'none');
     
     if (!token) {
-      console.log('❌ Middleware - No token, redirecting to login');
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      console.log('❌ Middleware - No token, redirecting to /login');
+      return NextResponse.redirect(new URL('/login', request.url));
     }
     
     // Note: Token verification moved to individual route handlers to avoid Edge Runtime issues

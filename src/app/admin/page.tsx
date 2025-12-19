@@ -1,19 +1,9 @@
-// Admin dashboard page
+// Admin redirect page - redirects to appropriate dashboard
 
-import { Metadata } from 'next';
-import AdminLayout from './components/AdminLayout';
-import DashboardClient from './dashboard-client';
+import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Dashboard | Z Smoke Shop Admin',
-  description: 'Admin dashboard for Z Smoke Shop management system',
-  robots: 'noindex, nofollow',
-};
-
-export default function AdminDashboardPage() {
-  return (
-    <AdminLayout>
-      <DashboardClient />
-    </AdminLayout>
-  );
+export default function AdminPage() {
+  // This page will be caught by middleware and redirect to login if not authenticated
+  // If authenticated, middleware passes through and we redirect to dashboard
+  redirect('/admin/dashboard');
 }

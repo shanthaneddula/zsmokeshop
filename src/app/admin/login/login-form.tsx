@@ -37,11 +37,18 @@ export default function LoginForm() {
       console.log('Login response:', data);
 
       if (data.success) {
-        console.log('Login successful, redirecting to /admin');
+        console.log('Login successful, user role:', data.user?.role);
         // Add a small delay to ensure cookie is set
         await new Promise(resolve => setTimeout(resolve, 100));
-        // Use window.location for more reliable redirect
-        window.location.href = '/admin';
+        
+        // Redirect based on user role
+        if (data.user?.role === 'orders-manager' || data.user?.role === 'inventory-manager') {
+          console.log('Redirecting employee to /admin/my-dashboard');
+          window.location.href = '/admin/my-dashboard';
+        } else {
+          console.log('Redirecting admin to /admin');
+          window.location.href = '/admin';
+        }
       } else {
         console.log('Login failed:', data.error);
         setError(data.error || 'Login failed');

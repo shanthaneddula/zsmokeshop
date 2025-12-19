@@ -8,12 +8,15 @@ import {
   applyComplianceTemplate
 } from '@/lib/compliance-templates';
 import ProductImageUpload from './ProductImageUpload';
+import { BarcodeScanner, BarcodeScanButton } from '@/components/admin/BarcodeScanner';
+import { PriceInput } from '@/components/admin/PriceInput';
 
 interface ProductFormProps {
   product?: AdminProduct;
   onSubmit: (productData: Partial<AdminProduct>) => Promise<void>;
   onCancel: () => void;
   isLoading?: boolean;
+  initialBarcode?: string;
 }
 
 const BADGE_OPTIONS = [
@@ -30,7 +33,7 @@ const STATUS_OPTIONS = [
   { value: 'draft', label: 'Draft' }
 ];
 
-export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: ProductFormProps) {
+export function ProductForm({ product, onSubmit, onCancel, isLoading = false, initialBarcode }: ProductFormProps) {
   const [categories, setCategories] = useState<AdminCategory[]>([]);
   const [complianceTemplates, setComplianceTemplates] = useState<ComplianceTemplate[]>([]);
   const [availableTemplates, setAvailableTemplates] = useState<ComplianceTemplate[]>([]);
@@ -45,8 +48,10 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
     detailedDescription: '',
     brand: '',
     inStock: true,
+    stockQuantity: undefined,
     badges: [],
     sku: '',
+    barcode: '',
     status: 'active',
     weight: undefined,
     dimensions: undefined,
@@ -61,6 +66,7 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [imageUploading, setImageUploading] = useState(false);
+  const [showBarcodeScanner, setShowBarcodeScanner] = useState(false);
 
   // Load categories and compliance templates on mount
   useEffect(() => {
@@ -82,8 +88,10 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
         detailedDescription: product.detailedDescription || '',
         brand: product.brand || '',
         inStock: product.inStock ?? true,
+        stockQuantity: product.stockQuantity,
         badges: product.badges || [],
         sku: product.sku || '',
+        barcode: product.barcode || '',
         status: product.status || 'active',
         weight: product.weight,
         dimensions: product.dimensions,
@@ -98,6 +106,16 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
       });
     }
   }, [product]);
+
+  // Set initial barcode if provided (from barcode scan)
+  useEffect(() => {
+    if (initialBarcode && !product) {
+      setFormData(prev => ({
+        ...prev,
+        barcode: initialBarcode
+      }));
+    }
+  }, [initialBarcode, product]);
 
   // Update available templates when category changes
   useEffect(() => {
@@ -262,6 +280,12 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
     }
   };
 
+  // Handle barcode scan result - adds barcode to current product being edited
+  const handleBarcodeScan = (barcode: string) => {
+    handleInputChange('barcode', barcode);
+    setShowBarcodeScanner(false);
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
       <div className="border-b border-gray-200 dark:border-gray-700 px-6 py-4">
@@ -345,49 +369,51 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
           </div>
         </div>
 
+        {/* Barcode / UPC */}
+        <div>
+          <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+            Barcode (UPC/EAN)
+          </label>
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <input
+                type="text"
+                value={formData.barcode || ''}
+                onChange={(e) => handleInputChange('barcode', e.target.value.replace(/\D/g, ''))}
+                className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 font-mono"
+                placeholder="Enter or scan barcode"
+                maxLength={14}
+              />
+              <BarcodeScanButton 
+                onClick={() => setShowBarcodeScanner(true)}
+                className="absolute right-2 top-1/2 -translate-y-1/2"
+              />
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            Click the scan icon or enter UPC (12 digits) / EAN (13 digits) manually
+          </p>
+        </div>
+
         {/* Pricing */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Price */}
-          <div>
-            <label className="block text-sm font-bold uppercase tracking-wide mb-2">
-              Price *
-            </label>
-            <input
-              type="number"
-              step="0.01"
-              min="0"
-              value={formData.price || ''}
-              onChange={(e) => handleInputChange('price', parseFloat(e.target.value) || 0)}
-              className={`w-full px-4 py-3 border ${
-                errors.price ? 'border-red-500' : 'border-gray-200 dark:border-gray-700'
-              } bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400`}
-              placeholder="0.00"
-            />
-            {errors.price && (
-              <p className="text-red-500 text-xs mt-1">{errors.price}</p>
-            )}
-          </div>
+          <PriceInput
+            label="Price"
+            required
+            value={formData.price}
+            onChange={(value) => handleInputChange('price', value || 0)}
+            error={errors.price}
+          />
 
           {/* Sale Price */}
-          <div>
-            <label className="block text-sm font-bold uppercase tracking-wide mb-2">
-              Sale Price
-            </label>
-            <input
-              type="number"
-              step="0.01"
-              min="0"
-              value={formData.salePrice || ''}
-              onChange={(e) => handleInputChange('salePrice', e.target.value ? parseFloat(e.target.value) : undefined)}
-              className={`w-full px-4 py-3 border ${
-                errors.salePrice ? 'border-red-500' : 'border-gray-200 dark:border-gray-700'
-              } bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400`}
-              placeholder="0.00"
-            />
-            {errors.salePrice && (
-              <p className="text-red-500 text-xs mt-1">{errors.salePrice}</p>
-            )}
-          </div>
+          <PriceInput
+            label="Sale Price"
+            value={formData.salePrice}
+            onChange={(value) => handleInputChange('salePrice', value)}
+            error={errors.salePrice}
+            allowEmpty
+          />
         </div>
 
         {/* Short Description */}
@@ -495,6 +521,28 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
               </label>
             </div>
           </div>
+        </div>
+
+        {/* Stock Quantity */}
+        <div>
+          <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+            Stock Quantity
+          </label>
+          <div className="flex items-center gap-3">
+            <input
+              type="number"
+              min="0"
+              step="1"
+              value={formData.stockQuantity ?? ''}
+              onChange={(e) => handleInputChange('stockQuantity', e.target.value ? parseInt(e.target.value, 10) : undefined)}
+              className="w-32 px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-center font-mono text-lg"
+              placeholder="0"
+            />
+            <span className="text-sm text-gray-500 dark:text-gray-400">units in stock</span>
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            Leave empty if not tracking inventory quantity
+          </p>
         </div>
 
         {/* Badges */}
@@ -973,6 +1021,14 @@ export function ProductForm({ product, onSubmit, onCancel, isLoading = false }: 
           </button>
         </div>
       </form>
+
+      {/* Barcode Scanner Modal */}
+      <BarcodeScanner
+        isOpen={showBarcodeScanner}
+        onClose={() => setShowBarcodeScanner(false)}
+        onScan={handleBarcodeScan}
+        title="Scan Product Barcode"
+      />
     </div>
   );
 }

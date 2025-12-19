@@ -11,6 +11,8 @@ export interface AdminProduct extends Product {
   imageHistory?: string[]; // Track image changes
   status: 'active' | 'inactive' | 'draft';
   sku?: string; // For inventory tracking
+  barcode?: string; // UPC/EAN barcode for product identification
+  stockQuantity?: number; // Number of items in stock for inventory management
   weight?: string; // For shipping calculations (e.g., "1.5 lbs", "250g")
   dimensions?: string; // For shipping calculations (e.g., "10x5x3 inches")
 }

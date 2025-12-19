@@ -2,7 +2,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import * as ProductStorage from '@/lib/product-storage-service';
 import { generateSlug } from '@/lib/json-utils';
-import { verifyToken } from '@/lib/auth';
+import { verifyAdminAuth } from '@/lib/auth-server';
+import { logActivity } from '@/lib/activity-log-service';
 
 // Validation schema for product data
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -62,6 +63,7 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
     const category = searchParams.get('category');
+    const brand = searchParams.get('brand');
     const search = searchParams.get('search');
     const status = searchParams.get('status');
     const sortBy = searchParams.get('sortBy') || 'updatedAt';
@@ -80,6 +82,11 @@ export async function GET(request: NextRequest) {
     // Apply filters
     if (category) {
       products = products.filter(p => p.category === category);
+    }
+
+    // Filter by brand
+    if (brand) {
+      products = products.filter(p => p.brand?.toLowerCase() === brand.toLowerCase());
     }
 
     if (search) {
@@ -136,6 +143,7 @@ export async function GET(request: NextRequest) {
         },
         filters: {
           category,
+          brand,
           search,
           status,
           sortBy,
@@ -158,26 +166,27 @@ export async function POST(request: NextRequest) {
   try {
     console.log('🔍 Products API: Starting product creation...');
     
-    // Check authentication first
-    const token = request.cookies.get('admin-token')?.value;
-    if (!token) {
-      console.log('❌ No admin token provided');
+    // Check authentication
+    const authResult = await verifyAdminAuth(request);
+    if (!authResult.isAuthenticated || !authResult.user) {
+      console.log('❌ Authentication failed');
       return NextResponse.json(
         { success: false, error: 'Authentication required' },
         { status: 401 }
       );
     }
-    
-    const user = verifyToken(token);
-    if (!user) {
-      console.log('❌ Invalid admin token');
+
+    const user = authResult.user;
+
+    // Check create permission for employee users
+    if ('permissions' in user && !user.permissions.addProducts) {
       return NextResponse.json(
-        { success: false, error: 'Invalid authentication' },
-        { status: 401 }
+        { success: false, error: 'Insufficient permissions to create products' },
+        { status: 403 }
       );
     }
     
-    console.log('✅ Admin authenticated:', user.username);
+    console.log('✅ User authenticated:', user.username);
     
     // Log request details
     console.log('📋 Request headers:', Object.fromEntries(request.headers.entries()));
@@ -215,10 +224,11 @@ export async function POST(request: NextRequest) {
       inStock: body.inStock !== undefined ? body.inStock : true,
       badges: body.badges || [],
       sku: body.sku?.trim() || '',
+      barcode: body.barcode?.trim() || '',
       weight: body.weight,
       dimensions: body.dimensions,
       status: body.status || 'active' as const,
-      createdBy: user.username, // Use authenticated user
+      createdBy: user.username,
       updatedBy: user.username
     };
 
@@ -243,6 +253,21 @@ export async function POST(request: NextRequest) {
     console.log('🔄 Creating product...');
     const newProduct = await ProductStorage.createProduct(productData);
     console.log('✅ Product created successfully:', newProduct.id);
+
+    // Log activity
+    await logActivity(
+      'id' in user ? user.id : 'admin',
+      user.username,
+      'CREATE_PRODUCT',
+      'product',
+      `Created product: ${newProduct.name}`,
+      newProduct.id,
+      {
+        name: { old: null, new: newProduct.name },
+        category: { old: null, new: newProduct.category },
+        price: { old: null, new: newProduct.price },
+      }
+    );
 
     return NextResponse.json({
       success: true,

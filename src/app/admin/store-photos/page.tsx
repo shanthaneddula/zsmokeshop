@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import AdminLayout from '../components/AdminLayout';
 import { StorePhotosClient } from './store-photos-client';
 
 export const metadata: Metadata = {
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function StorePhotosPage() {
-  return <StorePhotosClient />;
+  return (
+    <AdminLayout>
+      <StorePhotosClient />
+    </AdminLayout>
+  );
 }

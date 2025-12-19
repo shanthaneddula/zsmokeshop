@@ -9,7 +9,6 @@ export default function HomepageCatalogue() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [activeCategory, setActiveCategory] = useState('');
-  const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(true);
   
   const selectedCategory = categories.find(cat => cat.id === activeCategory);
@@ -49,25 +48,6 @@ export default function HomepageCatalogue() {
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    
-    const sectionElement = document.getElementById('homepage-catalogue');
-    if (sectionElement) {
-      observer.observe(sectionElement);
-    }
-    
-    return () => observer.disconnect();
   }, []);
 
   return (

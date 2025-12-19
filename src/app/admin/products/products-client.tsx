@@ -5,6 +5,7 @@ import Link from 'next/link';
 import OptimizedImage from '@/components/ui/OptimizedImage';
 import { AdminProduct, AdminCategory } from '@/types/admin';
 import { ProductPreviewModal } from '../components/ProductPreviewModal';
+import { BulkPriceUpdateModal, PriceUpdateType } from '@/components/admin/BulkPriceUpdateModal';
 
 interface ProductsResponse {
   data: {
@@ -20,22 +21,26 @@ interface ProductsResponse {
 export function ProductsClient() {
   const [products, setProducts] = useState<AdminProduct[]>([]);
   const [categories, setCategories] = useState<AdminCategory[]>([]);
+  const [brands, setBrands] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedBrand, setSelectedBrand] = useState('');
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [total, setTotal] = useState(0);
   const [bulkActionLoading, setBulkActionLoading] = useState(false);
   const [previewProduct, setPreviewProduct] = useState<AdminProduct | null>(null);
+  const [showBulkPriceModal, setShowBulkPriceModal] = useState(false);
 
   const ITEMS_PER_PAGE = 10;
 
   useEffect(() => {
     fetchCategories();
+    fetchBrands();
     fetchProducts();
-  }, [currentPage, searchQuery, selectedCategory]);
+  }, [currentPage, searchQuery, selectedCategory, selectedBrand]);
 
   const fetchCategories = async () => {
     try {
@@ -49,6 +54,18 @@ export function ProductsClient() {
     }
   };
 
+  const fetchBrands = async () => {
+    try {
+      const response = await fetch('/api/admin/products/brands');
+      if (response.ok) {
+        const data = await response.json();
+        setBrands(data.data.brands || []);
+      }
+    } catch (error) {
+      console.error('Error fetching brands:', error);
+    }
+  };
+
   const fetchProducts = async () => {
     try {
       setLoading(true);
@@ -57,6 +74,7 @@ export function ProductsClient() {
         limit: ITEMS_PER_PAGE.toString(),
         ...(searchQuery && { search: searchQuery }),
         ...(selectedCategory && { category: selectedCategory }),
+        ...(selectedBrand && { brand: selectedBrand }),
       });
 
       const response = await fetch(`/api/admin/products?${params}`);
@@ -80,6 +98,11 @@ export function ProductsClient() {
 
   const handleCategoryFilter = (category: string) => {
     setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handleBrandFilter = (brand: string) => {
+    setSelectedBrand(brand);
     setCurrentPage(1);
   };
 
@@ -145,6 +168,43 @@ export function ProductsClient() {
     }
   };
 
+  const handleBulkPriceUpdate = async (updateType: PriceUpdateType, value: number) => {
+    if (selectedProducts.length === 0) return;
+
+    setBulkActionLoading(true);
+    try {
+      const response = await fetch('/api/admin/products/bulk-update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          productIds: selectedProducts,
+          priceUpdateType: updateType,
+          priceValue: value
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        await fetchProducts();
+        setSelectedProducts([]);
+        setShowBulkPriceModal(false);
+        
+        // Show success message with any warnings
+        if (data.data?.errors?.length > 0) {
+          alert(`Updated ${data.data.updatedCount} products.\n\nWarnings:\n${data.data.errors.join('\n')}`);
+        }
+      } else {
+        throw new Error(data.error || 'Failed to update prices');
+      }
+    } catch (error) {
+      console.error('Error updating prices:', error);
+      throw error;
+    } finally {
+      setBulkActionLoading(false);
+    }
+  };
+
   const handleDeleteProduct = async (productId: string, e: React.MouseEvent) => {
     e.preventDefault();
     if (!confirm('Delete this product?')) return;
@@ -193,29 +253,29 @@ export function ProductsClient() {
     }
 
     return (
-      <div className="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 px-6 py-4">
-        <div className="text-sm text-gray-600 dark:text-gray-400">
-          Showing {((currentPage - 1) * ITEMS_PER_PAGE) + 1} to {Math.min(currentPage * ITEMS_PER_PAGE, total)} of {total} products
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-gray-200 dark:border-gray-700 px-3 sm:px-6 py-3 sm:py-4">
+        <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">
+          Showing {((currentPage - 1) * ITEMS_PER_PAGE) + 1} to {Math.min(currentPage * ITEMS_PER_PAGE, total)} of {total}
         </div>
         
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto max-w-full">
           <button
             onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
             disabled={currentPage === 1}
-            className="px-3 py-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium text-xs hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded"
+            className="px-2 sm:px-3 py-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium text-[10px] sm:text-xs hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed rounded flex-shrink-0"
           >
-            Previous
+            Prev
           </button>
           
           {startPage > 1 && (
             <>
               <button
                 onClick={() => setCurrentPage(1)}
-                className="px-3 py-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium text-xs hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+                className="px-2 sm:px-3 py-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium text-[10px] sm:text-xs hover:bg-gray-50 dark:hover:bg-gray-700 rounded flex-shrink-0"
               >
                 1
               </button>
-              {startPage > 2 && <span className="px-2 text-gray-500">...</span>}
+              {startPage > 2 && <span className="px-1 sm:px-2 text-gray-500 text-xs">...</span>}
             </>
           )}
           
@@ -223,7 +283,7 @@ export function ProductsClient() {
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
-              className={`px-3 py-1 border font-medium text-xs rounded ${
+              className={`px-2 sm:px-3 py-1 border font-medium text-[10px] sm:text-xs rounded flex-shrink-0 ${
                 currentPage === page
                   ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 border-gray-900 dark:border-white'
                   : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700'
@@ -235,10 +295,10 @@ export function ProductsClient() {
           
           {endPage < totalPages && (
             <>
-              {endPage < totalPages - 1 && <span className="px-2 text-gray-500">...</span>}
+              {endPage < totalPages - 1 && <span className="px-1 sm:px-2 text-gray-500 text-xs">...</span>}
               <button
                 onClick={() => setCurrentPage(totalPages)}
-                className="px-3 py-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium text-xs hover:bg-gray-50 dark:hover:bg-gray-700 rounded"
+                className="px-2 sm:px-3 py-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium text-[10px] sm:text-xs hover:bg-gray-50 dark:hover:bg-gray-700 rounded flex-shrink-0"
               >
                 {totalPages}
               </button>
@@ -248,7 +308,7 @@ export function ProductsClient() {
           <button
             onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
             disabled={currentPage === totalPages}
-            className="px-3 py-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium text-xs hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed rounded"
+            className="px-2 sm:px-3 py-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-medium text-[10px] sm:text-xs hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed rounded flex-shrink-0"
           >
             Next
           </button>
@@ -258,21 +318,21 @@ export function ProductsClient() {
   };
 
   return (
-    <div className="p-6 sm:p-8">
+    <div className="max-w-full overflow-hidden">
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+      <div className="mb-4 sm:mb-6 lg:mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+          <div className="min-w-0">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
               Products
             </h1>
-            <p className="mt-2 text-gray-600 dark:text-gray-400">
+            <p className="mt-1 sm:mt-2 text-sm text-gray-600 dark:text-gray-400">
               Manage your product inventory
             </p>
           </div>
           <Link
             href="/admin/products/add"
-            className="px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-gray-900 dark:border-white font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+            className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-gray-900 dark:border-white font-bold uppercase tracking-wide text-xs sm:text-sm hover:bg-gray-800 dark:hover:bg-gray-100 active:bg-gray-700 transition-colors flex-shrink-0"
           >
             Add Product
           </Link>
@@ -280,23 +340,23 @@ export function ProductsClient() {
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 mb-6">
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6 mb-4 sm:mb-6">
+        <div className="space-y-3 sm:space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             <div>
               <input
                 type="text"
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => handleSearch(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 rounded"
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 rounded text-sm sm:text-base"
               />
             </div>
             <div>
               <select
                 value={selectedCategory}
                 onChange={(e) => handleCategoryFilter(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 rounded"
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 rounded text-sm sm:text-base"
               >
                 <option value="">All Categories</option>
                 {categories.map(category => (
@@ -306,33 +366,54 @@ export function ProductsClient() {
                 ))}
               </select>
             </div>
-            <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+            <div>
+              <select
+                value={selectedBrand}
+                onChange={(e) => handleBrandFilter(e.target.value)}
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 rounded text-sm sm:text-base"
+              >
+                <option value="">All Brands</option>
+                {brands.map(brand => (
+                  <option key={brand} value={brand}>
+                    {brand}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex items-center text-xs sm:text-sm text-gray-600 dark:text-gray-400">
               {total} product{total !== 1 ? 's' : ''} found
             </div>
           </div>
           {selectedProducts.length > 0 && (
-            <div className="flex items-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <span className="text-sm font-bold">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700">
+              <span className="text-xs sm:text-sm font-bold">
                 {selectedProducts.length} selected
               </span>
               <button
+                onClick={() => setShowBulkPriceModal(true)}
+                disabled={bulkActionLoading}
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-blue-600 text-blue-600 hover:bg-blue-50 active:bg-blue-100 disabled:opacity-50 rounded"
+              >
+                Update Prices
+              </button>
+              <button
                 onClick={() => handleBulkStatusChange('active')}
                 disabled={bulkActionLoading}
-                className="px-3 py-1 text-xs font-bold uppercase tracking-wide border border-green-600 text-green-600 hover:bg-green-50 disabled:opacity-50 rounded"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-green-600 text-green-600 hover:bg-green-50 active:bg-green-100 disabled:opacity-50 rounded"
               >
                 Set Active
               </button>
               <button
                 onClick={() => handleBulkStatusChange('inactive')}
                 disabled={bulkActionLoading}
-                className="px-3 py-1 text-xs font-bold uppercase tracking-wide border border-red-600 text-red-600 hover:bg-red-50 disabled:opacity-50 rounded"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-red-600 text-red-600 hover:bg-red-50 active:bg-red-100 disabled:opacity-50 rounded"
               >
                 Set Inactive
               </button>
               <button
                 onClick={handleBulkDelete}
                 disabled={bulkActionLoading}
-                className="px-3 py-1 text-xs font-bold uppercase tracking-wide border border-red-600 text-red-600 hover:bg-red-50 disabled:opacity-50 rounded"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-red-600 text-red-600 hover:bg-red-50 active:bg-red-100 disabled:opacity-50 rounded"
               >
                 Delete
               </button>
@@ -487,42 +568,44 @@ export function ProductsClient() {
               )}
               
               {products.map((product) => (
-                <div key={product.id} className="p-4 border-b border-gray-200 dark:border-gray-700">
+                <div key={product.id} className="p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700">
                   {/* Mobile Card Header */}
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="flex items-center space-x-3">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <div className="flex items-start gap-2 min-w-0 flex-1">
                       <input
                         type="checkbox"
                         checked={selectedProducts.includes(product.id)}
                         onChange={() => handleSelectProduct(product.id)}
-                        className="rounded border-gray-300 dark:border-gray-600"
+                        className="rounded border-gray-300 dark:border-gray-600 mt-1 flex-shrink-0"
                       />
-                      <h3 className="font-medium text-gray-900 dark:text-white">{product.name}</h3>
+                      <h3 className="font-medium text-sm text-gray-900 dark:text-white line-clamp-2">{product.name}</h3>
                     </div>
                     {getStatusBadge(product.status)}
                   </div>
                   
-                  {/* Mobile Card Content */}
-                  <div className="flex space-x-4">
-                    <div className="w-16 h-16 relative border border-gray-200 dark:border-gray-700 rounded flex-shrink-0">
-                      <OptimizedImage
-                        src={product.image || '/images/placeholder.jpg'}
-                        alt={product.name}
-                        context="admin-thumb"
-                        className="object-cover rounded"
-                      />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="grid grid-cols-2 gap-2 text-sm mb-3">
-                        <div>
-                          <span className="text-gray-500 dark:text-gray-400">Brand:</span>
-                          <span className="ml-1 text-gray-900 dark:text-white">{product.brand || 'N/A'}</span>
+                  {/* Mobile Card Content - Stacked Layout */}
+                  <div className="pl-6">
+                    <div className="flex gap-3 mb-2">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 relative border border-gray-200 dark:border-gray-700 rounded flex-shrink-0 bg-gray-100">
+                        <OptimizedImage
+                          src={product.image || '/images/placeholder.jpg'}
+                          alt={product.name}
+                          context="admin-thumb"
+                          className="object-cover rounded"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0 text-xs sm:text-sm space-y-1">
+                        <div className="flex flex-wrap gap-x-3 gap-y-0.5">
+                          <span>
+                            <span className="text-gray-500 dark:text-gray-400">Brand:</span>
+                            <span className="ml-1 text-gray-900 dark:text-white">{product.brand || 'N/A'}</span>
+                          </span>
+                          <span>
+                            <span className="text-gray-500 dark:text-gray-400">SKU:</span>
+                            <span className="ml-1 text-gray-900 dark:text-white">{product.sku || 'N/A'}</span>
+                          </span>
                         </div>
-                        <div>
-                          <span className="text-gray-500 dark:text-gray-400">SKU:</span>
-                          <span className="ml-1 text-gray-900 dark:text-white">{product.sku || 'N/A'}</span>
-                        </div>
-                        <div>
+                        <div className="truncate">
                           <span className="text-gray-500 dark:text-gray-400">Category:</span>
                           <span className="ml-1 text-gray-900 dark:text-white">
                             {categories.find(c => c.slug === product.category)?.name || product.category}
@@ -530,38 +613,38 @@ export function ProductsClient() {
                         </div>
                         <div>
                           <span className="text-gray-500 dark:text-gray-400">Price:</span>
-                          <span className="ml-1 font-medium text-gray-900 dark:text-white">
+                          <span className="ml-1 font-bold text-gray-900 dark:text-white">
                             ${product.salePrice || product.price}
-                            {product.salePrice && (
-                              <span className="ml-1 text-xs text-gray-500 line-through">
-                                ${product.price}
-                              </span>
-                            )}
                           </span>
+                          {product.salePrice && (
+                            <span className="ml-1 text-xs text-gray-500 line-through">
+                              ${product.price}
+                            </span>
+                          )}
                         </div>
                       </div>
+                    </div>
                       
-                      {/* Mobile Actions */}
-                      <div className="flex space-x-4">
-                        <button
-                          onClick={() => setPreviewProduct(product)}
-                          className="text-sm font-medium text-blue-600 hover:text-blue-800"
-                        >
-                          View
-                        </button>
-                        <Link
-                          href={`/admin/products/edit/${product.id}`}
-                          className="text-sm font-medium text-gray-600 hover:text-gray-800"
-                        >
-                          Edit
-                        </Link>
-                        <button
-                          onClick={(e) => handleDeleteProduct(product.id, e)}
-                          className="text-sm font-medium text-red-600 hover:text-red-800"
-                        >
-                          Delete
-                        </button>
-                      </div>
+                    {/* Mobile Actions */}
+                    <div className="flex gap-4 pt-1 border-t border-gray-100 dark:border-gray-700">
+                      <button
+                        onClick={() => setPreviewProduct(product)}
+                        className="text-xs sm:text-sm font-medium text-blue-600 hover:text-blue-800 active:text-blue-900"
+                      >
+                        View
+                      </button>
+                      <Link
+                        href={`/admin/products/edit/${product.id}`}
+                        className="text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-800 active:text-gray-900"
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        onClick={(e) => handleDeleteProduct(product.id, e)}
+                        className="text-xs sm:text-sm font-medium text-red-600 hover:text-red-800 active:text-red-900"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -580,6 +663,15 @@ export function ProductsClient() {
           onClose={() => setPreviewProduct(null)}
         />
       )}
+
+      {/* Bulk Price Update Modal */}
+      <BulkPriceUpdateModal
+        isOpen={showBulkPriceModal}
+        onClose={() => setShowBulkPriceModal(false)}
+        onConfirm={handleBulkPriceUpdate}
+        selectedCount={selectedProducts.length}
+        isLoading={bulkActionLoading}
+      />
     </div>
   );
 }

@@ -352,15 +352,15 @@ export default function SettingsClient() {
   };
 
   return (
-    <div className="p-6 sm:p-8">
-      <div className="space-y-6">
+    <div className="max-w-full overflow-hidden">
+      <div className="space-y-4 sm:space-y-6">
         {/* Header */}
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+          <div className="min-w-0 flex-1">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
               Settings
             </h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-2">
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-2">
               Manage your store configuration and preferences
             </p>
           </div>
@@ -370,12 +370,12 @@ export default function SettingsClient() {
             onClick={handleSave}
             disabled={isLoading}
             className={`
-              flex items-center px-6 py-3 font-bold uppercase tracking-wide transition-all duration-200
+              flex items-center px-4 sm:px-6 py-2.5 sm:py-3 font-bold uppercase tracking-wide transition-all duration-200 whitespace-nowrap text-xs sm:text-sm flex-shrink-0
               ${saveStatus === 'saved' 
-                ? 'bg-green-600 text-white' 
+                ? 'bg-green-600 text-white border border-green-600' 
                 : saveStatus === 'error'
-                ? 'bg-red-600 text-white'
-                : 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100'
+                ? 'bg-red-600 text-white border border-red-600'
+                : 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-gray-900 dark:border-white hover:bg-gray-800 dark:hover:bg-gray-100 active:bg-gray-700'
               }
               ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
             `}
@@ -389,81 +389,82 @@ export default function SettingsClient() {
             )}
             {saveStatus === 'saving' ? 'Saving...' : 
              saveStatus === 'saved' ? 'Saved!' : 
-             saveStatus === 'error' ? 'Error!' : 'Save Changes'}
+             saveStatus === 'error' ? 'Error!' : 'Save'}
           </button>
         </div>
 
-        {/* Tabs */}
-        <div className="border-b border-gray-200 dark:border-gray-700">
-          <nav className="flex space-x-8 overflow-x-auto">
+        {/* Tabs - Scrollable on mobile */}
+        <div className="border-b border-gray-200 dark:border-gray-700 -mx-4 sm:mx-0 px-4 sm:px-0 overflow-x-auto scrollbar-hide">
+          <nav className="flex space-x-1 sm:space-x-4 lg:space-x-8 min-w-max pb-px">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`
-                  flex items-center py-4 px-1 border-b-2 font-medium text-sm uppercase tracking-wide whitespace-nowrap
+                  flex items-center py-3 sm:py-4 px-2 sm:px-3 border-b-2 font-medium text-[10px] sm:text-xs lg:text-sm uppercase tracking-wide whitespace-nowrap transition-colors
                   ${activeTab === tab.id
                     ? 'border-gray-900 dark:border-white text-gray-900 dark:text-white'
-                    : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600'
+                    : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
                   }
                 `}
               >
-                <tab.icon className="w-4 h-4 mr-2" />
-                {tab.name}
+                <tab.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="hidden xs:inline">{tab.name}</span>
+                <span className="xs:hidden">{tab.name.split(' ')[0]}</span>
               </button>
             ))}
           </nav>
         </div>
 
         {/* Tab Content */}
-        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6">
+        <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6">
           
           {/* Store Information Tab */}
           {activeTab === 'store' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 Store Information
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Store Name
                   </label>
                   <input
                     type="text"
                     value={settings.storeName}
                     onChange={(e) => updateSettings('storeName', e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Business Phone
                   </label>
                   <input
                     type="tel"
                     value={settings.businessPhone}
                     onChange={(e) => updateSettings('businessPhone', e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Business Email
                   </label>
                   <input
                     type="email"
                     value={settings.businessEmail}
                     onChange={(e) => updateSettings('businessEmail', e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Tax Rate (%)
                   </label>
                   <input
@@ -473,23 +474,23 @@ export default function SettingsClient() {
                     max="50"
                     value={settings.taxRate}
                     onChange={(e) => updateSettings('taxRate', parseFloat(e.target.value))}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   />
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1">
                     Austin, TX sales tax rate
                   </p>
                 </div>
               </div>
               
               <div>
-                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                   Store Description
                 </label>
                 <textarea
                   rows={3}
                   value={settings.storeDescription}
                   onChange={(e) => updateSettings('storeDescription', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   placeholder="Brief description of your store..."
                 />
               </div>
@@ -498,15 +499,15 @@ export default function SettingsClient() {
 
           {/* Locations Tab */}
           {activeTab === 'locations' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 Store Locations
               </h2>
               
               {settings.locations.map((location, index) => (
-                <div key={location.id} className="border border-gray-200 dark:border-gray-700 p-4 space-y-4">
+                <div key={location.id} className="border border-gray-200 dark:border-gray-700 p-3 sm:p-4 space-y-3 sm:space-y-4">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-bold uppercase tracking-wide">
+                    <h3 className="font-bold uppercase tracking-wide text-sm sm:text-base">
                       Location {index + 1}
                     </h3>
                     <label className="flex items-center">
@@ -516,57 +517,57 @@ export default function SettingsClient() {
                         onChange={(e) => updateLocation(location.id, { isActive: e.target.checked })}
                         className="mr-2"
                       />
-                      <span className="text-sm font-medium">Active</span>
+                      <span className="text-xs sm:text-sm font-medium">Active</span>
                     </label>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
-                      <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                      <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                         Store Name
                       </label>
                       <input
                         type="text"
                         value={location.name}
                         onChange={(e) => updateLocation(location.id, { name: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                       />
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                      <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                         Phone
                       </label>
                       <input
                         type="tel"
                         value={location.phone}
                         onChange={(e) => updateLocation(location.id, { phone: e.target.value })}
-                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                       Address
                     </label>
                     <input
                       type="text"
                       value={location.address}
                       onChange={(e) => updateLocation(location.id, { address: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                     />
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                       Business Hours
                     </label>
                     <input
                       type="text"
                       value={location.hours}
                       onChange={(e) => updateLocation(location.id, { hours: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                       placeholder="Mon-Fri: 9:00 AM - 6:00 PM"
                     />
                   </div>
@@ -577,30 +578,30 @@ export default function SettingsClient() {
 
           {/* Orders Tab */}
           {activeTab === 'orders' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 Order Management
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Order Prefix
                   </label>
                   <input
                     type="text"
                     value={settings.orderPrefix}
                     onChange={(e) => updateSettings('orderPrefix', e.target.value.toUpperCase())}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                     placeholder="ZSS"
                   />
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1">
                     Example: {settings.orderPrefix}1001
                   </p>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Starting Number
                   </label>
                   <input
@@ -608,12 +609,12 @@ export default function SettingsClient() {
                     min="1"
                     value={settings.orderStartNumber}
                     onChange={(e) => updateSettings('orderStartNumber', parseInt(e.target.value))}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   />
                 </div>
                 
-                <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                <div className="sm:col-span-2 lg:col-span-1">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Order Expiration (Hours)
                   </label>
                   <input
@@ -622,22 +623,22 @@ export default function SettingsClient() {
                     max="168"
                     value={settings.orderExpirationHours}
                     onChange={(e) => updateSettings('orderExpirationHours', parseInt(e.target.value))}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   />
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1">
                     How long orders remain valid for pickup
                   </p>
                 </div>
               </div>
               
-              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4 rounded">
-                <div className="flex items-start">
-                  <AlertTriangle className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-blue-900 dark:text-blue-100 mb-2">
+              <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-3 sm:p-4 rounded">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-blue-900 dark:text-blue-100 mb-1 sm:mb-2 text-sm sm:text-base">
                       Order Process
                     </h4>
-                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                    <p className="text-xs sm:text-sm text-blue-800 dark:text-blue-200">
                       Customers place orders online and receive an order number with total amount (including tax). 
                       They can choose which store location to pick up from. No online payments - payment is collected at pickup.
                     </p>
@@ -649,20 +650,20 @@ export default function SettingsClient() {
 
           {/* Compliance Tab */}
           {activeTab === 'compliance' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 Compliance & Age Verification
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Minimum Age
                   </label>
                   <select
                     value={settings.minimumAge}
                     onChange={(e) => updateSettings('minimumAge', parseInt(e.target.value))}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   >
                     <option value={18}>18 years old</option>
                     <option value={21}>21 years old</option>
@@ -670,13 +671,13 @@ export default function SettingsClient() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                     Default Compliance Level
                   </label>
                   <select
                     value={settings.defaultComplianceLevel}
                     onChange={(e) => updateSettings('defaultComplianceLevel', e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                   >
                     <option value="none">No Compliance</option>
                     <option value="age-restricted">Age Restricted</option>
@@ -685,15 +686,15 @@ export default function SettingsClient() {
                 </div>
               </div>
               
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <label className="flex items-center">
                   <input
                     type="checkbox"
                     checked={settings.ageVerificationRequired}
                     onChange={(e) => updateSettings('ageVerificationRequired', e.target.checked)}
-                    className="mr-3"
+                    className="mr-2 sm:mr-3"
                   />
-                  <span className="font-bold uppercase tracking-wide">
+                  <span className="font-bold uppercase tracking-wide text-xs sm:text-sm">
                     Require Age Verification
                   </span>
                 </label>
@@ -703,23 +704,23 @@ export default function SettingsClient() {
                     type="checkbox"
                     checked={settings.complianceEnabled}
                     onChange={(e) => updateSettings('complianceEnabled', e.target.checked)}
-                    className="mr-3"
+                    className="mr-2 sm:mr-3"
                   />
-                  <span className="font-bold uppercase tracking-wide">
+                  <span className="font-bold uppercase tracking-wide text-xs sm:text-sm">
                     Enable Compliance System
                   </span>
                 </label>
               </div>
               
               <div>
-                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                   Age Verification Message
                 </label>
                 <textarea
                   rows={3}
                   value={settings.ageVerificationMessage}
                   onChange={(e) => updateSettings('ageVerificationMessage', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                 />
               </div>
             </div>
@@ -727,13 +728,13 @@ export default function SettingsClient() {
 
           {/* Notifications Tab */}
           {activeTab === 'notifications' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 Notifications
               </h2>
               
               <div>
-                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                   Low Stock Threshold
                 </label>
                 <input
@@ -741,15 +742,15 @@ export default function SettingsClient() {
                   min="0"
                   value={settings.lowStockThreshold}
                   onChange={(e) => updateSettings('lowStockThreshold', parseInt(e.target.value))}
-                  className="w-full max-w-xs px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                  className="w-full sm:max-w-xs px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                 />
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1">
                   Send alert when product stock falls below this number
                 </p>
               </div>
               
-              <div className="space-y-4">
-                <h3 className="font-bold uppercase tracking-wide">Email Notifications</h3>
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="font-bold uppercase tracking-wide text-sm sm:text-base">Email Notifications</h3>
                 
                 <label className="flex items-center">
                   <input
@@ -759,9 +760,9 @@ export default function SettingsClient() {
                       ...settings.emailNotifications,
                       newOrders: e.target.checked
                     })}
-                    className="mr-3"
+                    className="mr-2 sm:mr-3"
                   />
-                  <span>New Orders</span>
+                  <span className="text-sm sm:text-base">New Orders</span>
                 </label>
                 
                 <label className="flex items-center">
@@ -772,9 +773,9 @@ export default function SettingsClient() {
                       ...settings.emailNotifications,
                       lowStock: e.target.checked
                     })}
-                    className="mr-3"
+                    className="mr-2 sm:mr-3"
                   />
-                  <span>Low Stock Alerts</span>
+                  <span className="text-sm sm:text-base">Low Stock Alerts</span>
                 </label>
                 
                 <label className="flex items-center">
@@ -785,9 +786,9 @@ export default function SettingsClient() {
                       ...settings.emailNotifications,
                       systemAlerts: e.target.checked
                     })}
-                    className="mr-3"
+                    className="mr-2 sm:mr-3"
                   />
-                  <span>System Alerts</span>
+                  <span className="text-sm sm:text-base">System Alerts</span>
                 </label>
               </div>
             </div>
@@ -795,26 +796,26 @@ export default function SettingsClient() {
 
           {/* Featured Products Tab */}
           {activeTab === 'display' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 Display Settings
               </h2>
               
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Enable/Disable Cart */}
-                <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 border border-gray-200 dark:border-gray-700">
                   <label className="flex items-start">
                     <input
                       type="checkbox"
                       checked={settings.enableCart}
                       onChange={(e) => updateSettings('enableCart', e.target.checked)}
-                      className="mr-3 mt-1 accent-gray-900 dark:accent-white"
+                      className="mr-2 sm:mr-3 mt-1 accent-gray-900 dark:accent-white"
                     />
-                    <div>
-                      <span className="block font-bold uppercase tracking-wide text-gray-900 dark:text-white">
+                    <div className="min-w-0">
+                      <span className="block font-bold uppercase tracking-wide text-gray-900 dark:text-white text-sm sm:text-base">
                         Enable Shopping Cart
                       </span>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-2">
                         Show or hide the &quot;Add to Cart&quot; button on product pages and shop. When disabled, customers can browse products but cannot add them to cart or checkout.
                       </p>
                     </div>
@@ -822,19 +823,19 @@ export default function SettingsClient() {
                 </div>
 
                 {/* Show/Hide Prices */}
-                <div className="bg-white dark:bg-gray-800 p-6 border border-gray-200 dark:border-gray-700">
+                <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 border border-gray-200 dark:border-gray-700">
                   <label className="flex items-start">
                     <input
                       type="checkbox"
                       checked={settings.showPrices}
                       onChange={(e) => updateSettings('showPrices', e.target.checked)}
-                      className="mr-3 mt-1 accent-gray-900 dark:accent-white"
+                      className="mr-2 sm:mr-3 mt-1 accent-gray-900 dark:accent-white"
                     />
-                    <div>
-                      <span className="block font-bold uppercase tracking-wide text-gray-900 dark:text-white">
+                    <div className="min-w-0">
+                      <span className="block font-bold uppercase tracking-wide text-gray-900 dark:text-white text-sm sm:text-base">
                         Show Product Prices
                       </span>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-2">
                         Display or hide prices on all products. When disabled, product cards and detail pages will not show pricing information. Useful for catalog browsing mode.
                       </p>
                     </div>
@@ -842,14 +843,14 @@ export default function SettingsClient() {
                 </div>
 
                 {/* Info Box */}
-                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4">
-                  <div className="flex gap-3">
-                    <AlertTriangle className="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h3 className="font-bold text-blue-900 dark:text-blue-100 uppercase tracking-wide text-sm mb-1">
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-3 sm:p-4">
+                  <div className="flex gap-2 sm:gap-3">
+                    <AlertTriangle className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-blue-900 dark:text-blue-100 uppercase tracking-wide text-xs sm:text-sm mb-1">
                         Display Settings Info
                       </h3>
-                      <p className="text-sm text-blue-800 dark:text-blue-200">
+                      <p className="text-xs sm:text-sm text-blue-800 dark:text-blue-200">
                         These settings control what customers see on your website. Changes take effect immediately and apply to all product displays, including shop pages, category pages, and product details.
                       </p>
                     </div>
@@ -861,12 +862,12 @@ export default function SettingsClient() {
 
           {/* Featured Products Tab */}
           {activeTab === 'featured' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 Featured Products Settings
               </h2>
               
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Enable/Disable Featured Products */}
                 <div>
                   <label className="flex items-center">
@@ -877,13 +878,13 @@ export default function SettingsClient() {
                         ...settings.featuredProducts,
                         enabled: e.target.checked
                       })}
-                      className="mr-3"
+                      className="mr-2 sm:mr-3"
                     />
-                    <span className="font-bold uppercase tracking-wide">
+                    <span className="font-bold uppercase tracking-wide text-sm sm:text-base">
                       Enable Featured Products Section
                     </span>
                   </label>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-2 ml-5 sm:ml-6">
                     Show/hide the featured products carousel on the homepage
                   </p>
                 </div>
@@ -892,10 +893,10 @@ export default function SettingsClient() {
                   <>
                     {/* Badge Selection */}
                     <div>
-                      <label className="block text-sm font-bold uppercase tracking-wide mb-4">
+                      <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-3 sm:mb-4">
                         Select Badges to Feature
                       </label>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
                         {[
                           { value: 'featured', label: 'Featured', color: 'bg-blue-100 text-blue-800' },
                           { value: 'best-seller', label: 'Best Seller', color: 'bg-green-100 text-green-800' },
@@ -903,7 +904,7 @@ export default function SettingsClient() {
                           { value: 'sale', label: 'Sale', color: 'bg-red-100 text-red-800' },
                           { value: 'limited', label: 'Limited Edition', color: 'bg-yellow-100 text-yellow-800' }
                         ].map((badge) => (
-                          <label key={badge.value} className="flex items-center p-3 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+                          <label key={badge.value} className="flex items-center p-2 sm:p-3 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={settings.featuredProducts.selectedBadges.includes(badge.value)}
@@ -916,22 +917,22 @@ export default function SettingsClient() {
                                   selectedBadges: newBadges
                                 });
                               }}
-                              className="mr-3"
+                              className="mr-2 sm:mr-3"
                             />
-                            <span className={`px-2 py-1 text-xs font-bold uppercase tracking-wide rounded ${badge.color}`}>
+                            <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wide rounded ${badge.color}`}>
                               {badge.label}
                             </span>
                           </label>
                         ))}
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-2">
                         Products with selected badges will appear in the featured section
                       </p>
                     </div>
 
                     {/* Maximum Products */}
                     <div>
-                      <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                      <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                         Maximum Products to Display
                       </label>
                       <input
@@ -943,16 +944,16 @@ export default function SettingsClient() {
                           ...settings.featuredProducts,
                           maxProducts: parseInt(e.target.value) || 12
                         })}
-                        className="w-32 px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                        className="w-24 sm:w-32 px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                       />
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-2">
                         Recommended: 8-12 products for optimal carousel performance
                       </p>
                     </div>
 
                     {/* Sort Order */}
                     <div>
-                      <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                      <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                         Sort Order
                       </label>
                       <select
@@ -961,7 +962,7 @@ export default function SettingsClient() {
                           ...settings.featuredProducts,
                           sortOrder: e.target.value as 'newest' | 'price-low' | 'price-high' | 'name'
                         })}
-                        className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                        className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                       >
                         <option value="newest">Newest First</option>
                         <option value="name">Alphabetical</option>
@@ -980,13 +981,13 @@ export default function SettingsClient() {
                             ...settings.featuredProducts,
                             showOnlyInStock: e.target.checked
                           })}
-                          className="mr-3"
+                          className="mr-2 sm:mr-3"
                         />
-                        <span className="font-bold uppercase tracking-wide">
+                        <span className="font-bold uppercase tracking-wide text-sm sm:text-base">
                           Show Only In-Stock Products
                         </span>
                       </label>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-2 ml-5 sm:ml-6">
                         Hide out-of-stock products from the featured section
                       </p>
                     </div>
@@ -998,20 +999,20 @@ export default function SettingsClient() {
 
           {/* Security Tab */}
           {activeTab === 'security' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 Security Settings
               </h2>
               
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Password Change Section */}
-                <div className="border border-gray-200 dark:border-gray-700 p-6 space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="font-bold uppercase tracking-wide text-gray-900 dark:text-white">
+                <div className="border border-gray-200 dark:border-gray-700 p-4 sm:p-6 space-y-3 sm:space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="min-w-0">
+                      <h3 className="font-bold uppercase tracking-wide text-gray-900 dark:text-white text-sm sm:text-base">
                         Admin Password
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                      <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
                         Change your admin login password
                       </p>
                     </div>
@@ -1019,19 +1020,19 @@ export default function SettingsClient() {
                     {!showPasswordForm && (
                       <button
                         onClick={() => setShowPasswordForm(true)}
-                        className="flex items-center px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                        className="flex items-center justify-center px-3 sm:px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold uppercase tracking-wide text-xs sm:text-sm hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors active:bg-gray-700 flex-shrink-0"
                       >
-                        <Key className="w-4 h-4 mr-2" />
+                        <Key className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
                         Change Password
                       </button>
                     )}
                   </div>
 
                   {showPasswordForm && (
-                    <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="space-y-3 sm:space-y-4 pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700">
                       {/* Current Password */}
                       <div>
-                        <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                           Current Password
                         </label>
                         <div className="relative">
@@ -1039,22 +1040,22 @@ export default function SettingsClient() {
                             type={showPasswords.current ? 'text' : 'password'}
                             value={passwordForm.currentPassword}
                             onChange={(e) => setPasswordForm(prev => ({ ...prev, currentPassword: e.target.value }))}
-                            className="w-full px-4 py-3 pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                            className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                             placeholder="Enter current password"
                           />
                           <button
                             type="button"
                             onClick={() => togglePasswordVisibility('current')}
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                            className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 p-1"
                           >
-                            {showPasswords.current ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                            {showPasswords.current ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
                           </button>
                         </div>
                       </div>
 
                       {/* New Password */}
                       <div>
-                        <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                           New Password
                         </label>
                         <div className="relative">
@@ -1062,22 +1063,22 @@ export default function SettingsClient() {
                             type={showPasswords.new ? 'text' : 'password'}
                             value={passwordForm.newPassword}
                             onChange={(e) => setPasswordForm(prev => ({ ...prev, newPassword: e.target.value }))}
-                            className="w-full px-4 py-3 pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                            className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                             placeholder="Enter new password (min 8 characters)"
                           />
                           <button
                             type="button"
                             onClick={() => togglePasswordVisibility('new')}
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                            className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 p-1"
                           >
-                            {showPasswords.new ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                            {showPasswords.new ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
                           </button>
                         </div>
                       </div>
 
                       {/* Confirm Password */}
                       <div>
-                        <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                           Confirm New Password
                         </label>
                         <div className="relative">
@@ -1085,50 +1086,50 @@ export default function SettingsClient() {
                             type={showPasswords.confirm ? 'text' : 'password'}
                             value={passwordForm.confirmPassword}
                             onChange={(e) => setPasswordForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
-                            className="w-full px-4 py-3 pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                            className="w-full px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-12 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                             placeholder="Confirm new password"
                           />
                           <button
                             type="button"
                             onClick={() => togglePasswordVisibility('confirm')}
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                            className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 p-1"
                           >
-                            {showPasswords.confirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                            {showPasswords.confirm ? <EyeOff className="w-4 h-4 sm:w-5 sm:h-5" /> : <Eye className="w-4 h-4 sm:w-5 sm:h-5" />}
                           </button>
                         </div>
                       </div>
 
                       {/* Error Message */}
                       {passwordError && (
-                        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-3 rounded">
-                          <p className="text-sm text-red-800 dark:text-red-200">{passwordError}</p>
+                        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 p-2.5 sm:p-3 rounded">
+                          <p className="text-xs sm:text-sm text-red-800 dark:text-red-200">{passwordError}</p>
                         </div>
                       )}
 
                       {/* Success Message */}
                       {passwordStatus === 'success' && (
-                        <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-3 rounded">
-                          <p className="text-sm text-green-800 dark:text-green-200">Password changed successfully!</p>
+                        <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 p-2.5 sm:p-3 rounded">
+                          <p className="text-xs sm:text-sm text-green-800 dark:text-green-200">Password changed successfully!</p>
                         </div>
                       )}
 
                       {/* Action Buttons */}
-                      <div className="flex space-x-3">
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                         <button
                           onClick={handlePasswordChange}
                           disabled={passwordStatus === 'changing' || !passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword}
                           className={`
-                            flex items-center px-4 py-2 font-bold uppercase tracking-wide transition-all
+                            flex items-center justify-center px-3 sm:px-4 py-2 font-bold uppercase tracking-wide transition-all text-xs sm:text-sm
                             ${passwordStatus === 'changing'
                               ? 'bg-gray-400 text-white cursor-not-allowed'
-                              : 'bg-green-600 hover:bg-green-700 text-white'
+                              : 'bg-green-600 hover:bg-green-700 active:bg-green-800 text-white'
                             }
                           `}
                         >
                           {passwordStatus === 'changing' ? (
-                            <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
+                            <RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 animate-spin" />
                           ) : (
-                            <Save className="w-4 h-4 mr-2" />
+                            <Save className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
                           )}
                           {passwordStatus === 'changing' ? 'Changing...' : 'Change Password'}
                         </button>
@@ -1140,7 +1141,7 @@ export default function SettingsClient() {
                             setPasswordError('');
                             setPasswordStatus('idle');
                           }}
-                          className="px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold uppercase tracking-wide hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                          className="px-3 sm:px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-bold uppercase tracking-wide text-xs sm:text-sm hover:bg-gray-50 dark:hover:bg-gray-800 active:bg-gray-100 transition-colors"
                         >
                           Cancel
                         </button>
@@ -1150,14 +1151,14 @@ export default function SettingsClient() {
                 </div>
 
                 {/* Security Info */}
-                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-4 rounded">
-                  <div className="flex items-start">
-                    <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-3 mt-0.5" />
-                    <div>
-                      <h4 className="font-bold text-blue-900 dark:text-blue-100 mb-2">
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 p-3 sm:p-4 rounded">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-blue-900 dark:text-blue-100 mb-1 sm:mb-2 text-sm sm:text-base">
                         Security Best Practices
                       </h4>
-                      <ul className="text-sm text-blue-800 dark:text-blue-200 space-y-1">
+                      <ul className="text-xs sm:text-sm text-blue-800 dark:text-blue-200 space-y-0.5 sm:space-y-1">
                         <li>• Use a strong password with at least 8 characters</li>
                         <li>• Include uppercase, lowercase, numbers, and special characters</li>
                         <li>• Change your password regularly</li>
@@ -1173,47 +1174,47 @@ export default function SettingsClient() {
 
           {/* System Tab */}
           {activeTab === 'system' && (
-            <div className="space-y-6">
-              <h2 className="text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
+            <div className="space-y-4 sm:space-y-6">
+              <h2 className="text-base sm:text-lg lg:text-xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                 System Settings
               </h2>
               
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <label className="flex items-center">
                   <input
                     type="checkbox"
                     checked={settings.maintenanceMode}
                     onChange={(e) => updateSettings('maintenanceMode', e.target.checked)}
-                    className="mr-3"
+                    className="mr-2 sm:mr-3"
                   />
-                  <span className="font-bold uppercase tracking-wide">
+                  <span className="font-bold uppercase tracking-wide text-sm sm:text-base">
                     Maintenance Mode
                   </span>
                 </label>
                 
                 {settings.maintenanceMode && (
                   <div>
-                    <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-wide mb-1.5 sm:mb-2">
                       Maintenance Message
                     </label>
                     <textarea
                       rows={3}
                       value={settings.maintenanceMessage}
                       onChange={(e) => updateSettings('maintenanceMessage', e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 text-sm sm:text-base"
                     />
                   </div>
                 )}
               </div>
               
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-4 rounded">
-                <div className="flex items-start">
-                  <AlertTriangle className="w-5 h-5 text-yellow-600 dark:text-yellow-400 mr-3 mt-0.5" />
-                  <div>
-                    <h4 className="font-bold text-yellow-900 dark:text-yellow-100 mb-2">
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 p-3 sm:p-4 rounded">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5" />
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-yellow-900 dark:text-yellow-100 mb-1 sm:mb-2 text-sm sm:text-base">
                       Maintenance Mode Warning
                     </h4>
-                    <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                    <p className="text-xs sm:text-sm text-yellow-800 dark:text-yellow-200">
                       When enabled, your website will show a maintenance message to visitors. 
                       Only admin users will be able to access the site normally.
                     </p>

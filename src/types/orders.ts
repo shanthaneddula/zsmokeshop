@@ -32,7 +32,11 @@ export interface OrderItem {
   // If item was replaced
   replacementProductId?: string;
   replacementProductName?: string;
-  replacementApprovedAt?: string; // ISO timestamp
+  replacementPricePerUnit?: number;
+  replacementNote?: string;
+  replacementSuggestedAt?: string; // ISO timestamp when replacement was suggested
+  replacementSuggestedBy?: string; // Username who suggested replacement
+  replacementApprovedAt?: string; // ISO timestamp when customer approved
   wasReplaced?: boolean;
 }
 
@@ -119,6 +123,7 @@ export interface SuggestReplacementRequest {
 export interface OrderFilters {
   status?: OrderStatus | OrderStatus[];
   storeLocation?: StoreLocation;
+  since?: string;                // ISO date - for real-time notifications (orders after this timestamp)
   dateFrom?: string;             // ISO date
   dateTo?: string;               // ISO date
   searchQuery?: string;          // Search by order number, customer name, phone

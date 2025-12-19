@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 interface RichTextRendererProps {
   content: string;
   className?: string;

@@ -49,6 +49,11 @@ export async function GET(request: NextRequest) {
       filters.searchQuery = searchQuery;
     }
 
+    const since = searchParams.get('since');
+    if (since) {
+      filters.since = since;
+    }
+
     const orders = await getOrders(filters);
 
     return NextResponse.json({
