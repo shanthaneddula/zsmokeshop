@@ -11,12 +11,8 @@ import {
   MessageSquare,
   CheckCircle,
   XCircle,
-  Send,
   RefreshCw,
-  AlertTriangle,
-  ThumbsUp,
-  ThumbsDown,
-  ArrowRight
+  AlertTriangle
 } from 'lucide-react';
 import { PickupOrder, OrderStatus } from '@/types/orders';
 import { Product } from '@/types';

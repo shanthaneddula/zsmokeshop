@@ -4,6 +4,9 @@ import { getProductBySlug, getAllProducts } from '@/lib/product-utils-server';
 import { generateProductMetadata } from '@/lib/seo-utils';
 import ProductPageTemplate from '@/components/product/ProductPageTemplate';
 
+export const dynamic = 'force-dynamic';
+export const dynamicParams = true;
+
 interface ProductPageProps {
   params: Promise<{
     slug: string;

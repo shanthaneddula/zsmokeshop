@@ -4,7 +4,7 @@ import { MapPin, Phone, Clock, Navigation } from "lucide-react";
 import { useBusinessSettings } from "@/hooks/useBusinessSettings";
 
 export default function StoreLocations() {
-  const { settings, loading, getActiveLocations } = useBusinessSettings();
+  const { loading, getActiveLocations } = useBusinessSettings();
 
   const openInMaps = (address: string) => {
     const encodedAddress = encodeURIComponent(address);

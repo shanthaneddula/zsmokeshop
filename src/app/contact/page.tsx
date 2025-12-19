@@ -3,7 +3,7 @@
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 
 export default function ContactPage() {
-  const { getActiveLocations, getPrimaryPhone, settings } = useBusinessSettings();
+  const { getActiveLocations, getPrimaryPhone } = useBusinessSettings();
   
   const primaryLocation = getActiveLocations()[0];
   const businessPhone = getPrimaryPhone();

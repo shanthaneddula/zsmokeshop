@@ -164,66 +164,66 @@ export function CategoriesClient() {
   };
 
   return (
-    <div className="p-6 sm:p-8">
-      <div className="space-y-6">
+    <div className="max-w-full overflow-hidden">
+      <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white">Categories</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+        <div className="min-w-0">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white">Categories</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
             Manage your product categories
           </p>
         </div>
         <Link
           href="/admin/categories/add"
-          className="px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-gray-900 dark:border-white font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+          className="px-4 sm:px-6 py-2.5 sm:py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-gray-900 dark:border-white font-bold uppercase tracking-wide text-xs sm:text-sm hover:bg-gray-800 dark:hover:bg-gray-100 active:bg-gray-700 transition-colors flex-shrink-0"
         >
           Add Category
         </Link>
       </div>
 
       {/* Search */}
-      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6">
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6">
+        <div className="space-y-3 sm:space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div>
               <input
                 type="text"
                 placeholder="Search categories..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 rounded"
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 rounded text-sm sm:text-base"
               />
             </div>
-            <div className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+            <div className="flex items-center text-xs sm:text-sm text-gray-600 dark:text-gray-400">
               {filteredCategories.length} categor{filteredCategories.length !== 1 ? 'ies' : 'y'} found
             </div>
           </div>
 
-          {/* Bulk Actions */}
+          {/* Bulk Actions - Hidden on mobile, shown in list header instead */}
           {selectedCategories.length > 0 && (
-            <div className="flex items-center space-x-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <span className="text-sm font-bold">
+            <div className="hidden sm:flex flex-wrap items-center gap-2 sm:gap-4 pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-700">
+              <span className="text-xs sm:text-sm font-bold">
                 {selectedCategories.length} selected
               </span>
               <button
                 onClick={() => handleBulkStatusChange('active')}
                 disabled={bulkActionLoading}
-                className="px-3 py-1 text-xs font-bold uppercase tracking-wide border border-green-600 text-green-600 hover:bg-green-50 disabled:opacity-50"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-green-600 text-green-600 hover:bg-green-50 active:bg-green-100 disabled:opacity-50 rounded"
               >
                 Set Active
               </button>
               <button
                 onClick={() => handleBulkStatusChange('inactive')}
                 disabled={bulkActionLoading}
-                className="px-3 py-1 text-xs font-bold uppercase tracking-wide border border-red-600 text-red-600 hover:bg-red-50 disabled:opacity-50"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-red-600 text-red-600 hover:bg-red-50 active:bg-red-100 disabled:opacity-50 rounded"
               >
                 Set Inactive
               </button>
               <button
                 onClick={handleBulkDelete}
                 disabled={bulkActionLoading}
-                className="px-3 py-1 text-xs font-bold uppercase tracking-wide border border-red-600 text-red-600 hover:bg-red-50 disabled:opacity-50"
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-red-600 text-red-600 hover:bg-red-50 active:bg-red-100 disabled:opacity-50 rounded"
               >
                 Delete
               </button>

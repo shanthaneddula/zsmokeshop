@@ -12,7 +12,8 @@ import {
   LogIn,
   LogOut,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  ChevronRight
 } from 'lucide-react';
 import { User, TimesheetSummary } from '@/types/users';
 import { PickupOrder } from '@/types/orders';
@@ -182,7 +183,7 @@ export default function EmployeeDashboardClient() {
     
     const badge = badges[status] || badges.pending;
     return (
-      <span className={`px-2 py-1 text-xs font-black uppercase tracking-wide border ${badge.className}`}>
+      <span className={`px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-black uppercase tracking-wide border ${badge.className}`}>
         {badge.text}
       </span>
     );
@@ -190,10 +191,10 @@ export default function EmployeeDashboardClient() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-gray-900 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="mt-4 text-sm font-bold uppercase text-gray-600">Loading...</p>
+          <div className="w-12 h-12 sm:w-16 sm:h-16 border-4 border-gray-900 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="mt-4 text-xs sm:text-sm font-bold uppercase text-gray-600">Loading...</p>
         </div>
       </div>
     );
@@ -203,17 +204,16 @@ export default function EmployeeDashboardClient() {
   const isInventoryManager = currentUser?.permissions?.viewProducts;
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-full overflow-hidden">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-black uppercase tracking-wide text-gray-900 mb-2">
+      <div className="mb-4 sm:mb-6 lg:mb-8">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-wide text-gray-900 mb-1 sm:mb-2">
           {getGreeting()}, {currentUser?.username}
         </h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-xs sm:text-sm text-gray-600">
           {currentTime.toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
+            weekday: 'short',
+            month: 'short',
             day: 'numeric',
           })} • {formatTime(currentTime)}
         </p>
@@ -221,17 +221,17 @@ export default function EmployeeDashboardClient() {
 
       {/* Message */}
       {message && (
-        <div className={`mb-6 p-4 border-2 flex items-center space-x-3 ${
+        <div className={`mb-4 sm:mb-6 p-3 sm:p-4 border-2 flex items-center space-x-2 sm:space-x-3 ${
           message.type === 'success' 
             ? 'border-green-600 bg-green-50' 
             : 'border-red-600 bg-red-50'
         }`}>
           {message.type === 'success' ? (
-            <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 flex-shrink-0" />
           ) : (
-            <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+            <AlertCircle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 flex-shrink-0" />
           )}
-          <p className={`text-sm font-medium ${
+          <p className={`text-xs sm:text-sm font-medium ${
             message.type === 'success' ? 'text-green-600' : 'text-red-600'
           }`}>
             {message.text}
@@ -239,21 +239,21 @@ export default function EmployeeDashboardClient() {
         </div>
       )}
 
-      {/* Quick Actions & Time Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      {/* Quick Actions & Time Card - Stack on mobile */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6 lg:mb-8">
         {/* Quick Clock In/Out */}
-        <div className="bg-white border-2 border-gray-900 p-6">
-          <h2 className="text-lg font-black uppercase tracking-wide text-gray-900 mb-4 flex items-center">
-            <Clock className="w-5 h-5 mr-2" />
+        <div className="bg-white border-2 border-gray-900 p-4 sm:p-6">
+          <h2 className="text-sm sm:text-lg font-black uppercase tracking-wide text-gray-900 mb-3 sm:mb-4 flex items-center">
+            <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
             Time Clock
           </h2>
           
           {timesheet?.currentlyClockedIn ? (
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div className="flex justify-between items-start">
                 <div>
-                  <p className="text-sm text-gray-600 mb-1">Currently Clocked In</p>
-                  <p className="text-2xl font-black text-green-600">
+                  <p className="text-xs sm:text-sm text-gray-600 mb-1">Currently Clocked In</p>
+                  <p className="text-xl sm:text-2xl font-black text-green-600">
                     {(() => {
                       const clockInTime = new Date(timesheet.currentEntry!.clockIn);
                       const now = new Date();
@@ -261,11 +261,11 @@ export default function EmployeeDashboardClient() {
                       return (Math.round(hours * 100) / 100).toFixed(2);
                     })()}
                   </p>
-                  <p className="text-xs text-gray-500">Hours</p>
+                  <p className="text-[10px] sm:text-xs text-gray-500">Hours</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-gray-600">Started</p>
-                  <p className="text-sm font-bold text-gray-900">
+                  <p className="text-xs sm:text-sm text-gray-600">Started</p>
+                  <p className="text-xs sm:text-sm font-bold text-gray-900">
                     {new Date(timesheet.currentEntry!.clockIn).toLocaleTimeString('en-US', {
                       hour: '2-digit',
                       minute: '2-digit',
@@ -278,7 +278,7 @@ export default function EmployeeDashboardClient() {
               <button
                 onClick={handleQuickClock}
                 disabled={clockAction}
-                className="w-full flex items-center justify-center px-6 py-3 border-2 border-red-600 bg-red-600 text-sm font-black uppercase tracking-wide text-white hover:bg-white hover:text-red-600 transition-colors disabled:opacity-50"
+                className="w-full flex items-center justify-center px-4 sm:px-6 py-3 border-2 border-red-600 bg-red-600 text-xs sm:text-sm font-black uppercase tracking-wide text-white hover:bg-white hover:text-red-600 active:bg-red-100 transition-colors disabled:opacity-50"
               >
                 {clockAction ? (
                   <>
@@ -294,16 +294,16 @@ export default function EmployeeDashboardClient() {
               </button>
             </div>
           ) : (
-            <div className="space-y-4">
-              <div className="text-center py-4">
-                <p className="text-sm text-gray-600 mb-2">Not Currently Clocked In</p>
-                <p className="text-xs text-gray-500">Click below to start your shift</p>
+            <div className="space-y-3 sm:space-y-4">
+              <div className="text-center py-2 sm:py-4">
+                <p className="text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">Not Currently Clocked In</p>
+                <p className="text-[10px] sm:text-xs text-gray-500">Click below to start your shift</p>
               </div>
               
               <button
                 onClick={handleQuickClock}
                 disabled={clockAction}
-                className="w-full flex items-center justify-center px-6 py-3 border-2 border-green-600 bg-green-600 text-sm font-black uppercase tracking-wide text-white hover:bg-white hover:text-green-600 transition-colors disabled:opacity-50"
+                className="w-full flex items-center justify-center px-4 sm:px-6 py-3 border-2 border-green-600 bg-green-600 text-xs sm:text-sm font-black uppercase tracking-wide text-white hover:bg-white hover:text-green-600 active:bg-green-100 transition-colors disabled:opacity-50"
               >
                 {clockAction ? (
                   <>
@@ -322,115 +322,116 @@ export default function EmployeeDashboardClient() {
         </div>
 
         {/* Work Hours Summary */}
-        <div className="bg-white border-2 border-gray-900 p-6">
-          <h2 className="text-lg font-black uppercase tracking-wide text-gray-900 mb-4 flex items-center">
-            <Calendar className="w-5 h-5 mr-2" />
+        <div className="bg-white border-2 border-gray-900 p-4 sm:p-6">
+          <h2 className="text-sm sm:text-lg font-black uppercase tracking-wide text-gray-900 mb-3 sm:mb-4 flex items-center">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
             Hours Summary
           </h2>
           
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4">
             <div className="text-center">
-              <p className="text-2xl font-black text-gray-900">{timesheet?.totalHoursToday.toFixed(1) || '0.0'}</p>
-              <p className="text-xs text-gray-600 uppercase tracking-wide mt-1">Today</p>
+              <p className="text-lg sm:text-2xl font-black text-gray-900">{timesheet?.totalHoursToday.toFixed(1) || '0.0'}</p>
+              <p className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-wide mt-1">Today</p>
             </div>
             <div className="text-center border-l-2 border-r-2 border-gray-200">
-              <p className="text-2xl font-black text-gray-900">{timesheet?.totalHoursThisWeek.toFixed(1) || '0.0'}</p>
-              <p className="text-xs text-gray-600 uppercase tracking-wide mt-1">This Week</p>
+              <p className="text-lg sm:text-2xl font-black text-gray-900">{timesheet?.totalHoursThisWeek.toFixed(1) || '0.0'}</p>
+              <p className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-wide mt-1">Week</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-black text-gray-900">{timesheet?.totalHoursThisMonth.toFixed(1) || '0.0'}</p>
-              <p className="text-xs text-gray-600 uppercase tracking-wide mt-1">This Month</p>
+              <p className="text-lg sm:text-2xl font-black text-gray-900">{timesheet?.totalHoursThisMonth.toFixed(1) || '0.0'}</p>
+              <p className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-wide mt-1">Month</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Orders Stats (for orders-manager) */}
+      {/* Orders Stats (for orders-manager) - 2x2 grid on mobile */}
       {isOrdersManager && stats && (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 lg:mb-8">
             {/* Today's Orders */}
-            <div className="bg-white border-2 border-gray-900 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-black uppercase tracking-wide text-gray-900">Today</h3>
-                <ShoppingBag className="w-5 h-5 text-gray-900" />
+            <div className="bg-white border-2 border-gray-900 p-3 sm:p-4 lg:p-6">
+              <div className="flex items-center justify-between mb-2 sm:mb-4">
+                <h3 className="text-[10px] sm:text-sm font-black uppercase tracking-wide text-gray-900">Today</h3>
+                <ShoppingBag className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900" />
               </div>
-              <p className="text-3xl font-black text-gray-900">{stats.ordersToday}</p>
-              <p className="text-xs text-gray-600 uppercase tracking-wide mt-1">Orders</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900">{stats.ordersToday}</p>
+              <p className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-wide mt-1">Orders</p>
             </div>
 
             {/* This Week's Orders */}
-            <div className="bg-white border-2 border-gray-900 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-black uppercase tracking-wide text-gray-900">This Week</h3>
-                <TrendingUp className="w-5 h-5 text-gray-900" />
+            <div className="bg-white border-2 border-gray-900 p-3 sm:p-4 lg:p-6">
+              <div className="flex items-center justify-between mb-2 sm:mb-4">
+                <h3 className="text-[10px] sm:text-sm font-black uppercase tracking-wide text-gray-900">Week</h3>
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900" />
               </div>
-              <p className="text-3xl font-black text-gray-900">{stats.ordersThisWeek}</p>
-              <p className="text-xs text-gray-600 uppercase tracking-wide mt-1">Orders</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900">{stats.ordersThisWeek}</p>
+              <p className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-wide mt-1">Orders</p>
             </div>
 
             {/* This Month's Orders */}
-            <div className="bg-white border-2 border-gray-900 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-black uppercase tracking-wide text-gray-900">This Month</h3>
-                <Calendar className="w-5 h-5 text-gray-900" />
+            <div className="bg-white border-2 border-gray-900 p-3 sm:p-4 lg:p-6">
+              <div className="flex items-center justify-between mb-2 sm:mb-4">
+                <h3 className="text-[10px] sm:text-sm font-black uppercase tracking-wide text-gray-900">Month</h3>
+                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900" />
               </div>
-              <p className="text-3xl font-black text-gray-900">{stats.ordersThisMonth}</p>
-              <p className="text-xs text-gray-600 uppercase tracking-wide mt-1">Orders</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900">{stats.ordersThisMonth}</p>
+              <p className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-wide mt-1">Orders</p>
             </div>
 
             {/* Average Order Value */}
-            <div className="bg-white border-2 border-gray-900 p-6">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-sm font-black uppercase tracking-wide text-gray-900">Avg Value</h3>
-                <Award className="w-5 h-5 text-gray-900" />
+            <div className="bg-white border-2 border-gray-900 p-3 sm:p-4 lg:p-6">
+              <div className="flex items-center justify-between mb-2 sm:mb-4">
+                <h3 className="text-[10px] sm:text-sm font-black uppercase tracking-wide text-gray-900">Avg</h3>
+                <Award className="w-4 h-4 sm:w-5 sm:h-5 text-gray-900" />
               </div>
-              <p className="text-3xl font-black text-gray-900">{formatCurrency(stats.averageOrderValue)}</p>
-              <p className="text-xs text-gray-600 uppercase tracking-wide mt-1">Per Order</p>
+              <p className="text-lg sm:text-2xl lg:text-3xl font-black text-gray-900">{formatCurrency(stats.averageOrderValue)}</p>
+              <p className="text-[10px] sm:text-xs text-gray-600 uppercase tracking-wide mt-1">Per Order</p>
             </div>
           </div>
 
-          {/* Recent Orders */}
-          <div className="bg-white border-2 border-gray-900 mb-8">
-            <div className="p-6 border-b-2 border-gray-900">
-              <h2 className="text-lg font-black uppercase tracking-wide text-gray-900 flex items-center">
-                <Activity className="w-5 h-5 mr-2" />
+          {/* Recent Orders - Mobile optimized cards view */}
+          <div className="bg-white border-2 border-gray-900 mb-4 sm:mb-6 lg:mb-8">
+            <div className="p-3 sm:p-4 lg:p-6 border-b-2 border-gray-900">
+              <h2 className="text-sm sm:text-lg font-black uppercase tracking-wide text-gray-900 flex items-center">
+                <Activity className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 Recent Orders
               </h2>
             </div>
             
-            <div className="overflow-x-auto">
+            {/* Desktop Table View */}
+            <div className="hidden sm:block overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b-2 border-gray-900 bg-gray-50">
-                    <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Order ID</th>
-                    <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Customer</th>
-                    <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Items</th>
-                    <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Total</th>
-                    <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Status</th>
-                    <th className="px-6 py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Time</th>
+                    <th className="px-4 lg:px-6 py-3 lg:py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Order ID</th>
+                    <th className="px-4 lg:px-6 py-3 lg:py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Customer</th>
+                    <th className="px-4 lg:px-6 py-3 lg:py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Items</th>
+                    <th className="px-4 lg:px-6 py-3 lg:py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Total</th>
+                    <th className="px-4 lg:px-6 py-3 lg:py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Status</th>
+                    <th className="px-4 lg:px-6 py-3 lg:py-4 text-left text-xs font-black uppercase tracking-wide text-gray-900">Time</th>
                   </tr>
                 </thead>
                 <tbody>
                   {stats.recentOrders.length > 0 ? (
                     stats.recentOrders.map((order, index) => (
                       <tr key={order.id} className={`border-b border-gray-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                        <td className="px-6 py-4 text-sm font-bold text-gray-900">
+                        <td className="px-4 lg:px-6 py-3 lg:py-4 text-xs sm:text-sm font-bold text-gray-900">
                           #{order.id.substring(0, 8).toUpperCase()}
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-900">
+                        <td className="px-4 lg:px-6 py-3 lg:py-4 text-xs sm:text-sm text-gray-900">
                           {order.customerName}
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-600">
+                        <td className="px-4 lg:px-6 py-3 lg:py-4 text-xs sm:text-sm text-gray-600">
                           {order.items.length} {order.items.length === 1 ? 'item' : 'items'}
                         </td>
-                        <td className="px-6 py-4 text-sm font-bold text-gray-900">
+                        <td className="px-4 lg:px-6 py-3 lg:py-4 text-xs sm:text-sm font-bold text-gray-900">
                           {formatCurrency(order.total)}
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 lg:px-6 py-3 lg:py-4">
                           {getStatusBadge(order.status)}
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-600">
+                        <td className="px-4 lg:px-6 py-3 lg:py-4 text-xs sm:text-sm text-gray-600">
                           {new Date(order.timeline.placedAt).toLocaleTimeString('en-US', {
                             hour: '2-digit',
                             minute: '2-digit',
@@ -449,34 +450,66 @@ export default function EmployeeDashboardClient() {
                 </tbody>
               </table>
             </div>
+
+            {/* Mobile Card View */}
+            <div className="sm:hidden divide-y-2 divide-gray-200">
+              {stats.recentOrders.length > 0 ? (
+                stats.recentOrders.map((order) => (
+                  <div key={order.id} className="p-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-gray-900">
+                        #{order.id.substring(0, 8).toUpperCase()}
+                      </span>
+                      {getStatusBadge(order.status)}
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-gray-600">{order.customerName}</span>
+                      <span className="font-bold text-gray-900">{formatCurrency(order.total)}</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[10px] text-gray-500">
+                      <span>{order.items.length} {order.items.length === 1 ? 'item' : 'items'}</span>
+                      <span>{new Date(order.timeline.placedAt).toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true,
+                      })}</span>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="p-6 text-center text-sm text-gray-500">
+                  No recent orders found
+                </div>
+              )}
+            </div>
           </div>
         </>
       )}
 
-      {/* Performance Indicators */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* Performance Indicators - Stack on mobile */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* Recent Activity */}
-        <div className="bg-white border-2 border-gray-900 p-6">
-          <h2 className="text-lg font-black uppercase tracking-wide text-gray-900 mb-4">Recent Activity</h2>
-          <div className="space-y-4">
+        <div className="bg-white border-2 border-gray-900 p-4 sm:p-6">
+          <h2 className="text-sm sm:text-lg font-black uppercase tracking-wide text-gray-900 mb-3 sm:mb-4">Recent Activity</h2>
+          <div className="space-y-3 sm:space-y-4">
             {timesheet?.recentEntries.slice(0, 5).map((entry) => (
-              <div key={entry.id} className="flex items-center justify-between pb-4 border-b border-gray-200 last:border-0">
+              <div key={entry.id} className="flex items-center justify-between pb-3 sm:pb-4 border-b border-gray-200 last:border-0 last:pb-0">
                 <div>
-                  <p className="text-sm font-bold text-gray-900">
+                  <p className="text-xs sm:text-sm font-bold text-gray-900">
                     {new Date(entry.clockIn).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
                     })}
                   </p>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-[10px] sm:text-xs text-gray-600">
                     {entry.location || 'No location'}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-black text-gray-900">
+                  <p className="text-xs sm:text-sm font-black text-gray-900">
                     {entry.hoursWorked ? `${entry.hoursWorked.toFixed(2)}h` : 'In Progress'}
                   </p>
-                  <p className="text-xs text-gray-600">
+                  <p className="text-[10px] sm:text-xs text-gray-600">
                     {new Date(entry.clockIn).toLocaleTimeString('en-US', {
                       hour: '2-digit',
                       minute: '2-digit',
@@ -486,40 +519,47 @@ export default function EmployeeDashboardClient() {
                 </div>
               </div>
             ))}
+            {(!timesheet?.recentEntries || timesheet.recentEntries.length === 0) && (
+              <p className="text-xs sm:text-sm text-gray-500 text-center py-4">No recent activity</p>
+            )}
           </div>
         </div>
 
         {/* Quick Links */}
-        <div className="bg-white border-2 border-gray-900 p-6">
-          <h2 className="text-lg font-black uppercase tracking-wide text-gray-900 mb-4">Quick Links</h2>
-          <div className="space-y-3">
+        <div className="bg-white border-2 border-gray-900 p-4 sm:p-6">
+          <h2 className="text-sm sm:text-lg font-black uppercase tracking-wide text-gray-900 mb-3 sm:mb-4">Quick Links</h2>
+          <div className="space-y-2 sm:space-y-3">
             {isOrdersManager && (
               <Link
                 href="/admin/orders"
-                className="block px-4 py-3 border-2 border-gray-900 bg-white text-sm font-black uppercase tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white transition-colors text-center"
+                className="flex items-center justify-between px-3 sm:px-4 py-3 border-2 border-gray-900 bg-white text-xs sm:text-sm font-black uppercase tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white active:bg-gray-800 transition-colors"
               >
-                View All Orders
+                <span>View All Orders</span>
+                <ChevronRight className="w-4 h-4" />
               </Link>
             )}
             {isInventoryManager && (
               <Link
                 href="/admin/products"
-                className="block px-4 py-3 border-2 border-gray-900 bg-white text-sm font-black uppercase tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white transition-colors text-center"
+                className="flex items-center justify-between px-3 sm:px-4 py-3 border-2 border-gray-900 bg-white text-xs sm:text-sm font-black uppercase tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white active:bg-gray-800 transition-colors"
               >
-                Manage Products
+                <span>Manage Products</span>
+                <ChevronRight className="w-4 h-4" />
               </Link>
             )}
             <Link
               href="/admin/timesheet"
-              className="block px-4 py-3 border-2 border-gray-900 bg-white text-sm font-black uppercase tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white transition-colors text-center"
+              className="flex items-center justify-between px-3 sm:px-4 py-3 border-2 border-gray-900 bg-white text-xs sm:text-sm font-black uppercase tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white active:bg-gray-800 transition-colors"
             >
-              View Full Timesheet
+              <span>View Full Timesheet</span>
+              <ChevronRight className="w-4 h-4" />
             </Link>
             <Link
               href="/admin/profile"
-              className="block px-4 py-3 border-2 border-gray-900 bg-white text-sm font-black uppercase tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white transition-colors text-center"
+              className="flex items-center justify-between px-3 sm:px-4 py-3 border-2 border-gray-900 bg-white text-xs sm:text-sm font-black uppercase tracking-wide text-gray-900 hover:bg-gray-900 hover:text-white active:bg-gray-800 transition-colors"
             >
-              Edit Profile
+              <span>Edit Profile</span>
+              <ChevronRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

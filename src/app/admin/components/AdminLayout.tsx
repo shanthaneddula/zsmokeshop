@@ -8,8 +8,6 @@ import {
   Package, 
   FolderOpen, 
   Settings, 
-  LogOut, 
-  Menu, 
   X,
   Home,
   Image,
@@ -19,6 +17,7 @@ import {
   Clock
 } from 'lucide-react';
 import { User, UserPermissions } from '@/types/users';
+import { LucideIcon } from 'lucide-react';
 import AdminHeader from './AdminHeader';
 
 interface AdminLayoutProps {
@@ -28,7 +27,7 @@ interface AdminLayoutProps {
 interface NavItem {
   name: string;
   href: string;
-  icon: any;
+  icon: LucideIcon;
   adminOnly?: boolean;
   requiredPermission?: keyof UserPermissions;
 }
@@ -273,8 +272,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         </aside>
 
         {/* Main content */}
-        <main className="flex-1 lg:ml-64">
-          <div className="p-6 lg:p-8">
+        <main className="flex-1 lg:ml-64 min-w-0 overflow-x-hidden">
+          <div className="p-4 sm:p-6 lg:p-8 max-w-full">
             {children}
           </div>
         </main>

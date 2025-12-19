@@ -4,11 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { BannerProvider } from "@/contexts/BannerContext";
 import { CartProvider } from "@/contexts/CartContext";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
 import AgeVerification from "@/components/layout/age-verification";
 import TawkToChat from "@/components/chat/TawkToChat";
-import AnnouncementBar from "@/components/layout/announcement-bar";
+import ConditionalLayout from "@/components/layout/conditional-layout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -73,17 +71,10 @@ export default function RootLayout({
                 {/* Age verification portal */}
                 <AgeVerification />
                 
-                {/* Announcement Bar - Fixed at top */}
-                <AnnouncementBar />
-                
-                {/* Header - Positioned to account for announcement bar */}
-                <Header />
-                
-                {/* Main content */}
-                {children}
-                
-                {/* Footer */}
-                <Footer />
+                {/* Conditional layout: Header/Footer for public, clean for admin */}
+                <ConditionalLayout>
+                  {children}
+                </ConditionalLayout>
                 
                 {/* Conditional Tawk.to Chat - Only after age verification */}
                 <TawkToChat />

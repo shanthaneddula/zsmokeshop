@@ -63,6 +63,7 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
     const category = searchParams.get('category');
+    const brand = searchParams.get('brand');
     const search = searchParams.get('search');
     const status = searchParams.get('status');
     const sortBy = searchParams.get('sortBy') || 'updatedAt';
@@ -81,6 +82,11 @@ export async function GET(request: NextRequest) {
     // Apply filters
     if (category) {
       products = products.filter(p => p.category === category);
+    }
+
+    // Filter by brand
+    if (brand) {
+      products = products.filter(p => p.brand?.toLowerCase() === brand.toLowerCase());
     }
 
     if (search) {
@@ -137,6 +143,7 @@ export async function GET(request: NextRequest) {
         },
         filters: {
           category,
+          brand,
           search,
           status,
           sortBy,
@@ -217,6 +224,7 @@ export async function POST(request: NextRequest) {
       inStock: body.inStock !== undefined ? body.inStock : true,
       badges: body.badges || [],
       sku: body.sku?.trim() || '',
+      barcode: body.barcode?.trim() || '',
       weight: body.weight,
       dimensions: body.dimensions,
       status: body.status || 'active' as const,

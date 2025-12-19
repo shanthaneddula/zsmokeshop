@@ -1,7 +1,63 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+
+/**
+ * Base64 encoded SVG placeholder image
+ * A simple gray placeholder with an image icon
+ */
+const PLACEHOLDER_IMAGE = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNFNUU3RUIiLz48cGF0aCBkPSJNMTYwIDE2MEgxNDBDMTI4Ljk1NCAxNjAgMTIwIDE2OC45NTQgMTIwIDE4MFYyMjBDMTIwIDIzMS4wNDYgMTI4Ljk1NCAyNDAgMTQwIDI0MEgyNjBDMjcxLjA0NiAyNDAgMjgwIDIzMS4wNDYgMjgwIDIyMFYxODBDMjgwIDE2OC45NTQgMjcxLjA0NiAxNjAgMjYwIDE2MEgyNDBNMTYwIDE2MFYxNTBDMTYwIDEzOC45NTQgMTY4Ljk1NCAxMzAgMTgwIDEzMEgyMjBDMjMxLjA0NiAxMzAgMjQwIDEzOC45NTQgMjQwIDE1MFYxNjBNMTYwIDE2MEgyNDBNMTcwIDIwMEMxNzAgMjA1LjUyMyAxNjUuNTIzIDIxMCAxNjAgMjEwQzE1NC40NzcgMjEwIDE1MCAyMDUuNTIzIDE1MCAyMDBDMTUwIDE5NC40NzcgMTU0LjQ3NyAxOTAgMTYwIDE5MEM xNjUuNTIzIDE5MCAxNzAgMTk0LjQ3NyAxNzAgMjAwWk0xMjAgMjI1TDE2MCAyMDBMMTg1IDIyNUwyMjUgMTkwTDI4MCAyMjVWMjQwSDEyMFYyMjVaIiBzdHJva2U9IiM5Q0EzQUYiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+";
+
+/**
+ * Check if a URL is a valid image URL
+ */
+function isValidImageUrl(url: string | undefined | null): boolean {
+  if (!url || typeof url !== 'string') return false;
+  
+  // Trim the URL
+  const trimmedUrl = url.trim();
+  
+  // Empty string is invalid
+  if (trimmedUrl === '') return false;
+  
+  // Check for obviously invalid URLs (page routes, not images)
+  const invalidPatterns = [
+    /^\/shop$/i,
+    /^\/products$/i,
+    /^\/admin$/i,
+    /^\/cart$/i,
+    /^\/checkout$/i,
+    /^\/api\//i,
+    /^https?:\/\/[^/]+\/shop$/i,
+    /^https?:\/\/[^/]+\/products$/i,
+    /^https?:\/\/[^/]+\/admin$/i,
+  ];
+  
+  for (const pattern of invalidPatterns) {
+    if (pattern.test(trimmedUrl)) return false;
+  }
+  
+  // Check if it looks like an image URL
+  const imageExtensions = /\.(jpg|jpeg|png|gif|webp|svg|avif|ico|bmp)(\?.*)?$/i;
+  const isDataUrl = trimmedUrl.startsWith('data:image/');
+  const isBlobUrl = trimmedUrl.startsWith('blob:');
+  const isVercelBlob = trimmedUrl.includes('vercel-storage.com') || trimmedUrl.includes('blob.vercel-storage.com');
+  const hasImageExtension = imageExtensions.test(trimmedUrl);
+  const isImagePath = trimmedUrl.startsWith('/images/');
+  
+  return isDataUrl || isBlobUrl || isVercelBlob || hasImageExtension || isImagePath;
+}
+
+/**
+ * Get a safe image URL, returning placeholder if invalid
+ */
+function getSafeImageUrl(url: string | undefined | null): string {
+  if (isValidImageUrl(url)) {
+    return url!.trim();
+  }
+  return PLACEHOLDER_IMAGE;
+}
 
 /**
  * Context types for different image usage scenarios
@@ -128,6 +184,10 @@ export default function OptimizedImage({
   const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Get safe image URL (validates and falls back to placeholder if invalid)
+  const safeImageUrl = useMemo(() => getSafeImageUrl(src), [src]);
+  const isUsingPlaceholder = safeImageUrl === PLACEHOLDER_IMAGE;
+
   // Determine optimal sizes based on context
   const optimalSizes = customSizes || CONTEXT_SIZES[context];
   
@@ -193,7 +253,7 @@ export default function OptimizedImage({
   );
 
   // Return fallback if image failed to load
-  if (imageError) {
+  if (imageError || isUsingPlaceholder) {
     return renderFallback();
   }
 
@@ -204,7 +264,7 @@ export default function OptimizedImage({
       
       {/* Optimized Image */}
       <Image
-        src={src}
+        src={safeImageUrl}
         alt={alt}
         fill={fill}
         sizes={optimalSizes}
@@ -218,6 +278,7 @@ export default function OptimizedImage({
         `}
         onLoad={handleLoad}
         onError={handleError}
+        unoptimized={safeImageUrl.startsWith('data:')}
       />
     </>
   );
