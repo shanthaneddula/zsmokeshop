@@ -22,6 +22,8 @@ interface BusinessSettings {
   storeName?: string;
   businessPhone?: string;
   businessEmail?: string;
+  taxRate?: number;
+  taxIncludedInPrice?: boolean;
   locations: BusinessLocation[];
   reviewSettings?: {
     enableGoogleReviews: boolean;

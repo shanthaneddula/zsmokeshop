@@ -33,6 +33,12 @@ export function ProductsClient() {
   const [bulkActionLoading, setBulkActionLoading] = useState(false);
   const [previewProduct, setPreviewProduct] = useState<AdminProduct | null>(null);
   const [showBulkPriceModal, setShowBulkPriceModal] = useState(false);
+  const [sortBy, setSortBy] = useState('updatedAt');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [editingPrice, setEditingPrice] = useState<string | null>(null);
+  const [editingCategory, setEditingCategory] = useState<string | null>(null);
+  const [tempPrice, setTempPrice] = useState<string>('');
+  const [tempCategory, setTempCategory] = useState<string>('');
 
   const ITEMS_PER_PAGE = 10;
 
@@ -40,7 +46,7 @@ export function ProductsClient() {
     fetchCategories();
     fetchBrands();
     fetchProducts();
-  }, [currentPage, searchQuery, selectedCategory, selectedBrand]);
+  }, [currentPage, searchQuery, selectedCategory, selectedBrand, sortBy, sortOrder]);
 
   const fetchCategories = async () => {
     try {
@@ -72,6 +78,8 @@ export function ProductsClient() {
       const params = new URLSearchParams({
         page: currentPage.toString(),
         limit: ITEMS_PER_PAGE.toString(),
+        sortBy: sortBy,
+        sortOrder: sortOrder,
         ...(searchQuery && { search: searchQuery }),
         ...(selectedCategory && { category: selectedCategory }),
         ...(selectedBrand && { brand: selectedBrand }),
@@ -222,6 +230,91 @@ export function ProductsClient() {
     }
   };
 
+  const handleStatusToggle = async (productId: string, currentStatus: string) => {
+    const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+    
+    try {
+      const response = await fetch(`/api/admin/products/${productId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      });
+
+      if (response.ok) {
+        await fetchProducts();
+      } else {
+        const data = await response.json();
+        alert(`Failed to update status: ${data.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error toggling status:', error);
+      alert('Failed to update product status');
+    }
+  };
+
+  const handleInlinePriceUpdate = async (productId: string, newPrice: string) => {
+    const price = parseFloat(newPrice);
+    if (isNaN(price) || price < 0) {
+      alert('Please enter a valid price');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/products/${productId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ price })
+      });
+
+      if (response.ok) {
+        setEditingPrice(null);
+        await fetchProducts();
+      } else {
+        const data = await response.json();
+        alert(`Failed to update price: ${data.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error updating price:', error);
+      alert('Failed to update price');
+    }
+  };
+
+  const handleInlineCategoryUpdate = async (productId: string, newCategory: string) => {
+    if (!newCategory) {
+      alert('Please select a category');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/products/${productId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ category: newCategory })
+      });
+
+      if (response.ok) {
+        setEditingCategory(null);
+        await fetchProducts();
+      } else {
+        const data = await response.json();
+        alert(`Failed to update category: ${data.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error updating category:', error);
+      alert('Failed to update category');
+    }
+  };
+
+  const startEditPrice = (productId: string, currentPrice: number) => {
+    setEditingPrice(productId);
+    setTempPrice(currentPrice.toString());
+  };
+
+  const startEditCategory = (productId: string, currentCategory: string) => {
+    setEditingCategory(productId);
+    setTempCategory(currentCategory);
+  };
+
   const getStatusBadge = (status: string) => {
     const styles = {
       active: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
@@ -342,7 +435,7 @@ export function ProductsClient() {
       {/* Filters and Search */}
       <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6 mb-4 sm:mb-6">
         <div className="space-y-3 sm:space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
             <div>
               <input
                 type="text"
@@ -378,6 +471,26 @@ export function ProductsClient() {
                     {brand}
                   </option>
                 ))}
+              </select>
+            </div>
+            <div>
+              <select
+                value={`${sortBy}-${sortOrder}`}
+                onChange={(e) => {
+                  const [newSortBy, newSortOrder] = e.target.value.split('-');
+                  setSortBy(newSortBy);
+                  setSortOrder(newSortOrder as 'asc' | 'desc');
+                  setCurrentPage(1);
+                }}
+                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 rounded text-sm sm:text-base"
+              >
+                <option value="updatedAt-desc">Recently Updated</option>
+                <option value="createdAt-desc">Newest First</option>
+                <option value="createdAt-asc">Oldest First</option>
+                <option value="name-asc">Name (A-Z)</option>
+                <option value="name-desc">Name (Z-A)</option>
+                <option value="price-asc">Price (Low to High)</option>
+                <option value="price-desc">Price (High to Low)</option>
               </select>
             </div>
             <div className="flex items-center text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -441,94 +554,291 @@ export function ProductsClient() {
         ) : (
           <>
             {/* Desktop Table */}
-            <div className="hidden lg:block">
-              <div className="grid grid-cols-12 gap-4 px-6 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 font-medium text-sm text-gray-700 dark:text-gray-300">
-                <div className="col-span-1">
-                  <input
-                    type="checkbox"
-                    checked={selectedProducts.length === products.length && products.length > 0}
-                    onChange={handleSelectAll}
-                    className="rounded border-gray-300 dark:border-gray-600"
-                  />
-                </div>
-                <div className="col-span-2">Image</div>
-                <div className="col-span-3">Product</div>
-                <div className="col-span-2">Category</div>
-                <div className="col-span-2">Price</div>
-                <div className="col-span-1">Status</div>
-                <div className="col-span-1">Actions</div>
-              </div>
-              {products.map((product) => (
-                <div key={product.id} className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
-                  <div className="col-span-1 flex items-center">
+            <div className="hidden lg:block overflow-x-auto">
+              <div className="min-w-[1200px]">
+                <div className="grid grid-cols-12 gap-3 px-6 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 font-medium text-sm text-gray-700 dark:text-gray-300">
+                  <div className="col-span-1">
                     <input
                       type="checkbox"
-                      checked={selectedProducts.includes(product.id)}
-                      onChange={() => handleSelectProduct(product.id)}
+                      checked={selectedProducts.length === products.length && products.length > 0}
+                      onChange={handleSelectAll}
                       className="rounded border-gray-300 dark:border-gray-600"
                     />
                   </div>
-                  <div className="col-span-2">
-                    <div className="w-16 h-16 relative border border-gray-200 dark:border-gray-700 rounded">
-                      <OptimizedImage
-                        src={product.image || '/images/placeholder.jpg'}
-                        alt={product.name}
-                        context="admin-thumb"
-                        className="object-cover rounded"
+                  <div className="col-span-1">Image</div>
+                  <div className="col-span-2">Product</div>
+                  <div className="col-span-2">Category</div>
+                  <div className="col-span-2">Price</div>
+                  <div className="col-span-1">Stock</div>
+                  <div className="col-span-1">Status</div>
+                  <div className="col-span-2">Actions</div>
+                </div>
+                {products.map((product) => (
+                  <div key={product.id} className="grid grid-cols-12 gap-3 px-6 py-4 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <div className="col-span-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={selectedProducts.includes(product.id)}
+                        onChange={() => handleSelectProduct(product.id)}
+                        className="rounded border-gray-300 dark:border-gray-600"
                       />
                     </div>
-                  </div>
-                  <div className="col-span-3">
-                    <div className="font-medium text-gray-900 dark:text-white">{product.name}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      {product.brand && `${product.brand} • `}
-                      SKU: {product.sku || 'N/A'}
-                    </div>
-                  </div>
-                  <div className="col-span-2 flex items-center">
-                    <span className="text-sm text-gray-900 dark:text-white">
-                      {categories.find(c => c.slug === product.category)?.name || product.category}
-                    </span>
-                  </div>
-                  <div className="col-span-2 flex items-center">
-                    <div>
-                      <div className="font-medium text-gray-900 dark:text-white">
-                        ${product.salePrice || product.price}
+                    <div className="col-span-1">
+                      <div className="w-14 h-14 relative border border-gray-200 dark:border-gray-700 rounded">
+                        <OptimizedImage
+                          src={product.image || '/images/placeholder.jpg'}
+                          alt={product.name}
+                          context="admin-thumb"
+                          className="object-cover rounded"
+                        />
                       </div>
-                      {product.salePrice && (
-                        <div className="text-sm text-gray-500 line-through">
-                          ${product.price}
+                    </div>
+                    <div className="col-span-2 flex items-center">
+                      <div>
+                        <div className="font-medium text-gray-900 dark:text-white line-clamp-2 text-sm">{product.name}</div>
+                        <div className="text-xs text-gray-600 dark:text-gray-400 mt-0.5">
+                          {product.brand && `${product.brand} • `}
+                          {product.sku || 'N/A'}
                         </div>
+                      </div>
+                    </div>
+                    <div className="col-span-2 flex items-center">
+                      {editingCategory === product.id ? (
+                        <div className="flex items-center gap-1 w-full pr-2">
+                          <select
+                            value={tempCategory}
+                            onChange={(e) => setTempCategory(e.target.value)}
+                            className="flex-1 min-w-0 px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900"
+                            autoFocus
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                handleInlineCategoryUpdate(product.id, tempCategory);
+                              } else if (e.key === 'Escape') {
+                                setEditingCategory(null);
+                              }
+                            }}
+                          >
+                            {categories.map(cat => (
+                              <option key={cat.slug} value={cat.slug}>{cat.name}</option>
+                            ))}
+                          </select>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleInlineCategoryUpdate(product.id, tempCategory);
+                            }}
+                            className="text-green-600 hover:text-green-800 p-1 text-sm font-bold flex-shrink-0"
+                            title="Save (Enter)"
+                          >
+                            ✓
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setEditingCategory(null);
+                            }}
+                            className="text-red-600 hover:text-red-800 p-1 text-sm font-bold flex-shrink-0"
+                            title="Cancel (Esc)"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            startEditCategory(product.id, product.category);
+                          }}
+                          className="text-xs text-gray-900 dark:text-white hover:text-blue-600 text-left w-full truncate pr-2"
+                          title="Click to edit category"
+                        >
+                          {categories.find(c => c.slug === product.category)?.name || product.category}
+                        </button>
                       )}
                     </div>
-                  </div>
-                  <div className="col-span-1 flex items-center">
-                    {getStatusBadge(product.status)}
-                  </div>
-                  <div className="col-span-1">
-                    <div className="flex flex-col space-y-1">
+                    <div className="col-span-2 flex items-center">
+                      {editingPrice === product.id ? (
+                        <div className="flex items-center gap-1 w-full pr-2">
+                          <div className="relative flex-1">
+                            <span className="absolute left-2 top-1/2 -translate-y-1/2 text-xs text-gray-500">$</span>
+                            <input
+                              type="number"
+                              step="0.01"
+                              min="0"
+                              value={tempPrice}
+                              onChange={(e) => setTempPrice(e.target.value)}
+                              className="w-full pl-5 pr-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900"
+                              autoFocus
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  handleInlinePriceUpdate(product.id, tempPrice);
+                                } else if (e.key === 'Escape') {
+                                  setEditingPrice(null);
+                                }
+                              }}
+                            />
+                          </div>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleInlinePriceUpdate(product.id, tempPrice);
+                            }}
+                            className="text-green-600 hover:text-green-800 p-1 text-sm font-bold flex-shrink-0"
+                            title="Save (Enter)"
+                          >
+                            ✓
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setEditingPrice(null);
+                            }}
+                            className="text-red-600 hover:text-red-800 p-1 text-sm font-bold flex-shrink-0"
+                            title="Cancel (Esc)"
+                          >
+                            ✕
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            startEditPrice(product.id, product.price);
+                          }}
+                          className="hover:text-blue-600 text-left w-full pr-2"
+                          title="Click to edit price"
+                        >
+                          <div className="font-medium text-sm text-gray-900 dark:text-white">
+                            ${product.salePrice || product.price}
+                          </div>
+                          {product.salePrice && (
+                            <div className="text-xs text-gray-500 line-through">
+                              ${product.price}
+                            </div>
+                          )}
+                        </button>
+                      )}
+                    </div>
+                    <div className="col-span-1 flex items-center">
+                      <div className="flex items-center gap-1">
+                        <button
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            const newStock = Math.max(0, (product.stockQuantity || 0) - 1);
+                            
+                            // Optimistic update
+                            setProducts(prevProducts => 
+                              prevProducts.map(p => 
+                                p.id === product.id 
+                                  ? { ...p, stockQuantity: newStock, inStock: newStock > 0 }
+                                  : p
+                              )
+                            );
+                            
+                            try {
+                              const response = await fetch(`/api/admin/products/${product.id}`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ 
+                                  stockQuantity: newStock, 
+                                  inStock: newStock > 0 
+                                })
+                              });
+                              
+                              if (!response.ok) {
+                                // Revert on error
+                                fetchProducts();
+                              }
+                            } catch (error) {
+                              console.error('Failed to update stock:', error);
+                              fetchProducts();
+                            }
+                          }}
+                          className="w-6 h-6 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded text-xs font-bold"
+                          title="Decrease stock"
+                        >
+                          −
+                        </button>
+                        <span className="text-sm font-medium text-gray-900 dark:text-white min-w-[30px] text-center">
+                          {product.stockQuantity || 0}
+                        </span>
+                        <button
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            const newStock = (product.stockQuantity || 0) + 1;
+                            
+                            // Optimistic update
+                            setProducts(prevProducts => 
+                              prevProducts.map(p => 
+                                p.id === product.id 
+                                  ? { ...p, stockQuantity: newStock, inStock: true }
+                                  : p
+                              )
+                            );
+                            
+                            try {
+                              const response = await fetch(`/api/admin/products/${product.id}`, {
+                                method: 'PUT',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ 
+                                  stockQuantity: newStock, 
+                                  inStock: true 
+                                })
+                              });
+                              
+                              if (!response.ok) {
+                                // Revert on error
+                                fetchProducts();
+                              }
+                            } catch (error) {
+                              console.error('Failed to update stock:', error);
+                              fetchProducts();
+                            }
+                          }}
+                          className="w-6 h-6 flex items-center justify-center bg-green-500 hover:bg-green-600 text-white rounded text-xs font-bold"
+                          title="Increase stock"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                    <div className="col-span-1 flex items-center">
                       <button
-                        onClick={() => setPreviewProduct(product)}
-                        className="text-xs font-medium text-blue-600 hover:text-blue-800 text-left"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleStatusToggle(product.id, product.status);
+                        }}
+                        className="cursor-pointer hover:opacity-70 transition-opacity"
+                        title={`Click to ${product.status === 'active' ? 'deactivate' : 'activate'}`}
                       >
-                        View
-                      </button>
-                      <Link
-                        href={`/admin/products/edit/${product.id}`}
-                        className="text-xs font-medium text-gray-600 hover:text-gray-800 text-left"
-                      >
-                        Edit
-                      </Link>
-                      <button
-                        onClick={(e) => handleDeleteProduct(product.id, e)}
-                        className="text-xs font-medium text-red-600 hover:text-red-800 text-left"
-                      >
-                        Delete
+                        {getStatusBadge(product.status)}
                       </button>
                     </div>
+                    <div className="col-span-2 flex items-center">
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => setPreviewProduct(product)}
+                          className="text-xs font-medium text-blue-600 hover:text-blue-800"
+                        >
+                          View
+                        </button>
+                        <Link
+                          href={`/admin/products/edit/${product.id}`}
+                          className="text-xs font-medium text-gray-600 hover:text-gray-800"
+                        >
+                          Edit
+                        </Link>
+                        <button
+                          onClick={(e) => handleDeleteProduct(product.id, e)}
+                          className="text-xs font-medium text-red-600 hover:text-red-800"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
             {/* Mobile Cards */}
