@@ -199,6 +199,22 @@ export async function PUT(
       updateData.inStock = body.inStock;
       changes.inStock = { old: existingProduct.inStock, new: body.inStock };
     }
+    if (body.stockQuantity !== undefined && body.stockQuantity !== existingProduct.stockQuantity) {
+      updateData.stockQuantity = body.stockQuantity;
+      changes.stockQuantity = { old: existingProduct.stockQuantity, new: body.stockQuantity };
+      
+      // Automatically update badges based on stock quantity
+      const currentBadges = existingProduct.badges || [];
+      if (body.stockQuantity > 0) {
+        // Remove 'out-of-stock' badge if stock is available
+        updateData.badges = currentBadges.filter(badge => badge !== 'out-of-stock');
+      } else {
+        // Add 'out-of-stock' badge if stock is 0 and not already present
+        if (!currentBadges.includes('out-of-stock')) {
+          updateData.badges = [...currentBadges, 'out-of-stock'];
+        }
+      }
+    }
     if (body.badges !== undefined) updateData.badges = body.badges;
     if (body.sku !== undefined) updateData.sku = body.sku?.trim() || '';
     if (body.weight !== undefined) updateData.weight = body.weight;

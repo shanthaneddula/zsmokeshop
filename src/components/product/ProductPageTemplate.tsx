@@ -175,9 +175,11 @@ export default function ProductPageTemplate({
                     </span>
                   )}
                 </div>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Tax included • Free pickup in store
-                </p>
+                {settings && (
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {settings.taxIncludedInPrice !== false ? 'Tax included' : `Tax (${settings.taxRate || 8.25}%) will be added at checkout`} • Free pickup in store
+                  </p>
+                )}
               </div>
 
               {/* Stock Status */}

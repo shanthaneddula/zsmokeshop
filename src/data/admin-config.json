@@ -37,6 +37,7 @@
     "businessPhone": "(512) 227-9820",
     "businessEmail": "info@zsmokeshop.com",
     "taxRate": 8.25,
+    "taxIncludedInPrice": false,
     "currency": "USD",
     "minimumAge": 21,
     "ageVerificationRequired": true,
