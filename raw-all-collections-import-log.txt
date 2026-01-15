@@ -1,0 +1,354 @@
+[2025-12-29T00:17:04.836Z] ============================================================
+[2025-12-29T00:17:04.838Z] RAW PRODUCTS - ALL COLLECTIONS IMPORT
+[2025-12-29T00:17:04.838Z] ============================================================
+[2025-12-29T00:17:04.838Z] Collections: 8
+[2025-12-29T00:17:04.838Z] ============================================================
+[2025-12-29T00:17:06.701Z] 
+============================================================
+[2025-12-29T00:17:06.702Z] 📦 Collection: grinders
+[2025-12-29T00:17:06.702Z] ============================================================
+[2025-12-29T00:17:06.985Z] 
+📄 Page 1: https://genuineraw.com/collections/grinders
+[2025-12-29T00:17:09.198Z]   ✅ Age gate accepted
+[2025-12-29T00:17:13.205Z]   ✅ Found 5 products
+[2025-12-29T00:17:13.206Z] 
+✅ Collection total: 5 products
+[2025-12-29T00:17:13.244Z] 
+============================================================
+[2025-12-29T00:17:13.244Z] 📦 Collection: lighters
+[2025-12-29T00:17:13.244Z] ============================================================
+[2025-12-29T00:17:13.442Z] 
+📄 Page 1: https://genuineraw.com/collections/lighters
+[2025-12-29T00:17:17.462Z]   ✅ Found 4 products
+[2025-12-29T00:17:17.464Z] 
+✅ Collection total: 4 products
+[2025-12-29T00:17:17.485Z] 
+============================================================
+[2025-12-29T00:17:17.485Z] 📦 Collection: holders-ashtrays
+[2025-12-29T00:17:17.485Z] ============================================================
+[2025-12-29T00:17:17.668Z] 
+📄 Page 1: https://genuineraw.com/collections/holders-ashtrays
+[2025-12-29T00:17:21.330Z]   ✅ Found 26 products
+[2025-12-29T00:17:21.333Z] 
+✅ Collection total: 26 products
+[2025-12-29T00:17:21.353Z] 
+============================================================
+[2025-12-29T00:17:21.353Z] 📦 Collection: rolling-accessories
+[2025-12-29T00:17:21.354Z] ============================================================
+[2025-12-29T00:17:21.543Z] 
+📄 Page 1: https://genuineraw.com/collections/rolling-accessories
+[2025-12-29T00:17:25.142Z]   ✅ Found 24 products
+[2025-12-29T00:17:25.145Z] 
+✅ Collection total: 24 products
+[2025-12-29T00:17:25.166Z] 
+============================================================
+[2025-12-29T00:17:25.166Z] 📦 Collection: rolling-trays
+[2025-12-29T00:17:25.166Z] ============================================================
+[2025-12-29T00:17:25.349Z] 
+📄 Page 1: https://genuineraw.com/collections/rolling-trays
+[2025-12-29T00:17:29.025Z]   ✅ Found 14 products
+[2025-12-29T00:17:29.028Z] 
+✅ Collection total: 14 products
+[2025-12-29T00:17:29.050Z] 
+============================================================
+[2025-12-29T00:17:29.051Z] 📦 Collection: tips
+[2025-12-29T00:17:29.051Z] ============================================================
+[2025-12-29T00:17:29.229Z] 
+📄 Page 1: https://genuineraw.com/collections/tips
+[2025-12-29T00:17:32.759Z]   ✅ Found 6 products
+[2025-12-29T00:17:32.761Z] 
+✅ Collection total: 6 products
+[2025-12-29T00:17:32.783Z] 
+============================================================
+[2025-12-29T00:17:32.783Z] 📦 Collection: papers
+[2025-12-29T00:17:32.783Z] ============================================================
+[2025-12-29T00:17:32.970Z] 
+📄 Page 1: https://genuineraw.com/collections/papers
+[2025-12-29T00:17:37.043Z]   ✅ Found 9 products
+[2025-12-29T00:17:37.046Z] 
+✅ Collection total: 9 products
+[2025-12-29T00:17:37.066Z] 
+============================================================
+[2025-12-29T00:17:37.066Z] 📦 Collection: smoking-accessories
+[2025-12-29T00:17:37.067Z] ============================================================
+[2025-12-29T00:17:37.297Z] 
+📄 Page 1: https://genuineraw.com/collections/smoking-accessories
+[2025-12-29T00:17:41.117Z]   ✅ Found 48 products
+[2025-12-29T00:17:41.120Z] 
+📄 Page 2: https://genuineraw.com/collections/smoking-accessories?page=2
+[2025-12-29T00:17:44.383Z]   ✅ Found 9 products
+[2025-12-29T00:17:44.385Z] 
+✅ Collection total: 57 products
+[2025-12-29T00:17:44.478Z] 
+============================================================
+[2025-12-29T00:17:44.478Z] 📊 TOTAL PRODUCTS: 145
+[2025-12-29T00:17:44.478Z] ============================================================
+[2025-12-29T00:17:44.479Z] 📊 Unique products: 83
+[2025-12-29T00:17:44.479Z] 
+📝 Fetching product details...
+[2025-12-29T00:17:44.683Z]   [1/83] RAW Ethereal Grinder
+[2025-12-29T00:17:48.254Z]     ✅ Details extracted
+[2025-12-29T00:17:48.255Z]   [2/83] HAMMERCRAFT X RAW 4 PIECE GRINDER
+[2025-12-29T00:17:52.145Z]     ✅ Details extracted
+[2025-12-29T00:17:52.146Z]   [3/83] RAW 2 PC ALUMINIUM PROTOYPE GRINDER
+[2025-12-29T00:17:55.983Z]     ✅ Details extracted
+[2025-12-29T00:17:55.983Z]   [4/83] RAW Natural Wood Grinder
+[2025-12-29T00:17:59.868Z]     ✅ Details extracted
+[2025-12-29T00:17:59.869Z]   [5/83] RAW Life Grinder
+[2025-12-29T00:18:03.797Z]     ✅ Details extracted
+[2025-12-29T00:18:03.797Z]   [6/83] RAW Phoenix Lighter
+[2025-12-29T00:18:07.497Z]     ✅ Details extracted
+[2025-12-29T00:18:07.497Z]   [7/83] RAW ARC Lighter
+[2025-12-29T00:18:11.364Z]     ✅ Details extracted
+[2025-12-29T00:18:11.365Z]   [8/83] RAW Solar Lighter
+[2025-12-29T00:18:15.172Z]     ✅ Details extracted
+[2025-12-29T00:18:15.172Z]   [9/83] RAW Extendo Lighter
+[2025-12-29T00:18:18.959Z]     ✅ Details extracted
+[2025-12-29T00:18:18.959Z]   [10/83] RAW Santa Hat Cone Holder
+[2025-12-29T00:18:22.729Z]     ✅ Details extracted
+[2025-12-29T00:18:22.730Z]   [11/83] Wake Up & Bake Up
+[2025-12-29T00:18:26.653Z]     ✅ Details extracted
+[2025-12-29T00:18:26.654Z]   [12/83] RAW Red Glass Ashtray
+[2025-12-29T00:18:30.762Z]     ✅ Details extracted
+[2025-12-29T00:18:30.763Z]   [13/83] RAW Prism Glass Ashtray V2
+[2025-12-29T00:18:34.465Z]     ✅ Details extracted
+[2025-12-29T00:18:34.465Z]   [14/83] RAWliblaze Glass Candy Cane Cone Holder
+[2025-12-29T00:18:38.302Z]     ✅ Details extracted
+[2025-12-29T00:18:38.302Z]   [15/83] RAW Cone Snuffer
+[2025-12-29T00:18:41.997Z]     ✅ Details extracted
+[2025-12-29T00:18:41.998Z]   [16/83] RAW Glass Bat Cone Holder
+[2025-12-29T00:18:45.716Z]     ✅ Details extracted
+[2025-12-29T00:18:45.716Z]   [17/83] RAW 20th Anniversary Emerald Gift Set
+[2025-12-29T00:18:49.417Z]     ✅ Details extracted
+[2025-12-29T00:18:49.418Z]   [18/83] RAW Paper Bench
+[2025-12-29T00:18:53.069Z]     ✅ Details extracted
+[2025-12-29T00:18:53.070Z]   [19/83] RAW Tuberator
+[2025-12-29T00:18:56.744Z]     ✅ Details extracted
+[2025-12-29T00:18:56.744Z]   [20/83] RAW Glass Gravity Cone
+[2025-12-29T00:19:00.362Z]     ✅ Details extracted
+[2025-12-29T00:19:00.362Z]   [21/83] RAW Glass Mushroom Cone Holder
+[2025-12-29T00:19:04.250Z]     ✅ Details extracted
+[2025-12-29T00:19:04.251Z]   [22/83] RAW Glass Bottle Cone Holder
+[2025-12-29T00:19:07.908Z]     ✅ Details extracted
+[2025-12-29T00:19:07.908Z]   [23/83] RAW Lil’ Prep Bowl
+[2025-12-29T00:19:11.658Z]     ✅ Details extracted
+[2025-12-29T00:19:11.658Z]   [24/83] RAW Catcher
+[2025-12-29T00:19:15.338Z]     ✅ Details extracted
+[2025-12-29T00:19:15.338Z]   [25/83] RAW Double Barrel
+[2025-12-29T00:19:19.073Z]     ✅ Details extracted
+[2025-12-29T00:19:19.073Z]   [26/83] RAW Level Five
+[2025-12-29T00:19:22.775Z]     ✅ Details extracted
+[2025-12-29T00:19:22.776Z]   [27/83] RAW Trident
+[2025-12-29T00:19:26.474Z]     ✅ Details extracted
+[2025-12-29T00:19:26.474Z]   [28/83] RAW Crystal Ashtray
+[2025-12-29T00:19:30.216Z]     ✅ Details extracted
+[2025-12-29T00:19:30.216Z]   [29/83] RAW Magnetic Ashtray
+[2025-12-29T00:19:33.897Z]     ✅ Details extracted
+[2025-12-29T00:19:33.898Z]   [30/83] RAW Classic Pack Glass Ashtray
+[2025-12-29T00:19:37.634Z]     ✅ Details extracted
+[2025-12-29T00:19:37.635Z]   [31/83] RAW Prism Glass Ashtray
+[2025-12-29T00:19:41.364Z]     ✅ Details extracted
+[2025-12-29T00:19:41.365Z]   [32/83] RAW Smoke Thrower
+[2025-12-29T00:19:45.020Z]     ✅ Details extracted
+[2025-12-29T00:19:45.020Z]   [33/83] RAW Hands-Free Smoker
+[2025-12-29T00:19:48.714Z]     ✅ Details extracted
+[2025-12-29T00:19:48.714Z]   [34/83] Double Shot Two Cone Filler
+[2025-12-29T00:19:52.641Z]     ✅ Details extracted
+[2025-12-29T00:19:52.642Z]   [35/83] RAW VanASH Windproof Ashtray
+[2025-12-29T00:19:56.279Z]     ✅ Details extracted
+[2025-12-29T00:19:56.280Z]   [36/83] RAW Classic Gum Strips
+[2025-12-29T00:19:59.918Z]     ✅ Details extracted
+[2025-12-29T00:19:59.918Z]   [37/83] RAW X Stand
+[2025-12-29T00:20:03.555Z]     ✅ Details extracted
+[2025-12-29T00:20:03.555Z]   [38/83] RAW x MY WEIGH Tray Scale
+[2025-12-29T00:20:07.268Z]     ✅ Details extracted
+[2025-12-29T00:20:07.268Z]   [39/83] RAW Turbo Tips
+[2025-12-29T00:20:10.588Z]     ✅ Details extracted
+[2025-12-29T00:20:10.589Z]   [40/83] RAW Limited Edition Macu Classic Rolling Papers
+[2025-12-29T00:20:14.338Z]     ✅ Details extracted
+[2025-12-29T00:20:14.339Z]   [41/83] RAW Cone Roller V2
+[2025-12-29T00:20:18.090Z]     ✅ Details extracted
+[2025-12-29T00:20:18.091Z]   [42/83] RAW King Size Wide Donut Press
+[2025-12-29T00:20:21.889Z]     ✅ Details extracted
+[2025-12-29T00:20:21.889Z]   [43/83] RAW Crumb Catcher
+[2025-12-29T00:20:25.563Z]     ✅ Details extracted
+[2025-12-29T00:20:25.566Z]   [44/83] RAW Perspector
+[2025-12-29T00:20:29.311Z]     ✅ Details extracted
+[2025-12-29T00:20:29.312Z]   [45/83] RAW Black Organic Hemp
+[2025-12-29T00:20:33.110Z]     ✅ Details extracted
+[2025-12-29T00:20:33.110Z]   [46/83] Raw X Lyrical Lemonade Grape
+[2025-12-29T00:20:36.974Z]     ✅ Details extracted
+[2025-12-29T00:20:36.974Z]   [47/83] RAW Organic Hemp
+[2025-12-29T00:20:40.642Z]     ✅ Details extracted
+[2025-12-29T00:20:40.643Z]   [48/83] RAW x Lyrical Lemonade
+[2025-12-29T00:20:44.341Z]     ✅ Details extracted
+[2025-12-29T00:20:44.341Z]   [49/83] RAW Ethereal
+[2025-12-29T00:20:47.984Z]     ✅ Details extracted
+[2025-12-29T00:20:47.984Z]   [50/83] RAW Classic Twenty Year Anniversary Pack
+[2025-12-29T00:20:51.702Z]     ✅ Details extracted
+[2025-12-29T00:20:51.703Z]   [51/83] RAW Classic 1½
+[2025-12-29T00:20:55.438Z]     ✅ Details extracted
+[2025-12-29T00:20:55.439Z]   [52/83] RAW King Size Masterpeace
+[2025-12-29T00:20:59.134Z]     ✅ Details extracted
+[2025-12-29T00:20:59.135Z]   [53/83] RAW Ethereal Change Mat
+[2025-12-29T00:21:02.931Z]     ✅ Details extracted
+[2025-12-29T00:21:02.932Z]   [54/83] Signed RAW Black Tray
+[2025-12-29T00:21:06.583Z]     ✅ Details extracted
+[2025-12-29T00:21:06.584Z]   [55/83] RAW x Lyrical Lemonade Lunch Tray
+[2025-12-29T00:21:10.201Z]     ✅ Details extracted
+[2025-12-29T00:21:10.201Z]   [56/83] RAW x Lyrical Lemonade Tray
+[2025-12-29T00:21:14.197Z]     ✅ Details extracted
+[2025-12-29T00:21:14.198Z]   [57/83] RAW Red Matte Murder’d Tray
+[2025-12-29T00:21:17.985Z]     ✅ Details extracted
+[2025-12-29T00:21:17.985Z]   [58/83] Raw Ethereal Monster Small Tray
+[2025-12-29T00:21:21.820Z]     ✅ Details extracted
+[2025-12-29T00:21:21.821Z]   [59/83] Raw 20th Anniversary Backflip Tray
+[2025-12-29T00:21:25.594Z]     ✅ Details extracted
+[2025-12-29T00:21:25.595Z]   [60/83] RAW Ethereal Tray
+[2025-12-29T00:21:29.328Z]     ✅ Details extracted
+[2025-12-29T00:21:29.328Z]   [61/83] RAW Cone Monster Tray
+[2025-12-29T00:21:32.998Z]     ✅ Details extracted
+[2025-12-29T00:21:32.998Z]   [62/83] RAW Black Tray
+[2025-12-29T00:21:36.800Z]     ✅ Details extracted
+[2025-12-29T00:21:36.801Z]   [63/83] RAW Crystal Glass Rolling Tray
+[2025-12-29T00:21:40.425Z]     ✅ Details extracted
+[2025-12-29T00:21:40.425Z]   [64/83] RAW Black – Monster Tray
+[2025-12-29T00:21:44.059Z]     ✅ Details extracted
+[2025-12-29T00:21:44.060Z]   [65/83] RAW Triple Flip Bamboo Rolling Tray
+[2025-12-29T00:21:47.796Z]     ✅ Details extracted
+[2025-12-29T00:21:47.796Z]   [66/83] RAW Spirit Box
+[2025-12-29T00:21:51.514Z]     ✅ Details extracted
+[2025-12-29T00:21:51.514Z]   [67/83] RAW Munchies Box
+[2025-12-29T00:21:55.311Z]     ✅ Details extracted
+[2025-12-29T00:21:55.312Z]   [68/83] Raw X Proper Doink Glass Tip
+[2025-12-29T00:21:58.962Z]     ✅ Details extracted
+[2025-12-29T00:21:58.963Z]   [69/83] RAW Garden Tips
+[2025-12-29T00:22:02.670Z]     ✅ Details extracted
+[2025-12-29T00:22:02.671Z]   [70/83] RAW Pre-Rolled Rose Tip
+[2025-12-29T00:22:06.384Z]     ✅ Details extracted
+[2025-12-29T00:22:06.384Z]   [71/83] Elements X Proper Doink Glass Tip
+[2025-12-29T00:22:10.033Z]     ✅ Details extracted
+[2025-12-29T00:22:10.033Z]   [72/83] RAW Ethereal Rolling Tips
+[2025-12-29T00:22:13.848Z]     ✅ Details extracted
+[2025-12-29T00:22:13.848Z]   [73/83] RAW Buddy Mill Grinder
+[2025-12-29T00:22:17.494Z]     ✅ Details extracted
+[2025-12-29T00:22:17.495Z]   [74/83] Raw Cone Umbrella
+[2025-12-29T00:22:21.157Z]     ✅ Details extracted
+[2025-12-29T00:22:21.158Z]   [75/83] RAW Magnetic Stash Jar
+[2025-12-29T00:22:24.789Z]     ✅ Details extracted
+[2025-12-29T00:22:24.789Z]   [76/83] RAW Cone Flying Disc
+[2025-12-29T00:22:28.453Z]     ✅ Details extracted
+[2025-12-29T00:22:28.454Z]   [77/83] RAW Six Shooter
+[2025-12-29T00:22:32.058Z]     ✅ Details extracted
+[2025-12-29T00:22:32.058Z]   [78/83] RAW Heart of Glass Cone Holder
+[2025-12-29T00:22:35.707Z]     ✅ Details extracted
+[2025-12-29T00:22:35.708Z]   [79/83] RAW Smellproof Cozy and Jar
+[2025-12-29T00:22:39.575Z]     ✅ Details extracted
+[2025-12-29T00:22:39.575Z]   [80/83] RAW Tins for KS Prerolled Cones - Set of 6
+[2025-12-29T00:22:43.249Z]     ✅ Details extracted
+[2025-12-29T00:22:43.249Z]   [81/83] RAW Gold Poker
+[2025-12-29T00:22:46.909Z]     ✅ Details extracted
+[2025-12-29T00:22:46.909Z]   [82/83] RAW Cone Loader
+[2025-12-29T00:22:50.699Z]     ✅ Details extracted
+[2025-12-29T00:22:50.700Z]   [83/83] RAW Natural Wood Pokers
+[2025-12-29T00:22:54.396Z]     ✅ Details extracted
+[2025-12-29T00:22:54.431Z] 
+📦 Converting and uploading images...
+[2025-12-29T00:22:55.894Z]     ✅ raw-raw-ethereal-grinder.jpg
+[2025-12-29T00:22:56.914Z]     ✅ raw-hammercraft-x-raw-4-piece-grinder.jpg
+[2025-12-29T00:22:57.869Z]     ✅ raw-raw-2-pc-aluminium-protoype-grinder.jpg
+[2025-12-29T00:22:58.995Z]     ✅ raw-raw-natural-wood-grinder.jpg
+[2025-12-29T00:23:00.213Z]     ✅ raw-raw-life-grinder.jpg
+[2025-12-29T00:23:00.989Z]     ✅ raw-raw-phoenix-lighter.jpg
+[2025-12-29T00:23:02.116Z]     ✅ raw-raw-arc-lighter.jpg
+[2025-12-29T00:23:03.241Z]     ✅ raw-raw-solar-lighter.jpg
+[2025-12-29T00:23:03.792Z]     ✅ raw-raw-extendo-lighter.jpg
+[2025-12-29T00:23:04.778Z]     ✅ raw-raw-santa-hat-cone-holder.jpg
+[2025-12-29T00:23:07.456Z]     ✅ raw-raw-red-glass-ashtray.jpg
+[2025-12-29T00:23:08.181Z]     ✅ raw-raw-prism-glass-ashtray-v2.jpg
+[2025-12-29T00:23:09.284Z]     ✅ raw-rawliblaze-glass-candy-cane-cone-holder.jpg
+[2025-12-29T00:23:11.845Z]     ✅ raw-raw-20th-anniversary-emerald-gift-set.jpg
+[2025-12-29T00:23:12.900Z]     ✅ raw-raw-paper-bench.jpg
+[2025-12-29T00:23:13.525Z]     ✅ raw-raw-tuberator.jpg
+[2025-12-29T00:23:14.301Z]     ✅ raw-raw-glass-gravity-cone.jpg
+[2025-12-29T00:23:15.441Z]     ✅ raw-raw-glass-mushroom-cone-holder.jpg
+[2025-12-29T00:23:16.253Z]     ✅ raw-raw-glass-bottle-cone-holder.jpg
+[2025-12-29T00:23:17.109Z]     ✅ raw-raw-lil-prep-bowl.jpg
+[2025-12-29T00:23:17.727Z]     ✅ raw-raw-catcher.jpg
+[2025-12-29T00:23:19.339Z]     ✅ raw-raw-double-barrel.jpg
+[2025-12-29T00:23:20.103Z]     ✅ raw-raw-level-five.jpg
+[2025-12-29T00:23:20.957Z]     ✅ raw-raw-trident.jpg
+[2025-12-29T00:23:21.980Z]     ✅ raw-raw-crystal-ashtray.jpg
+[2025-12-29T00:23:23.586Z]     ✅ raw-raw-magnetic-ashtray.jpg
+[2025-12-29T00:23:24.745Z]     ✅ raw-raw-classic-pack-glass-ashtray.jpg
+[2025-12-29T00:23:25.562Z]     ✅ raw-raw-prism-glass-ashtray.jpg
+[2025-12-29T00:23:26.157Z]     ✅ raw-raw-smoke-thrower.jpg
+[2025-12-29T00:23:27.303Z]     ✅ raw-raw-hands-free-smoker.jpg
+[2025-12-29T00:23:28.318Z]     ✅ raw-double-shot-two-cone-filler.jpg
+[2025-12-29T00:23:29.090Z]     ✅ raw-raw-vanash-windproof-ashtray.jpg
+[2025-12-29T00:23:29.906Z]     ✅ raw-raw-classic-gum-strips.jpg
+[2025-12-29T00:23:30.593Z]     ✅ raw-raw-x-stand.jpg
+[2025-12-29T00:23:31.627Z]     ✅ raw-raw-x-my-weigh-tray-scale.jpg
+[2025-12-29T00:23:33.448Z]     ✅ raw-raw-limited-edition-macu-classic-rolling-papers.jpg
+[2025-12-29T00:23:35.189Z]     ✅ raw-raw-king-size-wide-donut-press.jpg
+[2025-12-29T00:23:36.046Z]     ✅ raw-raw-crumb-catcher.jpg
+[2025-12-29T00:23:36.738Z]     ✅ raw-raw-perspector.jpg
+[2025-12-29T00:23:37.741Z]     ✅ raw-raw-black-organic-hemp.jpg
+[2025-12-29T00:23:38.978Z]     ✅ raw-raw-x-lyrical-lemonade-grape.jpg
+[2025-12-29T00:23:39.757Z]     ✅ raw-raw-organic-hemp.jpg
+[2025-12-29T00:23:40.795Z]     ✅ raw-raw-x-lyrical-lemonade.jpg
+[2025-12-29T00:23:41.942Z]     ✅ raw-raw-ethereal.jpg
+[2025-12-29T00:23:42.736Z]     ✅ raw-raw-classic-twenty-year-anniversary-pack.jpg
+[2025-12-29T00:23:43.626Z]     ✅ raw-raw-classic-1.jpg
+[2025-12-29T00:23:44.611Z]     ✅ raw-raw-king-size-masterpeace.jpg
+[2025-12-29T00:23:50.244Z]     ✅ raw-raw-red-matte-murder-d-tray.jpg
+[2025-12-29T00:23:51.268Z]     ✅ raw-raw-ethereal-monster-small-tray.jpg
+[2025-12-29T00:23:52.187Z]     ✅ raw-raw-20th-anniversary-backflip-tray.jpg
+[2025-12-29T00:23:53.141Z]     ✅ raw-raw-ethereal-tray.jpg
+[2025-12-29T00:23:53.949Z]     ✅ raw-raw-cone-monster-tray.jpg
+[2025-12-29T00:23:54.850Z]     ✅ raw-raw-black-tray.jpg
+[2025-12-29T00:23:55.699Z]     ✅ raw-raw-crystal-glass-rolling-tray.jpg
+[2025-12-29T00:23:56.527Z]     ✅ raw-raw-black-monster-tray.jpg
+[2025-12-29T00:23:57.354Z]     ✅ raw-raw-triple-flip-bamboo-rolling-tray.jpg
+[2025-12-29T00:23:58.434Z]     ✅ raw-raw-spirit-box.jpg
+[2025-12-29T00:23:59.287Z]     ✅ raw-raw-munchies-box.jpg
+[2025-12-29T00:24:00.482Z]     ✅ raw-raw-x-proper-doink-glass-tip.jpg
+[2025-12-29T00:24:01.506Z]     ✅ raw-raw-garden-tips.jpg
+[2025-12-29T00:24:02.528Z]     ✅ raw-raw-pre-rolled-rose-tip.jpg
+[2025-12-29T00:24:03.233Z]     ✅ raw-elements-x-proper-doink-glass-tip.jpg
+[2025-12-29T00:24:06.728Z]     ✅ raw-raw-cone-umbrella.jpg
+[2025-12-29T00:24:07.753Z]     ✅ raw-raw-magnetic-stash-jar.jpg
+[2025-12-29T00:24:08.982Z]     ✅ raw-raw-cone-flying-disc.jpg
+[2025-12-29T00:24:10.108Z]     ✅ raw-raw-six-shooter.jpg
+[2025-12-29T00:24:11.131Z]     ✅ raw-raw-heart-of-glass-cone-holder.jpg
+[2025-12-29T00:24:12.259Z]     ✅ raw-raw-smellproof-cozy-and-jar.jpg
+[2025-12-29T00:24:12.951Z]     ✅ raw-raw-tins-for-ks-prerolled-cones-set-of-6.jpg
+[2025-12-29T00:24:13.624Z]     ✅ raw-raw-gold-poker.jpg
+[2025-12-29T00:24:14.698Z]     ✅ raw-raw-cone-loader.jpg
+[2025-12-29T00:24:15.294Z]     ✅ raw-raw-natural-wood-pokers.jpg
+[2025-12-29T00:24:15.294Z] ✅ Converted 83 products
+[2025-12-29T00:24:15.295Z] 
+💾 Saving to Redis...
+[2025-12-29T00:24:15.808Z]   📊 Existing: 1793
+[2025-12-29T00:24:15.808Z]   📊 New RAW: 83
+[2025-12-29T00:24:16.186Z] 
+✅ Saved to Redis:
+[2025-12-29T00:24:16.186Z]   📦 Total: 1876
+[2025-12-29T00:24:16.187Z]   ➕ Added: 83
+[2025-12-29T00:24:16.187Z]   ✏️  Updated: 0
+[2025-12-29T00:24:16.189Z] 
+📊 By brand:
+[2025-12-29T00:24:16.190Z]   Lookah: 1115
+[2025-12-29T00:24:16.190Z]   GRAV: 202
+[2025-12-29T00:24:16.190Z]   Hometown Hero: 197
+[2025-12-29T00:24:16.191Z]   Puffco: 172
+[2025-12-29T00:24:16.191Z]   RAW: 83
+[2025-12-29T00:24:16.192Z]   Fifty Bar: 56
+[2025-12-29T00:24:16.192Z]   LOST MARY: 32
+[2025-12-29T00:24:16.192Z]   Foger: 17
+[2025-12-29T00:24:16.192Z]   DR. DABBER: 1
+[2025-12-29T00:24:16.192Z]   Fifty bar: 1
+[2025-12-29T00:24:16.230Z] 
+============================================================
+[2025-12-29T00:24:16.230Z] ✅ IMPORT COMPLETED
+[2025-12-29T00:24:16.230Z] ============================================================

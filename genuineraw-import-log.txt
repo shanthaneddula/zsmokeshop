@@ -1,0 +1,150 @@
+[2025-12-29T00:02:28.427Z] ============================================================
+[2025-12-29T00:02:28.429Z] GENUINE RAW PRODUCT IMPORT
+[2025-12-29T00:02:28.430Z] ============================================================
+[2025-12-29T00:02:28.430Z] Source: https://genuineraw.com/collections/smoking-accessories
+[2025-12-29T00:02:28.430Z] Brand: RAW
+[2025-12-29T00:02:28.430Z] Category: accessories
+[2025-12-29T00:02:28.430Z] ============================================================
+[2025-12-29T00:02:28.431Z] 🚀 Starting Genuine RAW product scraper...
+[2025-12-29T00:02:29.938Z] 
+📄 Loading page 1: https://genuineraw.com/collections/smoking-accessories
+[2025-12-29T00:02:32.181Z]   🔓 Checking for age gate...
+[2025-12-29T00:02:35.191Z]   ℹ️  No age gate found or already accepted
+[2025-12-29T00:02:35.192Z]   ❌ Checking for popup...
+[2025-12-29T00:02:35.235Z]   ℹ️  No popup found
+[2025-12-29T00:02:37.258Z]   ✅ Found 48 products on page 1
+[2025-12-29T00:02:37.261Z] 
+📄 Loading page 2: https://genuineraw.com/collections/smoking-accessories?page=2
+[2025-12-29T00:02:41.218Z]   ✅ Found 9 products on page 2
+[2025-12-29T00:02:41.220Z]   ℹ️  No more pages found
+[2025-12-29T00:02:41.220Z] 
+✅ Total products found: 57
+[2025-12-29T00:02:41.535Z] 
+📝 Fetching product details...
+[2025-12-29T00:02:42.858Z]   [1/57] RAW Buddy Mill Grinder
+[2025-12-29T00:02:47.021Z]     ✅ Details extracted
+[2025-12-29T00:02:47.022Z]   [2/57] Signed RAW Black Tray
+[2025-12-29T00:02:50.446Z]     ✅ Details extracted
+[2025-12-29T00:02:50.446Z]   [3/57] Wake Up & Bake Up
+[2025-12-29T00:02:54.441Z]     ✅ Details extracted
+[2025-12-29T00:02:54.441Z]   [4/57] RAW Turbo Tips
+[2025-12-29T00:02:58.307Z]     ✅ Details extracted
+[2025-12-29T00:02:58.307Z]   [5/57] RAW x Lyrical Lemonade Lunch Tray
+[2025-12-29T00:03:02.299Z]     ✅ Details extracted
+[2025-12-29T00:03:02.299Z]   [6/57] RAW x Lyrical Lemonade Tray
+[2025-12-29T00:03:06.440Z]     ✅ Details extracted
+[2025-12-29T00:03:06.440Z]   [7/57] RAW Cone Roller V2
+[2025-12-29T00:03:10.313Z]     ✅ Details extracted
+[2025-12-29T00:03:10.313Z]   [8/57] RAW Cone Snuffer
+[2025-12-29T00:03:14.106Z]     ✅ Details extracted
+[2025-12-29T00:03:14.107Z]   [9/57] RAW Ethereal Rolling Tips
+[2025-12-29T00:03:17.895Z]     ✅ Details extracted
+[2025-12-29T00:03:17.895Z]   [10/57] RAW Ethereal Change Mat
+[2025-12-29T00:03:21.668Z]     ✅ Details extracted
+[2025-12-29T00:03:21.668Z]   [11/57] RAW Glass Bat Cone Holder
+[2025-12-29T00:03:25.425Z]     ✅ Details extracted
+[2025-12-29T00:03:25.426Z]   [12/57] RAW 20th Anniversary Emerald Gift Set
+[2025-12-29T00:03:29.164Z]     ✅ Details extracted
+[2025-12-29T00:03:29.164Z]   [13/57] RAW Paper Bench
+[2025-12-29T00:03:32.821Z]     ✅ Details extracted
+[2025-12-29T00:03:32.821Z]   [14/57] RAW Red Matte Murder’d Tray
+[2025-12-29T00:03:36.620Z]     ✅ Details extracted
+[2025-12-29T00:03:36.620Z]   [15/57] Raw Ethereal Monster Small Tray
+[2025-12-29T00:03:40.325Z]     ✅ Details extracted
+[2025-12-29T00:03:40.325Z]   [16/57] RAW Tuberator
+[2025-12-29T00:03:44.116Z]     ✅ Details extracted
+[2025-12-29T00:03:44.116Z]   [17/57] RAW Glass Gravity Cone
+[2025-12-29T00:03:47.843Z]     ✅ Details extracted
+[2025-12-29T00:03:47.844Z]   [18/57] Raw 20th Anniversary Backflip Tray
+[2025-12-29T00:03:51.540Z]     ✅ Details extracted
+[2025-12-29T00:03:51.541Z]   [19/57] RAW King Size Wide Donut Press
+[2025-12-29T00:03:55.300Z]     ✅ Details extracted
+[2025-12-29T00:03:55.300Z]   [20/57] RAW Glass Mushroom Cone Holder
+[2025-12-29T00:03:58.920Z]     ✅ Details extracted
+[2025-12-29T00:03:58.921Z]   [21/57] RAW Glass Bottle Cone Holder
+[2025-12-29T00:04:02.631Z]     ✅ Details extracted
+[2025-12-29T00:04:02.631Z]   [22/57] RAW Ethereal Tray
+[2025-12-29T00:04:06.690Z]     ✅ Details extracted
+[2025-12-29T00:04:06.691Z]   [23/57] RAW Cone Monster Tray
+[2025-12-29T00:04:10.416Z]     ✅ Details extracted
+[2025-12-29T00:04:10.416Z]   [24/57] RAW Lil’ Prep Bowl
+[2025-12-29T00:04:14.147Z]     ✅ Details extracted
+[2025-12-29T00:04:14.148Z]   [25/57] RAW Black Tray
+[2025-12-29T00:04:17.966Z]     ✅ Details extracted
+[2025-12-29T00:04:17.967Z]   [26/57] RAW Crystal Glass Rolling Tray
+[2025-12-29T00:04:21.630Z]     ✅ Details extracted
+[2025-12-29T00:04:21.630Z]   [27/57] Elements X Proper Doink Glass Tip
+[2025-12-29T00:04:25.336Z]     ✅ Details extracted
+[2025-12-29T00:04:25.336Z]   [28/57] Raw Cone Umbrella
+[2025-12-29T00:04:29.077Z]     ✅ Details extracted
+[2025-12-29T00:04:29.077Z]   [29/57] RAW Classic Gum Strips
+[2025-12-29T00:04:32.810Z]     ✅ Details extracted
+[2025-12-29T00:04:32.812Z]   [30/57] RAW Solar Lighter
+[2025-12-29T00:04:36.696Z]     ✅ Details extracted
+[2025-12-29T00:04:36.698Z]   [31/57] RAW Magnetic Stash Jar
+[2025-12-29T00:04:40.456Z]     ✅ Details extracted
+[2025-12-29T00:04:40.456Z]   [32/57] RAW Catcher
+[2025-12-29T00:04:44.362Z]     ✅ Details extracted
+[2025-12-29T00:04:44.362Z]   [33/57] RAW Double Barrel
+[2025-12-29T00:04:48.093Z]     ✅ Details extracted
+[2025-12-29T00:04:48.093Z]   [34/57] RAW Level Five
+[2025-12-29T00:04:51.792Z]     ✅ Details extracted
+[2025-12-29T00:04:51.792Z]   [35/57] RAW Trident
+[2025-12-29T00:04:55.449Z]     ✅ Details extracted
+[2025-12-29T00:04:55.449Z]   [36/57] RAW Black – Monster Tray
+[2025-12-29T00:04:59.193Z]     ✅ Details extracted
+[2025-12-29T00:04:59.193Z]   [37/57] RAW Perspector
+[2025-12-29T00:05:02.897Z]     ✅ Details extracted
+[2025-12-29T00:05:02.897Z]   [38/57] RAW x MY WEIGH Tray Scale
+[2025-12-29T00:05:06.610Z]     ✅ Details extracted
+[2025-12-29T00:05:06.610Z]   [39/57] RAW Cone Flying Disc
+[2025-12-29T00:05:10.249Z]     ✅ Details extracted
+[2025-12-29T00:05:10.249Z]   [40/57] RAW Smoke Thrower
+[2025-12-29T00:05:13.936Z]     ✅ Details extracted
+[2025-12-29T00:05:13.937Z]   [41/57] RAW X Stand
+[2025-12-29T00:05:17.586Z]     ✅ Details extracted
+[2025-12-29T00:05:17.587Z]   [42/57] RAW Six Shooter
+[2025-12-29T00:05:21.269Z]     ✅ Details extracted
+[2025-12-29T00:05:21.269Z]   [43/57] RAW Hands-Free Smoker
+[2025-12-29T00:05:24.969Z]     ✅ Details extracted
+[2025-12-29T00:05:24.970Z]   [44/57] Double Shot Two Cone Filler
+[2025-12-29T00:05:28.626Z]     ✅ Details extracted
+[2025-12-29T00:05:28.626Z]   [45/57] Raw X Proper Doink Glass Tip
+[2025-12-29T00:05:32.317Z]     ✅ Details extracted
+[2025-12-29T00:05:32.317Z]   [46/57] RAW Pre-Rolled Rose Tip
+[2025-12-29T00:05:36.057Z]     ✅ Details extracted
+[2025-12-29T00:05:36.057Z]   [47/57] RAW Garden Tips
+[2025-12-29T00:05:39.714Z]     ✅ Details extracted
+[2025-12-29T00:05:39.714Z]   [48/57] RAW Heart of Glass Cone Holder
+[2025-12-29T00:05:43.553Z]     ✅ Details extracted
+[2025-12-29T00:05:43.553Z]   [49/57] RAW Smellproof Cozy and Jar
+[2025-12-29T00:05:47.452Z]     ✅ Details extracted
+[2025-12-29T00:05:47.452Z]   [50/57] RAW Tins for KS Prerolled Cones - Set of 6
+[2025-12-29T00:05:51.114Z]     ✅ Details extracted
+[2025-12-29T00:05:51.114Z]   [51/57] RAW Gold Poker
+[2025-12-29T00:05:54.789Z]     ✅ Details extracted
+[2025-12-29T00:05:54.790Z]   [52/57] RAW Crumb Catcher
+[2025-12-29T00:05:58.707Z]     ✅ Details extracted
+[2025-12-29T00:05:58.708Z]   [53/57] RAW Cone Loader
+[2025-12-29T00:06:02.434Z]     ✅ Details extracted
+[2025-12-29T00:06:02.434Z]   [54/57] RAW Natural Wood Pokers
+[2025-12-29T00:06:06.103Z]     ✅ Details extracted
+[2025-12-29T00:06:06.103Z]   [55/57] RAW Triple Flip Bamboo Rolling Tray
+[2025-12-29T00:06:09.725Z]     ✅ Details extracted
+[2025-12-29T00:06:09.725Z]   [56/57] RAW Spirit Box
+[2025-12-29T00:06:13.461Z]     ✅ Details extracted
+[2025-12-29T00:06:13.461Z]   [57/57] RAW Munchies Box
+[2025-12-29T00:06:17.141Z]     ✅ Details extracted
+[2025-12-29T00:06:17.392Z] 
+📦 Converting to AdminProduct format and uploading images...
+[2025-12-29T00:06:19.108Z]     ✅ Image uploaded: raw-raw-buddy-mill-grinder.jpg
+[2025-12-29T00:06:20.213Z]     ✅ Image uploaded: raw-signed-raw-black-tray.jpg
+[2025-12-29T00:06:21.648Z]     ✅ Image uploaded: raw-wake-up-bake-up.jpg
+[2025-12-29T00:06:22.698Z]     ✅ Image uploaded: raw-raw-turbo-tips.jpg
+[2025-12-29T00:06:23.457Z]     ✅ Image uploaded: raw-raw-x-lyrical-lemonade-lunch-tray.jpg
+[2025-12-29T00:06:24.512Z]     ✅ Image uploaded: raw-raw-x-lyrical-lemonade-tray.jpg
+[2025-12-29T00:06:25.332Z]     ✅ Image uploaded: raw-raw-cone-roller-v2.jpg
+[2025-12-29T00:06:26.069Z]     ✅ Image uploaded: raw-raw-cone-snuffer.jpg
+[2025-12-29T00:06:27.004Z]     ✅ Image uploaded: raw-raw-ethereal-rolling-tips.jpg
+[2025-12-29T00:06:28.061Z]     ✅ Image uploaded: raw-raw-ethereal-change-mat.jpg
+[2025-12-29T00:06:28.636Z]     ✅ Image uploaded: raw-raw-glass-bat-cone-holder.jpg
