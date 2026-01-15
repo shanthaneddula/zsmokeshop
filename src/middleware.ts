@@ -32,8 +32,8 @@ export async function middleware(request: NextRequest) {
       !pathname.startsWith('/login') && 
       !pathname.startsWith('/maintenance') &&
       !pathname.startsWith('/_next') &&
-      pathname !== '/api/admin/settings' &&
-      !pathname.startsWith('/api/admin/auth')) {
+      !pathname.startsWith('/api/') &&
+      !pathname.includes('favicon')) {
     try {
       // Fetch settings to check maintenance mode
       const settingsUrl = new URL('/api/admin/settings', request.url);
@@ -44,14 +44,17 @@ export async function middleware(request: NextRequest) {
       });
       
       if (settingsResponse.ok) {
-        const data = await settingsResponse.json();
-        if (data?.data?.maintenanceMode === true || data?.maintenanceMode === true) {
-          return NextResponse.redirect(new URL('/maintenance', request.url));
+        const contentType = settingsResponse.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const data = await settingsResponse.json();
+          if (data?.data?.maintenanceMode === true || data?.maintenanceMode === true) {
+            return NextResponse.redirect(new URL('/maintenance', request.url));
+          }
         }
       }
     } catch (error) {
       // If settings fetch fails, allow normal access (fail open)
-      console.error('Maintenance check failed:', error);
+      // Silently fail - maintenance check should not break the site
     }
   }
 
