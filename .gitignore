@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temp files
+/temp
+*.log
+*.csv
+*.json.backup
+*_products.json
+elementvape-brands/
+public/images/products/puffco/
