@@ -1,46 +1,76 @@
-// Middleware for admin route protection (Edge Runtime compatible)
-
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+// Localhost testing domains - map to test tenant domain
+const LOCALHOST_DOMAINS = [
+  'localhost:3001',
+  'localhost:3000',
+  'localhost',
+  '127.0.0.1:3001',
+  '127.0.0.1:3000',
+  '127.0.0.1',
+];
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Extract domain from request
+  const host = request.headers.get('host') || '';
   
-  // Only protect admin routes
-  if (pathname.startsWith('/admin')) {
-    // Allow access to login page (now handled at /login, not /admin/login)
-    // If someone tries to access /admin/login, redirect to /login
-    if (pathname === '/admin/login') {
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
-    
-    // Check authentication for all admin routes
-    const token = request.cookies.get('admin-token')?.value;
-    
-    if (!token) {
-      console.log('❌ Middleware - No token, redirecting to /login');
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
-    
-    // Note: Token verification moved to individual route handlers to avoid Edge Runtime issues
-    console.log('✅ Middleware - Token present, allowing access');
-    
-    return NextResponse.next();
+  // Handle localhost during development
+  let domain = host;
+  if (LOCALHOST_DOMAINS.includes(host)) {
+    // For localhost, use test domain
+    domain = 'joessmokeshop.local';
+  } else {
+    // Remove www prefix if present
+    domain = host.replace(/^www\./, '');
   }
-  
-  return NextResponse.next();
+
+  // Check maintenance mode (except for admin, login, and maintenance pages)
+  if (!pathname.startsWith('/admin') && 
+      !pathname.startsWith('/login') && 
+      !pathname.startsWith('/maintenance') &&
+      !pathname.startsWith('/_next') &&
+      !pathname.startsWith('/api/admin/auth')) {
+    try {
+      // Fetch settings to check maintenance mode
+      const settingsUrl = new URL('/api/admin/settings', request.url);
+      const settingsResponse = await fetch(settingsUrl.toString(), {
+        headers: {
+          'Cache-Control': 'no-cache',
+        },
+      });
+      
+      if (settingsResponse.ok) {
+        const { data } = await settingsResponse.json();
+        if (data?.maintenanceMode === true) {
+          return NextResponse.redirect(new URL('/maintenance', request.url));
+        }
+      }
+    } catch (error) {
+      // If settings fetch fails, allow normal access (fail open)
+      console.error('Maintenance check failed:', error);
+    }
+  }
+
+  // Pass domain in header for API routes to lookup tenant
+  // (Can't use Prisma in Edge Runtime middleware)
+  const response = NextResponse.next();
+  response.headers.set('x-forwarded-domain', domain);
+
+  return response;
 }
 
+// Configure which routes use this middleware
 export const config = {
   matcher: [
     /*
-     * Match all admin routes:
-     * - /admin
-     * - /admin/login
-     * - /admin/products
-     * - /admin/categories
-     * - etc.
+     * Match all request paths except:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
      */
-    '/admin/:path*',
+    '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };

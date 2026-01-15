@@ -38,8 +38,9 @@ if (process.env.REDIS_URL) {
 const isProduction = process.env.NODE_ENV === 'production';
 const hasRedis = !!process.env.REDIS_URL;
 const hasKVConfig = !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
-const useRedis = hasRedis; // Prefer Redis if available
-const useKV = !hasRedis && (isProduction || hasKVConfig); // Fallback to KV if no Redis
+// Always use Redis when available (both dev and production)
+const useRedis = hasRedis; // Use Redis whenever REDIS_URL is configured
+const useKV = !useRedis && (isProduction || hasKVConfig); // Fallback to KV if no Redis
 
 console.log('🔧 Product Storage Service Initialized:', {
   environment: process.env.NODE_ENV,

@@ -1,0 +1,1649 @@
+{
+  "productSelectors": [
+    {
+      "selector": "[class*=\"product\"]",
+      "count": 70
+    },
+    {
+      "selector": "[class*=\"item\"]",
+      "count": 383
+    }
+  ],
+  "classNames": [
+    "border-[3px]",
+    "text-center",
+    "border-skin-dark",
+    "text-[#000]",
+    "font-semibold",
+    "py-[5px]",
+    "md:py-[0]",
+    "leading-[1.5]",
+    "md:leading-[45px]",
+    "top-0",
+    "bg-white",
+    "z-20",
+    "container",
+    "mx-auto",
+    "header-line",
+    "relative",
+    "py-[16px]",
+    "flex",
+    "justify-between",
+    "items-center",
+    "px-2",
+    "lg:px-0",
+    "md:pl-0",
+    "md:justify-start",
+    "md:hidden",
+    "justify-center",
+    "flex-col",
+    "inline-flex",
+    "rounded-md",
+    "text-skin-base",
+    "w-full",
+    "sr-only",
+    "h-8",
+    "w-8",
+    "overflow-hidden",
+    "pl-[15px]",
+    "w-[20px]",
+    "h-[20px]",
+    "md:w-full",
+    "md:relative",
+    "hidden",
+    "md:flex",
+    "elementvape-logo",
+    "object-contain",
+    "block",
+    "theme-2",
+    "style_img__sAEVG",
+    "space-x-[15px]",
+    "md:absolute",
+    "h-[30px]",
+    "md:items-center",
+    "md:right-1",
+    "md:top-[25px]",
+    "min-w-[32px]",
+    "px-[5px]",
+    "flow-root",
+    "text-sm",
+    "lg:relative",
+    "px-0",
+    "md:px-[10px]",
+    "group",
+    "justify-end",
+    "z-[99999]",
+    "space-x-0",
+    "md:space-x-3",
+    "-z[1px]",
+    "z-50",
+    "md:block",
+    "border-t-[1px]",
+    "border-[#aaa]",
+    "pt-[15px]",
+    "pb-[20px]",
+    "px-[12px]",
+    "-mr-2",
+    "-my-2",
+    "p-2",
+    "text-gray-400",
+    "hover:text-gray-500",
+    "hover:bg-gray-100",
+    "focus:outline-none",
+    "focus:ring-2",
+    "focus:ring-inset",
+    "focus:ring-indigo-500",
+    "open-tab",
+    "md:justify-center",
+    "p-0",
+    "m-0",
+    "md:pt-3",
+    "text-[15px]",
+    "text-[#222e46]",
+    "font-bold",
+    "hover:text-skin-secondary",
+    "hover:underline",
+    "hover:underline-offset-4",
+    "hover:decoration-[#a80f16]",
+    "hover:decoration-4",
+    "whitespace-pre",
+    "level-top",
+    "mb-[1px]",
+    "flex-wrap",
+    "text-base",
+    "font-medium",
+    "hover:text-gray-900",
+    "open-tab-div",
+    "open-tab-a",
+    "bg-skin-primary",
+    "text-skin-inverted",
+    "p-3",
+    "mb-[20px]",
+    "splide",
+    "splide--loop",
+    "splide--ltr",
+    "splide--draggable",
+    "is-active",
+    "is-overflow",
+    "is-initialized",
+    "splide__arrows",
+    "splide__arrows--ltr",
+    "splide__arrow",
+    "splide__arrow--prev",
+    "splide__arrow--next",
+    "splide__track",
+    "splide__track--loop",
+    "splide__track--ltr",
+    "splide__track--draggable",
+    "splide__list",
+    "splide__slide",
+    "splide_item",
+    "splide__slide--clone",
+    "is-prev",
+    "is-visible",
+    "is-next",
+    "plp-wrap",
+    "px-[10px]",
+    "undefined",
+    "theme-1",
+    "text-[13px]",
+    "text-[#282828]",
+    "h-4",
+    "capitalize",
+    "mt-5",
+    "category-img",
+    "plp-description",
+    "shop-by-form_container",
+    "sbf-heading",
+    "sbf-items",
+    "sbf-item",
+    "sbf-item_image",
+    "sbf-item_title",
+    "pt-6",
+    "pb-24",
+    "columns-2",
+    "md:w-[22%]",
+    "md:h-[100%]",
+    "md:mt-[15px]",
+    "md:sticky",
+    "md:-webkit-sticky",
+    "md:top-40",
+    "filter-list",
+    "md:px-0",
+    "pr-[14px]",
+    "mb-[27px]",
+    "pb-[15px]",
+    "border-b",
+    "border-[#979797]",
+    "option-expand",
+    "uppercase",
+    "text-left",
+    "ml-6",
+    "h-6",
+    "w-6",
+    "mb-[30px]",
+    "max-h-[245px]",
+    "overflow-y-auto",
+    "filter-custom-scroll",
+    "mb-[15px]",
+    "h-[13px]",
+    "w-[13px]",
+    "border-gray-300",
+    "rounded",
+    "text-indigo-600",
+    "ml-[5px]",
+    "font-light",
+    "md:w-[78%]",
+    "md:pl-[2%]",
+    "p-[10px]",
+    "font-normal",
+    "flex-row-reverse",
+    "md:w-auto",
+    "z-[11]",
+    "inline-block",
+    "min-w-[53%]",
+    "mr-1",
+    "border",
+    "border-[#ccc]",
+    "md:border-[#e1e1e1]",
+    "ml-3",
+    "p-[8px]",
+    "md:p-[5px]",
+    "min-w-[130px]",
+    "md:font-normal",
+    "md:text-[12px]",
+    "ml-1",
+    "md:capitalize",
+    "whitespace-nowrap",
+    "flex-shrink-0",
+    "-mr-1",
+    "h-5",
+    "w-5",
+    "group-hover:text-gray-500",
+    "px-[30px]",
+    "py-[10px]",
+    "w-[49%]",
+    "md:text-skin-base",
+    "null",
+    "grid",
+    "grid-cols-2",
+    "gap-y-[10px]",
+    "md:gap-y-[40px]",
+    "gap-x-[10px]",
+    "md:gap-x-[15px]",
+    "pt-5",
+    "md:pt-0",
+    "sm:grid-cols-2",
+    "md:grid-cols-2",
+    "lg:grid-cols-3",
+    "xl:grid-cols-4",
+    "md:p-0",
+    "md:mb-0",
+    "plp-product-list",
+    "absolute",
+    "left-2",
+    "top-[-12px]",
+    "z-10",
+    "cursor-default",
+    "h-70",
+    "rounded-lg",
+    "aspect-w-1",
+    "aspect-h-1",
+    "group-hover:opacity-75",
+    "h-full",
+    "mt-4",
+    "leading-[16px]",
+    "md:leading-[22px]",
+    "mb-1",
+    "hover:text-skin-primary",
+    "leading-[1.35]",
+    "md:text-[14px]",
+    "cursor-pointer",
+    "mb-[5px]",
+    "md:mb-3",
+    "text-[#636363]",
+    "pl-1",
+    "top-[50px]",
+    "left-0",
+    "transition-opacity",
+    "duration-300",
+    "opacity-0",
+    "hover:opacity-100",
+    "focus:opacity-100",
+    "quick-view",
+    "mt-14",
+    "md:inline-flex",
+    "px-[13px]",
+    "border-skin-secondary",
+    "shadow-sm",
+    "bg-skin-secondary",
+    "hover:bg-skin-button-secondary-hover",
+    "leading-[35px]",
+    "flex-row",
+    "md:flex-row",
+    "cursor-auto",
+    "h-[15px]",
+    "w-[15px]",
+    "md:h-[17.5px]",
+    "md:w-[17.5px]",
+    "ml-2",
+    "fa",
+    "fa-star-half-full",
+    "text-[16px]",
+    "text-[#37600b]",
+    "text-[12px]",
+    "mx-[2px]",
+    "mt-10",
+    "border-transparent",
+    "px-[80px]",
+    "hover:border-skin-secondary",
+    "hover:bg-skin-inverted",
+    "disabled:opacity-50",
+    "disabled:cursor-not-allowed",
+    "rounded-[2px]",
+    "home",
+    "carousel-btn",
+    "bg-[#f0f0f0]}",
+    "carousel",
+    "md:pt-[15px]",
+    "font-Montserrat",
+    "text-[18px]",
+    "md:text-[24px]",
+    "mb-[35px]",
+    "prev-arrow",
+    "hide-mobile-btn",
+    "swiper-button-disabled",
+    "mb-0",
+    "md:my-2",
+    "home-swiper",
+    "lg:pb-16",
+    "md:pb-8",
+    "swiper",
+    "swiper-initialized",
+    "swiper-horizontal",
+    "swiper-pointer-events",
+    "swiper-backface-hidden",
+    "swiper-wrapper",
+    "swiper-slide",
+    "swiper-slide-active",
+    "swiper-slide-next",
+    "swiper-pagination",
+    "swiper-pagination-clickable",
+    "swiper-pagination-bullets",
+    "swiper-pagination-horizontal",
+    "swiper-pagination-bullet",
+    "swiper-pagination-bullet-active",
+    "next-arrow",
+    "md:container",
+    "md:mx-auto",
+    "bg-black",
+    "p-[20px]",
+    "grid-cols-1",
+    "mb-5",
+    "text-[14px]",
+    "md:-mb-[1px]",
+    "md:pb-[7px]",
+    "md:w-[97.5%]",
+    "md:px-[5px]",
+    "md:mt-[1px]",
+    "pointer-events-none",
+    "top-1/2",
+    "transform",
+    "-translate-y-1/2",
+    "h-[17px]",
+    "w-[17px]",
+    "ml-[14px]",
+    "px-10",
+    "h-11",
+    "form-input",
+    "bg-transparent",
+    "border-white",
+    "outline-0",
+    "text-xs",
+    "placeholder:text-skin-inverted",
+    "-translate-x-6",
+    "hover:-translate-x-2",
+    "transition",
+    "ease-in",
+    "fill-[#fff]",
+    "pt-[10px]",
+    "md:pt-[36px]",
+    "pb-[10px]",
+    "md:grid-cols-4",
+    "lg:grid-cols-4",
+    "gap-[10px]",
+    "space-y-4",
+    "col-span-1",
+    "md:pl-[4px]",
+    "footer-social-icon",
+    "text-[#000000]",
+    "hover:text-[#595959]",
+    "md:pl-[5px]",
+    "mt-[8px]",
+    "mt-[1px]",
+    "footer-links",
+    "text-skin-footer",
+    "mt-12",
+    "md:mt-0",
+    "mobile-footer-social-icons",
+    "py-2",
+    "need-help",
+    "icon-plus",
+    "icon-minus",
+    "active",
+    "prose",
+    "prose-sm",
+    "social-icons",
+    "py-3",
+    "float-left",
+    "mobile-ocial-icons",
+    "first-line",
+    "mobile-social-icons-1",
+    "mr-5",
+    "mb-4",
+    "mt-2",
+    "mobile-social-icons-2",
+    "mobile-social-icons-3",
+    "mobile-social-icons-4",
+    "mobile-social-icons-5",
+    "text-[#595959]",
+    "mt-[38.5px]",
+    "pb-0",
+    "md:pb-[12px]",
+    "text-skin-secondary",
+    "space-y-[15px]",
+    "md:pb-0",
+    "pt-[7px]",
+    "border-0",
+    "md:border-t",
+    "md:border-gray-300",
+    "footer-secure",
+    "py-10",
+    "md:py-0",
+    "lg:-ml[17px]",
+    "lg:mb-[2px]",
+    "text-[#666]",
+    "footer-credit-card",
+    "md:pt-[10px]",
+    "border-t",
+    "mb-[10px]",
+    "md:ml-[7.3%]",
+    "mx-[5px]",
+    "fixed",
+    "bottom-0",
+    "z-[999]",
+    "px-[20px]",
+    "footer-cookies",
+    "justify-evenly",
+    "pl-[5px]",
+    "underline",
+    "footer-notification",
+    "notification-content",
+    "footer-close",
+    "footer-message",
+    "footer-answer-wrapper",
+    "footer-defer",
+    "footer-submit",
+    "transition-all",
+    "ease-in-out",
+    "w-[110px]",
+    "border-2",
+    "hover:text-white"
+  ],
+  "possibleProducts": [
+    {
+      "classes": [],
+      "imgSrc": "https://www.elementvape.com/headless-logo.png",
+      "link": "https://www.elementvape.com/disposable#main_content",
+      "price": "$14.99"
+    },
+    {
+      "classes": [],
+      "imgSrc": "https://www.elementvape.com/_next/image?url=https%3A%2F%2Fd2svuhg8jeu25r.cloudfront.net%2Fcatalog%2F",
+      "link": "https://www.elementvape.com/",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "bg-white",
+        "plp-wrap"
+      ],
+      "imgSrc": "https://www.elementvape.com/_next/image?url=https%3A%2F%2Fd2svuhg8jeu25r.cloudfront.net%2Fcatalog%2F",
+      "link": "https://www.elementvape.com/",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "columns-2",
+        "flex",
+        "justify-center"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "md:w-[78%]",
+        "md:pl-[2%]"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "null",
+        "grid",
+        "grid-cols-2",
+        "gap-y-[10px]",
+        "md:gap-y-[40px]",
+        "gap-x-[10px]",
+        "md:gap-x-[15px]",
+        "pt-5",
+        "md:pt-0",
+        "sm:grid-cols-2",
+        "md:grid-cols-2",
+        "lg:grid-cols-3",
+        "xl:grid-cols-4"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/grail-50k-disposable",
+      "price": "$24.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/joozy-pro-30k-disposable-kit",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/vint-50k-disposable",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/dinner-lady-snap-pro-35k-pods",
+      "price": "$13.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/dinner-lady-snap-pro-35k-disposable-kit",
+      "price": "$19.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-bar-hookah-x-25k-disposable",
+      "price": "$20.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/raz-rx-50k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/ske-vbot-40k-bundle-pack",
+      "price": "$119.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/ske-vbot-40k-disposable",
+      "price": "$24.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/whatabar-linko",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/vanmo-vm60000",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/float-mello-pro",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/avotx-space-3-40k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/lost-mary-nera-fullview-disposable-kit",
+      "price": "$19.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-bar-pulse-x",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/reign-bar-mana",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/reign-bar-palette",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/nexa-flex-40k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-bar-pulse-15000",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-aura-60k-disposable",
+      "price": "$24.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/fog-off-50k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/starbuzz-50k-e-hose-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/dinner-lady-galax",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/pod-salt-hit-40k-disposable",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/pod-salt-onyx-cloud-x",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/juice-head-flex-freeze-50k-disposable",
+      "price": "$13.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/jnr-stellarc-disposable-ki",
+      "price": "$20.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/vozol-mega-disposable-kit",
+      "price": "$19.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/tasteflex-ultralock",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/logic-pro-capsules",
+      "price": "$9.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mars-bar-60k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/syntrix-ghost-it",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/dojo-sphere-s",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/kalos-50k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/adjust-myrusher-40k-disposable",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/upends-up9-disposable-kit",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/dkhaan-shisha-60k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/artery-vapor-ct3",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/yovo-jb50k-disposable-kit",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/airis-neo-p40k",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/elux-astra-50k",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/one-tank-40k",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/romo-hex",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/apus-x",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mystery-disposable-vape",
+      "price": "$39.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-bar-2go-50k-disposable",
+      "price": "$29.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/fasta-40k-disposable-kit",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/niq-pearl",
+      "price": "$19.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/solobar-defender",
+      "price": "$12.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/pachamama-25k-disposable",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/suonon-donete",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/ijoy-xp-io-50k",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/aaok-ak50k",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/vfly-super-dtl-hookah-kit",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/rodman-mvp-65k-disposable",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/lovmee-love-30k-disposable",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/nexa-flex",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/rinnbar-50000-disposable",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/fasta-burrst-v2-37k-disposable",
+      "price": "$16.99"
+    },
+    {
+      "classes": [
+        "carousel-btn",
+        "bg-[#f0f0f0]}"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "container",
+        "mx-auto"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "carousel",
+        "mx-auto",
+        "pt-[15px]",
+        "md:pt-[15px]",
+        "font-Montserrat",
+        "relative"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "relative"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "relative",
+        "mb-0",
+        "md:my-2",
+        "home-swiper",
+        "lg:pb-16",
+        "md:pb-8"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "swiper",
+        "swiper-initialized",
+        "swiper-horizontal",
+        "swiper-pointer-events",
+        "swiper-backface-hidden"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "swiper-wrapper"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "swiper-slide",
+        "swiper-slide-active"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/mr-fog-switch-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "swiper-slide",
+        "swiper-slide-next"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/joozy-pro-30k-disposable-kit",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/joozy-pro-30k-disposable-kit",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "swiper-slide"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/voopoo-x-vapetasia-better-than-disposables-bundle",
+      "price": "$21.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/voopoo-x-vapetasia-better-than-disposables-bundle",
+      "price": "$21.99"
+    },
+    {
+      "classes": [
+        "swiper-slide"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/vint-50k-disposable",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/vint-50k-disposable",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "swiper-slide"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/raz-rx-50k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/raz-rx-50k-disposable",
+      "price": "$18.99"
+    },
+    {
+      "classes": [
+        "swiper-slide"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/foger-switch-pro-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/foger-switch-pro-disposable-pods",
+      "price": "$14.99"
+    },
+    {
+      "classes": [
+        "swiper-slide"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-vape-pulse-x-zero-nic-disposable",
+      "price": "$39.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-vape-pulse-x-zero-nic-disposable",
+      "price": "$39.99"
+    },
+    {
+      "classes": [
+        "swiper-slide"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/foger-switch-pro",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/foger-switch-pro",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "swiper-slide"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-bar-pulse-x",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-bar-pulse-x",
+      "price": "$17.99"
+    },
+    {
+      "classes": [
+        "swiper-slide"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-bar-pulse-15000",
+      "price": "$15.99"
+    },
+    {
+      "classes": [
+        "group",
+        "relative",
+        "p-0",
+        "md:p-0",
+        "mb-[20px]",
+        "md:mb-0",
+        "plp-product-list"
+      ],
+      "imgSrc": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730",
+      "link": "https://www.elementvape.com/geek-bar-pulse-15000",
+      "price": "$15.99"
+    }
+  ]
+}

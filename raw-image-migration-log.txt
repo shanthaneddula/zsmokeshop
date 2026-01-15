@@ -1,0 +1,13 @@
+[2025-12-29T00:54:50.293Z] 🚀 Starting RAW image migration to Vercel Blob...
+
+[2025-12-29T00:54:50.833Z] 📊 Found 0 RAW products with genuineraw.com images
+
+[2025-12-29T00:54:50.834Z] 
+💾 Saving updated products to Redis...
+[2025-12-29T00:54:51.216Z] ✅ Products saved
+
+[2025-12-29T00:54:51.216Z] 📊 Migration Summary:
+[2025-12-29T00:54:51.216Z]   ✅ Successful: 0
+[2025-12-29T00:54:51.217Z]   ⏭️  Skipped: 0
+[2025-12-29T00:54:51.217Z]   ❌ Failed: 0
+[2025-12-29T00:54:51.217Z]   📦 Total: 0

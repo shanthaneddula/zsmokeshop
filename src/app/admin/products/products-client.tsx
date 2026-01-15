@@ -33,6 +33,8 @@ export function ProductsClient() {
   const [bulkActionLoading, setBulkActionLoading] = useState(false);
   const [previewProduct, setPreviewProduct] = useState<AdminProduct | null>(null);
   const [showBulkPriceModal, setShowBulkPriceModal] = useState(false);
+  const [showBulkCategoryModal, setShowBulkCategoryModal] = useState(false);
+  const [bulkCategoryValue, setBulkCategoryValue] = useState('');
   const [sortBy, setSortBy] = useState('updatedAt');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [editingPrice, setEditingPrice] = useState<string | null>(null);
@@ -208,6 +210,39 @@ export function ProductsClient() {
     } catch (error) {
       console.error('Error updating prices:', error);
       throw error;
+    } finally {
+      setBulkActionLoading(false);
+    }
+  };
+
+  const handleBulkCategoryUpdate = async () => {
+    if (selectedProducts.length === 0 || !bulkCategoryValue) return;
+
+    setBulkActionLoading(true);
+    try {
+      const response = await fetch('/api/admin/products/bulk-update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          productIds: selectedProducts,
+          category: bulkCategoryValue
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        await fetchProducts();
+        setSelectedProducts([]);
+        setShowBulkCategoryModal(false);
+        setBulkCategoryValue('');
+        alert(`Successfully updated category for ${selectedProducts.length} products`);
+      } else {
+        throw new Error(data.error || 'Failed to update category');
+      }
+    } catch (error) {
+      console.error('Error updating category:', error);
+      alert('Failed to update category');
     } finally {
       setBulkActionLoading(false);
     }
@@ -508,6 +543,13 @@ export function ProductsClient() {
                 className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-blue-600 text-blue-600 hover:bg-blue-50 active:bg-blue-100 disabled:opacity-50 rounded"
               >
                 Update Prices
+              </button>
+              <button
+                onClick={() => setShowBulkCategoryModal(true)}
+                disabled={bulkActionLoading}
+                className="px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wide border border-purple-600 text-purple-600 hover:bg-purple-50 active:bg-purple-100 disabled:opacity-50 rounded"
+              >
+                Update Category
               </button>
               <button
                 onClick={() => handleBulkStatusChange('active')}
@@ -982,6 +1024,61 @@ export function ProductsClient() {
         selectedCount={selectedProducts.length}
         isLoading={bulkActionLoading}
       />
+
+      {/* Bulk Category Update Modal */}
+      {showBulkCategoryModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+          <div className="bg-white dark:bg-gray-800 border-2 border-gray-900 dark:border-white w-full max-w-md">
+            <div className="p-6">
+              <h3 className="text-xl font-black uppercase tracking-wide mb-4">
+                Update Category
+              </h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+                Change category for {selectedProducts.length} selected products
+              </p>
+              
+              <div className="mb-6">
+                <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                  New Category
+                </label>
+                <select
+                  value={bulkCategoryValue}
+                  onChange={(e) => setBulkCategoryValue(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                  disabled={bulkActionLoading}
+                >
+                  <option value="">Select Category</option>
+                  {categories.map((cat) => (
+                    <option key={cat.id} value={cat.slug}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setShowBulkCategoryModal(false);
+                    setBulkCategoryValue('');
+                  }}
+                  disabled={bulkActionLoading}
+                  className="flex-1 px-4 py-2.5 border border-gray-900 dark:border-white text-gray-900 dark:text-white font-bold uppercase tracking-wide hover:bg-gray-100 dark:hover:bg-gray-900 disabled:opacity-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleBulkCategoryUpdate}
+                  disabled={bulkActionLoading || !bulkCategoryValue}
+                  className="flex-1 px-4 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 border border-gray-900 dark:border-white font-bold uppercase tracking-wide hover:bg-gray-800 dark:hover:bg-gray-100 disabled:opacity-50"
+                >
+                  {bulkActionLoading ? 'Updating...' : 'Update'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,0 +1,457 @@
+🚀 GRAV Products Import Started
+📅 2025-12-28T04:36:30.241Z
+
+🌐 Launching browser...
+
+📄 Loading page 1: https://grav.com/collections/all-products
+  ✅ Found 24 products on page 1
+
+📄 Loading page 2: https://grav.com/collections/all-products?page=2
+  ✅ Found 24 products on page 2
+
+📄 Loading page 3: https://grav.com/collections/all-products?page=3
+  ✅ Found 24 products on page 3
+
+📄 Loading page 4: https://grav.com/collections/all-products?page=4
+  ✅ Found 24 products on page 4
+
+📄 Loading page 5: https://grav.com/collections/all-products?page=5
+  ✅ Found 24 products on page 5
+
+📄 Loading page 6: https://grav.com/collections/all-products?page=6
+  ✅ Found 24 products on page 6
+
+📄 Loading page 7: https://grav.com/collections/all-products?page=7
+  ✅ Found 24 products on page 7
+
+📄 Loading page 8: https://grav.com/collections/all-products?page=8
+  ✅ Found 24 products on page 8
+
+📄 Loading page 9: https://grav.com/collections/all-products?page=9
+  ✅ Found 10 products on page 9
+  ℹ️  No more pages found
+
+✅ Total products found: 202
+
+📝 Fetching product details...
+  [1/202] Stoner Starter Kit
+    ✅ Details extracted
+  [2/202] GRAV Classic Spoon
+    ✅ Details extracted
+  [3/202] GRAV 14mm Male Octobowl
+    ✅ Details extracted
+  [4/202] GRAV 16mm OctoTaster with Silicone Skin - Assorted Colors
+    ✅ Details extracted
+  [5/202] GRAV 14mm Caldera Bowl
+    ✅ Details extracted
+  [6/202] GRAV Dugout
+    ✅ Details extracted
+  [7/202] GRAV Sandblasted Spoon
+    ✅ Details extracted
+  [8/202] GRAV Mini Classic Sherlock
+    ✅ Details extracted
+  [9/202] GRAV Pebble Spoon
+    ✅ Details extracted
+  [10/202] GRAV 3-Piece Grinder
+    ✅ Details extracted
+  [11/202] GRAV 14mm Triple Pinch Bowl
+    ✅ Details extracted
+  [12/202] GRAV Small Wide Base Water Pipe
+    ✅ Details extracted
+  [13/202] GRAV Glass Joint Mouthpiece
+    ✅ Details extracted
+  [14/202] GRAV Hourglass Pocket Bubbler - Assorted Colors
+    ✅ Details extracted
+  [15/202] GRAV 14mm Basin Bowl
+    ✅ Details extracted
+  [16/202] GRAV Upline Taster - Clear - Black Label
+    ✅ Details extracted
+  [17/202] GRAV 4.5in 14mm Fission Downstem
+    ✅ Details extracted
+  [18/202] GRAV Dugout Taster
+    ✅ Details extracted
+  [19/202] GRAV Coffee Mug Pocket Bubbler - Assorted Colors
+    ✅ Details extracted
+  [20/202] GRAV Empress Water Pipe
+    ✅ Details extracted
+  [21/202] GRAV 19mm Male to 14mm Female Reduction Adapter
+    ✅ Details extracted
+  [22/202] GRAV 14mm Female to 14mm Male Drop Down
+    ✅ Details extracted
+  [23/202] GRAV Micro-Pen Battery
+    ✅ Details extracted
+  [24/202] GRAV Coffee Mug Bubbler - Assorted Colors
+    ✅ Details extracted
+  [25/202] GRAV 14mm Male Angled Quartz Banger-45°
+    ✅ Details extracted
+  [26/202] GRAV Deco Beaker in Silicone
+    ✅ Details extracted
+  [27/202] GRAV Slush Cup Pocket Bubbler - Assorted Colors
+    ✅ Details extracted
+  [28/202] GRAV Globe Bubbler - Clear
+    ✅ Details extracted
+  [29/202] GRAV 14mm Female to 14mm Female Joint Adapter
+    ✅ Details extracted
+  [30/202] GRAV Bubble Trap Spoon
+    ✅ Details extracted
+  [31/202] GRAV Rolling Tray
+    ✅ Details extracted
+  [32/202] GRAV Slush Cup - Assorted Colors
+    ✅ Details extracted
+  [33/202] GRAV 14mm Male to 14mm Male Joint Adapter
+    ✅ Details extracted
+  [34/202] GRAV Milk Carton - Assorted Colors
+    ✅ Details extracted
+  [35/202] GRAV 14mm Glass Cleaning Plug
+    ✅ Details extracted
+  [36/202] Grunge Off Super Soaker Cleaner, 16oz
+    ✅ Details extracted
+  [37/202] GRAV Ellipse Ashtray
+    ✅ Details extracted
+  [38/202] GRAV 14mm Adjustable Downstem
+    ✅ Details extracted
+  [39/202] GRAV 19mm Cup Bowl
+    ✅ Details extracted
+  [40/202] GRAV 8.5in Small Dropmat
+    ✅ Details extracted
+  [41/202] GRAV Frit Spoon
+    ✅ Details extracted
+  [42/202] GRAV STAX Helix Mouthpiece
+    ✅ Details extracted
+  [43/202] GRAV Rocker Sherlock
+    ✅ Details extracted
+  [44/202] GRAV 14mm Plastic Joint Clamp - Assorted Colors - Pack of 10
+    ✅ Details extracted
+  [45/202] GRAV Silicone-Capped Glass Crutch - Single
+    ✅ Details extracted
+  [46/202] GRAV Monarch Gravity Bong
+    ✅ Details extracted
+  [47/202] GRAV Classic Bubble Trap Sherlock
+    ✅ Details extracted
+  [48/202] GRAV Fill-Your-Own Glass Joints 56 Party Pack
+    ✅ Details extracted
+  [49/202] GRAV Wedge Bubbler - Assorted Colors
+    ✅ Details extracted
+  [50/202] GRAV Hemp Plastic 2-piece Grinder
+    ✅ Details extracted
+  [51/202] GRAV Wobble Bubbler
+    ✅ Details extracted
+  [52/202] GRAV Yo-yo Carb Cap
+    ✅ Details extracted
+  [53/202] GRAV Metal Rolling Tray w/ Magnetic Lid
+    ✅ Details extracted
+  [54/202] GRAV Land T-Shirt
+    ✅ Details extracted
+  [55/202] GRAV 19mm Female to 14mm Female Reduction Adapter
+    ✅ Details extracted
+  [56/202] GRAV Heather Black Logo T-Shirt
+    ✅ Details extracted
+  [57/202] GRAV Mini Classic Bubble Trap Sherlock
+    ✅ Details extracted
+  [58/202] GRAV Hologram Sticker - Pack of 5
+    ✅ Details extracted
+  [59/202] GRAV Sticker - Pack of 5
+    ✅ Details extracted
+  [60/202] GRAV Hatpin
+    ✅ Details extracted
+  [61/202] GRAV Beanie
+    ✅ Details extracted
+  [62/202] GRAV Breathe Again Gravitron
+    ✅ Details extracted
+  [63/202] GRAV Pretty Shitty 20th Birthday Cake Long Sleeve Shirt
+    ✅ Details extracted
+  [64/202] GRAV Oracle Water Pipe
+    ✅ Details extracted
+  [65/202] GRAV 34mm Plastic Joint Clamp - Assorted - 10 Pack
+    ✅ Details extracted
+  [66/202] GRAV Boro Writing Pen - Pack of 10
+    ✅ Details extracted
+  [67/202] GRAV Bandana
+    ✅ Details extracted
+  [68/202] GRAV STAX Trumpet Mouthpiece and Adapter
+    ✅ Details extracted
+  [69/202] GRAV Small Deco Beaker Bong
+    ✅ Details extracted
+  [70/202] GRAV STAX 34mm to 19mm Reduction Adapter
+    ✅ Details extracted
+  [71/202] GRAV LRG Hustle Trees Wobble Bubbler
+    ✅ Details extracted
+  [72/202] GRAV Phoenix Ash Catcher Lid
+    ✅ Details extracted
+  [73/202] GRAV 19mm Female to 19mm Female Joint Adapter
+    ✅ Details extracted
+  [74/202] GRAV 19mm Male to 19mm Male Joint Adapter
+    ✅ Details extracted
+  [75/202] GRAV Clear Menorah
+    ✅ Details extracted
+  [76/202] GRAV Patch
+    ✅ Details extracted
+  [77/202] GRAV Large Deco Beaker Bong
+    ✅ Details extracted
+  [78/202] GRAV Large Deco Beaker Bong
+    ✅ Details extracted
+  [79/202] GRAV Silicone-Capped Glass Crutch 10packs
+    ✅ Details extracted
+  [80/202] GRAV Small Deco Beaker Bong
+    ✅ Details extracted
+  [81/202] GRAV The Flower is Female Poster
+    ✅ Details extracted
+  [82/202] GRAV 19mm Plastic Joint Clamp - Assorted Colors - Pack of 10
+    ✅ Details extracted
+  [83/202] GRAV Bucket Dabber Set
+    ✅ Details extracted
+  [84/202] Grunge Off 99% Isopropyl Alcohol, 16oz
+    ✅ Details extracted
+  [85/202] GRAV Hoodie
+    ✅ Details extracted
+  [86/202] GRAV Gift Card
+    ✅ Details extracted
+  [87/202] GRAV Tall Kings Quartz Tip Cones
+    ✅ Details extracted
+  [88/202] GRAV Short Kings Quartz Tip Cones
+    ✅ Details extracted
+  [89/202] GRAV 14mm 90deg Seamless Long Neck Quartz Banger
+    ✅ Details extracted
+  [90/202] GRAV Silicone Dugout
+    ✅ Details extracted
+  [91/202] GRAV Dad Hat
+    ✅ Details extracted
+  [92/202] GRAV 19mm Male to 19mm Male Angled Joint Adapter
+    ✅ Details extracted
+  [93/202] GRAV LRG Hustle Trees T-shirt
+    ✅ Details extracted
+  [94/202] GRAV Eclipse Rig - Clear
+    ✅ Details extracted
+  [95/202] GRAV 2023 Logo Patch
+    ✅ Details extracted
+  [96/202] GRAV Box Brown Zine
+    ✅ Details extracted
+  [97/202] GRAV Hourglass Pocket Bubbler Rig - Clear
+    ✅ Details extracted
+  [98/202] GRAV Cannabis Spirit Black Label - 50ml Bottle, 4-Pack
+    ✅ Details extracted
+  [99/202] GRAV Logo Reversible Bucket Hat
+    ✅ Details extracted
+  [100/202] GRAV Spinner Carb Cap
+    ✅ Details extracted
+  [101/202] GRAV 14mm 45° Seamless Quartz Banger Set
+    ✅ Details extracted
+  [102/202] GRAV Box Brown T-Shirt
+    ✅ Details extracted
+  [103/202] GRAV 14mm 90° Quartz Hourglass Banger Set
+    ✅ Details extracted
+  [104/202] GRAV 14mm 90° Quartz Hybrid Bucket Set
+    ✅ Details extracted
+  [105/202] GRAV 14mm 90° Quartz Control Tower Banger
+    ✅ Details extracted
+  [106/202] GRAV Rain Showerhead Rig
+    ✅ Details extracted
+  [107/202] GRAV Static Visionary T-shirt
+    ✅ Details extracted
+  [108/202] GRAV 14mm 45° Quartz Control Tower Banger Set
+    ✅ Details extracted
+  [109/202] GRAV DGK Bubble Up T-Shirt
+    ✅ Details extracted
+  [110/202] GRAV Wedge Bubbler Rig - Clear
+    ✅ Details extracted
+  [111/202] GRAV 10mm 45° Quartz Slurper Bucket Set
+    ✅ Details extracted
+  [112/202] GRAV Playing Cards
+    ✅ Details extracted
+  [113/202] GRAV 14mm 45° Quartz Hybrid Bucket Set
+    ✅ Details extracted
+  [114/202] GRAV 14mm 90° Quartz Hourglass Banger
+    ✅ Details extracted
+  [115/202] GRAV 10mm 90° Quartz Hourglass Banger Set
+    ✅ Details extracted
+  [116/202] GRAV 14mm 45° Quartz Hourglass Banger Set
+    ✅ Details extracted
+  [117/202] GRAV 10mm 45° Quartz Control Tower Banger Set
+    ✅ Details extracted
+  [118/202] GRAV 10mm 90° Quartz Control Tower Banger Set
+    ✅ Details extracted
+  [119/202] GRAV Black Fanny Pack
+    ✅ Details extracted
+  [120/202] GRAV Monarch Gravity Bong - Replacement Base
+    ✅ Details extracted
+  [121/202] GRAV 10mm 45° Quartz Hourglass Banger Set
+    ✅ Details extracted
+  [122/202] GRAV Menorah Candle Holder Adapter
+    ✅ Details extracted
+  [123/202] GRAV 10mm 90° Quartz Hybrid Bucket
+    ✅ Details extracted
+  [124/202] GRAV Monarch Gravity Bong - Replacement Bottle with Silicone Grommet
+    ✅ Details extracted
+  [125/202] GRAV 14mm 90° Quartz Hybrid Bucket
+    ✅ Details extracted
+  [126/202] GRAV 10mm 45° Quartz Hybrid Bucket Set
+    ✅ Details extracted
+  [127/202] GRAV 10mm 45° Quartz Control Tower Banger
+    ✅ Details extracted
+  [128/202] GRAV 14mm 45° Quartz Hourglass Banger
+    ✅ Details extracted
+  [129/202] GRAV 14mm 45° Quartz Control Tower Banger
+    ✅ Details extracted
+  [130/202] GRAV 10mm 90° Quartz Hourglass Banger
+    ✅ Details extracted
+  [131/202] GRAV 10mm 45° Quartz Hybrid Bucket
+    ✅ Details extracted
+  [132/202] GRAV 14mm 45° Quartz Slurper Bucket
+    ✅ Details extracted
+  [133/202] GRAV 10mm 45° Quartz Slurper Bucket
+    ✅ Details extracted
+  [134/202] GRAV 10mm 45° Quartz Hourglass Banger
+    ✅ Details extracted
+  [135/202] GRAV 14mm 45° Quartz Hybrid Bucket
+    ✅ Details extracted
+  [136/202] GRAV Medium Deco Beaker Bong
+    ✅ Details extracted
+  [137/202] GRAV STAX Triple Pinch Mouthpiece
+    ✅ Details extracted
+  [138/202] GRAV Anatomy of a Bong Poster, 16 x 24"
+    ✅ Details extracted
+  [139/202] GRAV Cannabis Spirit Green Label - 750ml Bottle
+    ✅ Details extracted
+  [140/202] GRAV Quartz Concentrate Bucket Insert, 3pc
+    ✅ Details extracted
+  [141/202] GRAV Small Upright Bubbler - Black Accents
+    ✅ Details extracted
+  [142/202] GRAV 14mm Male Quartz Angled Banger- 90°
+    ✅ Details extracted
+  [143/202] GRAV Limited Edition Lavender Globe Rig
+    ✅ Details extracted
+  [144/202] GRAV Bodega Spoon
+    ✅ Details extracted
+  [145/202] GRAV Fill-Your-Own Glass Joints 7-Pack
+    ✅ Details extracted
+  [146/202] GRAV 10mm 90° Quartz Control Tower Banger
+    ✅ Details extracted
+  [147/202] GRAV 14mm 90° Quartz Control Tower Banger Set
+    ✅ Details extracted
+  [148/202] GRAV Bubble Carb Cap
+    ✅ Details extracted
+  [149/202] GRAV Gandalf
+    ✅ Details extracted
+  [150/202] GRAV Medium, Clear Beaker Base Water Pipe
+    ✅ Details extracted
+  [151/202] GRAV Large, Black Accent Beaker Base Water Pipe
+    ✅ Details extracted
+  [152/202] GRAV Medium Upright Bubbler
+    ✅ Details extracted
+  [153/202] GRAV 14mm Phoenix 90° Ash Catcher
+    ✅ Details extracted
+  [154/202] GRAV STAX Beaker Base
+    ✅ Details extracted
+  [155/202] GRAV 14mm Standard 45° Ash Catcher
+    ✅ Details extracted
+  [156/202] GRAV Spherical Pocket Bubbler - Assorted Colors
+    ✅ Details extracted
+  [157/202] GRAV Helix™ 14mm, Clear Multi Kit Spoonhead Attachment
+    ✅ Details extracted
+  [158/202] GRAV Medium, Black Accent Beaker Base Water Pipe
+    ✅ Details extracted
+  [159/202] GRAV 14mm 45° Seamless Quartz Banger
+    ✅ Details extracted
+  [160/202] GRAV 14mm 45° Seamless Quartz Banger Kit
+    ✅ Details extracted
+  [161/202] GRAV Mini Round Base Water Pipe
+    ✅ Details extracted
+  [162/202] GRAV Mini Beaker
+    ✅ Details extracted
+  [163/202] GRAV 14mm Cup Bowl
+    ✅ Details extracted
+  [164/202] GRAV 14mm Phoenix 45° Ash Catcher
+    ✅ Details extracted
+  [165/202] GRAV Sandblasted Gandalf
+    ✅ Details extracted
+  [166/202] GRAV Sandblasted Gandalfini
+    ✅ Details extracted
+  [167/202] GRAV Sandblasted Mini Classic Sherlock
+    ✅ Details extracted
+  [168/202] GRAV Sandblasted Classic Sherlock
+    ✅ Details extracted
+  [169/202] GRAV Sandblasted Mini Spoon
+    ✅ Details extracted
+  [170/202] GRAV Cannabis Spirit Flavor Shots - 50ml Variety Pack
+    ✅ Details extracted
+  [171/202] GRAV Cannabis Spirit Flavor Shots - 50ml
+    ✅ Details extracted
+  [172/202] GRAV Medium Deco Beaker Bong
+    ✅ Details extracted
+  [173/202] GRAV 14mm Male Seamless Quartz Banger
+    ✅ Details extracted
+  [174/202] GRAV 14mm 90° Quartz Bucket, Inserts & Carb Cap Set
+    ✅ Details extracted
+  [175/202] GRAV Classic Sherlock
+    ✅ Details extracted
+  [176/202] GRAV Helix™ Chillum
+    ✅ Details extracted
+  [177/202] GRAV Large, Clear Beaker Base Water Pipe
+    ✅ Details extracted
+  [178/202] GRAV 14mm Funnel Bowl
+    ✅ Details extracted
+  [179/202] Helix™ 14mm, Clear Bowl
+    ✅ Details extracted
+  [180/202] GRAV Bowl Bundle
+    ✅ Details extracted
+  [181/202] GRAV Helix™ Clear Beaker Base Water Pipe
+    ✅ Details extracted
+  [182/202] GRAV STAX Coil Showerhead Base
+    ✅ Details extracted
+  [183/202] GRAV 14mm 90° Quartz Slurper Bucket
+    ✅ Details extracted
+  [184/202] GRAV 10mm Cup Bowl
+    ✅ Details extracted
+  [185/202] GRAV Cannabis Spirit Black Label - 750ml Bottle
+    ✅ Details extracted
+  [186/202] GRAV 19mm Glass Cleaning Plug
+    ✅ Details extracted
+  [187/202] GRAV 19mm Funnel Bowl
+    ✅ Details extracted
+  [188/202] GRAV Sip Series Bundle - Clear
+    ✅ Details extracted
+  [189/202] GRAV 14mm Standard 90° Ash Catcher
+    ✅ Details extracted
+  [190/202] GRAV Logo Poster
+    ⚠️  Error fetching details: Error: Navigating frame was detached
+  [191/202] GRAV 14mm 90° Quartz Slurper Bucket Set
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [192/202] GRAV WigWag Spoon
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [193/202] RezBlock Resin Preventer - 15ml Dropper
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [194/202] RezBlock Resin Preventer - 30ml Dropper
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [195/202] GRAV Special Edition Large Gravitron Base
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [196/202] THE HOLIDAZE BUNDLE
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [197/202] GRAV Limited Edition Lavender Wide Base
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [198/202] GRAV 16mm Whimsical Taster - Pack of 10
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [199/202] GRAV 12mm Clear Taster - Pack of 10
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [200/202] GRAV Sandblasted Pebble Spoon
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [201/202] GRAV 3.3in 14mm Fission Downstem
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+  [202/202] GRAV Sticker Pack (Assorted Designs)
+    ⚠️  Error fetching details: Error: Attempted to use detached Frame '424B153F6B3F4F2418F15B651CA350D6'.
+
+📦 Converting to AdminProduct format...
+
+✅ Converted 202 products
+
+💾 Saving to Redis...
+  📊 Existing products: 476
+  🗑️  Removing 0 old GRAV products
+  ✅ Saved 678 total products to Redis (202 GRAV products)
+
+💾 Saving to JSON file...
+  ✅ Saved to /Users/shanthaneddula/Desktop/zsmokeshop/grav_products.json
+
+✅ Import completed successfully!
+📊 Total products imported: 202
+📁 Output: /Users/shanthaneddula/Desktop/zsmokeshop/grav_products.json
+📋 Log: /Users/shanthaneddula/Desktop/zsmokeshop/grav-import-log.txt

@@ -20,6 +20,8 @@ interface BulkUpdateRequest {
   productIds: string[];
   // For status updates
   status?: 'active' | 'inactive' | 'draft';
+  // For category updates
+  category?: string;
   // For price updates
   priceUpdateType?: PriceUpdateType;
   priceValue?: number;
@@ -52,7 +54,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body: BulkUpdateRequest = await request.json();
-    const { productIds, status, priceUpdateType, priceValue } = body;
+    const { productIds, status, category, priceUpdateType, priceValue } = body;
 
     if (!productIds || !Array.isArray(productIds) || productIds.length === 0) {
       return NextResponse.json(
@@ -62,9 +64,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate that at least one update type is provided
-    if (!status && !priceUpdateType) {
+    if (!status && !category && !priceUpdateType) {
       return NextResponse.json(
-        { success: false, error: 'Either status or priceUpdateType must be provided' },
+        { success: false, error: 'Either status, category, or priceUpdateType must be provided' },
         { status: 400 }
       );
     }
@@ -101,6 +103,11 @@ export async function POST(request: NextRequest) {
         // Handle status update
         if (status) {
           updates.status = status;
+        }
+
+        // Handle category update
+        if (category) {
+          updates.category = category;
         }
 
         // Handle price updates
@@ -191,7 +198,9 @@ export async function POST(request: NextRequest) {
         return product;
       }
     });
-
+category
+      ? `Bulk updated category to "${category}" for ${updatedCount} products`
+      : 
     // Save updated products
     await writeProducts(updatedProducts);
 
