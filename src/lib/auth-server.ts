@@ -172,7 +172,7 @@ export async function verifyAdminAuth(request: NextRequest): Promise<{ isAuthent
     }
 
     const envUsername = getEnvBootstrapUsername();
-    if (envUsername && payload.username === envUsername && process.env.ADMIN_PASSWORD_HASH) {
+    if (envUsername && payload.username === envUsername && (process.env.ADMIN_PASSWORD_HASH || process.env.ADMIN_EMAIL)) {
       const adminUser: AdminUser = {
         id: payload.id,
         username: payload.username,

@@ -252,7 +252,7 @@ export async function verifyUserCredentials(username: string, password: string):
 /**
  * Update user last login
  */
-async function updateUserLastLogin(userId: string): Promise<void> {
+export async function updateUserLastLogin(userId: string): Promise<void> {
   try {
     const users = await getAllUsers();
     const userIndex = users.findIndex(u => u.id === userId);

@@ -1,7 +1,8 @@
 // Admin login API route
 
 import { NextRequest, NextResponse } from 'next/server';
-import { createToken, checkRateLimit, recordLoginAttempt } from '@/lib/auth';
+import { checkRateLimit, recordLoginAttempt } from '@/lib/auth';
+import { createAdminSessionResponse } from '@/lib/admin-session';
 import { validateCredentialsWithBcrypt } from '@/lib/auth-server';
 import { LoginCredentials } from '@/types/admin';
 
@@ -49,31 +50,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create JWT token
-    const token = createToken(authResult.user!);
-    console.log('🔑 Login - Created token:', token.substring(0, 20) + '...');
-    
-    // Create response
-    const response = NextResponse.json({
-      success: true,
-      user: {
-        id: authResult.user!.id,
-        username: authResult.user!.username,
-        role: authResult.user!.role
-      }
-    });
-
-    // Set authentication cookie
-    const cookieOptions = {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax' as const,
-      maxAge: 24 * 60 * 60, // 24 hours
-      path: '/'
-    };
-    
-    console.log('🍪 Login - Setting cookie with options:', cookieOptions);
-    response.cookies.set('admin-token', token, cookieOptions);
+    // Create JWT token + admin-token cookie (shared with email code login)
+    const response = createAdminSessionResponse(authResult.user!);
 
     // Record successful login
     recordLoginAttempt(ip, true);

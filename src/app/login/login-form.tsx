@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Eye, EyeOff, AlertCircle, Loader2 } from 'lucide-react';
+import EmailCodeLoginForm from '@/components/admin/EmailCodeLoginForm';
 
 interface LoginFormData {
   username: string;
@@ -10,9 +11,10 @@ interface LoginFormData {
 
 export default function LoginForm() {
   const [formData, setFormData] = useState<LoginFormData>({
-    username: process.env.NODE_ENV === 'development' ? 'admin' : '',
-    password: process.env.NODE_ENV === 'development' ? 'admin123' : ''
+    username: '',
+    password: ''
   });
+  const [mode, setMode] = useState<'password' | 'email'>('password');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -61,6 +63,10 @@ export default function LoginForm() {
     }));
     if (error) setError('');
   };
+
+  if (mode === 'email') {
+    return <EmailCodeLoginForm adminRedirect="/admin/dashboard" onUsePassword={() => setMode('password')} />;
+  }
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
@@ -139,6 +145,17 @@ export default function LoginForm() {
           'Sign In'
         )}
       </button>
+
+      <div className="text-center">
+        <button
+          type="button"
+          onClick={() => setMode('email')}
+          disabled={isLoading}
+          className="text-sm font-medium text-gray-600 dark:text-gray-400 underline hover:text-gray-900 dark:hover:text-white disabled:opacity-50"
+        >
+          Email me a login code instead
+        </button>
+      </div>
     </form>
   );
 }
