@@ -20,8 +20,7 @@ function directionsUrl(location: Location) {
 
 function reviewsUrl(location: Location) {
   return (
-    location.yelpUrl ||
-    `https://www.yelp.com/search?find_desc=${encodeURIComponent(location.name)}&find_loc=${encodeURIComponent(location.address)}`
+    `https://www.google.com/search?q=${encodeURIComponent(`${location.name} ${location.address} reviews`)}`
   );
 }
 
@@ -151,7 +150,7 @@ export default function HelpAndReviews() {
                         rel="noopener noreferrer"
                         className="flex-1 text-center border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white px-6 py-3 text-sm font-bold uppercase tracking-wide hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
                       >
-                        Read Reviews
+                        Google Reviews
                       </a>
                     </div>
                   </div>
