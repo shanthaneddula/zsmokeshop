@@ -6,10 +6,39 @@ import { SettingsService } from '@/lib/settings-service';
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export async function GET() {
+function requireAdmin(request: NextRequest) {
+  const token = request.cookies.get('admin-token')?.value;
+  if (!token) {
+    return {
+      error: NextResponse.json(
+        { success: false, error: 'Authentication required - no token' },
+        { status: 401 }
+      ),
+    };
+  }
+
+  const user = verifyToken(token);
+  if (!user) {
+    return {
+      error: NextResponse.json(
+        { success: false, error: 'Authentication required - invalid token' },
+        { status: 401 }
+      ),
+    };
+  }
+
+  return { user };
+}
+
+export async function GET(request: NextRequest) {
   try {
+    const auth = requireAdmin(request);
+    if (auth.error) {
+      return auth.error;
+    }
+
     const settings = await SettingsService.getSettings();
-    
+
     return NextResponse.json({
       success: true,
       data: settings
@@ -31,35 +60,14 @@ export async function GET() {
 
 export async function PUT(request: NextRequest) {
   try {
-    // Check authentication
-    const token = request.cookies.get('admin-token')?.value;
-    console.log('🔐 Settings PUT - Token check:', token ? `${token.substring(0, 20)}...` : 'none');
-    
-    if (!token) {
-      console.log('❌ Settings PUT - No token found');
-      return NextResponse.json(
-        { success: false, error: 'Authentication required - no token' },
-        { status: 401 }
-      );
-    }
-    
-    const verificationResult = verifyToken(token);
-    console.log('🔐 Settings PUT - Token verification result:', verificationResult);
-    
-    if (!verificationResult) {
-      console.log('❌ Settings PUT - Token verification failed');
-      return NextResponse.json(
-        { success: false, error: 'Authentication required - invalid token' },
-        { status: 401 }
-      );
+    const auth = requireAdmin(request);
+    if (auth.error) {
+      return auth.error;
     }
 
     const body = await request.json();
-    console.log('📊 Settings PUT request body:', body);
-    
     const updatedSettings = await SettingsService.updateSettings(body);
-    console.log('📊 Settings updated successfully:', updatedSettings);
-    
+
     return NextResponse.json({
       success: true,
       data: updatedSettings

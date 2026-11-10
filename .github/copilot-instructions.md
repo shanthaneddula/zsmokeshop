@@ -155,7 +155,7 @@ Setup, env vars, and deploy notes: [docs/SETUP.md](../docs/SETUP.md)
 
 - **CartContext** ([contexts/CartContext.tsx](src/contexts/CartContext.tsx)) - Shopping cart with localStorage persistence
 - **BannerContext** ([contexts/BannerContext.tsx](src/contexts/BannerContext.tsx)) - Site-wide promotional banner
-- **useBusinessSettings** hook - Fetches settings from admin API
+- **useBusinessSettings** hook - Fetches safe public business info from `/api/public/business-info`
 
 ## Common Pitfalls to Avoid
 

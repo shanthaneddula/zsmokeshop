@@ -60,9 +60,78 @@ interface BusinessSettings {
   // Cart and Pricing Display Settings
   enableCart?: boolean;
   showPrices?: boolean;
+  taxIncludedInPrice?: boolean;
+  storeDescription?: string;
+  maintenanceMode?: boolean;
+  maintenanceMessage?: string;
+}
+
+export interface PublicLocation {
+  id: string;
+  name: string;
+  address: string;
+  phone: string;
+  hours?: string;
+  isActive?: boolean;
+  isPrimary?: boolean;
+}
+
+export interface PublicBusinessInfo {
+  storeName?: string;
+  storeDescription?: string;
+  businessPhone?: string;
+  businessEmail?: string;
+  locations: PublicLocation[];
+  enableCart?: boolean;
+  showPrices?: boolean;
+  taxRate?: number;
+  taxIncludedInPrice?: boolean;
+  currency?: string;
+  minimumAge?: number;
+  ageVerificationRequired?: boolean;
+  ageVerificationMessage?: string;
 }
 
 export class SettingsService {
+
+  static toPublicBusinessInfo(settings: BusinessSettings): PublicBusinessInfo {
+    const locations: PublicLocation[] = (settings.locations || []).map((loc) => ({
+      id: loc.id,
+      name: loc.name,
+      address: loc.address,
+      phone: loc.phone,
+      hours: loc.hours,
+      isActive: loc.isActive,
+      isPrimary: loc.isPrimary,
+    }));
+
+    return {
+      storeName: settings.storeName,
+      storeDescription: settings.storeDescription,
+      businessPhone: settings.businessPhone,
+      businessEmail: settings.businessEmail,
+      locations,
+      enableCart: settings.enableCart,
+      showPrices: settings.showPrices,
+      taxRate: settings.taxRate,
+      taxIncludedInPrice: settings.taxIncludedInPrice,
+      currency: settings.currency,
+      minimumAge: settings.minimumAge,
+      ageVerificationRequired: settings.ageVerificationRequired,
+      ageVerificationMessage: settings.ageVerificationMessage,
+    };
+  }
+
+  static async getPublicBusinessInfo(): Promise<PublicBusinessInfo> {
+    const settings = await this.getSettings();
+    return this.toPublicBusinessInfo(settings);
+  }
+
+  static async getMaintenanceStatus(): Promise<{ maintenanceMode: boolean }> {
+    const settings = await this.getSettings();
+    return { maintenanceMode: settings.maintenanceMode === true };
+  }
+
   static async getSettings(): Promise<BusinessSettings> {
     try {
       // Try Redis Cloud first (if REDIS_URL is set)

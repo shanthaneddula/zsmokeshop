@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Change password
-    const result = await changeAdminPassword(currentPassword, newPassword);
+    const result = await changeAdminPassword(currentPassword, newPassword, user.username);
 
     if (!result.success) {
       return NextResponse.json(

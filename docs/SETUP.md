@@ -47,7 +47,7 @@ Other scripts: `npm run build`, `npm run build:debug`, `npm run start`, `npm run
 
 If `business-settings` in Redis has `maintenanceMode: true` (typical when using the production Redis URL locally), public pages redirect to `/maintenance`. `/login`, `/admin/*`, `/maintenance`, and `/api/*` stay reachable. Turn the flag off in Admin → Settings after signing in, or use a separate Redis database for local work.
 
-Local JSON fallbacks (used only when Redis and KV are not configured): `src/data/products.json`, `src/data/categories.json`, `src/data/admin-config.json`.
+Local JSON fallbacks (used only when Redis and KV are not configured): `src/data/products.json`, `src/data/categories.json`, and `src/data/admin-config.json` (business settings only — it must not contain password hashes or other credentials).
 
 ## Environment variables
 
@@ -58,7 +58,7 @@ Set these in `.env.local` (local) and in the Vercel project (production). **Neve
 | `REDIS_URL` | Redis Cloud (or compatible) connection. Preferred store for catalog, settings, orders, users |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Optional Vercel KV / Upstash REST fallback |
 | `JWT_SECRET` | Signs the admin JWT. Set a long random string in production |
-| `ADMIN_USERNAME`, `ADMIN_PASSWORD` | Bootstrap admin login (also stored/hashed in `admin-config.json` / Redis users) |
+| `ADMIN_USERNAME`, `ADMIN_PASSWORD_HASH` | Optional bootstrap admin login when no Redis user matches. `ADMIN_PASSWORD_HASH` is a bcrypt hash, not a plaintext password. Production admins live in Redis (`zsmokeshop:users`), not in `admin-config.json` |
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob uploads (usually injected when a Blob store is linked on Vercel) |
 | `RESEND_API_KEY`, `RESEND_FROM_EMAIL` | Order email notifications (default from-address is `orders@zsmokeshop.com` if unset) |
 | `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER` | Pickup-order SMS |
@@ -69,7 +69,7 @@ Set these in `.env.local` (local) and in the Vercel project (production). **Neve
 | `GOOGLE_PLACES_API_KEY` | Optional Google review fetch |
 | `NODE_ENV`, `VERCEL` | Set automatically in those environments |
 
-`env.template` is a starter file; prefer this table if the template is missing a name (for example `REDIS_URL`).
+`env.template` is the tracked starter file (placeholders only). Copy it to `.env.local`. Change the admin password after first login (Admin → Settings or Profile) and rotate it if it was ever committed or shared.
 
 ## Redis and Vercel KV
 
@@ -113,8 +113,9 @@ The Tawk.to script is hardcoded in `src/components/chat/TawkToChat.tsx` and is i
 
 - Sign in at `/login`. After auth, use `/admin` (dashboard, products, categories, orders, users, timesheets, store photos, settings).
 - **Maintenance mode** is a toggle in Admin → Settings (`maintenanceMode` in `business-settings`).
-- When it is `true`, `src/middleware.ts` redirects public pages to `/maintenance`. Excluded paths: `/admin`, `/login`, `/maintenance`, `/_next`, `/api/*`, and favicon. If the settings fetch fails, the middleware **fails open** (the site stays up).
-- `GET /api/admin/settings` is unauthenticated so middleware can read the flag; `PUT` requires a valid admin token.
+- When it is `true`, `src/middleware.ts` redirects public pages to `/maintenance`. Excluded paths: `/admin`, `/login`, `/maintenance`, `/_next`, `/api/*`, and favicon. Middleware reads `GET /api/public/maintenance-status` (returns only `{ maintenanceMode }`). If that fetch fails, the middleware **fails open** (the site stays up).
+- `GET` and `PUT` `/api/admin/settings` both require a valid admin token (`admin-token` cookie).
+- Public storefront pages read safe business info (store name, phone, hours, address, cart/price flags, tax display) from `GET /api/public/business-info`. That response does not include API keys, notification config, Twilio/Resend settings, or other internal flags.
 
 ## Product import (CSV / bulk scripts)
 

@@ -45,7 +45,7 @@ export function useBusinessSettings() {
       try {
         // Add timestamp to prevent caching
         const timestamp = Date.now();
-        const response = await fetch(`/api/admin/settings?_t=${timestamp}`, {
+        const response = await fetch(`/api/public/business-info?_t=${timestamp}`, {
           cache: 'no-store',
           headers: {
             'Cache-Control': 'no-cache, no-store, must-revalidate',

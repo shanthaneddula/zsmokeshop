@@ -4,7 +4,8 @@ import type { NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Check maintenance mode (except for admin, login, maintenance pages, and API routes)
+  // Check maintenance mode (except for admin, login, maintenance pages, and API routes).
+  // /api/* is excluded so /api/public/maintenance-status stays reachable from this middleware.
   if (!pathname.startsWith('/admin') &&
       !pathname.startsWith('/login') &&
       !pathname.startsWith('/maintenance') &&
@@ -13,18 +14,14 @@ export async function middleware(request: NextRequest) {
       !pathname.includes('favicon')) {
     try {
       // Fetch settings to check maintenance mode
-      const settingsUrl = new URL('/api/admin/settings', request.url);
-      const settingsResponse = await fetch(settingsUrl.toString(), {
-        headers: {
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-        },
-      });
+      const settingsUrl = new URL('/api/public/maintenance-status', request.url);
+      const settingsResponse = await fetch(settingsUrl.toString());
 
       if (settingsResponse.ok) {
         const contentType = settingsResponse.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
           const data = await settingsResponse.json();
-          if (data?.data?.maintenanceMode === true || data?.maintenanceMode === true) {
+          if (data?.maintenanceMode === true) {
             return NextResponse.redirect(new URL('/maintenance', request.url));
           }
         }
