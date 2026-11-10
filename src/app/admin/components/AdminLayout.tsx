@@ -1,5 +1,6 @@
 'use client';
 
+import { isFullAdmin } from '@/lib/is-full-admin';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -110,7 +111,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   useEffect(() => {
     if (loading || !currentUser) return;
 
-    const isMainAdmin = !('permissions' in currentUser);
+    const isMainAdmin = isFullAdmin(currentUser);
     
     // Main admin can access everything
     if (isMainAdmin) return;
@@ -178,7 +179,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     if (loading || !currentUser) return false;
 
     // Main admin has access to everything
-    const isMainAdmin = !('permissions' in currentUser);
+    const isMainAdmin = isFullAdmin(currentUser);
     if (isMainAdmin) return true;
 
     // Check admin-only items

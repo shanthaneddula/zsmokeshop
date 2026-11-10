@@ -1,3 +1,4 @@
+import { isFullAdmin } from '@/lib/is-full-admin';
 // API route for timesheet operations
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest) {
     const endDate = searchParams.get('endDate');
 
     // Users can only view their own data unless they're main admin
-    const isMainAdmin = !('permissions' in authResult.user);
+    const isMainAdmin = isFullAdmin(authResult.user);
     if (!isMainAdmin && userId !== authResult.user.id) {
       return NextResponse.json(
         { success: false, error: 'You can only view your own timesheet data' },

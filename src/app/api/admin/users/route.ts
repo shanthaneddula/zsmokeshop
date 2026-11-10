@@ -1,3 +1,4 @@
+import { isFullAdmin } from '@/lib/is-full-admin';
 /**
  * User Management API
  * GET: Get all users
@@ -21,7 +22,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Only admin can manage users
-    const isMainAdmin = !('permissions' in authResult.user);
+    const isMainAdmin = isFullAdmin(authResult.user);
     if (!isMainAdmin && ('permissions' in authResult.user && !authResult.user.permissions.manageUsers)) {
       return NextResponse.json(
         { success: false, error: 'Insufficient permissions' },
@@ -60,7 +61,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Only admin can create users
-    const isMainAdmin = !('permissions' in authResult.user);
+    const isMainAdmin = isFullAdmin(authResult.user);
     if (!isMainAdmin && ('permissions' in authResult.user && !authResult.user.permissions.manageUsers)) {
       return NextResponse.json(
         { success: false, error: 'Insufficient permissions' },

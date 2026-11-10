@@ -1,5 +1,6 @@
 'use client';
 
+import { isFullAdmin } from '@/lib/is-full-admin';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { User, Lock, Camera, Save, Eye, EyeOff, AlertCircle, CheckCircle } from 'lucide-react';
@@ -206,7 +207,7 @@ export default function ProfileClient() {
     );
   }
 
-  const isMainAdmin = !('permissions' in currentUser);
+  const isMainAdmin = isFullAdmin(currentUser);
 
   return (
     <div className="max-w-4xl mx-auto">

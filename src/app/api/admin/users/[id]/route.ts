@@ -1,3 +1,4 @@
+import { isFullAdmin } from '@/lib/is-full-admin';
 /**
  * User Management API - Individual User
  * GET: Get user by ID
@@ -30,7 +31,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     }
 
     // Only admin can view users
-    const isMainAdmin = !('permissions' in authResult.user);
+    const isMainAdmin = isFullAdmin(authResult.user);
     if (!isMainAdmin && ('permissions' in authResult.user && !authResult.user.permissions.manageUsers)) {
       return NextResponse.json(
         { success: false, error: 'Insufficient permissions' },
@@ -78,7 +79,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     }
 
     // Only admin can update users
-    const isMainAdmin = !('permissions' in authResult.user);
+    const isMainAdmin = isFullAdmin(authResult.user);
     if (!isMainAdmin && ('permissions' in authResult.user && !authResult.user.permissions.manageUsers)) {
       return NextResponse.json(
         { success: false, error: 'Insufficient permissions' },
@@ -153,7 +154,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     }
 
     // Only admin can delete users
-    const isMainAdmin = !('permissions' in authResult.user);
+    const isMainAdmin = isFullAdmin(authResult.user);
     if (!isMainAdmin && ('permissions' in authResult.user && !authResult.user.permissions.manageUsers)) {
       return NextResponse.json(
         { success: false, error: 'Insufficient permissions' },

@@ -1,3 +1,4 @@
+import { isFullAdmin } from '@/lib/is-full-admin';
 // API route for changing user password
 
 import { NextRequest, NextResponse } from 'next/server';
@@ -28,7 +29,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Users can only change their own password (unless they're main admin)
-    const isMainAdmin = !('permissions' in authResult.user);
+    const isMainAdmin = isFullAdmin(authResult.user);
     if (!isMainAdmin && authResult.user.id !== userId) {
       return NextResponse.json(
         { success: false, error: 'You can only change your own password' },

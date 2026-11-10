@@ -1,5 +1,6 @@
 'use client';
 
+import { isFullAdmin } from '@/lib/is-full-admin';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -64,7 +65,7 @@ export default function AdminHeader({ onMenuClick }: AdminHeaderProps) {
   };
 
   const breadcrumbs = getBreadcrumbs();
-  const isMainAdmin = currentUser && !('permissions' in currentUser);
+  const isMainAdmin = !!currentUser && isFullAdmin(currentUser);
 
   return (
     <header className="sticky top-0 z-40 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
@@ -124,7 +125,7 @@ export default function AdminHeader({ onMenuClick }: AdminHeaderProps) {
           </div>
 
           {/* Notifications */}
-          {(currentUser && (!('permissions' in currentUser) || currentUser.permissions?.viewOrders)) && (
+          {(currentUser && (isFullAdmin(currentUser) || currentUser.permissions?.viewOrders)) && (
             <OrderNotificationBell />
           )}
 
