@@ -1,35 +1,12 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Localhost testing domains - map to test tenant domain
-const LOCALHOST_DOMAINS = [
-  'localhost:3001',
-  'localhost:3000',
-  'localhost',
-  '127.0.0.1:3001',
-  '127.0.0.1:3000',
-  '127.0.0.1',
-];
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Extract domain from request
-  const host = request.headers.get('host') || '';
-  
-  // Handle localhost during development
-  let domain = host;
-  if (LOCALHOST_DOMAINS.includes(host)) {
-    // For localhost, use test domain
-    domain = 'joessmokeshop.local';
-  } else {
-    // Remove www prefix if present
-    domain = host.replace(/^www\./, '');
-  }
-
-  // Check maintenance mode (except for admin, login, maintenance pages, and settings API)
-  if (!pathname.startsWith('/admin') && 
-      !pathname.startsWith('/login') && 
+  // Check maintenance mode (except for admin, login, maintenance pages, and API routes)
+  if (!pathname.startsWith('/admin') &&
+      !pathname.startsWith('/login') &&
       !pathname.startsWith('/maintenance') &&
       !pathname.startsWith('/_next') &&
       !pathname.startsWith('/api/') &&
@@ -42,7 +19,7 @@ export async function middleware(request: NextRequest) {
           'Cache-Control': 'no-cache, no-store, must-revalidate',
         },
       });
-      
+
       if (settingsResponse.ok) {
         const contentType = settingsResponse.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
@@ -52,18 +29,13 @@ export async function middleware(request: NextRequest) {
           }
         }
       }
-    } catch (error) {
+    } catch {
       // If settings fetch fails, allow normal access (fail open)
       // Silently fail - maintenance check should not break the site
     }
   }
 
-  // Pass domain in header for API routes to lookup tenant
-  // (Can't use Prisma in Edge Runtime middleware)
-  const response = NextResponse.next();
-  response.headers.set('x-forwarded-domain', domain);
-
-  return response;
+  return NextResponse.next();
 }
 
 // Configure which routes use this middleware

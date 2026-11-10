@@ -46,7 +46,8 @@ Comprehensive smoke shop inventory including:
 - **Icons**: Lucide React for clean iconography
 - **Themes**: next-themes for dark mode support
 - **Forms**: @tailwindcss/forms for enhanced form styling
-- **Deployment**: Optimized for Vercel
+- **Storage**: Redis (primary), optional Vercel KV, Vercel Blob for images
+- **Deployment**: Vercel
 
 ## 🏃‍♂️ Getting Started
 
@@ -81,19 +82,17 @@ Visit [http://localhost:3000](http://localhost:3000) to see the website.
 
 ### Available Scripts
 
-- `npm run dev` - Start development server
+- `npm run dev` - Start development server (Turbopack)
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
+- `npm run clean` - Clear the Next.js build cache
+
+For environment variables, Redis, Vercel, email, SMS, admin, and import scripts, see **[docs/SETUP.md](docs/SETUP.md)**.
 
 ## 🌍 Deployment
 
-The site is optimized for deployment on Vercel:
-
-1. **Connect your GitHub repository to Vercel**
-2. **Configure build settings** (auto-detected)
-3. **Deploy** - Automatic deployments on push to main branch
+The site is hosted on Vercel (typically from the `main` branch). See [docs/SETUP.md](docs/SETUP.md#vercel-deploy-and-blob) for env vars, Blob, and cron notes.
 
 ## 📱 Mobile Experience
 
@@ -147,12 +146,4 @@ src/
 - **Tracking**: `tracking-wide` to `tracking-widest`
 - **Case**: Strategic use of `uppercase` for emphasis
 
-## 🚀 Deployment
-
-The project is optimized for deployment on Vercel:
-
-```bash
-npm run build
-```
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For a full setup and operations guide, see [docs/SETUP.md](docs/SETUP.md).

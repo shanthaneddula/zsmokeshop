@@ -8,16 +8,16 @@ A production Next.js e-commerce platform for Z SMOKE SHOP with comprehensive adm
 
 **Framework**: Next.js 15 (App Router) + TypeScript 5 + React 19  
 **Styling**: Tailwind CSS with Adidas-inspired minimalist design system  
-**Storage**: Hybrid approach - Vercel KV, Redis Cloud (ioredis), Vercel Blob, JSON files  
+**Storage**: Redis (`REDIS_URL`) is primary; Vercel KV and `src/data/*.json` are fallbacks for catalog/settings. Orders, users, and timesheets require Redis. Images use Vercel Blob in production.
 **Auth**: JWT-based (jsonwebtoken) with bcrypt password hashing  
 **Integrations**: Twilio (SMS), Resend (email), html5-qrcode (barcode scanning)
 
 ### Storage Strategy (Critical)
-- **Production**: Redis Cloud (`REDIS_URL`) preferred over Vercel KV for persistence
-- **Development**: JSON files in `src/data/` (products, categories, settings)
-- **Images**: Vercel Blob storage (not local filesystem in production)
-- **Orders**: Vercel KV (`@vercel/kv`) for order management
-- All storage services have hybrid fallback logic in `src/lib/*-storage-service.ts`
+- **Redis** (`REDIS_URL`) is used whenever it is set — including local dev if `.env.local` has it
+- **Fallback**: Vercel KV (`KV_REST_API_URL` + `KV_REST_API_TOKEN`), then JSON files in `src/data/`
+- **Images**: Vercel Blob in production (not the serverless filesystem)
+- **Orders / users / timesheets**: Redis only
+- Setup and key names: [docs/SETUP.md](../docs/SETUP.md)
 
 ### API Route Patterns
 - Use `export const dynamic = 'force-dynamic'` for real-time data routes
@@ -36,11 +36,11 @@ A production Next.js e-commerce platform for Z SMOKE SHOP with comprehensive adm
 - **Spacing**: Strategic white space, clean uncluttered layouts
 - **Navigation**: Chevron indicators, expandable menus, mobile-first design
 
-Reference: [components/layout/Header.tsx](src/components/layout/Header.tsx), [app/support/page.tsx](src/app/support/page.tsx)
+Reference: [components/layout/header.tsx](src/components/layout/header.tsx), [app/support/page.tsx](src/app/support/page.tsx)
 
 ## Admin System Architecture
 
-**Route Protection**: Middleware at [src/middleware.ts](src/middleware.ts) checks JWT cookie `admin-token`  
+**Route Protection**: [src/middleware.ts](src/middleware.ts) only enforces maintenance mode (public pages → `/maintenance` when `maintenanceMode` is true). JWT `admin-token` is checked in API routes and admin pages, not in middleware.  
 **Auth Flow**: Login at `/login` (NOT `/admin/login`) → JWT stored in httpOnly cookie  
 **Dashboard**: Server components wrap client components (`AdminLayout` → `*-client.tsx`)
 
@@ -63,7 +63,7 @@ const redisClient = new Redis(process.env.REDIS_URL, {
   retryStrategy: (times) => Math.min(times * 50, 2000),
 });
 ```
-See: [REDIS_CONNECTION_MANAGEMENT_SOLUTION.md](REDIS_CONNECTION_MANAGEMENT_SOLUTION.md)
+See: [docs/SETUP.md](../docs/SETUP.md#redis-and-vercel-kv)
 
 ### JWT Authentication (Security Critical)
 ALWAYS use `jwt.verify()` for token validation, NEVER manual base64 decode:
@@ -89,7 +89,7 @@ await redis.set('products', JSON.stringify(products)); // Wrong key!
 - Categories: `zsmokeshop:categories` (in category-storage-service.ts)
 - Users: `zsmokeshop:users`
 
-**Why**: Import scripts using wrong keys (e.g., `'products'`) will make data invisible to the admin/shop which reads from `'zsmokeshop:products'`. See [REDIS_KEY_STANDARDS.md](REDIS_KEY_STANDARDS.md)
+**Why**: Import scripts using wrong keys (e.g., `'products'`) will make data invisible to the admin/shop which reads from `'zsmokeshop:products'`. See [docs/SETUP.md](../docs/SETUP.md#redis-and-vercel-kv).
 
 ### Product Storage Service Pattern
 Check storage hierarchy: Redis Cloud → Vercel KV → JSON files. Example pattern in [lib/product-storage-service.ts](src/lib/product-storage-service.ts):
@@ -112,7 +112,7 @@ const useKV = !hasRedis && (isProduction || hasKVConfig);
 **Order Format**: `ZS-XXXXXX` with status tracking (pending → confirmed → ready → picked-up/no-show)  
 **Communication**: Two-way SMS via Twilio, email via Resend
 
-Reference: [PICKUP_ORDER_SYSTEM_SUMMARY.md](PICKUP_ORDER_SYSTEM_SUMMARY.md), [TWILIO_PICKUP_ORDERS_SETUP.md](TWILIO_PICKUP_ORDERS_SETUP.md)
+Reference: [docs/SETUP.md](../docs/SETUP.md#twilio-pickup-sms)
 
 ## Development Workflows
 
@@ -125,14 +125,14 @@ npm run clean        # Clear build cache
 ```
 
 ### Bulk Operations Scripts
-- `scripts/import-goldwhip-products.ts` - **AI-powered**: Scrape products from URL, handle variants, auto-upload images
-- `scripts/import-puffco-products.js` - Import product data from CSV/JSON
-- `scripts/sync-products-to-redis.ts` - Migrate JSON → Redis
-- `scripts/upload-puffco-images-to-blob.ts` - Batch upload images to Vercel Blob
+- `scripts/bulk-import-products.ts` - Import products from `disposablevape.csv` into `zsmokeshop:products`
+- `scripts/remove-duplicate-products.ts` - Dedupe the Redis catalog
+- `scripts/sync-to-production-redis.ts` - Write `src/data/products.json` to Redis
+- `scripts/clear-redis-cache.js` - Clear the `business-settings` key
+- `scripts/inspect-users.js` - Inspect Redis users
 - `scripts/migrate-user-passwords.js` - Rehash passwords to bcrypt
 
-**AI Import**: `npx tsx scripts/import-[brand]-products.ts` - See [AI_PRODUCT_IMPORT_GUIDE.md](AI_PRODUCT_IMPORT_GUIDE.md)  
-Run with: `npx tsx scripts/<script-name>.ts` (TypeScript) or `node scripts/<script-name>.js`
+Run with: `npx tsx scripts/<script-name>.ts` or `node scripts/<script-name>.js`. Full notes: [docs/SETUP.md](../docs/SETUP.md#ops-scripts)
 
 ## Deployment (Vercel)
 
@@ -149,8 +149,7 @@ TWILIO_PHONE_NUMBER=...
 RESEND_API_KEY=...                # Email notifications
 ```
 
-**Deployment Checklist**: See [VERCEL_DEPLOYMENT_CHECKLIST.md](VERCEL_DEPLOYMENT_CHECKLIST.md)  
-**Common Issues**: [VERCEL_DEPLOYMENT_FIX.md](VERCEL_DEPLOYMENT_FIX.md), [IMAGE_UPLOAD_EROFS_FIX.md](IMAGE_UPLOAD_EROFS_FIX.md)
+Setup, env vars, and deploy notes: [docs/SETUP.md](../docs/SETUP.md)
 
 ## Context & State Management
 
