@@ -1,12 +1,22 @@
 #!/usr/bin/env node
+
 /**
  * Migration script to update user password field from 'password' to 'passwordHash'
  * Run this once to migrate existing users in Redis
  */
 
+// Load environment variables from .env.local
+require('dotenv').config({ path: '.env.local' });
+
 const Redis = require('ioredis');
 
-const REDIS_URL = process.env.REDIS_URL || 'redis://default:2MQcRbgtoGri1PPU9vD86ZOmHuZXJWFU@redis-16513.c14.us-east-1-3.ec2.redns.redis-cloud.com:16513';
+if (!process.env.REDIS_URL) {
+  console.error('❌ REDIS_URL environment variable not set!');
+  console.error('💡 Make sure .env.local has REDIS_URL configured');
+  process.exit(1);
+}
+
+const REDIS_URL = process.env.REDIS_URL;
 const USERS_KEY = 'zsmokeshop:users';
 
 async function migrateUsers() {
