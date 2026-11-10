@@ -9,6 +9,7 @@ import {
   Twitter
 } from "lucide-react";
 import { useBusinessSettings } from "@/hooks/useBusinessSettings";
+import { formatHoursForDisplay } from "@/lib/store-hours";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -110,7 +111,7 @@ export default function Footer() {
                     <div className="pt-2 border-t border-white/10">
                       <p className="text-xs font-bold text-white mb-2 uppercase tracking-wide">Hours</p>
                       <div className="text-xs font-light text-gray-300 whitespace-pre-line">
-                        {primaryLocation.hours}
+                        {formatHoursForDisplay(primaryLocation.hours)}
                       </div>
                     </div>
                   </>

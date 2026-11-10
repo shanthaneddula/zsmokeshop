@@ -9,6 +9,7 @@ import {
   ClockIcon
 } from '@heroicons/react/24/outline';
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
+import { formatHoursForDisplay } from '@/lib/store-hours';
 import CollapsibleInfoSection from './CollapsibleInfoSection';
 import ExpandableDescription from './ExpandableDescription';
 
@@ -17,7 +18,8 @@ interface MobileProductSpecsProps {
 }
 
 export default function MobileProductSpecs({ product }: MobileProductSpecsProps) {
-  const { getPrimaryPhone } = useBusinessSettings();
+  const { getPrimaryPhone, getActiveLocations } = useBusinessSettings();
+  const primaryHours = getActiveLocations()[0]?.hours;
   const businessPhone = getPrimaryPhone();
   return (
     <div className="space-y-0">
@@ -131,10 +133,12 @@ export default function MobileProductSpecs({ product }: MobileProductSpecsProps)
               <span className="text-gray-600 dark:text-gray-400">Availability:</span>
               <span className="font-medium text-green-600">Available Now</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-600 dark:text-gray-400">Store Hours:</span>
-              <span className="font-medium text-gray-900 dark:text-white">Mon-Fri 10AM-9PM</span>
-            </div>
+            {primaryHours && (
+              <div className="flex items-start justify-between gap-4">
+                <span className="text-gray-600 dark:text-gray-400 flex-shrink-0">Store Hours:</span>
+                <span className="font-medium text-gray-900 dark:text-white text-right whitespace-pre-line">{formatHoursForDisplay(primaryHours)}</span>
+              </div>
+            )}
           </div>
         </div>
       </CollapsibleInfoSection>

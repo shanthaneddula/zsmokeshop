@@ -181,9 +181,11 @@ export default function DesktopProductSpecs({ product }: DesktopProductSpecsProp
               <p className="text-gray-600 dark:text-gray-400">
                 <strong>Phone:</strong> {businessPhone}
               </p>
-              <p className="text-gray-600 dark:text-gray-400">
-                <strong>Hours:</strong> {primaryLocation?.hours || 'Mon-Thu, Sun: 10:00 AM - 11:00 PM | Fri-Sat: 10:00 AM - 12:00 AM'}
-              </p>
+              {primaryLocation?.hours && (
+                <p className="text-gray-600 dark:text-gray-400">
+                  <strong>Hours:</strong> {primaryLocation.hours}
+                </p>
+              )}
             </div>
           </div>
 

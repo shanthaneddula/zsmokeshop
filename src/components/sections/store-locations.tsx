@@ -2,6 +2,7 @@
 
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
 import { useBusinessSettings } from "@/hooks/useBusinessSettings";
+import { formatHoursForDisplay } from "@/lib/store-hours";
 
 export default function StoreLocations() {
   const { loading, getActiveLocations } = useBusinessSettings();
@@ -54,7 +55,7 @@ export default function StoreLocations() {
           </h2>
           <div className="w-12 h-0.5 bg-gray-900 dark:bg-white mx-auto mb-4"></div>
           <p className="hidden md:block text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light uppercase tracking-wide">
-            Two Austin locations serving premium products
+            {activeLocations.length > 1 ? 'Austin locations serving premium products' : 'Serving Austin with premium products'}
           </p>
         </div>
         
@@ -103,7 +104,7 @@ export default function StoreLocations() {
                 <div className="flex items-start gap-3 md:gap-4">
                   <Clock className="h-5 w-5 text-gray-400 mt-1 flex-shrink-0" />
                   <div className="text-base md:text-base text-gray-700 dark:text-gray-300 font-light">
-                    <div className="whitespace-pre-line">{location.hours}</div>
+                    <div className="whitespace-pre-line">{formatHoursForDisplay(location.hours)}</div>
                   </div>
                 </div>
               </div>

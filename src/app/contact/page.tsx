@@ -1,6 +1,7 @@
 'use client';
 
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
+import { formatHoursForDisplay } from '@/lib/store-hours';
 
 export default function ContactPage() {
   const { getActiveLocations, getPrimaryPhone } = useBusinessSettings();
@@ -68,7 +69,7 @@ export default function ContactPage() {
                   STORE HOURS
                 </h3>
                 <div className="text-gray-600 dark:text-gray-300 whitespace-pre-line">
-                  {primaryLocation?.hours || 'Mon-Thu, Sun: 10:00 AM - 11:00 PM\nFri-Sat: 10:00 AM - 12:00 AM'}
+                  {formatHoursForDisplay(primaryLocation?.hours)}
                 </div>
               </div>
             </div>

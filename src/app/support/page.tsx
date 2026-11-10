@@ -14,11 +14,16 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
+import { formatHoursForDisplay, hoursToLines } from '@/lib/store-hours';
 
 export default function SupportPage() {
   const { getPrimaryPhone, getActiveLocations } = useBusinessSettings();
   const businessPhone = getPrimaryPhone();
   const locations = getActiveLocations();
+  const multipleLocations = locations.length > 1;
+  const hoursAnswer = locations.length
+    ? locations.map((loc) => (multipleLocations ? `${loc.name}: ` : 'We are open ') + hoursToLines(loc.hours).join('; ')).join('. ') + '. Holiday hours may vary.'
+    : 'Please call us for our current store hours. Holiday hours may vary.';
   
   const supportCategories = [
     {
@@ -54,11 +59,11 @@ export default function SupportPage() {
     },
     {
       question: 'What are your store hours?',
-      answer: 'Both locations are open Mon-Thu & Sun: 10AM-11PM, and Fri-Sat: 10AM-12AM. We offer convenient hours to serve you throughout the week. Holiday hours may vary.'
+      answer: hoursAnswer
     },
     {
       question: 'Do you offer same-day pickup?',
-      answer: `Yes! Place your order online or call us at ${businessPhone} and pick it up the same day at either of our Austin locations during business hours. We'll have your order ready for quick pickup.`
+      answer: `Yes! Place your order online or call us at ${businessPhone} and pick it up the same day at ${multipleLocations ? 'either of our Austin locations' : 'our Austin store'} during business hours. We'll have your order ready for quick pickup.`
     },
     {
       question: 'What payment methods do you accept?',
@@ -74,7 +79,7 @@ export default function SupportPage() {
     },
     {
       question: 'Do you provide product recommendations?',
-      answer: `Absolutely! Our knowledgeable staff can help you choose the right products based on your preferences and experience level. Contact us at ${businessPhone} or visit either location for personalized recommendations.`
+      answer: `Absolutely! Our knowledgeable staff can help you choose the right products based on your preferences and experience level. Contact us at ${businessPhone} or visit ${multipleLocations ? 'either location' : 'our store'} for personalized recommendations.`
     }
   ];
 
@@ -237,7 +242,7 @@ export default function SupportPage() {
           transition={{ delay: 0.7 }}
         >
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 uppercase tracking-wide">
-            Visit Our Stores
+            {multipleLocations ? 'Visit Our Stores' : 'Visit Our Store'}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {locations.map((location, index) => (
@@ -273,7 +278,7 @@ export default function SupportPage() {
                   {location.hours && (
                     <div className="flex items-center gap-3">
                       <Clock className="h-5 w-5 text-gray-900 dark:text-white" />
-                      <span className="text-gray-700 dark:text-gray-300">{location.hours}</span>
+                      <span className="text-gray-700 dark:text-gray-300 whitespace-pre-line">{formatHoursForDisplay(location.hours)}</span>
                     </div>
                   )}
                 </div>

@@ -1,7 +1,8 @@
 'use client';
 
 import { useCart } from '@/contexts/CartContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, ShoppingCart, MapPin, Phone, Mail, User } from "lucide-react";
 import Link from "next/link";
@@ -21,6 +22,22 @@ export default function CheckoutPage() {
     notificationMethod: 'email' as 'email' | 'sms',
     smsConsent: false,
   });
+
+  // Only offer pickup at stores that are active in Admin > Settings.
+  const { getActiveLocations, loading: settingsLoading } = useBusinessSettings();
+  const activeAddresses = getActiveLocations().map((loc) => loc.address.toLowerCase());
+  const cameronActive = !settingsLoading && activeAddresses.some((a) => a.includes('5318 cameron'));
+  const williamCannonActive =
+    settingsLoading || !cameronActive || activeAddresses.some((a) => a.includes('719 w william cannon'));
+
+  useEffect(() => {
+    if (settingsLoading) return;
+    if (!cameronActive && formData.storeLocation === '5318 Cameron Rd, Austin, TX 78723') {
+      setFormData((prev) => ({ ...prev, storeLocation: '719 W William Cannon Dr #105, Austin, TX 78745' }));
+    } else if (!williamCannonActive && formData.storeLocation === '719 W William Cannon Dr #105, Austin, TX 78745') {
+      setFormData((prev) => ({ ...prev, storeLocation: '5318 Cameron Rd, Austin, TX 78723' }));
+    }
+  }, [settingsLoading, cameronActive, williamCannonActive, formData.storeLocation]);
 
   if (items.length === 0) {
     return (
@@ -198,6 +215,7 @@ export default function CheckoutPage() {
                   </p>
 
                   <div className="space-y-3">
+                    {williamCannonActive && (
                     <label className="flex items-start gap-3 p-4 border-2 border-gray-900 dark:border-white cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                       <input
                         type="radio"
@@ -217,7 +235,9 @@ export default function CheckoutPage() {
                         </p>
                       </div>
                     </label>
+                    )}
 
+                    {cameronActive && (
                     <label className="flex items-start gap-3 p-4 border-2 border-gray-300 dark:border-gray-600 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                       <input
                         type="radio"
@@ -237,6 +257,7 @@ export default function CheckoutPage() {
                         </p>
                       </div>
                     </label>
+                    )}
                   </div>
                 </div>
 

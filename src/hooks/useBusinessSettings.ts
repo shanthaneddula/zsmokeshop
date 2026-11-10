@@ -61,7 +61,7 @@ export function useBusinessSettings() {
         setSettings(data.data);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load settings');
-        // Fallback to default values if API fails
+        // Fallback only used if the settings API fails. Keep in sync with Admin > Settings.
         setSettings({
           storeName: 'Z SMOKE SHOP',
           businessPhone: '(512) 227-9820',
@@ -69,21 +69,12 @@ export function useBusinessSettings() {
           locations: [
             {
               id: '1',
-              name: 'Z SMOKE SHOP - William Cannon',
+              name: 'Z SMOKE SHOP',
               address: '719 W William Cannon Dr #105, Austin, TX 78745',
               phone: '(512) 227-9820',
-              hours: 'Mon-Thu: 10 AM - 11 PM\nFri-Sat: 10 AM - 12 AM\nSun: 10 AM - 11 PM',
+              hours: 'Mon-Sun: 08:00 AM - 02:00 AM',
               isActive: true,
               isPrimary: true
-            },
-            {
-              id: '2',
-              name: 'Z SMOKE SHOP - Cameron Rd',
-              address: '5318 Cameron Rd, Austin, TX 78723',
-              phone: '(512) 227-9820',
-              hours: 'Mon-Thu: 10 AM - 11 PM\nFri-Sat: 10 AM - 12 AM\nSun: 10 AM - 11 PM',
-              isActive: true,
-              isPrimary: false
             }
           ]
         });

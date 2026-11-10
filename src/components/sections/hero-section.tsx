@@ -4,56 +4,27 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useBanner } from "@/contexts/BannerContext";
-
-// Helper function to check if store is currently open
-function getStoreStatus() {
-  const now = new Date();
-  const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
-  const currentHour = now.getHours();
-  const currentMinute = now.getMinutes();
-  const currentTime = currentHour * 60 + currentMinute; // Convert to minutes
-
-  // Get day names
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const currentDayName = dayNames[currentDay];
-
-  // Store hours: Mon-Thu, Sun: 10AM-11PM | Fri-Sat: 10AM-12AM
-  let openTime, closeTime, todayHours;
-  
-  if (currentDay === 0 || (currentDay >= 1 && currentDay <= 4)) {
-    // Sunday or Monday-Thursday: 10AM-11PM
-    openTime = 10 * 60; // 10:00 AM in minutes
-    closeTime = 23 * 60; // 11:00 PM in minutes
-    todayHours = `${currentDayName}: 10:00AM - 11:00PM`;
-  } else {
-    // Friday-Saturday: 10AM-12AM (midnight)
-    openTime = 10 * 60; // 10:00 AM in minutes
-    closeTime = 24 * 60; // 12:00 AM (midnight) in minutes
-    todayHours = `${currentDayName}: 10:00AM - 12:00AM`;
-  }
-
-  const isOpen = currentTime >= openTime && currentTime < closeTime;
-  
-  return {
-    isOpen,
-    todayHours,
-    statusText: isOpen ? "Open Now" : "Closed",
-    statusColor: isOpen ? "bg-green-400" : "bg-red-400"
-  };
-}
+import { useBusinessSettings } from "@/hooks/useBusinessSettings";
+import { getStoreStatus, type StoreStatus } from "@/lib/store-hours";
 
 export default function HeroSection() {
-  const [storeStatus, setStoreStatus] = useState(getStoreStatus());
   const { isVisible: isBannerVisible } = useBanner();
+  const { getActiveLocations, loading } = useBusinessSettings();
 
-  // Update store status every minute
+  // Hours come from Admin > Settings (primary / first active location).
+  const activeLocations = getActiveLocations();
+  const primaryHours = (activeLocations.find((loc) => loc.isPrimary) || activeLocations[0])?.hours;
+
+  // Computed on the client only (in store time, America/Chicago) to avoid hydration mismatches.
+  const [storeStatus, setStoreStatus] = useState<StoreStatus | null>(null);
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStoreStatus(getStoreStatus());
-    }, 60000); // Update every minute
-
+    if (loading) return;
+    const update = () => setStoreStatus(primaryHours ? getStoreStatus(primaryHours) : null);
+    update();
+    const interval = setInterval(update, 60000); // Update every minute
     return () => clearInterval(interval);
-  }, []);
+  }, [loading, primaryHours]);
 
   return (
     <section className="relative min-h-[85vh] max-h-screen bg-black flex items-center overflow-hidden">
@@ -128,13 +99,17 @@ export default function HeroSection() {
             <div className={`flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm sm:text-base pt-6 opacity-95 ${
               isBannerVisible ? 'pb-24 sm:pb-8' : 'pb-20 sm:pb-6'
             }`}>
-              <div className="flex items-center gap-3">
-                <div className={`w-3 h-3 ${storeStatus.statusColor} rounded-full shadow-xl animate-pulse`}></div>
-                <span className="text-white font-bold uppercase tracking-wider">{storeStatus.statusText}</span>
-              </div>
-              <div className="text-gray-200 uppercase tracking-wider font-medium">
-                {storeStatus.todayHours}
-              </div>
+              {storeStatus?.statusText && (
+                <div className="flex items-center gap-3">
+                  <div className={`w-3 h-3 ${storeStatus.isOpen ? "bg-green-400" : "bg-red-400"} rounded-full shadow-xl animate-pulse`}></div>
+                  <span className="text-white font-bold uppercase tracking-wider">{storeStatus.statusText}</span>
+                </div>
+              )}
+              {storeStatus?.todayHours && (
+                <div className="text-gray-200 uppercase tracking-wider font-medium">
+                  {storeStatus.todayHours}
+                </div>
+              )}
             </div>
           </motion.div>
         </div>
