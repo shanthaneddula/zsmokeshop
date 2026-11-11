@@ -15,7 +15,8 @@ import {
   ShoppingBag,
   Users,
   UserCircle,
-  Clock
+  Clock,
+  ShieldCheck
 } from 'lucide-react';
 import { User, UserPermissions } from '@/types/users';
 import { LucideIcon } from 'lucide-react';
@@ -69,6 +70,12 @@ const navigation: NavItem[] = [
     href: '/admin/store-photos',
     icon: Image,
     requiredPermission: 'viewStorePhotos',
+  },
+  {
+    name: 'Catalog Visibility',
+    href: '/admin/catalog-visibility',
+    icon: ShieldCheck,
+    adminOnly: true,
   },
   {
     name: 'Users',

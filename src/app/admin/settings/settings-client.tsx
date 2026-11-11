@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import CatalogComplianceBanner from '../catalog-visibility/CatalogComplianceBanner';
 import { 
   Store, 
   Shield, 
@@ -354,6 +355,7 @@ export default function SettingsClient() {
   return (
     <div className="max-w-full overflow-hidden">
       <div className="space-y-4 sm:space-y-6">
+        <CatalogComplianceBanner />
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
           <div className="min-w-0 flex-1">
