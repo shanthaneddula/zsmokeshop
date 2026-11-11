@@ -3,6 +3,7 @@
 // Product detail page for the static, display-only catalog.
 // Reuses the existing gallery and ProductCard and follows ProductPageTemplate's layout,
 // but shows flavors/sizes/colors instead of price and add-to-cart.
+import NicotineWarning, { isNicotineCategory } from '@/components/catalog/NicotineWarning';
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRightIcon, MapPinIcon } from '@heroicons/react/24/outline';
@@ -101,6 +102,7 @@ export default function CatalogProductTemplate({ product, related = [] }: Props 
 
   return (
     <>
+      {isNicotineCategory(product.categorySlug) && <NicotineWarning />}
       {/* Breadcrumbs - Desktop Only (same look as ProductBreadcrumbs) */}
       <div className="hidden lg:block">
         <nav className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">

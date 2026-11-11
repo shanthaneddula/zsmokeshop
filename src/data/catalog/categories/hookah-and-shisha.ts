@@ -6,12 +6,12 @@ import type { CatalogCategory } from '../types';
 export const hookahAndShishaCategory: CatalogCategory = {
   "name": "Hookah & Shisha",
   "slug": "hookah-and-shisha",
-  "description": "Shisha tobacco, hookahs, bowls, heat management and coals for the perfect hookah session.",
+  "description": "Shisha tobacco, hookahs, bowls, heat management and coals. 21+ only.",
   "brands": [
     {
       "name": "Al Fakher",
       "slug": "al-fakher",
-      "description": "One of the world's best-known shisha brands, famous for consistent flavor and big clouds.",
+      "description": "One of the world's best-known shisha brands.",
       "products": [
         {
           "id": "cat-al-fakher-shisha-250g",
@@ -22,7 +22,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/al-fakher/al-fakher-shisha-250g.webp",
-          "description": "Al Fakher's classic shisha tobacco in a 250g pack, with a smooth smoke and a deep lineup of fruit and mint flavors.",
+          "description": "Al Fakher shisha tobacco in a 250g pack, in fruit and mint flavors.",
           "options": [
             {
               "label": "Flavors",
@@ -176,7 +176,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/al-fakher/al-fakher-shisha-50g-packs.webp",
-          "description": "Single-session 50g packs of Al Fakher shisha, great for trying new flavors.",
+          "description": "50g packs of Al Fakher shisha, handy for trying new flavors.",
           "options": [
             {
               "label": "Flavors",
@@ -383,7 +383,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/starbuzz/starbuzz-classic-shisha-250g.webp",
-          "description": "Traditional single-fruit and mint flavors from Starbuzz with a smooth, consistent smoke.",
+          "description": "Traditional single-fruit and mint flavors from Starbuzz.",
           "options": [
             {
               "label": "Flavors",
@@ -574,7 +574,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/starbuzz/starbuzz-colossus-hookah.webp",
-          "description": "A large, statement Starbuzz hookah built for smooth pulls and big clouds.",
+          "description": "A large statement hookah from Starbuzz.",
           "options": [
             {
               "label": "Colors",
@@ -595,7 +595,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/starbuzz/starbuzz-cocobuzz-coconut-charcoal.webp",
-          "description": "Natural coconut-shell hookah coals that light evenly and burn long with little ash.",
+          "description": "Coconut-shell hookah coals.",
           "options": [
             {
               "label": "Pack Sizes",
@@ -681,8 +681,6 @@ export const hookahAndShishaCategory: CatalogCategory = {
                 "I'm coming to get you Varvara",
                 "Indian Summer",
                 "Indigo Flower (Seasonal)",
-                "It's like that One Breakfast Cereal",
-                "It's Like That Other Breakfast Cereal",
                 "Jackfruit",
                 "Jamaica",
                 "Juicy Peach",
@@ -748,7 +746,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/tangiers/tangiers-birquq-shisha-250g.webp",
-          "description": "A lighter-leaf Tangiers blend that is smoother and milder than Noir.",
+          "description": "Tangiers Birquq line shisha tobacco, 250g.",
           "options": [
             {
               "label": "Flavors",
@@ -766,8 +764,6 @@ export const hookahAndShishaCategory: CatalogCategory = {
                 "Green Tea",
                 "Hacitragus",
                 "Horchata",
-                "Its Like That One Breakfast Cereal",
-                "Its Like That Other Breakfast Cereal",
                 "Juicy Peach",
                 "Kashmir Apple",
                 "Kashmir Cherry",
@@ -891,7 +887,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/tangiers/tangiers-quick-light-hookah-coals.webp",
-          "description": "Quick-light coals from Tangiers that ignite fast and provide steady heat.",
+          "description": "Quick-lighting hookah coals from Tangiers.",
           "options": [
             {
               "label": "Pack Sizes",
@@ -906,7 +902,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
     {
       "name": "Kaloud",
       "slug": "kaloud",
-      "description": "Heat management devices and hookah bowls engineered for consistent, flavorful sessions.",
+      "description": "Heat management devices and hookah bowls.",
       "products": [
         {
           "id": "cat-kaloud-lotus-i-plus",
@@ -1000,7 +996,7 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/kaloud/kaloud-samsaris-vitria-iii-bowl.webp",
-          "description": "A glass Samsaris bowl that offers a clean taste and lets you see your pack.",
+          "description": "A glass Samsaris hookah bowl.",
           "options": []
         },
         {
@@ -1031,22 +1027,8 @@ export const hookahAndShishaCategory: CatalogCategory = {
           "category": "Hookah & Shisha",
           "categorySlug": "hookah-and-shisha",
           "image": "/catalog/hookah-and-shisha/steamulation/steamulation-pure-hookah.webp",
-          "description": "A sleek Steamulation hookah with a clean design and smooth, adjustable airflow.",
-          "options": [
-            {
-              "label": "Colors",
-              "values": [
-                "Pure Clear",
-                "Pure White Matte",
-                "Pure Black Matte",
-                "Pure Crystal",
-                "Pure Silver Matte Metallic",
-                "Pure Champagne Matte Metallic",
-                "Pure Lavender Metallic",
-                "Pure Mint Matte Metallic"
-              ]
-            }
-          ]
+          "description": "A Steamulation hookah with adjustable airflow.",
+          "options": []
         },
         {
           "id": "cat-steamulation-ultimate-gen-iii",

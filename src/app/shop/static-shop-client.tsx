@@ -12,6 +12,7 @@ import ProductCard from '@/components/product/ProductCard';
 import { CategoryTopNotice } from '@/components/catalog/CategoryNotice';
 import Pagination from '@/components/ui/Pagination';
 import { filterVisibleCategories, searchCatalog, toShopProduct } from '@/data/catalog';
+import NicotineWarning, { isNicotineCategory } from '@/components/catalog/NicotineWarning';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -102,8 +103,14 @@ export default function StaticShopClient({ hiddenSlugs = [] }: { hiddenSlugs?: s
   const crumbLink =
     'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-wide';
 
+  // Required nicotine warning whenever the page shows a nicotine/tobacco product.
+  const showNicotineWarning = category
+    ? isNicotineCategory(category.slug)
+    : paginatedProducts.some((p) => isNicotineCategory(p.category));
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      {showNicotineWarning && <NicotineWarning />}
       {/* Breadcrumb Navigation */}
       <section className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
         <div className="container-wide py-3">

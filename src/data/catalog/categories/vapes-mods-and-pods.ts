@@ -6,12 +6,12 @@ import type { CatalogCategory } from '../types';
 export const vapesModsAndPodsCategory: CatalogCategory = {
   "name": "Vapes, Mods & Pods",
   "slug": "vapes-mods-and-pods",
-  "description": "Disposable vapes, pod systems and box mod kits from the most popular vape brands. 21+ only.",
+  "description": "E-cigarette devices and pod systems. 21+ only. Sold in store only; flavors and availability vary by location.",
   "brands": [
     {
       "name": "Geek Bar",
       "slug": "geek-bar",
-      "description": "One of the most popular disposable vape brands, known for the Pulse series and bold flavors.",
+      "description": "Disposable e-cigarette brand. Flavors vary; ask in store.",
       "products": [
         {
           "id": "cat-geek-bar-pulse-x-25k",
@@ -27,56 +27,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "ATL Mint",
-                "Cool Mint",
-                "Banana Taffy Freeze",
-                "Blackberry Blueberry",
-                "Blackberry B-Burst",
-                "Blackberry B-Pop",
-                "Blueberry Jam",
-                "Blue Rancher",
-                "Blue Razz Ice",
-                "Cola Slush",
-                "CreamyMintz",
-                "Grapefruit Refresher",
-                "Grape Slush",
-                "Lemon Heads",
-                "Lime Berry Orange",
-                "Miami Mint",
-                "Orange Dragon",
-                "Orange Fcuking FAB",
-                "Orange Jam",
-                "Orange Slush",
-                "Peach Jam",
-                "Peach Perfect Slush",
-                "PepperMintz",
-                "Pink&Blue",
-                "Raspberry Jam",
-                "Raspberry Peach Lime",
-                "Sour Apple Ice",
-                "Sour Fcuking FAB",
-                "Sour Mango Pineapple",
-                "Sour Straws",
-                "Strawberry B-Burst",
-                "Strawberry Colada",
-                "Strawberry Jam",
-                "Strawberry Kiwi Ice",
-                "Strawberry Watermelon",
-                "Watermelon Ice",
-                "White Peach Raspberry",
-                "Wild Cherry Slush",
-                "Platinum Edition - Berry Cherry Lime",
-                "Platinum Edition - Blue Razz Ice",
-                "Platinum Edition - Miami Mint",
-                "Platinum Edition - Sour Pink Dust",
-                "Platinum Edition - Watermelon Ice",
-                "Patriot Edition - Blue Razz Ice",
-                "Patriot Edition - Miami Mint",
-                "Pear Of Thieves",
-                "Orange Mint",
-                "Strawberry Dragon",
-                "Pink Berry Lemonade",
-                "Dualicious"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -95,63 +46,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Orange Mint Savers",
-                "BlackMintz",
-                "PepperMintz",
-                "IceyMintz",
-                "CreamyMintz",
-                "Sour Apple B-Burst",
-                "Sour Blue Dust",
-                "Sour Cranapple",
-                "Sour Gush",
-                "Sour Strawberry",
-                "Sour Watermelon Drop",
-                "Grape Blow Pop",
-                "B-Burst",
-                "Blue Razz Ice",
-                "California Cherry",
-                "Berry Bliss",
-                "Dragon Melon",
-                "Cool Mint",
-                "Drop Sour Savers",
-                "Fcuking FAB",
-                "Frozen Blackberry Fab",
-                "Frozen Cherry Apple",
-                "Frozen Strawberry",
-                "Frozen White Grape",
-                "Frozen Pina Colada",
-                "Frozen Watermelon",
-                "Grape Lemon",
-                "Juicy Peach Ice",
-                "Orange Creamsicle",
-                "Meta Moon",
-                "Mexico Mango",
-                "Miami Mint",
-                "Pineapple Savers",
-                "Pink Lemonade",
-                "Black Cherry",
-                "Cherry Bomb",
-                "Blue Mint",
-                "Sour Apple Ice",
-                "Strawberry Banana",
-                "Strawberry Mango",
-                "Strawberry Savers",
-                "Taurus Blueberry Watermelon",
-                "Tobacco",
-                "Tropical Rainbow Blast",
-                "Crazy Melon",
-                "Watermelon Ice",
-                "White Gummy Ice",
-                "Wild Berry Savers",
-                "Strawberry Kiwi",
-                "Raspberry Watermelon",
-                "Banana Ice",
-                "Punch",
-                "Peach Lemonade",
-                "Grape B-Burst",
-                "OMG B-Burst",
-                "Stone Mintz",
-                "Clear"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -170,33 +65,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Blackberry Blueberry",
-                "Banana Taffy Freeze",
-                "Blue Rancher",
-                "Blue Razz Bull",
-                "Coco Berry Bull",
-                "Peach Bull",
-                "Strawberry Bull",
-                "Blue Razz Ice",
-                "Blueberry Jam",
-                "Sour Fcuking Fab",
-                "Miami Mint",
-                "Orange Fcuking Fab",
-                "Pink and Blue",
-                "Peach Slush",
-                "Raspberry Jam",
-                "Sour Straws",
-                "Strawberry Watermelon",
-                "Strawberry B-Burst",
-                "Watermelon Bull",
-                "Watermelon Ice",
-                "Wild Cherry Slush",
-                "White Peach Raspberry",
-                "Blueberry Watermelon",
-                "Pink Berry Lemonade",
-                "Watermelon Crush",
-                "Lemon Heads",
-                "Punch"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -215,23 +84,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Amazon Lemonade",
-                "Blue Razz Ice",
-                "Blue Straws",
-                "Cool Mint",
-                "Juicy Peach",
-                "Miami Mint",
-                "Strawberry Banana",
-                "Sky Blue Ice",
-                "Sour Apple Ice",
-                "Triple Berry",
-                "Watermelon Ice",
-                "White Gummy",
-                "Strawberry Kiwi",
-                "Peach Mango Watermelon",
-                "Blueberry Yummy",
-                "Strawberry Mint Candy",
-                "White Peach Raspberry"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -245,14 +98,12 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
           "category": "Vapes, Mods & Pods",
           "categorySlug": "vapes-mods-and-pods",
           "image": "/catalog/vapes-mods-and-pods/geek-bar/geek-bar-meloso-max-9k.webp",
-          "description": "A compact, easy-to-carry Geek Bar disposable with smooth flavor and up to 9,000 puffs.",
+          "description": "A compact Geek Bar disposable rated for up to 9,000 puffs. Flavors vary; ask in store.",
           "options": [
             {
               "label": "Flavors",
               "values": [
-                "Apple Sunrise",
-                "Fuji Melon Ice",
-                "Columbian Coffee Ice"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -271,16 +122,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Blue Razz Ice",
-                "Code Red",
-                "Cool Mint",
-                "Dragonfruit Lemonade",
-                "Fcuking Fab",
-                "Peach Slush",
-                "Sour Watermelon Drop",
-                "Strawberry B-Burst",
-                "Triple Berry Ice",
-                "White Peach Raspberry"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -299,16 +141,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Grape Mint",
-                "Gum Mint",
-                "Lemon Mint",
-                "Mango",
-                "Strawberry",
-                "Watermelon Mint",
-                "Blue Razz",
-                "Blueberry Gum",
-                "Double Apple",
-                "Peach Ice"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -318,7 +151,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
     {
       "name": "Lost Mary",
       "slug": "lost-mary",
-      "description": "Fun, flavor-packed disposable vapes with distinctive designs.",
+      "description": "Disposable e-cigarette brand. Flavors vary; ask in store.",
       "products": [
         {
           "id": "cat-lost-mary-mt15k-turbo",
@@ -334,56 +167,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Acai Berry Storm Ice",
-                "Baja Splash",
-                "Banana Cake",
-                "Berry Burst",
-                "Blue Crushed Berries",
-                "Blueberry Raspberry Lemon",
-                "Blue Razz Dragonfruit",
-                "Blue Razz Ice",
-                "Cherry Starzz",
-                "Citrus Sunrise",
-                "Dr. Cherry",
-                "Frozen White Strawberry",
-                "Grape Apple",
-                "Grape Jelly",
-                "Grapefruit Berries",
-                "Green Apple Lime",
-                "Hawaiian Juice",
-                "Miami Mint",
-                "Nana Coconut",
-                "Pacific Cooler",
-                "Peach+",
-                "Peach Blue Slushy",
-                "Pure",
-                "Purple Passion Punch",
-                "Rainbow Bubblegum",
-                "Raspberry Banana",
-                "Raspberry Watermelon",
-                "Refresh Fcuking FAB",
-                "Rocket Popsicle",
-                "Sour Strawberry Peach",
-                "Strawberry Banana",
-                "Strawberry Kiwi",
-                "Strawmelon Peach",
-                "Strawberry Orange",
-                "Summer Grape",
-                "Tropical Bjaja Splash",
-                "Watermelon Ice",
-                "Wild Berry Baja Splash",
-                "Winter Mint",
-                "Yellow Lemon",
-                "Red Strawberry",
-                "Watermelon B Burst",
-                "Pineapple B-Burst",
-                "Wild Berry B-Burst",
-                "Sour Blue Dust",
-                "Strawberry Jam",
-                "Cool Mint",
-                "Fcuking Fab",
-                "Juicy Peach",
-                "Tigers Blood"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -402,55 +186,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "B-Gum Cotton Carnival",
-                "Berry Burst Cotton Carnival",
-                "Blue Razz Cotton Carnival",
-                "Strawberry Cotton Carnival",
-                "Watermelon Cotton Carnival",
-                "Baja Splash",
-                "Berry Burst",
-                "Black Mint+",
-                "Blackberry Blueberry+",
-                "Black Razz Lemon",
-                "Blue Razz Ice",
-                "Classic Tobacco",
-                "Clear",
-                "Kiwi Passion Fruit",
-                "Golden Berry",
-                "Pineapple Lime+",
-                "Pink Lemonade+",
-                "Mountain Berry",
-                "Miami Mint",
-                "Orange Passion Mango",
-                "Rocket Freeze",
-                "Scary Berry+",
-                "Strawberry+",
-                "Strawberry Kiwi+",
-                "Strawmelon Peach",
-                "Summer Grape",
-                "Sunny Orange",
-                "Tigers Blood+",
-                "Toasted Banana",
-                "Watermelon+",
-                "Winter Mint",
-                "White Gami+",
-                "Blue Razz Lemonade",
-                "Half & Half",
-                "Mint Lemonade",
-                "Strawberry Dragon Lemonade",
-                "Tropical Lemonade",
-                "Orange Pixy",
-                "Purple Pixy",
-                "Red Pixy",
-                "White Pixy",
-                "Yellow Pixy",
-                "Strawberry",
-                "Watermelon",
-                "Sour Apple Ice",
-                "Juicy Peach",
-                "Mexico Mango",
-                "Polar Mint",
-                "Strawberry Banana"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -469,26 +205,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Baja Splash",
-                "Blackberry Chill",
-                "Blue Razz Ice",
-                "Cool Mint",
-                "Dragon Strawnana",
-                "Fcuking Fab",
-                "Hawaiian Blast",
-                "Mexico Mango",
-                "Miami Mint",
-                "Nana Berries",
-                "Passionade Orange",
-                "Peach Berry",
-                "Raspberry Dragon Lime",
-                "Sour Apple Ice",
-                "Sour Pineapple Gush",
-                "Sour Strawberry Peach",
-                "Sour Watermelon Apple",
-                "Strawberry Kiwi",
-                "Tiger Drip",
-                "Watermelon Ice"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -502,21 +219,12 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
           "category": "Vapes, Mods & Pods",
           "categorySlug": "vapes-mods-and-pods",
           "image": "/catalog/vapes-mods-and-pods/lost-mary/lost-mary-ultrasonic-35k.webp",
-          "description": "A Lost Mary device using ultrasonic-style vaporization for smooth, consistent flavor.",
+          "description": "A Lost Mary device using ultrasonic-style vaporization. Flavors vary; ask in store.",
           "options": [
             {
               "label": "Flavors",
               "values": [
-                "Blue Razz Ice",
-                "Ice Mint",
-                "Juicy Peach Ice",
-                "Pink Lemonade",
-                "Sour Apple Ice",
-                "Strawberry Ice",
-                "Strazz",
-                "Triple Berry",
-                "Watermelon Ice",
-                "White Fcuking Fab"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -535,18 +243,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Lemon Lime Passion Fruit",
-                "Light Snow Peppermint",
-                "Sakura Berry Peach Ice",
-                "Strawberry Apple Blackcurrant",
-                "Strawberry Guava Mint",
-                "Cherry Cola",
-                "Cranberry Kiwi",
-                "Rose Sour Plum Mint",
-                "Mango Pomelo Dragonfruit",
-                "Lemon Lime",
-                "Forest Mint",
-                "Berry Cherry"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -565,25 +262,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Blue Razz Ice",
-                "Dragon Strawnana",
-                "Miami Mint",
-                "Pineapple Passion Orange",
-                "Pink Lemonade",
-                "Pomegranate Blast",
-                "Rocket Freeze",
-                "Scary Berry",
-                "Sour Apple Ice",
-                "Watermelon Ice",
-                "Watermelon Ice & Watermelon Fcuking Fab (Double Flavor)",
-                "Blue Razz Ice & Blackberry Blueberry (Double Flavor)",
-                "Miami Mint & Winter Mint (Double Flavors)",
-                "Pink Lemonade & Pink Blue (Double Flavor)",
-                "Scary Berry & Golden Berry (Double Flavor)",
-                "Cool Mint &Polar Mint",
-                "Baja Splash & Hawaiian Punch",
-                "Juicy Peach Ice & Pineapple Coconut",
-                "Strawberry Ice & Strawberry Watermelon"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -602,34 +281,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Blue Baja Splash",
-                "Blue Razz Ice",
-                "Dragon Drink",
-                "Grape Jelly",
-                "Lime Grapefruit",
-                "Mango Twist",
-                "Miami Mint",
-                "Peach+",
-                "Pineapple Ice",
-                "Rainbow Sherbet",
-                "Red Wave",
-                "Rocket Popsicle",
-                "Sour Apple Ice",
-                "Sour Strawberry Dragon",
-                "Strawberry Ice",
-                "Tropical Punch",
-                "Watermelon Ice",
-                "Watermelon Sour Peach",
-                "Strawberry Kiwi",
-                "Scary Berry",
-                "Orange Pomegranate Cranberry",
-                "Pear Drop",
-                "Pina Colada",
-                "Peppermint",
-                "Arizona Ice Tea",
-                "Hawaiian Popsicle",
-                "Mountain Berry",
-                "Pure"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -639,7 +291,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
     {
       "name": "RAZ",
       "slug": "raz",
-      "description": "Disposable vapes with big capacity and fan-favorite flavors.",
+      "description": "Disposable e-cigarette brand. Flavors vary; ask in store.",
       "products": [
         {
           "id": "cat-raz-ltx-dc25000",
@@ -655,56 +307,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Bangin Sour Berries",
-                "Black & Blue Lime",
-                "Black Cherry Peach",
-                "Blueberry Punch",
-                "Blue Raz Gush",
-                "Blue Razz Ice",
-                "Blueberry Watermelon",
-                "Cherry Strapple",
-                "Clear",
-                "Clear Diamond",
-                "Clear Sapphire",
-                "Razzle Dazzle",
-                "Fire & Ice",
-                "Frozen Banana",
-                "Frozen Cherry Apple",
-                "Frozen Dragonfruit Lemon",
-                "Frozen Juicy Strawberry",
-                "Frozen Razpberry Watermelon",
-                "Georgia Peach",
-                "Hawaiian Punch",
-                "Ice Blue Dragon",
-                "Miami Mint",
-                "Mango Loco",
-                "New York Mint",
-                "Night Crawler",
-                "Orange Berry Lime",
-                "Orange Mango",
-                "Orange Pineapple Punch",
-                "Pink Lemonade Mintyos",
-                "Rainbow Rain",
-                "Raspberry Limeade",
-                "Sour Apple Ice",
-                "Sour Apple Watermelon",
-                "Sour Raspberry Punch",
-                "Sour Raspberry Watermelon",
-                "Sour Watermelon Peach",
-                "Strawberry Burst",
-                "Strawberry Kiwi Pear",
-                "Strawberry Orange Tang",
-                "Strawberry Peach Gush",
-                "Triple Berry Gush",
-                "Tropical Gush",
-                "Triple Berry Punch",
-                "Watermelon Apple Rizzler",
-                "Watermelon Ice",
-                "Wintergreen",
-                "White Grape Gush",
-                "Iced Blue Dragon",
-                "Blueberry Yummy",
-                "Dragon Straw Nana"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -723,23 +326,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Blue Razz Ice",
-                "Icy Mint",
-                "Miami Mint",
-                "Orange Mango",
-                "Peach Passion Fruit",
-                "Rainbow",
-                "Raspberry Watermelon",
-                "Sour Apple Ice",
-                "Sour Strawberry",
-                "Triple Berry",
-                "Watermelon Ice",
-                "White Yummy Ice",
-                "Pink & Blue",
-                "Pretty In Pink",
-                "Grape Tease",
-                "Peach Baddie",
-                "Dragonfruit Lemonade"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -758,36 +345,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Code Red",
-                "Code White",
-                "Code Blue",
-                "Code Green",
-                "Code Pink",
-                "Lemon Batch",
-                "Triple Berry Batch",
-                "White Peach Batch",
-                "Blue Razz Batch",
-                "Watermelon Batch",
-                "Blue Razz Ice",
-                "Bangin Sour Berries",
-                "Hawaiian Punch",
-                "White Grape Gush",
-                "Blue Raz Gush",
-                "Georgia Peach",
-                "Watermelon Ice",
-                "Blueberry Watermelon",
-                "Strawberry Burst",
-                "Miami Mint",
-                "Ice Blue Dragon",
-                "Night Crawler",
-                "Razzle Dazzle",
-                "Strawberry Peach Gush",
-                "Tropical Gush",
-                "Blueberry punch",
-                "Orange Pineapple punch",
-                "Sour Raspberry Punch",
-                "Triple Berry Punch",
-                "Triple Berry Gush"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -806,21 +364,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Blue Razz Ice",
-                "Hawaiian Punch",
-                "Miami Mint",
-                "Pineapple MTN Dew",
-                "Polar Ice",
-                "Sour Apple Ice",
-                "Strawberry Blast",
-                "Triple Berry Lime",
-                "Watermelon Ice",
-                "White Gummy",
-                "Blueberry Yummy",
-                "Dragon Straw Nana",
-                "Peach Yummy",
-                "Raspberry Watermelon",
-                "Strawberry Shortcake"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -834,48 +378,12 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
           "category": "Vapes, Mods & Pods",
           "categorySlug": "vapes-mods-and-pods",
           "image": "/catalog/vapes-mods-and-pods/raz/raz-tn9000.webp",
-          "description": "A compact RAZ disposable with smooth draw and up to 9,000 puffs.",
+          "description": "A compact RAZ disposable rated for up to 9,000 puffs. Flavors vary; ask in store.",
           "options": [
             {
               "label": "Flavors",
               "values": [
-                "Banana Coconut",
-                "Black Cherry Kiwi",
-                "Black Cherry Peach",
-                "Blue Razz Cotton Clouds",
-                "Blue Razz Ice",
-                "Blueberry Watermelon",
-                "Cactus Jack",
-                "Cherry Lemon",
-                "Citronnade",
-                "Clear",
-                "Day Crawler",
-                "Dragon Fruit Lemonade",
-                "Georgia Peach",
-                "Graham Twist",
-                "Grape Ice",
-                "Mango Colada",
-                "Miami Mint",
-                "Night Crawler",
-                "Orange Raspberry",
-                "Peach Grapefruit",
-                "Pineapple Passion Guava",
-                "Pink Strazzberry",
-                "Polar Ice",
-                "Sour Mango Pineapple",
-                "Strawberry Ice",
-                "Strawberry Shortcake",
-                "Strawberry Watermelon",
-                "Tobacco",
-                "Triple Berry Ice",
-                "Tropical Storm",
-                "Watermelon Ice",
-                "White Gummy Watermelon",
-                "White Yummy Grape",
-                "Tiffany",
-                "Strawberry Ice 0% No Nic",
-                "Miami Mint 0% No Nic",
-                "Watermelon Ice 0% No Nic"
+                "Flavors vary, ask in store"
               ]
             }
           ]
@@ -997,7 +505,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
           "category": "Vapes, Mods & Pods",
           "categorySlug": "vapes-mods-and-pods",
           "image": "/catalog/vapes-mods-and-pods/smok/smok-morph-3-starter-kit.webp",
-          "description": "A 230W dual-battery mod kit with a sub-ohm tank for big clouds.",
+          "description": "A 230W dual-battery mod kit with a sub-ohm tank.",
           "options": [
             {
               "label": "Colors",
@@ -1086,7 +594,7 @@ export const vapesModsAndPodsCategory: CatalogCategory = {
           "category": "Vapes, Mods & Pods",
           "categorySlug": "vapes-mods-and-pods",
           "image": "/catalog/vapes-mods-and-pods/vaporesso/vaporesso-xros-5-mini.webp",
-          "description": "A smaller XROS 5 with the same smooth draw in a lighter body.",
+          "description": "A smaller XROS 5 pod system.",
           "options": [
             {
               "label": "Colors",

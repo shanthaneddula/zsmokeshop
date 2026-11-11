@@ -6,7 +6,7 @@ import type { CatalogCategory } from '../types';
 export const rollYourOwnTobaccoCategory: CatalogCategory = {
   "name": "Roll Your Own Tobacco",
   "slug": "roll-your-own-tobacco",
-  "description": "Loose cigarette tobacco, pipe tobacco blends, filter tubes and rolling machines for rolling or injecting your own.",
+  "description": "Loose cigarette tobacco, pipe tobacco, filter tubes and rolling machines. 21+ only.",
   "brands": [
     {
       "name": "Peter Stokkebye",
@@ -22,7 +22,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/peter-stokkebye/peter-stokkebye-amsterdam-shag.webp",
-          "description": "A mild, smooth shag with a gentle natural sweetness and a fine, even cut that rolls easily.",
+          "description": "A fine-cut shag tobacco for hand rolling.",
           "options": [
             {
               "label": "Sizes",
@@ -62,7 +62,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/peter-stokkebye/peter-stokkebye-london-export.webp",
-          "description": "A smooth, full-bodied blend with a hint of natural sweetness and a fine cut for hand rolling.",
+          "description": "A full-bodied fine-cut blend for hand rolling.",
           "options": [
             {
               "label": "Sizes",
@@ -82,7 +82,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/peter-stokkebye/peter-stokkebye-norwegian-shag.webp",
-          "description": "A traditional Scandinavian shag of Virginia, Burley and Oriental tobaccos with a robust, natural taste.",
+          "description": "A traditional Scandinavian shag of Virginia, Burley and Oriental tobaccos.",
           "options": [
             {
               "label": "Sizes",
@@ -102,7 +102,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/peter-stokkebye/peter-stokkebye-stockholm-blend.webp",
-          "description": "A lighter, aromatic blend with mellow sweetness, made for an easy everyday roll.",
+          "description": "An aromatic fine-cut blend for hand rolling.",
           "options": [
             {
               "label": "Sizes",
@@ -138,7 +138,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
     {
       "name": "American Spirit",
       "slug": "american-spirit",
-      "description": "Natural, additive-free roll-your-own tobacco from Natural American Spirit.",
+      "description": "Natural American Spirit roll-your-own tobacco.",
       "products": [
         {
           "id": "cat-american-spirit-original-rolling-tobacco",
@@ -149,7 +149,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/american-spirit/american-spirit-original-rolling-tobacco.webp",
-          "description": "Natural American Spirit's signature blend of additive-free whole-leaf tobacco, cut for hand rolling.",
+          "description": "Natural American Spirit's signature whole-leaf rolling tobacco, cut for hand rolling.",
           "options": [
             {
               "label": "Sizes",
@@ -168,7 +168,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/american-spirit/american-spirit-organic-rolling-tobacco.webp",
-          "description": "Rolling tobacco made from certified organic, additive-free tobacco for a clean, natural smoke.",
+          "description": "Natural American Spirit rolling tobacco made with certified organic tobacco, cut for hand rolling.",
           "options": [
             {
               "label": "Sizes",
@@ -187,7 +187,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/american-spirit/american-spirit-u-s-grown-rolling-tobacco.webp",
-          "description": "An additive-free blend of tobacco grown in the United States, with a smooth, mellow taste.",
+          "description": "A blend of tobacco grown in the United States, cut for hand rolling.",
           "options": [
             {
               "label": "Sizes",
@@ -206,7 +206,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/american-spirit/american-spirit-perique-rolling-tobacco.webp",
-          "description": "Additive-free rolling tobacco blended with rare Louisiana Perique for a bold, rich flavor.",
+          "description": "Rolling tobacco blended with Louisiana Perique.",
           "options": [
             {
               "label": "Sizes",
@@ -225,7 +225,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/american-spirit/american-spirit-rolling-tobacco-can.webp",
-          "description": "The larger 150g resealable can of Natural American Spirit additive-free rolling tobacco, for regular rollers who want to stock up.",
+          "description": "Natural American Spirit rolling tobacco in a 150g resealable can.",
           "options": [
             {
               "label": "Blends",
@@ -258,7 +258,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/gambler/gambler-pipe-tobacco.webp",
-          "description": "Smooth, fine-cut pipe tobacco that works great in filter tubes or for hand rolling, offered in several blends.",
+          "description": "Fine-cut pipe tobacco for filter tubes or hand rolling, in several blends.",
           "options": [
             {
               "label": "Blends",
@@ -296,7 +296,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
               "label": "Styles",
               "values": [
                 "Full Flavor",
-                "Gold (Light)",
+                "Gold",
                 "Menthol",
                 "Silver"
               ]
@@ -406,15 +406,15 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
-          "id": "cat-kentucky-select-gold-light-pipe-tobacco",
-          "slug": "kentucky-select-gold-light-pipe-tobacco",
-          "name": "Kentucky Select Gold (Light) Pipe Tobacco",
+          "id": "cat-kentucky-select-gold-pipe-tobacco",
+          "slug": "kentucky-select-gold-pipe-tobacco",
+          "name": "Kentucky Select Gold Pipe Tobacco",
           "brand": "Kentucky Select",
           "brandSlug": "kentucky-select",
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
-          "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-gold-light-pipe-tobacco.webp",
-          "description": "A lighter, smoother Kentucky Select blend with a mellow taste.",
+          "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-gold-pipe-tobacco.webp",
+          "description": "Kentucky Select pipe tobacco, Gold blend.",
           "options": [
             {
               "label": "Sizes",
@@ -429,15 +429,15 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
-          "id": "cat-kentucky-select-silver-ultra-light-pipe-tobacco",
-          "slug": "kentucky-select-silver-ultra-light-pipe-tobacco",
-          "name": "Kentucky Select Silver (Ultra Light) Pipe Tobacco",
+          "id": "cat-kentucky-select-silver-pipe-tobacco",
+          "slug": "kentucky-select-silver-pipe-tobacco",
+          "name": "Kentucky Select Silver Pipe Tobacco",
           "brand": "Kentucky Select",
           "brandSlug": "kentucky-select",
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
-          "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-silver-ultra-light-pipe-tobacco.webp",
-          "description": "The mildest Kentucky Select blend, smooth and easy-going.",
+          "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-silver-pipe-tobacco.webp",
+          "description": "Kentucky Select pipe tobacco, Silver blend.",
           "options": [
             {
               "label": "Sizes",
@@ -460,7 +460,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-green-menthol-pipe-tobacco.webp",
-          "description": "A menthol Kentucky Select blend with a cool, refreshing finish.",
+          "description": "Kentucky Select pipe tobacco, Green (menthol) blend.",
           "options": [
             {
               "label": "Sizes",
@@ -483,7 +483,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "category": "Roll Your Own Tobacco",
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-menthol-blue-pipe-tobacco.webp",
-          "description": "A bolder menthol blend with a crisp, cool taste.",
+          "description": "Kentucky Select pipe tobacco, Menthol Blue blend.",
           "options": [
             {
               "label": "Sizes",
@@ -541,7 +541,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
             {
               "label": "Styles",
               "values": [
-                "Gold (Light)",
+                "Gold",
                 "Menthol",
                 "Regular (Full Flavor)"
               ]

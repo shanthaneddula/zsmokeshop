@@ -6,7 +6,7 @@ import type { CatalogCategory } from '../types';
 export const grindersAndScalesCategory: CatalogCategory = {
   "name": "Grinders & Scales",
   "slug": "grinders-and-scales",
-  "description": "Herb grinders, pollen presses and precision digital scales from trusted makers.",
+  "description": "Grinders and precision digital scales from trusted makers. For use with legal tobacco and legal botanical products only. 21+.",
   "brands": [
     {
       "name": "Santa Cruz Shredder",
@@ -22,7 +22,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/santa-cruz-shredder/santa-cruz-shredder-aluminum-4-piece-large.webp",
-          "description": "The best-selling Santa Cruz Shredder: a large anodized aluminum 4-piece grinder with patented teeth and a kief catcher.",
+          "description": "The large anodized aluminum 4-piece Santa Cruz Shredder with patented teeth and a collection chamber. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -51,7 +51,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/santa-cruz-shredder/santa-cruz-shredder-aluminum-4-piece-medium.webp",
-          "description": "A medium 4-piece Shredder with a fine screen and kief collection chamber.",
+          "description": "A medium 4-piece Shredder with a fine screen and collection chamber. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -81,7 +81,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/santa-cruz-shredder/santa-cruz-shredder-aluminum-3-piece-medium.webp",
-          "description": "A 3-piece Shredder with a collection chamber and Santa Cruz's signature tooth design.",
+          "description": "A 3-piece Shredder with a collection chamber and Santa Cruz's signature tooth design. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -111,7 +111,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/santa-cruz-shredder/santa-cruz-shredder-aluminum-2-piece-medium.webp",
-          "description": "A simple, durable 2-piece grinder for quick, fluffy grinds.",
+          "description": "A simple, durable 2-piece grinder for quick, fluffy grinds. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -137,7 +137,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/santa-cruz-shredder/santa-cruz-shredder-aluminum-4-piece-small-traveler.webp",
-          "description": "A pocket-sized 4-piece Shredder built for travel.",
+          "description": "A pocket-sized 4-piece Shredder built for travel. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -162,7 +162,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/santa-cruz-shredder/santa-cruz-shredder-hemp-3-piece-flying-eyeball.webp",
-          "description": "An eco-friendly hemp-composite grinder featuring the classic Flying Eyeball artwork.",
+          "description": "An eco-friendly hemp-composite grinder featuring the classic Flying Eyeball artwork. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -183,7 +183,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/santa-cruz-shredder/santa-cruz-shredder-ripper-4-piece-medium.webp",
-          "description": "The Ripper series 4-piece grinder with sharp, aggressive teeth for a fast grind.",
+          "description": "The Ripper series 4-piece grinder with sharp, aggressive teeth for a fast grind. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -213,7 +213,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/cali-crusher/cali-crusher-homegrown-xl-quick-lock-grinder.webp",
-          "description": "An extra-large Homegrown grinder with a quick-lock lid and a big storage chamber.",
+          "description": "An extra-large Homegrown grinder with a quick-lock lid and a big storage chamber. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -225,7 +225,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/cali-crusher/cali-crusher-homegrown-jar-head.webp",
-          "description": "A Homegrown grinder that threads directly onto a jar for easy storage.",
+          "description": "A Homegrown grinder that threads directly onto a jar for easy storage. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -237,7 +237,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/cali-crusher/cali-crusher-o-g-2-5-grinder.webp",
-          "description": "The classic O.G. hardtop grinder in a 2.5\" size with a pollen screen.",
+          "description": "The classic O.G. hardtop grinder in a 2.5\" size with a fine screen. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -263,7 +263,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/cali-crusher/cali-crusher-og-slick-2-grinder.webp",
-          "description": "A non-stick coated O.G. grinder that resists resin buildup.",
+          "description": "A non-stick coated O.G. grinder that resists residue buildup. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -287,7 +287,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/cali-crusher/cali-crusher-o-g-2-two-piece-grinder.webp",
-          "description": "A compact 2-piece hardtop grinder for quick, simple grinding.",
+          "description": "A compact 2-piece hardtop grinder for quick, simple grinding. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -309,7 +309,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/cali-crusher/cali-crusher-high-times-o-g-2-grinder.webp",
-          "description": "A High Times collaboration O.G. grinder with signature artwork.",
+          "description": "A High Times collaboration O.G. grinder with signature artwork. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -332,7 +332,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/cali-crusher/cali-crusher-homegrown-standard-space-ape.webp",
-          "description": "A Homegrown Standard quick-lock grinder featuring Space Ape artwork.",
+          "description": "A Homegrown Standard quick-lock grinder featuring Space Ape artwork. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -367,7 +367,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/truweigh/truweigh-classic-digital-scale-1000g-x-0-1g.webp",
-          "description": "A reliable everyday digital scale with a 1000g capacity and 0.1g accuracy.",
+          "description": "A reliable everyday digital scale with a 1000g capacity and 0.1g accuracy. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -379,7 +379,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/truweigh/truweigh-tuff-weigh-digital-mini-scale-200g-x-0-01g.webp",
-          "description": "A rugged mini scale with a protective cover and 0.01g precision.",
+          "description": "A rugged mini scale with a protective cover and 0.01g precision. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -401,7 +401,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/truweigh/truweigh-flex-mini-scale-200g-x-0-01g.webp",
-          "description": "A slim, colorful pocket scale with 0.01g precision.",
+          "description": "A slim, colorful pocket scale with 0.01g precision. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -424,7 +424,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/truweigh/truweigh-shine-scale-100g-x-0-01g.webp",
-          "description": "A stylish, metallic-finish mini scale with 0.01g accuracy.",
+          "description": "A stylish, metallic-finish mini scale with 0.01g accuracy. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -445,7 +445,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/truweigh/truweigh-senso-carat-milligram-scale-50g-x-0-001g.webp",
-          "description": "A milligram-precision scale for the most accurate small measurements.",
+          "description": "A milligram-precision scale for the most accurate small measurements. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -457,7 +457,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/truweigh/truweigh-zenith-digital-mini-scale.webp",
-          "description": "A compact mini scale with a backlit display in two capacity options.",
+          "description": "A compact mini scale with a backlit display in two capacity options. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -477,7 +477,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/truweigh/truweigh-blaze-scale.webp",
-          "description": "A bold, easy-to-read pocket scale in two capacities.",
+          "description": "A bold, easy-to-read pocket scale in two capacities. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -504,7 +504,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/phoenician/phoenician-pro-4-piece-large-with-paper-holder-and-ashtray.webp",
-          "description": "Phoenician's flagship large 4-piece grinder with a built-in paper holder and ashtray lid.",
+          "description": "Phoenician's flagship large 4-piece grinder with a built-in paper holder and ashtray lid. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -529,7 +529,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/phoenician/phoenician-pro-4-piece-medium.webp",
-          "description": "A precision-machined medium 4-piece grinder with a kief screen.",
+          "description": "A precision-machined medium 4-piece grinder with a fine screen. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -554,7 +554,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/phoenician/phoenician-pro-4-piece-small.webp",
-          "description": "A compact 4-piece Phoenician grinder sized for travel.",
+          "description": "A compact 4-piece Phoenician grinder sized for travel. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -579,7 +579,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/phoenician/phoenician-pro-2-piece-large.webp",
-          "description": "A large 2-piece Phoenician grinder for quick, consistent grinds.",
+          "description": "A large 2-piece Phoenician grinder for quick, consistent grinds. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -605,7 +605,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/phoenician/phoenician-super-moon-grinder.webp",
-          "description": "A premium 4-piece Moon series grinder with a sleek, modern profile.",
+          "description": "A premium 4-piece Moon series grinder with a sleek, modern profile. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -626,7 +626,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/phoenician/phoenician-harvest-moon-grinder.webp",
-          "description": "A Moon series 4-piece grinder with a distinctive harvest-tone finish.",
+          "description": "A Moon series 4-piece grinder with a distinctive harvest-tone finish. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -647,7 +647,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/phoenician/phoenician-eclipse-moon-grinder.webp",
-          "description": "A dark-finish Moon series 4-piece grinder.",
+          "description": "A dark-finish Moon series 4-piece grinder. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -663,7 +663,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
     {
       "name": "SharpStone",
       "slug": "sharpstone",
-      "description": "Iconic diamond-tooth grinders and pollen presses at everyday prices.",
+      "description": "Diamond-tooth grinders at everyday prices.",
       "products": [
         {
           "id": "cat-sharpstone-hard-top-4-piece-grinder",
@@ -674,7 +674,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-hard-top-4-piece-grinder.webp",
-          "description": "The classic SharpStone 4-piece grinder with diamond-shaped teeth and a pollen screen.",
+          "description": "The classic SharpStone 4-piece grinder with diamond-shaped teeth and a fine screen. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -711,7 +711,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-hard-top-2-piece-grinder.webp",
-          "description": "A simple, sturdy 2-piece SharpStone grinder.",
+          "description": "A simple, sturdy 2-piece SharpStone grinder. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -746,7 +746,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-clear-top-4-piece-grinder.webp",
-          "description": "A 4-piece grinder with a clear lid so you can see your grind.",
+          "description": "A 4-piece grinder with a clear lid so you can see your grind. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -781,7 +781,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-v2-hard-top-4-piece-grinder.webp",
-          "description": "The upgraded V2 SharpStone with improved teeth and a smoother turn.",
+          "description": "The upgraded V2 SharpStone with improved teeth. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -817,7 +817,7 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-clear-top-4-piece-hand-crank-grinder.webp",
-          "description": "A crank-handle SharpStone grinder that makes grinding effortless.",
+          "description": "A crank-handle SharpStone grinder that makes grinding effortless. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -848,34 +848,13 @@ export const grindersAndScalesCategory: CatalogCategory = {
           "category": "Grinders & Scales",
           "categorySlug": "grinders-and-scales",
           "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-4-piece-vibrating-grinder.webp",
-          "description": "A 4-piece grinder with a built-in vibration feature to help collect more kief.",
+          "description": "A 4-piece grinder with a built-in vibration feature and collection chamber. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
               "values": [
                 "Black",
                 "Silver"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "cat-sharpstone-t-bar-pollen-press",
-          "slug": "sharpstone-t-bar-pollen-press",
-          "name": "SharpStone T-Bar Pollen Press",
-          "brand": "SharpStone",
-          "brandSlug": "sharpstone",
-          "category": "Grinders & Scales",
-          "categorySlug": "grinders-and-scales",
-          "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-t-bar-pollen-press.webp",
-          "description": "A T-handle pollen press for compressing kief into solid pucks.",
-          "options": [
-            {
-              "label": "Sizes",
-              "values": [
-                "3.5\"",
-                "5.3\"",
-                "6.2\""
               ]
             }
           ]

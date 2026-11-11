@@ -6,12 +6,12 @@ import type { CatalogCategory } from '../types';
 export const rollingPapersAndWrapsCategory: CatalogCategory = {
   "name": "Rolling Papers & Wraps",
   "slug": "rolling-papers-and-wraps",
-  "description": "Rolling papers, pre-rolled cones, hemp wraps, tips and filters from the brands rollers trust.",
+  "description": "Rolling papers, pre-rolled cones, wraps, tips and filters. 21+ only.",
   "brands": [
     {
       "name": "RAW",
       "slug": "raw",
-      "description": "Natural, unrefined rolling papers and cones, the go-to choice for rollers worldwide.",
+      "description": "Unbleached rolling papers and cones.",
       "products": [
         {
           "id": "cat-raw-classic-rolling-papers",
@@ -22,7 +22,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/raw/raw-classic-rolling-papers.webp",
-          "description": "Unbleached, natural plant-fiber papers with a slow, even burn and natural gum line.",
+          "description": "Unbleached plant-fiber rolling papers with a slow, even burn.",
           "options": [
             {
               "label": "Sizes",
@@ -44,7 +44,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/raw/raw-organic-hemp-rolling-papers.webp",
-          "description": "Ultra-thin papers made from organic hemp for a clean, natural taste.",
+          "description": "Thin rolling papers made from organic hemp.",
           "options": [
             {
               "label": "Sizes",
@@ -65,7 +65,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/raw/raw-black-rolling-papers.webp",
-          "description": "RAW's thinnest papers, made for a smooth, barely-there burn.",
+          "description": "RAW's thinnest rolling papers.",
           "options": [
             {
               "label": "Sizes",
@@ -109,7 +109,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/raw/raw-organic-hemp-pre-rolled-cones.webp",
-          "description": "Pre-rolled cones made with RAW Organic Hemp paper and natural tips.",
+          "description": "Pre-rolled cones made with RAW Organic Hemp paper and unbleached tips.",
           "options": [
             {
               "label": "Sizes",
@@ -129,7 +129,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/raw/raw-connoisseur-papers-with-tips.webp",
-          "description": "A booklet of RAW papers paired with natural, unbleached tips in one pack.",
+          "description": "A booklet of RAW papers paired with unbleached tips in one pack.",
           "options": [
             {
               "label": "Styles",
@@ -174,7 +174,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/zig-zag/zig-zag-vintage-unbleached-papers.webp",
-          "description": "Natural, unbleached Zig-Zag papers with a slow, even burn and the brand's classic vintage packaging.",
+          "description": "Unbleached Zig-Zag papers with a slow, even burn and classic vintage packaging.",
           "options": [
             {
               "label": "Sizes",
@@ -194,7 +194,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/zig-zag/zig-zag-vintage-organic-hemp-papers.webp",
-          "description": "Organic hemp rolling papers that are slow-burning and naturally light.",
+          "description": "Slow-burning organic hemp rolling papers.",
           "options": [
             {
               "label": "Sizes",
@@ -234,7 +234,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/zig-zag/zig-zag-vintage-ultra-thin-papers.webp",
-          "description": "Ultra-thin Zig-Zag papers for a smooth roll and a clean taste.",
+          "description": "Zig-Zag Ultra Thin rolling papers.",
           "options": [
             {
               "label": "Sizes",
@@ -294,17 +294,16 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/zig-zag/zig-zag-hemp-wraps.webp",
-          "description": "Tobacco-free hemp wraps in bold flavors, with a smooth, slow burn.",
+          "description": "Tobacco-free hemp wraps in several flavors with a slow burn.",
           "options": [
             {
               "label": "Flavors",
               "values": [
                 "Georgia Fields",
-                "Mellow Haze",
                 "Sour Squeeze",
                 "Summer Slice",
                 "Blue Dream",
-                "Natural",
+                "Unflavored",
                 "OG Purp",
                 "Island Vibes"
               ]
@@ -338,7 +337,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
     {
       "name": "King Palm",
       "slug": "king-palm",
-      "description": "All-natural palm leaf rolls with a corn husk filter, in dozens of flavors.",
+      "description": "Palm leaf rolls with a corn husk filter, in many flavors.",
       "products": [
         {
           "id": "cat-king-palm-mini-rolls",
@@ -349,7 +348,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/king-palm/king-palm-mini-rolls.webp",
-          "description": "Slow-burning, hand-rolled palm leaf wraps in a mini size, each with a natural corn husk filter.",
+          "description": "Hand-rolled palm leaf wraps in a mini size, each with a corn husk filter.",
           "options": [
             {
               "label": "Flavors",
@@ -414,7 +413,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/king-palm/king-palm-slim-rolls.webp",
-          "description": "A slimmer King Palm roll for a lighter, quicker session.",
+          "description": "A slimmer King Palm roll.",
           "options": [
             {
               "label": "Flavors",
@@ -446,7 +445,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/king-palm/king-palm-rollie-rolls.webp",
-          "description": "King Palm's smallest roll, perfect for a quick single session.",
+          "description": "King Palm's smallest roll.",
           "options": [
             {
               "label": "Flavors",
@@ -506,12 +505,12 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/king-palm/king-palm-goji-wraps.webp",
-          "description": "Natural goji leaf wraps that come with Model X tips for an easy roll.",
+          "description": "Goji leaf wraps that come with Model X tips.",
           "options": [
             {
               "label": "Flavors",
               "values": [
-                "Natural",
+                "Unflavored",
                 "Banana",
                 "Honey",
                 "Strawberry",
@@ -534,7 +533,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
             {
               "label": "Flavors",
               "values": [
-                "Natural",
+                "Unflavored",
                 "Banana Rama",
                 "Blueberry Burst",
                 "Lemon Loud",
@@ -569,7 +568,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
                 "Orange",
                 "Red Apple",
                 "Strawberry",
-                "Natural"
+                "Unflavored"
               ]
             },
             {
@@ -596,7 +595,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/blazy-susan/blazy-susan-pink-rolling-papers.webp",
-          "description": "Signature pink, plant-based rolling papers dyed with natural coloring.",
+          "description": "Signature pink, plant-based rolling papers.",
           "options": [
             {
               "label": "Sizes",
@@ -616,7 +615,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/blazy-susan/blazy-susan-purple-rolling-papers.webp",
-          "description": "Eye-catching purple rolling papers with a smooth, even burn.",
+          "description": "Purple rolling papers with an even burn.",
           "options": [
             {
               "label": "Sizes",
@@ -686,7 +685,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/blazy-susan/blazy-susan-tea-leaf-wraps.webp",
-          "description": "Natural tea leaf wraps, a tobacco-free alternative with a smooth burn.",
+          "description": "Tea leaf wraps, tobacco-free.",
           "options": [
             {
               "label": "Flavors",
@@ -707,7 +706,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/blazy-susan/blazy-susan-filter-tips.webp",
-          "description": "Pink filter tip booklets for building a sturdy, clean roll.",
+          "description": "Pink filter tip booklets.",
           "options": []
         },
         {
@@ -719,7 +718,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/blazy-susan/blazy-susan-x-purize-filters.webp",
-          "description": "Activated carbon filters from Purize in Blazy Susan pink, for a smoother draw.",
+          "description": "Activated carbon filters from Purize in Blazy Susan pink.",
           "options": []
         }
       ]
@@ -727,7 +726,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
     {
       "name": "OCB",
       "slug": "ocb",
-      "description": "French paper maker known for ultra-thin, slow-burning papers and cones.",
+      "description": "French paper maker known for thin, slow-burning papers and cones.",
       "products": [
         {
           "id": "cat-ocb-organic-hemp-rolling-papers",
@@ -765,7 +764,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/ocb/ocb-premium-rolling-papers.webp",
-          "description": "OCB's classic black-pack ultra-thin papers with a natural gum line.",
+          "description": "OCB's classic black-pack thin papers.",
           "options": [
             {
               "label": "Sizes",
@@ -823,7 +822,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/ocb/ocb-virgin-unbleached-cones.webp",
-          "description": "Pre-rolled cones made from unbleached virgin paper for a natural taste.",
+          "description": "Pre-rolled cones made from unbleached virgin paper.",
           "options": [
             {
               "label": "Sizes",
@@ -851,7 +850,7 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
           "category": "Rolling Papers & Wraps",
           "categorySlug": "rolling-papers-and-wraps",
           "image": "/catalog/rolling-papers-and-wraps/ocb/ocb-unbleached-bamboo-cones.webp",
-          "description": "Sustainable bamboo paper cones with a clean, slow burn.",
+          "description": "Bamboo paper cones with a slow burn.",
           "options": [
             {
               "label": "Sizes",

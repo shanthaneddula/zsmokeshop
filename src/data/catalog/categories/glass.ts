@@ -6,23 +6,23 @@ import type { CatalogCategory } from '../types';
 export const glassCategory: CatalogCategory = {
   "name": "Glass",
   "slug": "glass",
-  "description": "Bongs, bubblers, dab rigs and hand pipes from leading American glass makers.",
+  "description": "Water pipes, bubblers and hand pipes from leading glass makers. For use with legal tobacco and legal botanical products only. 21+.",
   "brands": [
     {
       "name": "GRAV",
       "slug": "grav",
-      "description": "Austin, Texas-born scientific glass brand known for clean lines and lab-grade borosilicate.",
+      "description": "Austin, Texas-born scientific glass brand known for lab-grade borosilicate.",
       "products": [
         {
-          "id": "cat-grav-medium-deco-beaker-bong",
-          "slug": "grav-medium-deco-beaker-bong",
-          "name": "GRAV Medium Deco Beaker Bong",
+          "id": "cat-grav-medium-deco-beaker-water-pipe",
+          "slug": "grav-medium-deco-beaker-water-pipe",
+          "name": "GRAV Medium Deco Beaker Water Pipe",
           "brand": "GRAV",
           "brandSlug": "grav",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/grav/grav-medium-deco-beaker-bong.webp",
-          "description": "A modern beaker bong with Art Deco styling, thick borosilicate glass and a stable flared base.",
+          "image": "/catalog/glass/grav/grav-medium-deco-beaker-water-pipe.webp",
+          "description": "A beaker water pipe with Art Deco styling, thick borosilicate glass and a flared base. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -35,15 +35,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-grav-round-base-bong",
-          "slug": "grav-round-base-bong",
-          "name": "GRAV Round Base Bong",
+          "id": "cat-grav-round-base-water-pipe",
+          "slug": "grav-round-base-water-pipe",
+          "name": "GRAV Round Base Water Pipe",
           "brand": "GRAV",
           "brandSlug": "grav",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/grav/grav-round-base-bong.webp",
-          "description": "A clean, classic round-base water pipe with a sleek neck, offered in three sizes.",
+          "image": "/catalog/glass/grav/grav-round-base-water-pipe.webp",
+          "description": "A classic round-base water pipe with a sleek neck, offered in three sizes. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -56,15 +56,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-grav-gravitron-gravity-bong",
-          "slug": "grav-gravitron-gravity-bong",
-          "name": "GRAV Gravitron Gravity Bong",
+          "id": "cat-grav-gravitron-gravity-water-pipe",
+          "slug": "grav-gravitron-gravity-water-pipe",
+          "name": "GRAV Gravitron Gravity Water Pipe",
           "brand": "GRAV",
           "brandSlug": "grav",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/grav/grav-gravitron-gravity-bong.webp",
-          "description": "GRAV's glass-and-water gravity bong that delivers dense, powerful hits with smooth control.",
+          "image": "/catalog/glass/grav/grav-gravitron-gravity-water-pipe.webp",
+          "description": "GRAV's glass-and-water gravity water pipe. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -84,7 +84,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/grav/grav-sandblasted-classic-sherlock.webp",
-          "description": "A traditional sherlock hand pipe with a soft-touch sandblasted finish and a deep bowl.",
+          "description": "A traditional sherlock hand pipe with a soft-touch sandblasted finish and a deep bowl. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -108,7 +108,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/grav/grav-coffee-mug-pocket-bubbler.webp",
-          "description": "A playful coffee mug-shaped pocket bubbler with water filtration for smoother hits.",
+          "description": "A coffee mug-shaped pocket bubbler with water filtration. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -132,7 +132,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/grav/grav-mini-hammer-bubbler.webp",
-          "description": "A compact hammer-style bubbler that sits upright and fits easily in the hand.",
+          "description": "A compact hammer-style bubbler that sits upright and fits easily in the hand. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -155,7 +155,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/grav/grav-large-spoon-pipe.webp",
-          "description": "A roomy glass spoon pipe with a generous bowl and comfortable grip.",
+          "description": "A roomy glass spoon pipe with a generous bowl and comfortable grip. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -178,7 +178,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/grav/grav-mini-steamroller.webp",
-          "description": "A small steamroller pipe that delivers big, fast hits in a pocket-friendly size.",
+          "description": "A small, pocket-size steamroller pipe. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -198,18 +198,18 @@ export const glassCategory: CatalogCategory = {
     {
       "name": "MJ Arsenal",
       "slug": "mj-arsenal",
-      "description": "Award-winning mini rigs, bongs and bubblers with clever, compact designs.",
+      "description": "Award-winning compact water pipes and bubblers.",
       "products": [
         {
-          "id": "cat-mj-arsenal-altitude-gravity-bong",
-          "slug": "mj-arsenal-altitude-gravity-bong",
-          "name": "MJ Arsenal Altitude Gravity Bong",
+          "id": "cat-mj-arsenal-altitude-gravity-water-pipe",
+          "slug": "mj-arsenal-altitude-gravity-water-pipe",
+          "name": "MJ Arsenal Altitude Gravity Water Pipe",
           "brand": "MJ Arsenal",
           "brandSlug": "mj-arsenal",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/mj-arsenal/mj-arsenal-altitude-gravity-bong.webp",
-          "description": "A tabletop glass gravity bong with a wood accent base for powerful, controllable hits.",
+          "image": "/catalog/glass/mj-arsenal/mj-arsenal-altitude-gravity-water-pipe.webp",
+          "description": "A tabletop glass gravity water pipe with a wood accent base. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -221,15 +221,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-mj-arsenal-lookout-bong",
-          "slug": "mj-arsenal-lookout-bong",
-          "name": "MJ Arsenal Lookout Bong",
+          "id": "cat-mj-arsenal-lookout-water-pipe",
+          "slug": "mj-arsenal-lookout-water-pipe",
+          "name": "MJ Arsenal Lookout Water Pipe",
           "brand": "MJ Arsenal",
           "brandSlug": "mj-arsenal",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/mj-arsenal/mj-arsenal-lookout-bong.webp",
-          "description": "A sturdy, easy-clearing bong with a wood base accent and smooth percolation.",
+          "image": "/catalog/glass/mj-arsenal/mj-arsenal-lookout-water-pipe.webp",
+          "description": "A sturdy water pipe with a wood base accent and percolator. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -241,15 +241,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-mj-arsenal-palisade-bong",
-          "slug": "mj-arsenal-palisade-bong",
-          "name": "MJ Arsenal Palisade Bong",
+          "id": "cat-mj-arsenal-palisade-water-pipe",
+          "slug": "mj-arsenal-palisade-water-pipe",
+          "name": "MJ Arsenal Palisade Water Pipe",
           "brand": "MJ Arsenal",
           "brandSlug": "mj-arsenal",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/mj-arsenal/mj-arsenal-palisade-bong.webp",
-          "description": "A tall MJ Arsenal bong with natural wood accents and clean, filtered draws.",
+          "image": "/catalog/glass/mj-arsenal/mj-arsenal-palisade-water-pipe.webp",
+          "description": "A tall MJ Arsenal water pipe with wood accents and a percolator. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -269,7 +269,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/mj-arsenal/mj-arsenal-mesa-bubbler.webp",
-          "description": "A compact bubbler with a wood accent base that delivers smooth, water-filtered hits.",
+          "description": "A compact bubbler with a wood accent base. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -289,7 +289,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/mj-arsenal/mj-arsenal-cove-bubbler.webp",
-          "description": "A colorful, hand-sized bubbler offered in eight glass colors.",
+          "description": "A colorful, hand-sized bubbler offered in eight glass colors. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -315,7 +315,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/mj-arsenal/mj-arsenal-grotto-hand-pipe.webp",
-          "description": "A chunky glass hand pipe with a comfortable grip and colorful finishes.",
+          "description": "A chunky glass hand pipe with a comfortable grip and colorful finishes. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -333,15 +333,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-mj-arsenal-apex-mini-rig",
-          "slug": "mj-arsenal-apex-mini-rig",
-          "name": "MJ Arsenal Apex Mini Rig",
+          "id": "cat-mj-arsenal-apex-mini-water-pipe",
+          "slug": "mj-arsenal-apex-mini-water-pipe",
+          "name": "MJ Arsenal Apex Mini Water Pipe",
           "brand": "MJ Arsenal",
           "brandSlug": "mj-arsenal",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/mj-arsenal/mj-arsenal-apex-mini-rig.webp",
-          "description": "A compact mini dab rig with a recycler-style design and natural wood accents.",
+          "image": "/catalog/glass/mj-arsenal/mj-arsenal-apex-mini-water-pipe.webp",
+          "description": "A compact recycler-style mini water pipe with wood accents. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -353,15 +353,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-mj-arsenal-nexus-bong",
-          "slug": "mj-arsenal-nexus-bong",
-          "name": "MJ Arsenal Nexus Bong",
+          "id": "cat-mj-arsenal-nexus-water-pipe",
+          "slug": "mj-arsenal-nexus-water-pipe",
+          "name": "MJ Arsenal Nexus Water Pipe",
           "brand": "MJ Arsenal",
           "brandSlug": "mj-arsenal",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/mj-arsenal/mj-arsenal-nexus-bong.webp",
-          "description": "A sculptural MJ Arsenal bong with a unique silhouette and efficient filtration.",
+          "image": "/catalog/glass/mj-arsenal/mj-arsenal-nexus-water-pipe.webp",
+          "description": "A sculptural MJ Arsenal water pipe with a unique silhouette and efficient filtration. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         }
       ]
@@ -369,18 +369,18 @@ export const glassCategory: CatalogCategory = {
     {
       "name": "Hemper",
       "slug": "hemper",
-      "description": "Fun, novelty-shaped glass bongs and pipes with bold, collectible designs.",
+      "description": "Novelty-shaped glass water pipes and pipes with collectible designs.",
       "products": [
         {
-          "id": "cat-hemper-flamingo-bong",
-          "slug": "hemper-flamingo-bong",
-          "name": "Hemper Flamingo Bong",
+          "id": "cat-hemper-flamingo-water-pipe",
+          "slug": "hemper-flamingo-water-pipe",
+          "name": "Hemper Flamingo Water Pipe",
           "brand": "Hemper",
           "brandSlug": "hemper",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/hemper/hemper-flamingo-bong.webp",
-          "description": "A bright pink flamingo-shaped bong that doubles as a statement piece.",
+          "image": "/catalog/glass/hemper/hemper-flamingo-water-pipe.webp",
+          "description": "A bright pink flamingo-shaped water pipe that doubles as a statement piece. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -392,15 +392,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-hemper-axolotl-bong",
-          "slug": "hemper-axolotl-bong",
-          "name": "Hemper Axolotl Bong",
+          "id": "cat-hemper-axolotl-water-pipe",
+          "slug": "hemper-axolotl-water-pipe",
+          "name": "Hemper Axolotl Water Pipe",
           "brand": "Hemper",
           "brandSlug": "hemper",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/hemper/hemper-axolotl-bong.webp",
-          "description": "A cute axolotl-shaped glass bong with smooth water filtration.",
+          "image": "/catalog/glass/hemper/hemper-axolotl-water-pipe.webp",
+          "description": "An axolotl-shaped glass water pipe. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -412,27 +412,27 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-hemper-snail-bong",
-          "slug": "hemper-snail-bong",
-          "name": "Hemper Snail Bong",
+          "id": "cat-hemper-snail-water-pipe",
+          "slug": "hemper-snail-water-pipe",
+          "name": "Hemper Snail Water Pipe",
           "brand": "Hemper",
           "brandSlug": "hemper",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/hemper/hemper-snail-bong.webp",
-          "description": "A quirky snail-shaped bong made from durable borosilicate glass.",
+          "image": "/catalog/glass/hemper/hemper-snail-water-pipe.webp",
+          "description": "A quirky snail-shaped water pipe made from durable borosilicate glass. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
-          "id": "cat-hemper-space-monster-bong",
-          "slug": "hemper-space-monster-bong",
-          "name": "Hemper Space Monster Bong",
+          "id": "cat-hemper-space-monster-water-pipe",
+          "slug": "hemper-space-monster-water-pipe",
+          "name": "Hemper Space Monster Water Pipe",
           "brand": "Hemper",
           "brandSlug": "hemper",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/hemper/hemper-space-monster-bong.webp",
-          "description": "A sci-fi space monster bong available in blue or green glass.",
+          "image": "/catalog/glass/hemper/hemper-space-monster-water-pipe.webp",
+          "description": "A sci-fi space monster water pipe available in blue or green glass. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -451,15 +451,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-hemper-jeweled-egg-bong",
-          "slug": "hemper-jeweled-egg-bong",
-          "name": "Hemper Jeweled Egg Bong",
+          "id": "cat-hemper-jeweled-egg-water-pipe",
+          "slug": "hemper-jeweled-egg-water-pipe",
+          "name": "Hemper Jeweled Egg Water Pipe",
           "brand": "Hemper",
           "brandSlug": "hemper",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/hemper/hemper-jeweled-egg-bong.webp",
-          "description": "An ornate, jeweled egg-shaped bong inspired by classic Fabergé styling.",
+          "image": "/catalog/glass/hemper/hemper-jeweled-egg-water-pipe.webp",
+          "description": "An ornate, jeweled egg-shaped water pipe inspired by classic Fabergé styling. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -471,15 +471,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-hemper-bloom-bong",
-          "slug": "hemper-bloom-bong",
-          "name": "Hemper Bloom Bong",
+          "id": "cat-hemper-bloom-water-pipe",
+          "slug": "hemper-bloom-water-pipe",
+          "name": "Hemper Bloom Water Pipe",
           "brand": "Hemper",
           "brandSlug": "hemper",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/hemper/hemper-bloom-bong.webp",
-          "description": "A floral bloom-shaped bong with soft colors and smooth hits.",
+          "image": "/catalog/glass/hemper/hemper-bloom-water-pipe.webp",
+          "description": "A floral bloom-shaped water pipe in soft colors. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -491,15 +491,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-hemper-weedbrick-bong",
-          "slug": "hemper-weedbrick-bong",
-          "name": "Hemper Weedbrick Bong",
+          "id": "cat-hemper-brick-water-pipe",
+          "slug": "hemper-brick-water-pipe",
+          "name": "Hemper Brick Water Pipe",
           "brand": "Hemper",
           "brandSlug": "hemper",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/hemper/hemper-weedbrick-bong.webp",
-          "description": "A playful brick-shaped bong that brings building-block fun to your shelf.",
+          "image": "/catalog/glass/hemper/hemper-brick-water-pipe.webp",
+          "description": "A brick-shaped glass water pipe. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -515,7 +515,7 @@ export const glassCategory: CatalogCategory = {
     {
       "name": "Empire Glassworks",
       "slug": "empire-glassworks",
-      "description": "Hand-crafted, themed glass pipes and rigs made in the USA.",
+      "description": "Hand-crafted, themed glass pipes and water pipes made in the USA.",
       "products": [
         {
           "id": "cat-empire-glassworks-baby-beaker-koi-pond",
@@ -526,7 +526,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/empire-glassworks/empire-glassworks-baby-beaker-koi-pond.webp",
-          "description": "A small beaker water pipe decorated with hand-sculpted koi and lily pads.",
+          "description": "A small beaker water pipe decorated with hand-sculpted koi and lily pads. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -538,7 +538,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/empire-glassworks/empire-glassworks-baby-beaker-under-the-sea.webp",
-          "description": "A mini beaker with an ocean theme featuring sea creatures sculpted in glass.",
+          "description": "A mini beaker with an ocean theme featuring sea creatures sculpted in glass. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -550,19 +550,19 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/empire-glassworks/empire-glassworks-pink-sprinkle-donut-pipe.webp",
-          "description": "A donut-shaped hand pipe topped with pink frosting and sprinkles.",
+          "description": "A donut-shaped hand pipe topped with pink frosting and sprinkles. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
-          "id": "cat-empire-glassworks-avocadope-mini-rig",
-          "slug": "empire-glassworks-avocadope-mini-rig",
-          "name": "Empire Glassworks Avocadope Mini Rig",
+          "id": "cat-empire-glassworks-avocadope-mini-water-pipe",
+          "slug": "empire-glassworks-avocadope-mini-water-pipe",
+          "name": "Empire Glassworks Avocadope Mini Water Pipe",
           "brand": "Empire Glassworks",
           "brandSlug": "empire-glassworks",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/empire-glassworks/empire-glassworks-avocadope-mini-rig.webp",
-          "description": "An avocado-themed mini dab rig with Empire's signature hand-sculpted details.",
+          "image": "/catalog/glass/empire-glassworks/empire-glassworks-avocadope-mini-water-pipe.webp",
+          "description": "An avocado-themed mini water pipe with Empire's hand-sculpted details. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -574,7 +574,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/empire-glassworks/empire-glassworks-kraken-spoon-pipe.webp",
-          "description": "A small spoon pipe wrapped by a sculpted glass kraken.",
+          "description": "A small spoon pipe wrapped by a sculpted glass kraken. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -586,7 +586,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/empire-glassworks/empire-glassworks-rocket-ship-water-pipe-kit.webp",
-          "description": "A space-themed water pipe kit shaped like a rocket ship with matching accessories.",
+          "description": "A space-themed water pipe kit shaped like a rocket ship with matching accessories. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         },
         {
@@ -598,7 +598,7 @@ export const glassCategory: CatalogCategory = {
           "category": "Glass",
           "categorySlug": "glass",
           "image": "/catalog/glass/empire-glassworks/empire-glassworks-mushrooms-pipe.webp",
-          "description": "A whimsical hand pipe decorated with sculpted glass mushrooms.",
+          "description": "A whimsical hand pipe decorated with sculpted glass mushrooms. For use with legal tobacco and legal botanical products only. 21+.",
           "options": []
         }
       ]
@@ -606,18 +606,18 @@ export const glassCategory: CatalogCategory = {
     {
       "name": "Pulsar",
       "slug": "pulsar",
-      "description": "Affordable, feature-packed glass bongs and rigs with fun, colorful designs.",
+      "description": "Affordable glass water pipes with colorful designs.",
       "products": [
         {
-          "id": "cat-pulsar-big-chug-bong",
-          "slug": "pulsar-big-chug-bong",
-          "name": "Pulsar Big Chug Bong",
+          "id": "cat-pulsar-big-chug-water-pipe",
+          "slug": "pulsar-big-chug-water-pipe",
+          "name": "Pulsar Big Chug Water Pipe",
           "brand": "Pulsar",
           "brandSlug": "pulsar",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/pulsar/pulsar-big-chug-bong.webp",
-          "description": "A wide-body chugger bong built for big, fast pulls.",
+          "image": "/catalog/glass/pulsar/pulsar-big-chug-water-pipe.webp",
+          "description": "A wide-body chugger water pipe. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -628,15 +628,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-pulsar-glass-gravity-bong",
-          "slug": "pulsar-glass-gravity-bong",
-          "name": "Pulsar Glass Gravity Bong",
+          "id": "cat-pulsar-glass-gravity-water-pipe",
+          "slug": "pulsar-glass-gravity-water-pipe",
+          "name": "Pulsar Glass Gravity Water Pipe",
           "brand": "Pulsar",
           "brandSlug": "pulsar",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/pulsar/pulsar-glass-gravity-bong.webp",
-          "description": "An all-glass gravity bong that delivers dense, powerful hits.",
+          "image": "/catalog/glass/pulsar/pulsar-glass-gravity-water-pipe.webp",
+          "description": "An all-glass gravity water pipe. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -647,15 +647,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-pulsar-transporter-kicked-straight-tube-bong",
-          "slug": "pulsar-transporter-kicked-straight-tube-bong",
-          "name": "Pulsar Transporter Kicked Straight Tube Bong",
+          "id": "cat-pulsar-transporter-kicked-straight-tube-water-pipe",
+          "slug": "pulsar-transporter-kicked-straight-tube-water-pipe",
+          "name": "Pulsar Transporter Kicked Straight Tube Water Pipe",
           "brand": "Pulsar",
           "brandSlug": "pulsar",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/pulsar/pulsar-transporter-kicked-straight-tube-bong.webp",
-          "description": "A tall straight tube with a kicked neck for comfortable, smooth draws.",
+          "image": "/catalog/glass/pulsar/pulsar-transporter-kicked-straight-tube-water-pipe.webp",
+          "description": "A tall straight tube water pipe with a kicked neck. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Colors",
@@ -674,15 +674,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-pulsar-chillr-glycerin-beaker-bong",
-          "slug": "pulsar-chillr-glycerin-beaker-bong",
-          "name": "Pulsar Chillr Glycerin Beaker Bong",
+          "id": "cat-pulsar-chillr-glycerin-beaker-water-pipe",
+          "slug": "pulsar-chillr-glycerin-beaker-water-pipe",
+          "name": "Pulsar Chillr Glycerin Beaker Water Pipe",
           "brand": "Pulsar",
           "brandSlug": "pulsar",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/pulsar/pulsar-chillr-glycerin-beaker-bong.webp",
-          "description": "A freezable glycerin-coil beaker bong for extra-cool hits.",
+          "image": "/catalog/glass/pulsar/pulsar-chillr-glycerin-beaker-water-pipe.webp",
+          "description": "A beaker water pipe with a freezable glycerin coil. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -693,15 +693,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-pulsar-12-arm-perc-chugger-bong",
-          "slug": "pulsar-12-arm-perc-chugger-bong",
-          "name": "Pulsar 12 Arm Perc Chugger Bong",
+          "id": "cat-pulsar-12-arm-perc-chugger-water-pipe",
+          "slug": "pulsar-12-arm-perc-chugger-water-pipe",
+          "name": "Pulsar 12 Arm Perc Chugger Water Pipe",
           "brand": "Pulsar",
           "brandSlug": "pulsar",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/pulsar/pulsar-12-arm-perc-chugger-bong.webp",
-          "description": "A chugger-style bong with a 12-arm tree percolator for heavy diffusion.",
+          "image": "/catalog/glass/pulsar/pulsar-12-arm-perc-chugger-water-pipe.webp",
+          "description": "A chugger-style water pipe with a 12-arm tree percolator for heavy diffusion. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -712,15 +712,15 @@ export const glassCategory: CatalogCategory = {
           ]
         },
         {
-          "id": "cat-pulsar-thk-9mm-beaker-bong",
-          "slug": "pulsar-thk-9mm-beaker-bong",
-          "name": "Pulsar THK 9mm Beaker Bong",
+          "id": "cat-pulsar-thk-9mm-beaker-water-pipe",
+          "slug": "pulsar-thk-9mm-beaker-water-pipe",
+          "name": "Pulsar THK 9mm Beaker Water Pipe",
           "brand": "Pulsar",
           "brandSlug": "pulsar",
           "category": "Glass",
           "categorySlug": "glass",
-          "image": "/catalog/glass/pulsar/pulsar-thk-9mm-beaker-bong.webp",
-          "description": "An extra-thick 9mm glass beaker built for durability.",
+          "image": "/catalog/glass/pulsar/pulsar-thk-9mm-beaker-water-pipe.webp",
+          "description": "An extra-thick 9mm glass beaker built for durability. For use with legal tobacco and legal botanical products only. 21+.",
           "options": [
             {
               "label": "Sizes",
@@ -901,5 +901,5 @@ export const glassCategory: CatalogCategory = {
       ]
     }
   ],
-  "image": "/catalog/glass/grav/grav-medium-deco-beaker-bong.webp"
+  "image": "/catalog/glass/grav/grav-medium-deco-beaker-water-pipe.webp"
 };

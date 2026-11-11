@@ -6,7 +6,7 @@ import type { CatalogCategory } from '../types';
 export const cigarillosCategory: CatalogCategory = {
   "name": "Cigarillos & Cigars",
   "slug": "cigarillos",
-  "description": "Flavored cigarillos, natural leaf cigars and little cigars from the most-requested brands.",
+  "description": "Cigarillos, leaf cigars and little cigars from the most-requested brands. 21+ only.",
   "brands": [
     {
       "name": "Swisher Sweets",
@@ -22,7 +22,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/swisher-sweets/swisher-sweets-cigarillos.webp",
-          "description": "The classic Swisher Sweets cigarillo: a smooth, sweet-tipped smoke offered in a huge lineup of flavors.",
+          "description": "The classic Swisher Sweets cigarillo, sweet-tipped, in a large lineup of flavors.",
           "options": [
             {
               "label": "Flavors",
@@ -89,7 +89,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/swisher-sweets/leaf-by-swisher-sweets.webp",
-          "description": "Natural leaf cigars rolled in a rustic whole-leaf wrapper for a fuller, more traditional taste.",
+          "description": "Leaf cigars rolled in a rustic whole-leaf wrapper.",
           "options": [
             {
               "label": "Flavors",
@@ -128,7 +128,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/swisher-sweets/swisher-sweets-blk-tip-cigarillos.webp",
-          "description": "Swisher Sweets cigarillos with a sleek black plastic tip and dark wrapper for a smooth draw.",
+          "description": "Swisher Sweets cigarillos with a black plastic tip and dark wrapper.",
           "options": [
             {
               "label": "Flavors",
@@ -138,7 +138,6 @@ export const cigarillosCategory: CatalogCategory = {
                 "Cocoa",
                 "Cream",
                 "Grape",
-                "Smooth",
                 "Wine"
               ]
             },
@@ -198,14 +197,13 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/swisher-sweets/swisher-sweets-little-cigars-100mm.webp",
-          "description": "Filtered 100mm little cigars with a cigarette-style format, packed 20 per pack.",
+          "description": "Swisher Sweets 100mm little cigars.",
           "options": [
             {
               "label": "Flavors",
               "values": [
                 "Cherry",
                 "Full Blend",
-                "Mellow",
                 "Menthol",
                 "Peach",
                 "Regular",
@@ -258,7 +256,7 @@ export const cigarillosCategory: CatalogCategory = {
     {
       "name": "Backwoods",
       "slug": "backwoods",
-      "description": "Wild, rustic all-natural leaf cigars with a signature tapered shape.",
+      "description": "Rustic whole-leaf cigars with a signature tapered shape.",
       "products": [
         {
           "id": "cat-backwoods-cigars-5-pack",
@@ -269,7 +267,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/backwoods/backwoods-cigars-5-pack.webp",
-          "description": "Natural leaf cigars with a rustic, unfinished look and a tapered end, available in many sweet and aromatic flavors.",
+          "description": "Whole-leaf cigars with a rustic, unfinished look and a tapered end, in many flavors.",
           "options": [
             {
               "label": "Flavors",
@@ -290,14 +288,13 @@ export const cigarillosCategory: CatalogCategory = {
                 "Generation Now",
                 "Grape",
                 "Honey",
-                "Honey Berry Natural",
+                "Honey Berry",
                 "Honey Bourbon",
                 "Irish Cream",
                 "Rum Cake",
                 "Russian Cream",
                 "Smoked Caramel",
-                "Smooth",
-                "Sweet Aromatic Natural",
+                "Sweet Aromatic",
                 "Sweet SummerTime Chi",
                 "Sweet Tea",
                 "The Marathon",
@@ -423,7 +420,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/backwoods/true-wraps-by-backwoods.webp",
-          "description": "Natural tobacco leaf wraps from Backwoods for rolling your own.",
+          "description": "Tobacco leaf wraps from Backwoods for rolling your own.",
           "options": [
             {
               "label": "Flavors",
@@ -460,7 +457,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/white-owl/white-owl-cigarillos.webp",
-          "description": "Foil-fresh White Owl cigarillos with a smooth burn and a big menu of flavors.",
+          "description": "Foil-fresh White Owl cigarillos in a large menu of flavors.",
           "options": [
             {
               "label": "Flavors",
@@ -615,7 +612,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/white-owl/white-owl-invincible-cigars.webp",
-          "description": "A classic, mild White Owl cigar in a traditional shape.",
+          "description": "A classic White Owl cigar in a traditional shape.",
           "options": [
             {
               "label": "Sizes",
@@ -686,7 +683,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/dutch-masters/dutch-masters-cigarillos.webp",
-          "description": "Traditional Dutch Masters cigarillos with a smooth, mellow taste, packed three to a pouch.",
+          "description": "Traditional Dutch Masters cigarillos, three to a pouch.",
           "options": [
             {
               "label": "Flavors",
@@ -724,12 +721,11 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/dutch-masters/dutch-leaf-cigarillos.webp",
-          "description": "Dutch Masters cigarillos wrapped in natural leaf for a more rustic, full-bodied smoke.",
+          "description": "Dutch Masters cigarillos wrapped in whole leaf.",
           "options": [
             {
               "label": "Flavors",
               "values": [
-                "Pure Tobacco",
                 "Real Sweet",
                 "Ripe Berry"
               ]
@@ -784,7 +780,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/dutch-masters/dutch-masters-palma-cigars.webp",
-          "description": "The slender Dutch Masters Palma, a mild and easy-going cigar.",
+          "description": "The slender Dutch Masters Palma cigar.",
           "options": [
             {
               "label": "Styles",
@@ -858,7 +854,7 @@ export const cigarillosCategory: CatalogCategory = {
     {
       "name": "Game",
       "slug": "game",
-      "description": "Game by Garcia y Vega cigarillos, from foil-fresh Vegas to natural leaf.",
+      "description": "Game by Garcia y Vega cigarillos, from foil-fresh Vegas to leaf wraps.",
       "products": [
         {
           "id": "cat-game-leaf-cigarillos",
@@ -869,7 +865,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/game/game-leaf-cigarillos.webp",
-          "description": "Game cigarillos wrapped in natural leaf for a rustic look and richer flavor.",
+          "description": "Game cigarillos wrapped in whole leaf.",
           "options": [
             {
               "label": "Flavors",
@@ -882,7 +878,7 @@ export const cigarillosCategory: CatalogCategory = {
                 "Dark",
                 "Dark Rum",
                 "Mango",
-                "Natural",
+                "Unflavored",
                 "Peach Sangria",
                 "Pineapple",
                 "Sweet",
@@ -915,7 +911,7 @@ export const cigarillosCategory: CatalogCategory = {
           "category": "Cigarillos & Cigars",
           "categorySlug": "cigarillos",
           "image": "/catalog/cigarillos/game/game-vega-foil-cigarillos.webp",
-          "description": "Game Vega cigarillos in foil-fresh pouches with a smooth, natural tip.",
+          "description": "Game Vega cigarillos in foil-fresh pouches.",
           "options": [
             {
               "label": "Flavors",
@@ -937,7 +933,6 @@ export const cigarillosCategory: CatalogCategory = {
                 "Iced Donuts",
                 "Mango",
                 "Miami Sunset",
-                "Natural Silver",
                 "Pacific Nectar",
                 "Pineapple",
                 "Red",

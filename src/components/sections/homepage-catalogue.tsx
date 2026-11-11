@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Category, Product } from '@/types';
 import ProductCard from '@/components/product/ProductCard';
+import { isNicotineCategory } from '@/components/catalog/NicotineWarning';
 
 export default function HomepageCatalogue() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -32,12 +33,15 @@ export default function HomepageCatalogue() {
         const productsData = await productsResponse.json();
         
         if (categoriesData.success && productsData.success) {
-          setCategories(categoriesData.data.categories);
-          setProducts(productsData.data.products);
+          // Nicotine/tobacco categories stay off the homepage; their pages carry the
+          // required nicotine warning instead.
+          const cats = (categoriesData.data.categories as Category[]).filter((c) => !isNicotineCategory(c.slug));
+          setCategories(cats);
+          setProducts((productsData.data.products as Product[]).filter((p) => !isNicotineCategory(p.category)));
           
           // Set first category as active if available
-          if (categoriesData.data.categories.length > 0) {
-            setActiveCategory(categoriesData.data.categories[0].id);
+          if (cats.length > 0) {
+            setActiveCategory(cats[0].id);
           }
         }
       } catch (error) {

@@ -6,12 +6,12 @@ import type { CatalogCategory } from '../types';
 export const vaporizersCategory: CatalogCategory = {
   "name": "Vaporizers",
   "slug": "vaporizers",
-  "description": "Premium dry herb and concentrate vaporizers, e-rigs and dab pens from the brands Austin asks for most.",
+  "description": "Electronic vaporizers, e-rigs and 510 batteries. Texas treats electronic vaporizers as e-cigarettes: 21+ only, sold in store only. For use with legal products only.",
   "brands": [
     {
       "name": "Puffco",
       "slug": "puffco",
-      "description": "Los Angeles-born pioneer of smart electronic dab rigs and concentrate vaporizers.",
+      "description": "Los Angeles-based maker of smart electronic vaporizers and e-rigs.",
       "products": [
         {
           "id": "cat-puffco-peak",
@@ -22,7 +22,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/puffco/puffco-peak.webp",
-          "description": "The original Puffco smart rig: a portable electronic dab rig with a ceramic chamber, four heat settings and fast heat-up for smooth concentrate hits.",
+          "description": "A portable electronic e-rig with a ceramic chamber, four heat settings and a glass top.",
           "options": [
             {
               "label": "Colors",
@@ -45,7 +45,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/puffco/puffco-peak-pro-3dxl.webp",
-          "description": "Puffco's flagship smart rig with the 3DXL chamber, app control, wireless charging support and precise temperature profiles for big, flavorful sessions.",
+          "description": "Puffco's flagship e-rig with the 3DXL chamber, app control and wireless charging support.",
           "options": [
             {
               "label": "Colors",
@@ -65,7 +65,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/puffco/puffco-new-peak-pro.webp",
-          "description": "The redesigned Peak Pro with a refined glass top, smarter heating and personalized heat profiles in a sleek, travel-ready rig.",
+          "description": "The redesigned Peak Pro e-rig with a refined glass top and personalized heat profiles.",
           "options": [
             {
               "label": "Colors",
@@ -85,7 +85,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/puffco/puffco-pivot.webp",
-          "description": "A pocket-sized concentrate vaporizer with a pivoting mouthpiece, ceramic chamber and simple one-button operation for on-the-go dabs.",
+          "description": "A pocket-sized electronic vaporizer with a pivoting mouthpiece, ceramic chamber and one-button operation.",
           "options": [
             {
               "label": "Colors",
@@ -105,7 +105,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/puffco/puffco-proxy-kit.webp",
-          "description": "A modular concentrate vaporizer that pairs Puffco's precise heating with interchangeable glass pieces for a pipe-like experience.",
+          "description": "A modular electronic vaporizer with interchangeable glass pieces.",
           "options": [
             {
               "label": "Colors",
@@ -125,7 +125,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/puffco/puffco-proxy-core-kit.webp",
-          "description": "The essential Proxy setup: Proxy base, chamber and mouthpiece in a compact kit that is easy to clean and carry.",
+          "description": "The essential Proxy setup: base, chamber and mouthpiece in a compact kit.",
           "options": [
             {
               "label": "Colors",
@@ -145,7 +145,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/puffco/puffco-hot-knife.webp",
-          "description": "A heated, rechargeable dab tool that glides through sticky concentrates for clean, mess-free loading.",
+          "description": "A heated, rechargeable loading tool with interchangeable tips.",
           "options": [
             {
               "label": "Colors",
@@ -165,7 +165,7 @@ export const vaporizersCategory: CatalogCategory = {
     {
       "name": "Dr. Dabber",
       "slug": "dr-dabber",
-      "description": "Designer of premium e-rigs, wax pens and dab accessories built around clean, ceramic heating.",
+      "description": "Maker of e-rigs and vaporizer pens with ceramic heating.",
       "products": [
         {
           "id": "cat-dr-dabber-switch-2",
@@ -176,7 +176,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/dr-dabber/dr-dabber-switch-2.webp",
-          "description": "A hybrid vaporizer for both dry herb and concentrates, using induction and convection heating for fast, flavorful sessions.",
+          "description": "A hybrid electronic vaporizer using induction and convection heating.",
           "options": []
         },
         {
@@ -188,7 +188,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/dr-dabber/dr-dabber-boost-evo-e-rig.webp",
-          "description": "A portable e-rig with a ceramic-coated atomizer, adjustable heat settings and a glass attachment for rig-style hits anywhere.",
+          "description": "A portable e-rig with a ceramic-coated atomizer, adjustable heat settings and a glass attachment.",
           "options": [
             {
               "label": "Colors",
@@ -208,7 +208,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/dr-dabber/dr-dabber-switch-go.webp",
-          "description": "A compact take on the Switch with portable induction heating for dry herb and concentrates in one travel-friendly unit.",
+          "description": "A compact, portable version of the Switch with induction heating.",
           "options": []
         },
         {
@@ -220,7 +220,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/dr-dabber/dr-dabber-ghost-2.webp",
-          "description": "A slim, pen-style concentrate vaporizer with ceramic heating and a magnetic mouthpiece for quick, discreet sessions.",
+          "description": "A slim, pen-style electronic vaporizer with ceramic heating and a magnetic mouthpiece.",
           "options": []
         },
         {
@@ -232,7 +232,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/dr-dabber/dr-dabber-xs.webp",
-          "description": "An ultra-compact wax pen with a durable build and simple button control, sized for everyday carry.",
+          "description": "A compact vaporizer pen with a durable build and simple button control.",
           "options": []
         },
         {
@@ -244,7 +244,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/dr-dabber/dr-dabber-drop.webp",
-          "description": "A small-format concentrate vaporizer built for quick, low-maintenance dabs on the move.",
+          "description": "A small-format electronic vaporizer.",
           "options": []
         },
         {
@@ -256,7 +256,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/dr-dabber/dr-dabber-light-pen-kit.webp",
-          "description": "An easy-to-use concentrate pen kit with ceramic atomizer and loading tool, ideal for first-time dabbers.",
+          "description": "A vaporizer pen kit with a ceramic atomizer and loading tool.",
           "options": []
         },
         {
@@ -268,7 +268,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/dr-dabber/dr-dabber-universal-battery.webp",
-          "description": "A slim 510-thread battery with variable voltage for cartridges and compatible atomizers.",
+          "description": "A slim 510-thread battery with variable voltage for compatible atomizers.",
           "options": [
             {
               "label": "Colors",
@@ -287,7 +287,7 @@ export const vaporizersCategory: CatalogCategory = {
     {
       "name": "Focus V",
       "slug": "focus-v",
-      "description": "Makers of the CARTA smart e-rigs and AERIS modular vaporizers for flower and concentrates.",
+      "description": "Maker of the CARTA e-rigs and AERIS modular vaporizers.",
       "products": [
         {
           "id": "cat-focus-v-carta-3-kit",
@@ -298,7 +298,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/focus-v/focus-v-carta-3-kit.webp",
-          "description": "Focus V's latest smart e-rig with app connectivity, multiple heat profiles and swappable atomizers for concentrates and dry herb.",
+          "description": "Focus V's smart e-rig with app connectivity, multiple heat profiles and swappable atomizers.",
           "options": []
         },
         {
@@ -310,7 +310,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/focus-v/focus-v-carta-sport.webp",
-          "description": "A lightweight, portable CARTA e-rig with quick heat-up and simple controls, built for sessions on the go.",
+          "description": "A lightweight, portable CARTA e-rig with quick heat-up and simple controls.",
           "options": [
             {
               "label": "Colors",
@@ -332,7 +332,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/focus-v/focus-v-carta-sport-connect.webp",
-          "description": "The CARTA SPORT with Bluetooth app control so you can fine-tune temperatures and session settings from your phone.",
+          "description": "The CARTA SPORT with Bluetooth app control for temperature settings.",
           "options": [
             {
               "label": "Colors",
@@ -354,7 +354,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/focus-v/focus-v-aeris.webp",
-          "description": "A modular vaporizer that switches between dry herb and concentrates, with optional water filtration attachments.",
+          "description": "A modular electronic vaporizer with optional water filtration attachments.",
           "options": [
             {
               "label": "Colors",
@@ -378,7 +378,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/focus-v/focus-v-aeris-bubbler-kit.webp",
-          "description": "Adds a glass bubbler to the AERIS for cooler, water-filtered vapor without losing portability.",
+          "description": "A glass bubbler attachment for the AERIS.",
           "options": [
             {
               "label": "Styles",
@@ -398,7 +398,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/focus-v/focus-v-intelli-core-herb-atomizer.webp",
-          "description": "A dry herb atomizer that turns compatible CARTA e-rigs into a flower vaporizer with even, convection-style heating.",
+          "description": "A convection-style atomizer for compatible CARTA devices.",
           "options": []
         }
       ]
@@ -406,59 +406,8 @@ export const vaporizersCategory: CatalogCategory = {
     {
       "name": "Lookah",
       "slug": "lookah",
-      "description": "Popular maker of affordable wax pens, e-rigs and 510 batteries with bold designs.",
+      "description": "Maker of vaporizer pens, e-rigs and 510 batteries.",
       "products": [
-        {
-          "id": "cat-lookah-seahorse-pro-plus",
-          "slug": "lookah-seahorse-pro-plus",
-          "name": "Lookah Seahorse Pro Plus",
-          "brand": "Lookah",
-          "brandSlug": "lookah",
-          "category": "Vaporizers",
-          "categorySlug": "vaporizers",
-          "image": "/catalog/vaporizers/lookah/lookah-seahorse-pro-plus.webp",
-          "description": "A nectar-collector style wax pen with quartz or ceramic coils and adjustable voltage for direct dabbing.",
-          "options": [
-            {
-              "label": "Colors",
-              "values": [
-                "Red",
-                "Purple",
-                "Orange",
-                "Neon Green",
-                "Green",
-                "Grey",
-                "Blue",
-                "Black",
-                "Rainbow",
-                "Royal Gold"
-              ]
-            }
-          ]
-        },
-        {
-          "id": "cat-lookah-seahorse-king",
-          "slug": "lookah-seahorse-king",
-          "name": "Lookah Seahorse King",
-          "brand": "Lookah",
-          "brandSlug": "lookah",
-          "category": "Vaporizers",
-          "categorySlug": "vaporizers",
-          "image": "/catalog/vaporizers/lookah/lookah-seahorse-king.webp",
-          "description": "A larger 950mAh electric nectar collector with longer battery life and fast heat-up for concentrates.",
-          "options": [
-            {
-              "label": "Colors",
-              "values": [
-                "Black",
-                "Blue",
-                "Green",
-                "Purple",
-                "Red"
-              ]
-            }
-          ]
-        },
         {
           "id": "cat-lookah-python",
           "slug": "lookah-python",
@@ -468,7 +417,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/lookah/lookah-python.webp",
-          "description": "A compact variable-voltage wax vaporizer with a glass water attachment for smoother hits.",
+          "description": "A compact variable-voltage vaporizer with a glass water attachment.",
           "options": [
             {
               "label": "Colors",
@@ -492,7 +441,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/lookah/lookah-octopus-mini-e-rig.webp",
-          "description": "A playful, portable mini e-rig with a glass bubbler top and simple temperature control.",
+          "description": "A portable mini e-rig with a glass bubbler top and simple temperature control.",
           "options": [
             {
               "label": "Colors",
@@ -515,7 +464,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/lookah/lookah-mini-unicorn.webp",
-          "description": "A small, eye-catching e-rig with a glass attachment, quick heat-up and easy one-button use.",
+          "description": "A small e-rig with a glass attachment and one-button use.",
           "options": [
             {
               "label": "Colors",
@@ -536,7 +485,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/lookah/lookah-dragon-egg-e-rig.webp",
-          "description": "A rounded e-rig with built-in water filtration, multiple voltage settings and a quartz atomizer for concentrates.",
+          "description": "A rounded e-rig with water filtration, multiple voltage settings and a quartz atomizer.",
           "options": [
             {
               "label": "Colors",
@@ -566,7 +515,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/storz-and-bickel/storz-and-bickel-volcano-hybrid.webp",
-          "description": "The iconic desktop vaporizer with balloon and tube inhalation, app control and precise hybrid heating for dry herb.",
+          "description": "A desktop electronic vaporizer with balloon and tube inhalation, app control and hybrid heating.",
           "options": [
             {
               "label": "Colors",
@@ -607,7 +556,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/storz-and-bickel/storz-and-bickel-mighty-plus.webp",
-          "description": "A premium portable dry herb vaporizer with hybrid heating, fast USB-C charging and a built-in cooling unit.",
+          "description": "A portable electronic vaporizer with hybrid heating, USB-C charging and a cooling unit.",
           "options": []
         },
         {
@@ -631,7 +580,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/storz-and-bickel/storz-and-bickel-venty.webp",
-          "description": "A high-airflow portable vaporizer with very fast heat-up, adjustable airflow and boost modes for dense vapor.",
+          "description": "A portable electronic vaporizer with fast heat-up, adjustable airflow and boost modes.",
           "options": []
         },
         {
@@ -643,7 +592,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/storz-and-bickel/storz-and-bickel-veazy.webp",
-          "description": "A compact, easy-to-use portable vaporizer with preset temperatures and quick heat-up for everyday dry herb sessions.",
+          "description": "A compact portable electronic vaporizer with preset temperatures.",
           "options": [
             {
               "label": "Colors",
@@ -665,7 +614,7 @@ export const vaporizersCategory: CatalogCategory = {
           "category": "Vaporizers",
           "categorySlug": "vaporizers",
           "image": "/catalog/vaporizers/storz-and-bickel/storz-and-bickel-plenty.webp",
-          "description": "A handheld vaporizer with a large herb chamber and cooling coil, plugged in for unlimited session time.",
+          "description": "A handheld, plug-in electronic vaporizer with a large chamber and cooling coil.",
           "options": []
         }
       ]

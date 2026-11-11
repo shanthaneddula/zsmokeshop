@@ -211,26 +211,6 @@
       "image_status": "ok"
     },
     {
-      "slug": "lookah-seahorse-pro-plus",
-      "name": "Lookah Seahorse Pro Plus",
-      "brand": "Lookah",
-      "category": "Vaporizers",
-      "source": "https://smokecartel.com/products/lookah-seahorse-pro-plus",
-      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/LOOKAHSEAHORSEPLUSroyalgold.webp?v=1773855174",
-      "image": "/catalog/vaporizers/lookah/lookah-seahorse-pro-plus.webp",
-      "image_status": "ok"
-    },
-    {
-      "slug": "lookah-seahorse-king",
-      "name": "Lookah Seahorse King",
-      "brand": "Lookah",
-      "category": "Vaporizers",
-      "source": "https://smokecartel.com/products/lookah-seahorse-king-electric-dab-pen-950mah",
-      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/p-V924BK_94c15e61-7f3c-4e41-a5b0-781ab66379ce.jpg?v=1722863971",
-      "image": "/catalog/vaporizers/lookah/lookah-seahorse-king.webp",
-      "image_status": "ok"
-    },
-    {
       "slug": "lookah-python",
       "name": "Lookah Python",
       "brand": "Lookah",
@@ -511,23 +491,23 @@
       "image_status": "ok"
     },
     {
-      "slug": "kentucky-select-gold-light-pipe-tobacco",
-      "name": "Kentucky Select Gold (Light) Pipe Tobacco",
+      "slug": "kentucky-select-gold-pipe-tobacco",
+      "name": "Kentucky Select Gold Pipe Tobacco",
       "brand": "Kentucky Select",
       "category": "Roll Your Own Tobacco",
       "source": "https://tobaccostock.com/products/kentucky-select-gold-pipe-tobacco-5-lb-pack",
       "image_source": "https://cdn.shopify.com/s/files/1/0376/4872/8109/files/kentucky-select-gold-light-pipe-tobacco-5-lb-bag-423.jpg?v=1754933438",
-      "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-gold-light-pipe-tobacco.webp",
+      "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-gold-pipe-tobacco.webp",
       "image_status": "ok"
     },
     {
-      "slug": "kentucky-select-silver-ultra-light-pipe-tobacco",
-      "name": "Kentucky Select Silver (Ultra Light) Pipe Tobacco",
+      "slug": "kentucky-select-silver-pipe-tobacco",
+      "name": "Kentucky Select Silver Pipe Tobacco",
       "brand": "Kentucky Select",
       "category": "Roll Your Own Tobacco",
       "source": "https://tobaccostock.com/products/kentucky-select-silver-pipe-tobacco-5-lb-bag",
       "image_source": "https://cdn.shopify.com/s/files/1/0376/4872/8109/files/kentucky-select-silver-ultra-light-pipe-tobacco-5-lb-bag-475.jpg?v=1754944944",
-      "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-silver-ultra-light-pipe-tobacco.webp",
+      "image": "/catalog/roll-your-own-tobacco/kentucky-select/kentucky-select-silver-pipe-tobacco.webp",
       "image_status": "ok"
     },
     {
@@ -631,33 +611,33 @@
       "image_status": "ok"
     },
     {
-      "slug": "grav-medium-deco-beaker-bong",
-      "name": "GRAV Medium Deco Beaker Bong",
+      "slug": "grav-medium-deco-beaker-water-pipe",
+      "name": "GRAV Medium Deco Beaker Water Pipe",
       "brand": "GRAV",
       "category": "Glass",
       "source": "https://grav.com/products/grav-medium-deco-beaker-bong-1",
       "image_source": "https://cdn.shopify.com/s/files/1/2245/5667/files/mediumsmokeangle.jpg?v=1768583441",
-      "image": "/catalog/glass/grav/grav-medium-deco-beaker-bong.webp",
+      "image": "/catalog/glass/grav/grav-medium-deco-beaker-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "grav-round-base-bong",
-      "name": "GRAV Round Base Bong",
+      "slug": "grav-round-base-water-pipe",
+      "name": "GRAV Round Base Water Pipe",
       "brand": "GRAV",
       "category": "Glass",
       "source": "https://grav.com/products/grav-small-round-base-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/2245/5667/files/32R.0_SmallRoundBase_ProductPhotography_02size.jpg?v=1771623926",
-      "image": "/catalog/glass/grav/grav-round-base-bong.webp",
+      "image": "/catalog/glass/grav/grav-round-base-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "grav-gravitron-gravity-bong",
-      "name": "GRAV Gravitron Gravity Bong",
+      "slug": "grav-gravitron-gravity-water-pipe",
+      "name": "GRAV Gravitron Gravity Water Pipe",
       "brand": "GRAV",
       "category": "Glass",
       "source": "https://grav.com/products/grav-2021-medium-gravitron",
       "image_source": "https://cdn.shopify.com/s/files/1/2245/5667/files/medium-gravitron-r--1.jpg?v=1694116138",
-      "image": "/catalog/glass/grav/grav-gravitron-gravity-bong.webp",
+      "image": "/catalog/glass/grav/grav-gravitron-gravity-water-pipe.webp",
       "image_status": "ok"
     },
     {
@@ -711,33 +691,33 @@
       "image_status": "ok"
     },
     {
-      "slug": "mj-arsenal-altitude-gravity-bong",
-      "name": "MJ Arsenal Altitude Gravity Bong",
+      "slug": "mj-arsenal-altitude-gravity-water-pipe",
+      "name": "MJ Arsenal Altitude Gravity Water Pipe",
       "brand": "MJ Arsenal",
       "category": "Glass",
       "source": "https://mjarsenal.com/products/altitude-gravity-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/1894/3105/files/Altitude-Beechwood.jpg?v=1793288966",
-      "image": "/catalog/glass/mj-arsenal/mj-arsenal-altitude-gravity-bong.webp",
+      "image": "/catalog/glass/mj-arsenal/mj-arsenal-altitude-gravity-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "mj-arsenal-lookout-bong",
-      "name": "MJ Arsenal Lookout Bong",
+      "slug": "mj-arsenal-lookout-water-pipe",
+      "name": "MJ Arsenal Lookout Water Pipe",
       "brand": "MJ Arsenal",
       "category": "Glass",
       "source": "https://mjarsenal.com/products/lookout-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/1894/3105/files/Lookout-Beechwood_f74d20f3-6b57-4fcf-8d35-1afb3044f3c4.jpg?v=1792529627",
-      "image": "/catalog/glass/mj-arsenal/mj-arsenal-lookout-bong.webp",
+      "image": "/catalog/glass/mj-arsenal/mj-arsenal-lookout-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "mj-arsenal-palisade-bong",
-      "name": "MJ Arsenal Palisade Bong",
+      "slug": "mj-arsenal-palisade-water-pipe",
+      "name": "MJ Arsenal Palisade Water Pipe",
       "brand": "MJ Arsenal",
       "category": "Glass",
       "source": "https://mjarsenal.com/products/palisade-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/1894/3105/files/Palisade-Beechwood.jpg?v=1792529997",
-      "image": "/catalog/glass/mj-arsenal/mj-arsenal-palisade-bong.webp",
+      "image": "/catalog/glass/mj-arsenal/mj-arsenal-palisade-water-pipe.webp",
       "image_status": "ok"
     },
     {
@@ -771,93 +751,93 @@
       "image_status": "ok"
     },
     {
-      "slug": "mj-arsenal-apex-mini-rig",
-      "name": "MJ Arsenal Apex Mini Rig",
+      "slug": "mj-arsenal-apex-mini-water-pipe",
+      "name": "MJ Arsenal Apex Mini Water Pipe",
       "brand": "MJ Arsenal",
       "category": "Glass",
       "source": "https://mjarsenal.com/products/apex-mini-rig",
       "image_source": "https://cdn.shopify.com/s/files/1/1894/3105/files/Apex-Beechwood.jpg?v=1792530099",
-      "image": "/catalog/glass/mj-arsenal/mj-arsenal-apex-mini-rig.webp",
+      "image": "/catalog/glass/mj-arsenal/mj-arsenal-apex-mini-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "mj-arsenal-nexus-bong",
-      "name": "MJ Arsenal Nexus Bong",
+      "slug": "mj-arsenal-nexus-water-pipe",
+      "name": "MJ Arsenal Nexus Water Pipe",
       "brand": "MJ Arsenal",
       "category": "Glass",
       "source": "https://mjarsenal.com/products/nexus-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/1894/3105/files/Nexus1_832cf408-a85a-4eb3-ad52-2c9e46dbda9b.jpg?v=1752606941",
-      "image": "/catalog/glass/mj-arsenal/mj-arsenal-nexus-bong.webp",
+      "image": "/catalog/glass/mj-arsenal/mj-arsenal-nexus-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "hemper-flamingo-bong",
-      "name": "Hemper Flamingo Bong",
+      "slug": "hemper-flamingo-water-pipe",
+      "name": "Hemper Flamingo Water Pipe",
       "brand": "Hemper",
       "category": "Glass",
       "source": "https://hemper.co/products/flamingo-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/0761/6031/files/HEMPER_FLAMINGO_BONG_WITH_BOX_-_001.jpg?v=1792606782",
-      "image": "/catalog/glass/hemper/hemper-flamingo-bong.webp",
+      "image": "/catalog/glass/hemper/hemper-flamingo-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "hemper-axolotl-bong",
-      "name": "Hemper Axolotl Bong",
+      "slug": "hemper-axolotl-water-pipe",
+      "name": "Hemper Axolotl Water Pipe",
       "brand": "Hemper",
       "category": "Glass",
       "source": "https://hemper.co/products/axolotl-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/0761/6031/files/HEMPER_AXOLOTL_BONG_-_WITH_BOX-_001_-_ON_WHITE_1080x1080_27c1c278-d036-4b40-8e2e-3af077605b06.jpg?v=1782333715",
-      "image": "/catalog/glass/hemper/hemper-axolotl-bong.webp",
+      "image": "/catalog/glass/hemper/hemper-axolotl-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "hemper-snail-bong",
-      "name": "Hemper Snail Bong",
+      "slug": "hemper-snail-water-pipe",
+      "name": "Hemper Snail Water Pipe",
       "brand": "Hemper",
       "category": "Glass",
       "source": "https://hemper.co/products/snail-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/0761/6031/files/HEMPER_SNAIL_BONG_WITHBOX_001_-_ONWHITE_1080x1080_abb6fc03-a45c-4578-be9a-2404183432ef.jpg?v=1784940972",
-      "image": "/catalog/glass/hemper/hemper-snail-bong.webp",
+      "image": "/catalog/glass/hemper/hemper-snail-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "hemper-space-monster-bong",
-      "name": "Hemper Space Monster Bong",
+      "slug": "hemper-space-monster-water-pipe",
+      "name": "Hemper Space Monster Water Pipe",
       "brand": "Hemper",
       "category": "Glass",
       "source": "https://hemper.co/products/space-monster-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/0761/6031/files/240314_HEMPER_SPACE_MONSTER_REGULAR_BONG_GREEN_WITHBOX_001_1080x1080_83d6ed22-803e-4c32-baa7-32ff08f9290a_b657d360491d2d61.jpg?v=1784941761",
-      "image": "/catalog/glass/hemper/hemper-space-monster-bong.webp",
+      "image": "/catalog/glass/hemper/hemper-space-monster-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "hemper-jeweled-egg-bong",
-      "name": "Hemper Jeweled Egg Bong",
+      "slug": "hemper-jeweled-egg-water-pipe",
+      "name": "Hemper Jeweled Egg Water Pipe",
       "brand": "Hemper",
       "category": "Glass",
       "source": "https://hemper.co/products/jeweled-egg-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/0761/6031/files/HEMPER_JEWELED_EGG_BONG_WITHBOX_001_ONWHITE_1080x1080_93d9246d-1fdb-4d75-8aa3-09e808406f80_9fd061c86d6bb17c.jpg?v=1777990386",
-      "image": "/catalog/glass/hemper/hemper-jeweled-egg-bong.webp",
+      "image": "/catalog/glass/hemper/hemper-jeweled-egg-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "hemper-bloom-bong",
-      "name": "Hemper Bloom Bong",
+      "slug": "hemper-bloom-water-pipe",
+      "name": "Hemper Bloom Water Pipe",
       "brand": "Hemper",
       "category": "Glass",
       "source": "https://hemper.co/products/bloom-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/0761/6031/files/HEMPER_BLOOM_BONG_WITHBOX_001_ONWHITE_1080x1080_5e299a28-845a-483d-a198-f524d2c19cf6.jpg?v=1770055823",
-      "image": "/catalog/glass/hemper/hemper-bloom-bong.webp",
+      "image": "/catalog/glass/hemper/hemper-bloom-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "hemper-weedbrick-bong",
-      "name": "Hemper Weedbrick Bong",
+      "slug": "hemper-brick-water-pipe",
+      "name": "Hemper Brick Water Pipe",
       "brand": "Hemper",
       "category": "Glass",
       "source": "https://hemper.co/products/weedbrick-bong",
       "image_source": "https://cdn.shopify.com/s/files/1/0761/6031/files/HEMPERWEEDBRICKBONG_WITHBOX_001_ONWHITE_1080x1080_dfb39482-3c6a-4820-8f94-702caecb1840_052266b65a30e8ab.jpg?v=1777573573",
-      "image": "/catalog/glass/hemper/hemper-weedbrick-bong.webp",
+      "image": "/catalog/glass/hemper/hemper-brick-water-pipe.webp",
       "image_status": "ok"
     },
     {
@@ -891,13 +871,13 @@
       "image_status": "ok"
     },
     {
-      "slug": "empire-glassworks-avocadope-mini-rig",
-      "name": "Empire Glassworks Avocadope Mini Rig",
+      "slug": "empire-glassworks-avocadope-mini-water-pipe",
+      "name": "Empire Glassworks Avocadope Mini Water Pipe",
       "brand": "Empire Glassworks",
       "category": "Glass",
       "source": "https://empireglassworks.com/products/mini-rig-avocadope",
       "image_source": "https://cdn.shopify.com/s/files/1/0974/0148/products/DSC09150.png?v=1741033777",
-      "image": "/catalog/glass/empire-glassworks/empire-glassworks-avocadope-mini-rig.webp",
+      "image": "/catalog/glass/empire-glassworks/empire-glassworks-avocadope-mini-water-pipe.webp",
       "image_status": "ok"
     },
     {
@@ -931,63 +911,63 @@
       "image_status": "ok"
     },
     {
-      "slug": "pulsar-big-chug-bong",
-      "name": "Pulsar Big Chug Bong",
+      "slug": "pulsar-big-chug-water-pipe",
+      "name": "Pulsar Big Chug Water Pipe",
       "brand": "Pulsar",
       "category": "Glass",
       "source": "https://smokecartel.com/products/pulsar-big-chug-water-pipe-10-5-14mm-f",
       "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/imgi_6_WP1007extra_800x800.webp_20260917130321.webp?v=1789731914",
-      "image": "/catalog/glass/pulsar/pulsar-big-chug-bong.webp",
+      "image": "/catalog/glass/pulsar/pulsar-big-chug-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "pulsar-glass-gravity-bong",
-      "name": "Pulsar Glass Gravity Bong",
+      "slug": "pulsar-glass-gravity-water-pipe",
+      "name": "Pulsar Glass Gravity Water Pipe",
       "brand": "Pulsar",
       "category": "Glass",
       "source": "https://smokecartel.com/products/pulsar-glass-gravity-water-pipe-12-14mm-f",
       "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/imgi_4_WP885_800x800.webp_20260917130332.webp?v=1789731742",
-      "image": "/catalog/glass/pulsar/pulsar-glass-gravity-bong.webp",
+      "image": "/catalog/glass/pulsar/pulsar-glass-gravity-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "pulsar-transporter-kicked-straight-tube-bong",
-      "name": "Pulsar Transporter Kicked Straight Tube Bong",
+      "slug": "pulsar-transporter-kicked-straight-tube-water-pipe",
+      "name": "Pulsar Transporter Kicked Straight Tube Water Pipe",
       "brand": "Pulsar",
       "category": "Glass",
       "source": "https://smokecartel.com/products/pulsar-transporter-kicked-straight-tube-glass-water-pipe-14-14mm-f",
       "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/WP864BL.webp?v=1780058109",
-      "image": "/catalog/glass/pulsar/pulsar-transporter-kicked-straight-tube-bong.webp",
+      "image": "/catalog/glass/pulsar/pulsar-transporter-kicked-straight-tube-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "pulsar-chillr-glycerin-beaker-bong",
-      "name": "Pulsar Chillr Glycerin Beaker Bong",
+      "slug": "pulsar-chillr-glycerin-beaker-water-pipe",
+      "name": "Pulsar Chillr Glycerin Beaker Water Pipe",
       "brand": "Pulsar",
       "category": "Glass",
       "source": "https://smokecartel.com/products/pulsar-chillr-glycerin-beaker-glass-water-pipe-13-14mm-f-blue",
       "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/imgi_5_WP1024extra_800x800.webp_20260921154108_039d0838-4e2a-460c-866b-66532c411925.webp?v=1790016101",
-      "image": "/catalog/glass/pulsar/pulsar-chillr-glycerin-beaker-bong.webp",
+      "image": "/catalog/glass/pulsar/pulsar-chillr-glycerin-beaker-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "pulsar-12-arm-perc-chugger-bong",
-      "name": "Pulsar 12 Arm Perc Chugger Bong",
+      "slug": "pulsar-12-arm-perc-chugger-water-pipe",
+      "name": "Pulsar 12 Arm Perc Chugger Water Pipe",
       "brand": "Pulsar",
       "category": "Glass",
       "source": "https://smokecartel.com/products/pulsar-12-arm-perc-chugger-glass-water-pipe-10-14mm-f",
       "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/WP1001_1.webp?v=1788269411",
-      "image": "/catalog/glass/pulsar/pulsar-12-arm-perc-chugger-bong.webp",
+      "image": "/catalog/glass/pulsar/pulsar-12-arm-perc-chugger-water-pipe.webp",
       "image_status": "ok"
     },
     {
-      "slug": "pulsar-thk-9mm-beaker-bong",
-      "name": "Pulsar THK 9mm Beaker Bong",
+      "slug": "pulsar-thk-9mm-beaker-water-pipe",
+      "name": "Pulsar THK 9mm Beaker Water Pipe",
       "brand": "Pulsar",
       "category": "Glass",
       "source": "https://smokecartel.com/products/pulsar-thk-9mm-beaker-glass-water-pipe-10-14mm-f",
       "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/imgi_7_WP1042box_800x800_a84e0239-816c-4a53-b38a-93f14e55a1e5.webp?v=1788365705",
-      "image": "/catalog/glass/pulsar/pulsar-thk-9mm-beaker-bong.webp",
+      "image": "/catalog/glass/pulsar/pulsar-thk-9mm-beaker-water-pipe.webp",
       "image_status": "ok"
     },
     {
@@ -2858,26 +2838,6 @@
       "source": "https://www.sharpstoneusa.com/products/sharpstone-4-piece-vibrating-weed-grinder",
       "image_source": "https://cdn.shopify.com/s/files/1/0062/8031/4993/files/SharpStone_HardTop5PieceHerbGrinder-black.jpg?v=1773034084",
       "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-4-piece-vibrating-grinder.webp",
-      "image_status": "ok"
-    },
-    {
-      "slug": "sharpstone-t-bar-pollen-press",
-      "name": "SharpStone T-Bar Pollen Press",
-      "brand": "SharpStone",
-      "category": "Grinders & Scales",
-      "source": "https://www.sharpstoneusa.com/products/sharpstone-t-bar-pollen-press",
-      "image_source": "https://cdn.shopify.com/s/files/1/0062/8031/4993/files/SharpStone_T-barPollenPress.jpg?v=1773036850",
-      "image": "/catalog/grinders-and-scales/sharpstone/sharpstone-t-bar-pollen-press.webp",
-      "image_status": "ok"
-    },
-    {
-      "slug": "zippo-420-clouds-design",
-      "name": "Zippo 420 Clouds Design",
-      "brand": "Zippo",
-      "category": "Lighters & Torches",
-      "source": "https://zippo.com/products/420-clouds-540-matte",
-      "image_source": "https://cdn.shopify.com/s/files/1/1295/7985/files/2f0e1805a0a836d59c03d6fd1d9a9c7ac31c8515.jpg?v=1789568456",
-      "image": "/catalog/lighters-and-torches/zippo/zippo-420-clouds-design.webp",
       "image_status": "ok"
     },
     {

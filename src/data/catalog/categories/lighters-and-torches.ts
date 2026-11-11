@@ -6,25 +6,13 @@ import type { CatalogCategory } from '../types';
 export const lightersAndTorchesCategory: CatalogCategory = {
   "name": "Lighters & Torches",
   "slug": "lighters-and-torches",
-  "description": "Classic windproof lighters, refillable flint lighters and butane torches for every use.",
+  "description": "Windproof lighters, refillable flint lighters and butane torches.",
   "brands": [
     {
       "name": "Zippo",
       "slug": "zippo",
       "description": "America's iconic windproof lighter, made in Bradford, Pennsylvania since 1932.",
       "products": [
-        {
-          "id": "cat-zippo-420-clouds-design",
-          "slug": "zippo-420-clouds-design",
-          "name": "Zippo 420 Clouds Design",
-          "brand": "Zippo",
-          "brandSlug": "zippo",
-          "category": "Lighters & Torches",
-          "categorySlug": "lighters-and-torches",
-          "image": "/catalog/lighters-and-torches/zippo/zippo-420-clouds-design.webp",
-          "description": "A Zippo windproof lighter with a 540 Matte finish and a 420 Clouds design.",
-          "options": []
-        },
         {
           "id": "cat-zippo-jack-daniel-s-signature-design",
           "slug": "zippo-jack-daniel-s-signature-design",
@@ -90,7 +78,7 @@ export const lightersAndTorchesCategory: CatalogCategory = {
     {
       "name": "Special Blue",
       "slug": "special-blue",
-      "description": "Butane torch lighters and premium butane built for dabbers, cigar smokers and chefs.",
+      "description": "Butane torch lighters and refined butane.",
       "products": [
         {
           "id": "cat-special-blue-inferno-pro-butane-torch",
@@ -231,7 +219,7 @@ export const lightersAndTorchesCategory: CatalogCategory = {
           "category": "Lighters & Torches",
           "categorySlug": "lighters-and-torches",
           "image": "/catalog/lighters-and-torches/special-blue/special-blue-5x-refined-butane-300ml.webp",
-          "description": "Five-times refined butane fuel for clean, clog-free refills.",
+          "description": "Five-times refined butane fuel for refills.",
           "options": [
             {
               "label": "Sizes",
@@ -419,7 +407,7 @@ export const lightersAndTorchesCategory: CatalogCategory = {
           "category": "Lighters & Torches",
           "categorySlug": "lighters-and-torches",
           "image": "/catalog/lighters-and-torches/maven/maven-nova-torch-lighter.webp",
-          "description": "A sleek Maven torch with a smooth ignition and flame lock.",
+          "description": "A sleek Maven torch with push ignition and flame lock.",
           "options": [
             {
               "label": "Colors",
@@ -516,7 +504,7 @@ export const lightersAndTorchesCategory: CatalogCategory = {
     {
       "name": "Newport Zero",
       "slug": "newport-zero",
-      "description": "Budget-friendly butane torch lighters popular with dabbers and smokers alike.",
+      "description": "Budget-friendly butane torch lighters.",
       "products": [
         {
           "id": "cat-newport-zero-side-torch-lighter",
@@ -601,5 +589,5 @@ export const lightersAndTorchesCategory: CatalogCategory = {
       ]
     }
   ],
-  "image": "/catalog/lighters-and-torches/zippo/zippo-420-clouds-design.webp"
+  "image": "/catalog/lighters-and-torches/zippo/zippo-jack-daniel-s-signature-design.webp"
 };
