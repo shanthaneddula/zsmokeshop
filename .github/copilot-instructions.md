@@ -168,5 +168,5 @@ Setup, env vars, and deploy notes: [docs/SETUP.md](../docs/SETUP.md)
 
 ## Business Details
 **Store Name**: Z SMOKE SHOP  
-**Locations**: 719 W William Cannon Dr #105, Austin, TX 78745 | 5318 Cameron Rd, Austin, TX 78723  
-**Product Categories**: 16 categories including vapes, glass, kratom, CBD, accessories
+**Location**: 719 W William Cannon Dr #105, Austin, TX 78745  
+**Product Categories**: static display-only catalog (glass, hookah, rolling supplies, THC-free CBD, accessories); no online sales

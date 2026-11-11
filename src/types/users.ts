@@ -152,7 +152,7 @@ export interface TimesheetEntry {
   clockOut?: string; // ISO timestamp (undefined if still clocked in)
   hoursWorked?: number; // Calculated hours
   notes?: string;
-  location?: 'William Cannon' | 'Cameron Rd';
+  location?: 'William Cannon';
 }
 
 export interface TimesheetSummary {

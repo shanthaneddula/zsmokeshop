@@ -213,9 +213,7 @@ export default function OrderDetailPage({ params }: OrderDetailPageProps) {
   };
 
   const getLocationName = (location: string) => {
-    return location === 'william-cannon' 
-      ? 'William Cannon (719 W William Cannon Dr #105)'
-      : 'Cameron Rd (5318 Cameron Rd)';
+    return location === 'william-cannon' ? 'William Cannon (719 W William Cannon Dr #105)' : location;
   };
 
   const formatTime = (isoString: string) => {

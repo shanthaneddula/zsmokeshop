@@ -16,9 +16,7 @@ export type ReplacementPreference =
   | 'refund'            // Refund if unavailable
   | 'call-me';          // Contact me to discuss
 
-export type StoreLocation = 
-  | 'william-cannon'    // 719 W William Cannon Dr #105, Austin, TX 78745
-  | 'cameron-rd';       // 5318 Cameron Rd, Austin, TX 78723
+export type StoreLocation = 'william-cannon'; // 719 W William Cannon Dr #105, Austin, TX 78745
 
 export interface OrderItem {
   productId: string;

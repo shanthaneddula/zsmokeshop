@@ -63,7 +63,7 @@ export async function POST(
               updatedOrder.orderNumber,
               'ready',
               'Your order is ready for pickup!',
-              `Your order is ready and waiting for you at our ${updatedOrder.storeLocation === 'william-cannon' ? 'William Cannon' : 'Cameron Rd'} location. Please pick it up within the next hour.`,
+              `Your order is ready and waiting for you at our William Cannon location. Please pick it up within the next hour.`,
               updatedOrder.timeline.pickupDeadline ? new Date(updatedOrder.timeline.pickupDeadline) : undefined
             );
           }

@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate store location
-    if (!['william-cannon', 'cameron-rd'].includes(body.storeLocation)) {
+    if (body.storeLocation !== 'william-cannon') {
       return NextResponse.json(
         { error: 'Invalid store location' },
         { status: 400 }

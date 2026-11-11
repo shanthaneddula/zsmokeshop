@@ -4,9 +4,8 @@ A modern, mobile-first website for Z SMOKE SHOP built with Next.js, TypeScript, 
 
 ## 🏪 About Z SMOKE SHOP
 
-Z SMOKE SHOP serves the Austin, TX area with two convenient locations:
-- **Location 1**: 719 W William Cannon Dr #105, Austin, TX 78745
-- **Location 2**: 5318 Cameron Rd, Austin, TX 78723
+Z SMOKE SHOP serves the Austin, TX area from one store:
+- **Location**: 719 W William Cannon Dr #105, Austin, TX 78745
 
 ## 🚀 Features
 

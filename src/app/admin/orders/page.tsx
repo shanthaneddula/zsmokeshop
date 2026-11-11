@@ -222,7 +222,6 @@ function AdminOrdersContent() {
             >
               <option value="all">All Locations</option>
               <option value="william-cannon">William Cannon</option>
-              <option value="cameron-rd">Cameron Rd</option>
             </select>
           </div>
           
@@ -472,7 +471,7 @@ function AdminOrdersContent() {
                     <span className="text-gray-700 text-xs sm:text-sm">
                       {selectedOrder.storeLocation === 'william-cannon'
                         ? 'William Cannon - 719 W William Cannon Dr #105'
-                        : 'Cameron Rd - 5318 Cameron Rd'}
+                        : selectedOrder.storeLocation}
                     </span>
                   </div>
                 </div>

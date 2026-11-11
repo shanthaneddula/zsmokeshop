@@ -15,13 +15,6 @@ const STORE_LOCATIONS = {
     phone: process.env.STORE_PHONE_WILLIAM_CANNON || '',
     email: process.env.STORE_EMAIL_WILLIAM_CANNON || 'williamcannon@zsmokeshop.com',
   },
-  'cameron-rd': {
-    name: 'Z SMOKE SHOP',
-    address: '5318 Cameron Rd',
-    city: 'Austin, TX 78723',
-    phone: process.env.STORE_PHONE_CAMERON_RD || '',
-    email: process.env.STORE_EMAIL_CAMERON_RD || 'cameron@zsmokeshop.com',
-  },
 };
 
 /**
@@ -582,16 +575,11 @@ export async function sendOrderStatusUpdateEmail(
 
             <!-- Store Locations -->
             <div style="margin-top: 40px; padding: 20px; background-color: #f9fafb; border-radius: 6px;">
-              <h3 style="margin: 0 0 20px; font-size: 18px; color: #1f2937;">Our Locations</h3>
-              
-              <div style="margin-bottom: 20px;">
-                <h4 style="margin: 0 0 5px; font-size: 16px; color: #1f2937;">William Cannon</h4>
-                <p style="margin: 0; font-size: 14px; color: #6b7280;">719 W William Cannon Dr #105<br>Austin, TX 78745</p>
-              </div>
+              <h3 style="margin: 0 0 20px; font-size: 18px; color: #1f2937;">Our Location</h3>
               
               <div>
-                <h4 style="margin: 0 0 5px; font-size: 16px; color: #1f2937;">Cameron Rd</h4>
-                <p style="margin: 0; font-size: 14px; color: #6b7280;">5318 Cameron Rd<br>Austin, TX 78723</p>
+                <h4 style="margin: 0 0 5px; font-size: 16px; color: #1f2937;">William Cannon</h4>
+                <p style="margin: 0; font-size: 14px; color: #6b7280;">719 W William Cannon Dr #105<br>Austin, TX 78745</p>
               </div>
             </div>
 

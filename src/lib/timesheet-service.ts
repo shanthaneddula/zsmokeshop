@@ -18,7 +18,7 @@ const ACTIVE_SESSIONS_KEY = 'zsmokeshop:active_sessions';
 export async function clockIn(
   userId: string,
   username: string,
-  location?: 'William Cannon' | 'Cameron Rd',
+  location?: 'William Cannon',
   notes?: string
 ): Promise<{ success: boolean; entry?: TimesheetEntry; error?: string }> {
   try {

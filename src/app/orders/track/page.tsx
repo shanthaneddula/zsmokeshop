@@ -170,20 +170,13 @@ function OrderTrackingContent() {
     return `${minutes} min`;
   };
 
-  const getLocationInfo = (location: string) => {
-    if (location === 'william-cannon') {
-      return {
-        name: 'William Cannon',
-        address: '719 W William Cannon Dr #105',
-        city: 'Austin, TX 78745',
-      };
-    }
-    return {
-      name: 'Cameron Rd',
-      address: '5318 Cameron Rd',
-      city: 'Austin, TX 78723',
-    };
-  };
+  // Only one store location remains.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const getLocationInfo = (_location: string) => ({
+    name: 'William Cannon',
+    address: '719 W William Cannon Dr #105',
+    city: 'Austin, TX 78745',
+  });
 
   const statusInfo = order ? getStatusInfo(order.status) : null;
   const StatusIcon = statusInfo?.icon;

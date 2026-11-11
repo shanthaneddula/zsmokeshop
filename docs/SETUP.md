@@ -62,8 +62,8 @@ Set these in `.env.local` (local) and in the Vercel project (production). **Neve
 | `BLOB_READ_WRITE_TOKEN` | Vercel Blob uploads (usually injected when a Blob store is linked on Vercel) |
 | `RESEND_API_KEY`, `RESEND_FROM_EMAIL` | Order email notifications (default from-address is `orders@zsmokeshop.com` if unset) |
 | `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_PHONE_NUMBER` | Pickup-order SMS |
-| `STORE_PHONE_WILLIAM_CANNON`, `STORE_PHONE_CAMERON_RD` | Store phone numbers used in SMS/email copy |
-| `STORE_EMAIL_WILLIAM_CANNON`, `STORE_EMAIL_CAMERON_RD` | Store email addresses used in notifications |
+| `STORE_PHONE_WILLIAM_CANNON` | Store phone number used in SMS/email copy |
+| `STORE_EMAIL_WILLIAM_CANNON` | Store email address used in notifications |
 | `NEXT_PUBLIC_SITE_URL` | Canonical site URL for sitemaps and SEO (`https://zsmokeshop.com`) |
 | `CRON_SECRET` | Optional bearer secret for `GET /api/cron/expire-orders` |
 | `GOOGLE_PLACES_API_KEY` | Optional Google review fetch |

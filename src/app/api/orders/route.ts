@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     }
 
     const location = searchParams.get('location');
-    if (location && (location === 'william-cannon' || location === 'cameron-rd')) {
+    if (location === 'william-cannon') {
       filters.storeLocation = location;
     }
 

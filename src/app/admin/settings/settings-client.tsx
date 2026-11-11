@@ -120,14 +120,6 @@ export default function SettingsClient() {
         phone: '(512) 766-3707',
         hours: 'Mon-Thu, Sun: 10:00 AM - 11:00 PM\nFri-Sat: 10:00 AM - 12:00 AM',
         isActive: true
-      },
-      {
-        id: '2',
-        name: '5 STAR SMOKE SHOP & GIFTS',
-        address: '5318 Cameron Rd, Austin, TX 78723',
-        phone: '(661) 371-1413',
-        hours: 'Mon-Thu, Sun: 10:00 AM - 11:00 PM\nFri-Sat: 10:00 AM - 12:00 AM',
-        isActive: true
       }
     ],
     

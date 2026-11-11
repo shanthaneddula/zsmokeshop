@@ -9,7 +9,7 @@ export default function TimesheetClient() {
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  const [location, setLocation] = useState<'William Cannon' | 'Cameron Rd'>('William Cannon');
+  const [location, setLocation] = useState<'William Cannon'>('William Cannon');
   const [notes, setNotes] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
   const [dateFilter, setDateFilter] = useState<'today' | 'week' | 'month' | 'custom'>('week');
@@ -319,7 +319,7 @@ export default function TimesheetClient() {
               <label className="block text-xs sm:text-sm font-black uppercase tracking-wide text-gray-900 mb-1.5 sm:mb-2">
                 Location
               </label>
-              <div className="grid grid-cols-2 gap-2 sm:gap-4">
+              <div className="grid grid-cols-1 gap-2 sm:gap-4">
                 <button
                   onClick={() => setLocation('William Cannon')}
                   className={`flex items-center justify-center px-2 sm:px-4 py-2.5 sm:py-3 border-2 text-[10px] sm:text-xs lg:text-sm font-black uppercase tracking-wide transition-colors ${
@@ -330,17 +330,6 @@ export default function TimesheetClient() {
                 >
                   <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                   <span className="truncate">William Cannon</span>
-                </button>
-                <button
-                  onClick={() => setLocation('Cameron Rd')}
-                  className={`flex items-center justify-center px-2 sm:px-4 py-2.5 sm:py-3 border-2 text-[10px] sm:text-xs lg:text-sm font-black uppercase tracking-wide transition-colors ${
-                    location === 'Cameron Rd'
-                      ? 'border-gray-900 bg-gray-900 text-white'
-                      : 'border-gray-300 bg-white text-gray-900 hover:border-gray-900 active:bg-gray-50'
-                  }`}
-                >
-                  <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
-                  <span className="truncate">Cameron Rd</span>
                 </button>
               </div>
             </div>

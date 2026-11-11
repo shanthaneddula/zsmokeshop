@@ -13,12 +13,6 @@ const STORE_LOCATIONS = {
     city: 'Austin, TX 78745',
     phone: process.env.STORE_PHONE_WILLIAM_CANNON || '',
   },
-  'cameron-rd': {
-    name: 'Z SMOKE SHOP',
-    address: '5318 Cameron Rd',
-    city: 'Austin, TX 78723',
-    phone: process.env.STORE_PHONE_CAMERON_RD || '',
-  },
 };
 
 interface TwilioConfig {

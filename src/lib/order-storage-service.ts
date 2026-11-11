@@ -344,7 +344,6 @@ export async function getOrderStats(): Promise<OrderStats> {
     },
     byLocation: {
       'william-cannon': allOrders.filter(o => o.storeLocation === 'william-cannon').length,
-      'cameron-rd': allOrders.filter(o => o.storeLocation === 'cameron-rd').length,
     },
   };
 }
