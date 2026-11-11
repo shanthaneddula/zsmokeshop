@@ -1,6 +1,5 @@
 'use client';
 
-import { ONLINE_SALES_ENABLED } from '@/lib/online-sales';
 import { useState, useEffect } from 'react';
 import CatalogComplianceBanner from '../catalog-visibility/CatalogComplianceBanner';
 import { 

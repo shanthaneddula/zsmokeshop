@@ -118,7 +118,7 @@ export default function MobileProductSpecs({ product }: MobileProductSpecsProps)
                   In-Store Purchase Only
                 </h5>
                 <p className="text-blue-700 dark:text-blue-300 text-sm">
-                  We don't sell online. Visit our Austin store to buy; call ahead to check stock. 21+ with valid ID.
+                  We don&apos;t sell online. Visit our Austin store to buy; call ahead to check stock. 21+ with valid ID.
                 </p>
               </div>
             </div>

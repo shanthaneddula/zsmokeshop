@@ -42,7 +42,7 @@ function getRedis(): Redis | null {
   }
   return redis;
 }
-const useKV = () => !process.env.REDIS_URL && !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+const kvConfigured = () => !process.env.REDIS_URL && !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
 
 let cache: { at: number; value: StoredVisibility } | null = null;
 // Local dev without Redis/KV: keep overrides in memory only.
@@ -70,10 +70,19 @@ function parse(raw: unknown): StoredVisibility {
   return { overrides: {} };
 }
 
+// With the offline queue off, commands fail until the connection is ready; wait briefly for it.
+function whenReady(r: Redis): Promise<void> {
+  if (r.status === 'ready') return Promise.resolve();
+  return withTimeout(new Promise<void>((resolve) => r.once('ready', () => resolve())));
+}
+
 async function readStored(): Promise<StoredVisibility> {
   const r = getRedis();
-  if (r) return parse(await withTimeout(r.get(CATALOG_VISIBILITY_KEY)));
-  if (useKV()) return parse(await withTimeout(kv.get(CATALOG_VISIBILITY_KEY)));
+  if (r) {
+    await whenReady(r);
+    return parse(await withTimeout(r.get(CATALOG_VISIBILITY_KEY)));
+  }
+  if (kvConfigured()) return parse(await withTimeout(kv.get(CATALOG_VISIBILITY_KEY)));
   return memoryStore;
 }
 
@@ -141,7 +150,7 @@ export async function getCatalogVisibilityRows(): Promise<{ rows: CatalogVisibil
   return {
     rows,
     meta: { updatedAt: stored.updatedAt, updatedBy: stored.updatedBy },
-    storage: getRedis() ? 'redis' : useKV() ? 'kv' : 'memory (local dev only, not persisted)',
+    storage: getRedis() ? 'redis' : kvConfigured() ? 'kv' : 'memory (local dev only, not persisted)',
   };
 }
 
@@ -173,8 +182,11 @@ export async function setCatalogVisibility(
   }
   const next: StoredVisibility = { overrides, updatedAt: new Date().toISOString(), updatedBy };
   const r = getRedis();
-  if (r) await withTimeout(r.set(CATALOG_VISIBILITY_KEY, JSON.stringify(next)));
-  else if (useKV()) await withTimeout(kv.set(CATALOG_VISIBILITY_KEY, JSON.stringify(next)));
+  if (r) {
+    await whenReady(r);
+    await withTimeout(r.set(CATALOG_VISIBILITY_KEY, JSON.stringify(next)));
+  }
+  else if (kvConfigured()) await withTimeout(kv.set(CATALOG_VISIBILITY_KEY, JSON.stringify(next)));
   else memoryStore = next;
   cache = { at: Date.now(), value: next };
   return next;

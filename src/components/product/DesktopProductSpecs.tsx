@@ -105,7 +105,7 @@ export default function DesktopProductSpecs({ product }: DesktopProductSpecsProp
               In-Store Purchase Only
             </h4>
             <p className="text-green-700 dark:text-green-300 text-sm">
-              We don't sell online. Visit our Austin store to buy; call ahead to check stock. 21+ with valid ID.
+              We don&apos;t sell online. Visit our Austin store to buy; call ahead to check stock. 21+ with valid ID.
             </p>
           </div>
 
