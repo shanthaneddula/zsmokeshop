@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { verifyAdminAuth } from '@/lib/auth-server';
 import { getOrders, getOrderStats } from '@/lib/order-storage-service';
 import { OrderFilters, OrderStatus } from '@/types/orders';
 
@@ -7,6 +8,11 @@ import { OrderFilters, OrderStatus } from '@/types/orders';
  * Get all orders with optional filters
  */
 export async function GET(request: NextRequest) {
+  // Order data holds customer names and phone numbers: admin login required.
+  const auth = await verifyAdminAuth(request);
+  if (!auth.isAuthenticated || !auth.user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   try {
     const searchParams = request.nextUrl.searchParams;
     

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { verifyAdminAuth } from '@/lib/auth-server';
 import { updateOrderStatus, updateOrder } from '@/lib/order-storage-service';
 import { 
   sendOrderReadySMS, 
@@ -18,6 +19,11 @@ export async function POST(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
+  // Order data holds customer names and phone numbers: admin login required.
+  const auth = await verifyAdminAuth(request);
+  if (!auth.isAuthenticated || !auth.user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
   try {
     const { id: orderId } = await context.params;
     const body: UpdateOrderStatusRequest = await request.json();
