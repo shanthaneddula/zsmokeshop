@@ -43,6 +43,12 @@ const RULES: Rule[] = [
       'Refillable e-cigarette device made in China (Shenzhen) with no FDA marketing authorization. Empty hardware may fall outside SB 2024, but federal law treats unauthorized ENDS as illegal to sell. Keep hidden unless a lawyer approves.',
   },
   {
+    status: 'action',
+    match: (p) => /high times/i.test(p.name),
+    reason:
+      'Co-branded with High Times, a cannabis publication. Cannabis branding on an accessory can be used as evidence of intended drug use (Texas Health & Safety Code 481.183). Hidden to be safe.',
+  },
+  {
     status: 'warning',
     match: inCat('vaporizers'),
     reason:

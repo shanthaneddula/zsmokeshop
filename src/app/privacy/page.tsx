@@ -62,8 +62,9 @@ export default function PrivacyPage() {
         <p>
           <strong>We do not sell personal data, and we do not use it for targeted advertising or for profiling</strong> that
           produces legal or similarly significant effects. We share personal data only with service providers that process it
-          for us under contract (such as website hosting, data storage, chat, email and text-message delivery providers), or
-          when the law requires it.
+          for us under contract: Vercel (website hosting), Redis Cloud (data storage), Tawk.to (live chat), Resend (email) and
+          Twilio (text messages), or when the law requires it. Phone numbers and text-message opt-in consent are never shared
+          with third parties for their marketing.
         </p>
       </LegalSection>
 

@@ -354,7 +354,6 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
               "label": "Flavors",
               "values": [
                 "Banana Cream",
-                "Berry Terps",
                 "Blue Grape",
                 "Bubble Gum",
                 "Caramel Clouds",
@@ -419,7 +418,6 @@ export const rollingPapersAndWrapsCategory: CatalogCategory = {
               "label": "Flavors",
               "values": [
                 "Banana Cream",
-                "Berry Terps",
                 "Magic Mint",
                 "Margarita",
                 "Watermelon Wave"
