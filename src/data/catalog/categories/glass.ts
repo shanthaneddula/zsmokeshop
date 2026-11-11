@@ -731,6 +731,174 @@ export const glassCategory: CatalogCategory = {
           ]
         }
       ]
+    },
+    {
+      "name": "Cookies",
+      "slug": "cookies",
+      "description": "Cookies Glass water pipes in borosilicate glass with the Cookies logo.",
+      "products": [
+        {
+          "id": "cat-cookies-original-beaker-water-pipe-13",
+          "slug": "cookies-original-beaker-water-pipe-13",
+          "name": "Cookies Original Beaker Water Pipe 13\"",
+          "brand": "Cookies",
+          "brandSlug": "cookies",
+          "category": "Glass",
+          "categorySlug": "glass",
+          "image": "/catalog/glass/cookies/cookies-original-beaker-water-pipe-13.webp",
+          "description": "A 13\" borosilicate beaker water pipe with a 4\" diffused downstem, 14mm male bowl and ice pinch, with a black, white or blue logo. For use with legal tobacco and legal botanical products only. 21+.",
+          "options": [
+            {
+              "label": "Colors",
+              "values": [
+                "Black",
+                "Blue",
+                "White"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-cookies-original-straight-tube-water-pipe-13",
+          "slug": "cookies-original-straight-tube-water-pipe-13",
+          "name": "Cookies Original Straight Tube Water Pipe 13\"",
+          "brand": "Cookies",
+          "brandSlug": "cookies",
+          "category": "Glass",
+          "categorySlug": "glass",
+          "image": "/catalog/glass/cookies/cookies-original-straight-tube-water-pipe-13.webp",
+          "description": "A 13\" borosilicate straight tube water pipe with a 4\" diffused downstem, 14mm male bowl and ice pinch, with a black, white or blue logo. For use with legal tobacco and legal botanical products only. 21+.",
+          "options": [
+            {
+              "label": "Colors",
+              "values": [
+                "Blue",
+                "White",
+                "Black"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-cookies-v-beaker-water-pipe-14",
+          "slug": "cookies-v-beaker-water-pipe-14",
+          "name": "Cookies V Beaker Water Pipe 14\"",
+          "brand": "Cookies",
+          "brandSlug": "cookies",
+          "category": "Glass",
+          "categorySlug": "glass",
+          "image": "/catalog/glass/cookies/cookies-v-beaker-water-pipe-14.webp",
+          "description": "A 14\" beaker water pipe with the Cookies V print, 14mm male bowl, downstem and splash guard. For use with legal tobacco and legal botanical products only. 21+.",
+          "options": [
+            {
+              "label": "Colors",
+              "values": [
+                "Clear",
+                "White",
+                "Black"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-cookies-v-straight-tube-water-pipe-14",
+          "slug": "cookies-v-straight-tube-water-pipe-14",
+          "name": "Cookies V Straight Tube Water Pipe 14\"",
+          "brand": "Cookies",
+          "brandSlug": "cookies",
+          "category": "Glass",
+          "categorySlug": "glass",
+          "image": "/catalog/glass/cookies/cookies-v-straight-tube-water-pipe-14.webp",
+          "description": "A 14\" straight tube water pipe with the Cookies V print, 14mm male bowl, downstem and splash guard. For use with legal tobacco and legal botanical products only. 21+.",
+          "options": [
+            {
+              "label": "Colors",
+              "values": [
+                "Black",
+                "Clear",
+                "White"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-cookies-flame-beaker-water-pipe",
+          "slug": "cookies-flame-beaker-water-pipe",
+          "name": "Cookies Flame Beaker Water Pipe",
+          "brand": "Cookies",
+          "brandSlug": "cookies",
+          "category": "Glass",
+          "categorySlug": "glass",
+          "image": "/catalog/glass/cookies/cookies-flame-beaker-water-pipe.webp",
+          "description": "A beaker water pipe with a flame-polished Cookies logo, 14mm male bowl, splash guard and ice pinch, in 13\" or thick-glass 17\". For use with legal tobacco and legal botanical products only. 21+.",
+          "options": [
+            {
+              "label": "Styles",
+              "values": [
+                "Original (13\")",
+                "Thick Glass (17\")"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-cookies-flame-straight-tube-water-pipe",
+          "slug": "cookies-flame-straight-tube-water-pipe",
+          "name": "Cookies Flame Straight Tube Water Pipe",
+          "brand": "Cookies",
+          "brandSlug": "cookies",
+          "category": "Glass",
+          "categorySlug": "glass",
+          "image": "/catalog/glass/cookies/cookies-flame-straight-tube-water-pipe.webp",
+          "description": "A straight tube water pipe with a flame-polished Cookies logo, 14mm male bowl and ice pinch, in 13\" or thick-glass 17\". For use with legal tobacco and legal botanical products only. 21+.",
+          "options": [
+            {
+              "label": "Styles",
+              "values": [
+                "Original (13\")",
+                "Thick Glass (17\")"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-cookies-2-da-dome-beaker-water-pipe-17",
+          "slug": "cookies-2-da-dome-beaker-water-pipe-17",
+          "name": "Cookies 2 Da Dome Beaker Water Pipe 17\"",
+          "brand": "Cookies",
+          "brandSlug": "cookies",
+          "category": "Glass",
+          "categorySlug": "glass",
+          "image": "/catalog/glass/cookies/cookies-2-da-dome-beaker-water-pipe-17.webp",
+          "description": "A 17\" thick borosilicate beaker water pipe with a dome percolator, diffused downstem and ice pinch. For use with legal tobacco and legal botanical products only. 21+.",
+          "options": []
+        },
+        {
+          "id": "cat-cookies-bayside-series-water-pipe",
+          "slug": "cookies-bayside-series-water-pipe",
+          "name": "Cookies Bayside Series Water Pipe",
+          "brand": "Cookies",
+          "brandSlug": "cookies",
+          "category": "Glass",
+          "categorySlug": "glass",
+          "image": "/catalog/glass/cookies/cookies-bayside-series-water-pipe.webp",
+          "description": "Compact Cookies water pipes named for Bay Area codes (408, 415, 510, 650, 707, 916, 925). For use with legal tobacco and legal botanical products only. 21+.",
+          "options": [
+            {
+              "label": "Styles",
+              "values": [
+                "408",
+                "415",
+                "510",
+                "650",
+                "707",
+                "916",
+                "925"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "image": "/catalog/glass/grav/grav-medium-deco-beaker-bong.webp"

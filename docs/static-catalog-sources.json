@@ -991,6 +991,86 @@
       "image_status": "ok"
     },
     {
+      "slug": "cookies-original-beaker-water-pipe-13",
+      "name": "Cookies Original Beaker Water Pipe 13\"",
+      "brand": "Cookies",
+      "category": "Glass",
+      "source": "https://dankstop.com/products/cookies-original-beaker-bong",
+      "image_source": "https://cdn.shopify.com/s/files/1/0673/9007/9195/products/01CKW-005FlameBeaker_5cfcd6b2-0f4d-472b-98af-5b8139e4c52f.png?v=1703014879",
+      "image": "/catalog/glass/cookies/cookies-original-beaker-water-pipe-13.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cookies-original-straight-tube-water-pipe-13",
+      "name": "Cookies Original Straight Tube Water Pipe 13\"",
+      "brand": "Cookies",
+      "category": "Glass",
+      "source": "https://everythingfor420.com/products/cookies-original-straight-tube-bong",
+      "image_source": "https://cdn.shopify.com/s/files/1/2489/5144/files/cookies-original-straight-tube-bong-13in-35617849606223.jpg?v=1701925070",
+      "image": "/catalog/glass/cookies/cookies-original-straight-tube-water-pipe-13.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cookies-v-beaker-water-pipe-14",
+      "name": "Cookies V Beaker Water Pipe 14\"",
+      "brand": "Cookies",
+      "category": "Glass",
+      "source": "https://everythingfor420.com/products/cookies-v-beaker-bong",
+      "image_source": "https://cdn.shopify.com/s/files/1/2489/5144/files/cookies-v-beaker-bong-14in-36883211452495.jpg?v=1715366572",
+      "image": "/catalog/glass/cookies/cookies-v-beaker-water-pipe-14.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cookies-v-straight-tube-water-pipe-14",
+      "name": "Cookies V Straight Tube Water Pipe 14\"",
+      "brand": "Cookies",
+      "category": "Glass",
+      "source": "https://everythingfor420.com/products/cookies-v-straight-tube-bong",
+      "image_source": "https://cdn.shopify.com/s/files/1/2489/5144/files/cookies-v-straight-tube-bong-14in-36883183960143.jpg?v=1715365305",
+      "image": "/catalog/glass/cookies/cookies-v-straight-tube-water-pipe-14.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cookies-flame-beaker-water-pipe",
+      "name": "Cookies Flame Beaker Water Pipe",
+      "brand": "Cookies",
+      "category": "Glass",
+      "source": "https://everythingfor420.com/products/cookies-flame-beaker-bong",
+      "image_source": "https://cdn.shopify.com/s/files/1/2489/5144/files/cookies-flame-beaker-bong-13in-35617763721295.jpg?v=1701925251",
+      "image": "/catalog/glass/cookies/cookies-flame-beaker-water-pipe.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cookies-flame-straight-tube-water-pipe",
+      "name": "Cookies Flame Straight Tube Water Pipe",
+      "brand": "Cookies",
+      "category": "Glass",
+      "source": "https://everythingfor420.com/products/cookies-flame-straight-tube-bong",
+      "image_source": "https://cdn.shopify.com/s/files/1/2489/5144/files/cookies-flame-straight-tube-bong-13in-35617680162895.jpg?v=1701925077",
+      "image": "/catalog/glass/cookies/cookies-flame-straight-tube-water-pipe.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cookies-2-da-dome-beaker-water-pipe-17",
+      "name": "Cookies 2 Da Dome Beaker Water Pipe 17\"",
+      "brand": "Cookies",
+      "category": "Glass",
+      "source": "https://everythingfor420.com/products/cookies-2-da-dome-beaker-bong",
+      "image_source": "https://cdn.shopify.com/s/files/1/2489/5144/files/cookies-2-da-dome-beaker-bong-17in-35618880979023.jpg?v=1701924360",
+      "image": "/catalog/glass/cookies/cookies-2-da-dome-beaker-water-pipe-17.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cookies-bayside-series-water-pipe",
+      "name": "Cookies Bayside Series Water Pipe",
+      "brand": "Cookies",
+      "category": "Glass",
+      "source": "https://smokecartel.com/products/cookies-bayside-series-water-pipes",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/p-408.jpg?v=1723052873",
+      "image": "/catalog/glass/cookies/cookies-bayside-series-water-pipe.webp",
+      "image_status": "ok"
+    },
+    {
       "slug": "raw-classic-rolling-papers",
       "name": "RAW Classic Rolling Papers",
       "brand": "RAW",
