@@ -31,7 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
     for (const brand of category.brands) {
       catalogPages.push({
-        url: `${baseUrl}/shop?category=${encodeURIComponent(category.slug)}&brand=${encodeURIComponent(brand.slug)}`,
+        // Next does not XML-escape sitemap URLs, so the query separator is written as &amp;
+        url: `${baseUrl}/shop?category=${encodeURIComponent(category.slug)}&amp;brand=${encodeURIComponent(brand.slug)}`,
         lastModified: now,
         changeFrequency: 'weekly',
         priority: 0.7,
