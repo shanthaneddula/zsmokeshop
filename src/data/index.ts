@@ -26,16 +26,8 @@ export const promoItems: PromoItem[] = [
     cta: 'Shop Now'
   },
   {
-    id: '2',
-    title: 'Buy any 2 Disposable Vapes',
-    description: 'Get $2 off your purchase',
-    image: '/images/hero/vape-discount.svg',
-    discount: '$2 OFF',
-    cta: 'Get Deal'
-  },
-  {
     id: '3',
-    title: 'Special Deals on Hookah and Bong',
+    title: 'Special Deals on Hookah and Water Pipes',
     description: 'Premium glass pieces at unbeatable prices',
     image: '/images/hero/glass-hookah-deals.svg',
     cta: 'View Deals'

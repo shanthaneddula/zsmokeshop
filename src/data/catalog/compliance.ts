@@ -55,6 +55,12 @@ const RULES: Rule[] = [
       'Accessory commonly linked to concentrates. Keep all wording to legal tobacco/botanical use (Texas paraphernalia law, Health & Safety Code 481.125) and avoid cannabis imagery in listings and signage.',
   },
   {
+    status: 'action',
+    match: (p) => p.categorySlug === 'cbd-and-hemp' && /\b(sleep|calm|rest|recovery|relief|pm)\b/i.test(p.name),
+    reason:
+      'Product name suggests a health effect (sleep, calm, rest, recovery, relief). FDA treats implied health claims on CBD as unapproved drug claims. Hidden to be safe; show only if a lawyer approves.',
+  },
+  {
     status: 'warning',
     match: inCat('cbd-and-hemp'),
     reason:

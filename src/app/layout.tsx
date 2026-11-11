@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Z Smoke Shop",
   },
   description: "Z Smoke Shop offers a wide variety of premium smoke products and accessories in Austin, TX. Visit us today.",
-  keywords: "smoke shop, Austin TX, vapes, hookah, glass, cigars, tobacco, accessories",
+  keywords: "smoke shop, Austin TX, hookah, glass, rolling papers, tobacco accessories, 21+",
   openGraph: {
     title: "Z Smoke Shop - Premium Smoke Shop in Austin, TX",
     description: "Your premier destination for quality smoke shop products and accessories in Austin, Texas.",
