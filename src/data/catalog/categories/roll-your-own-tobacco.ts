@@ -154,8 +154,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
             {
               "label": "Sizes",
               "values": [
-                "1.41 oz Pouch",
-                "5.29 oz Can"
+                "1.41 oz Pouch"
               ]
             }
           ]
@@ -193,8 +192,7 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
             {
               "label": "Sizes",
               "values": [
-                "1.41 oz Pouch",
-                "5.29 oz Can"
+                "1.41 oz Pouch"
               ]
             }
           ]
@@ -214,6 +212,32 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
               "label": "Sizes",
               "values": [
                 "1.41 oz Pouch"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-american-spirit-rolling-tobacco-can",
+          "slug": "american-spirit-rolling-tobacco-can",
+          "name": "American Spirit Rolling Tobacco Can",
+          "brand": "American Spirit",
+          "brandSlug": "american-spirit",
+          "category": "Roll Your Own Tobacco",
+          "categorySlug": "roll-your-own-tobacco",
+          "image": "/catalog/roll-your-own-tobacco/american-spirit/american-spirit-rolling-tobacco-can.webp",
+          "description": "The larger 150g resealable can of Natural American Spirit additive-free rolling tobacco, for regular rollers who want to stock up.",
+          "options": [
+            {
+              "label": "Blends",
+              "values": [
+                "Original",
+                "U.S. Grown"
+              ]
+            },
+            {
+              "label": "Sizes",
+              "values": [
+                "5.29 oz (150g) Can"
               ]
             }
           ]

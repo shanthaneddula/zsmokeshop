@@ -477,14 +477,14 @@ export const lightersAndTorchesCategory: CatalogCategory = {
           "category": "Lighters & Torches",
           "categorySlug": "lighters-and-torches",
           "image": "/catalog/lighters-and-torches/maven/maven-slim-series-torch-lighter.webp",
-          "description": "A slim, pocketable Maven torch lighter.",
+          "description": "A slim, discreet Maven torch lighter with an adjustable flame and a long-lasting refillable butane tank that fits easily in a pocket or purse.",
           "options": [
             {
-              "label": "Colors",
+              "label": "Styles",
               "values": [
                 "Metallic",
                 "Neon",
-                "Translucent"
+                "Transparent"
               ]
             }
           ]
@@ -539,7 +539,7 @@ export const lightersAndTorchesCategory: CatalogCategory = {
           "category": "Lighters & Torches",
           "categorySlug": "lighters-and-torches",
           "image": "/catalog/lighters-and-torches/newport-zero/newport-zero-thin-windproof-torch-lighter.webp",
-          "description": "A thin, windproof butane torch lighter.",
+          "description": "A thin, pocket-friendly windproof butane torch lighter with push-button ignition, sold in assorted colors.",
           "options": []
         },
         {
@@ -585,6 +585,18 @@ export const lightersAndTorchesCategory: CatalogCategory = {
               ]
             }
           ]
+        },
+        {
+          "id": "cat-newport-zero-long-side-torch-lighter",
+          "slug": "newport-zero-long-side-torch-lighter",
+          "name": "Newport Zero Long Side Torch Lighter",
+          "brand": "Newport Zero",
+          "brandSlug": "newport-zero",
+          "category": "Lighters & Torches",
+          "categorySlug": "lighters-and-torches",
+          "image": "/catalog/lighters-and-torches/newport-zero/newport-zero-long-side-torch-lighter.webp",
+          "description": "The long-body version of the Newport Zero side torch, with auto ignition, a high-heat jet flame and expanded butane capacity, in assorted colors.",
+          "options": []
         }
       ]
     }
