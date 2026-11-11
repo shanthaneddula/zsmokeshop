@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source'
+import { isRestrictedProduct } from '@/lib/restricted-content'
 import { getCatalogCategories, getAllCatalogProducts } from '@/data/catalog'
 import * as ProductStorage from '@/lib/product-storage-service'
 
@@ -21,7 +22,7 @@ export async function GET() {
     const products = await ProductStorage.readProducts()
     
     // Only include active products
-    const activeProducts = products.filter(product => product.status === 'active')
+    const activeProducts = products.filter(product => product.status === 'active' && !isRestrictedProduct(product))
     
     // Generate XML sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

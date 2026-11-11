@@ -9,6 +9,7 @@ import { ChevronRightIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import type { AdminProduct } from '@/types';
 import MobileProductImageGallery from '@/components/product/MobileProductImageGallery';
 import ProductCard from '@/components/product/ProductCard';
+import { CategoryTopNotice } from '@/components/catalog/CategoryNotice';
 import {
   getCatalogCategory,
   getRelatedCatalogProducts,
@@ -131,6 +132,9 @@ export default function CatalogProductTemplate({ product }: Props) {
       <div className="lg:hidden">
         <div className="container mx-auto px-4 py-4">
           <div className="mb-4">
+            <CategoryTopNotice categorySlug={product.categorySlug} />
+          </div>
+          <div className="mb-4">
             <h1 className="text-lg font-black uppercase tracking-wide text-gray-900 dark:text-white leading-tight line-clamp-2">
               {product.name}
             </h1>
@@ -167,6 +171,7 @@ export default function CatalogProductTemplate({ product }: Props) {
               <MobileProductImageGallery product={galleryProduct} />
             </div>
             <div className="space-y-6">
+              <CategoryTopNotice categorySlug={product.categorySlug} />
               <div>
                 <h1 className="text-4xl font-black uppercase tracking-wide text-gray-900 dark:text-white leading-tight">
                   {product.name}

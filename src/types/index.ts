@@ -90,13 +90,9 @@ export interface AdminProduct {
   intendedUse?: string; // Intended use description
   ageRestriction?: number; // Minimum age (18, 21, etc.)
   
-  // Cannabis-Specific Fields
+  // Product detail fields
   subcategory?: string; // Gummies, Cartridges, etc.
-  strainType?: 'indica' | 'sativa' | 'hybrid';
-  strainName?: string; // e.g., Runtz, Gelato
-  cannabinoidType?: string[]; // THC-A, CBD, Delta-8 (multi-select)
   cannabinoidStrength?: number; // mg for edibles, drinks, vapes
-  thcaPercentage?: number; // % for flower & pre-rolls
   weightVolume?: string; // e.g., 1g, 1/8oz, 1ml
   unitsPerPack?: number; // e.g., 25ct, 2-pack
   servingsPerItem?: number; // e.g., 1 or 2 (for drinks)

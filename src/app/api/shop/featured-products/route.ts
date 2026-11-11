@@ -4,6 +4,7 @@ import { AdminProduct } from '@/types/admin';
 import { Product } from '@/types';
 import * as ProductStorage from '@/lib/product-storage-service';
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
+import { isRestrictedProduct } from '@/lib/restricted-content';
 import { getCatalogCategories, toShopProduct } from '@/data/catalog';
 
 // Convert AdminProduct to public Product format
@@ -80,6 +81,7 @@ export async function GET() {
     let filteredProducts = allProducts.filter((product: AdminProduct) => {
       // Must be active
       if (product.status !== 'active') return false;
+      if (isRestrictedProduct(product)) return false;
       
       // Check stock filter
       if (settings.showOnlyInStock && !product.inStock) return false;

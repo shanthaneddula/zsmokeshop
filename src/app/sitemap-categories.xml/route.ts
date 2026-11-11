@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source'
+import { isRestrictedCategorySlug } from '@/lib/restricted-content'
 import { getCatalogCategories, getAllCatalogProducts } from '@/data/catalog'
 import * as CategoryStorage from '@/lib/category-storage-service'
 
@@ -21,7 +22,7 @@ export async function GET() {
     const categories = await CategoryStorage.readCategories()
     
     // Only include active categories
-    const activeCategories = categories.filter(category => category.status === 'active')
+    const activeCategories = categories.filter(category => category.status === 'active' && !isRestrictedCategorySlug(category.slug))
     
     // Generate XML sitemap
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

@@ -6,6 +6,7 @@ import ProductPageTemplate from '@/components/product/ProductPageTemplate';
 import CatalogProductTemplate from '@/components/catalog/CatalogProductTemplate';
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
 import { getCatalogProduct } from '@/data/catalog';
+import { isRestrictedProduct } from '@/lib/restricted-content';
 
 export const dynamic = 'force-dynamic';
 export const dynamicParams = true;
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   const product = await getProductBySlug(slug);
   
-  if (!product) {
+  if (!product || isRestrictedProduct(product)) {
     return {
       title: 'Product Not Found | Z Smoke Shop - Austin, TX',
       description: 'The requested product could not be found at Z Smoke Shop in Austin, Texas.'
@@ -52,7 +53,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   const product = await getProductBySlug(slug);
   
-  if (!product) {
+  if (!product || isRestrictedProduct(product)) {
     notFound();
   }
 
@@ -64,7 +65,7 @@ export async function generateStaticParams() {
   const products = await getAllProducts();
   
   return products
-    .filter((product) => product.slug && product.status === 'active')
+    .filter((product) => product.slug && product.status === 'active' && !isRestrictedProduct(product))
     .map((product) => ({
       slug: product.slug,
     }));

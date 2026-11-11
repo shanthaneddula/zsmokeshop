@@ -9,6 +9,7 @@ import { Search, Grid, List, Filter, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ProductCard from '@/components/product/ProductCard';
+import { CategoryTopNotice } from '@/components/catalog/CategoryNotice';
 import Pagination from '@/components/ui/Pagination';
 import {
   getCatalogCategories,
@@ -292,6 +293,9 @@ export default function StaticShopClient() {
           <main className="flex-1 min-w-0">
             {category && (
               <div className="mb-8">
+                <div className="mb-4">
+                  <CategoryTopNotice categorySlug={category.slug} />
+                </div>
                 <h1 className="text-3xl md:text-4xl font-black uppercase tracking-wide text-gray-900 dark:text-white">
                   {brand ? brand.name : category.name}
                 </h1>

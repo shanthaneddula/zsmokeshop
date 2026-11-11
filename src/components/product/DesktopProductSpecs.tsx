@@ -58,39 +58,11 @@ export default function DesktopProductSpecs({ product }: DesktopProductSpecsProp
             </div>
           )}
 
-          {/* Cannabis-specific specifications */}
+          {/* Product type */}
           {product.subcategory && (
             <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
               <span className="font-medium text-gray-900 dark:text-white">Type</span>
               <span className="text-gray-600 dark:text-gray-400">{product.subcategory}</span>
-            </div>
-          )}
-
-          {product.strainType && (
-            <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
-              <span className="font-medium text-gray-900 dark:text-white">Strain Type</span>
-              <span className="text-gray-600 dark:text-gray-400 capitalize">{product.strainType}</span>
-            </div>
-          )}
-
-          {product.strainName && (
-            <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
-              <span className="font-medium text-gray-900 dark:text-white">Strain</span>
-              <span className="text-gray-600 dark:text-gray-400">{product.strainName}</span>
-            </div>
-          )}
-
-          {product.cannabinoidStrength && (
-            <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
-              <span className="font-medium text-gray-900 dark:text-white">Strength</span>
-              <span className="text-gray-600 dark:text-gray-400">{product.cannabinoidStrength}mg</span>
-            </div>
-          )}
-
-          {product.thcaPercentage && (
-            <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
-              <span className="font-medium text-gray-900 dark:text-white">THC-A</span>
-              <span className="text-gray-600 dark:text-gray-400">{product.thcaPercentage}%</span>
             </div>
           )}
 
@@ -102,39 +74,6 @@ export default function DesktopProductSpecs({ product }: DesktopProductSpecsProp
           )}
         </div>
 
-        {/* Effect Tags */}
-        {product.effectTags && product.effectTags.length > 0 && (
-          <div className="mt-4">
-            <h4 className="font-medium text-gray-900 dark:text-white mb-2">Effects</h4>
-            <div className="flex flex-wrap gap-2">
-              {product.effectTags.map((effect, index) => (
-                <span 
-                  key={index}
-                  className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full"
-                >
-                  {effect}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Cannabinoid Types */}
-        {product.cannabinoidType && product.cannabinoidType.length > 0 && (
-          <div className="mt-4">
-            <h4 className="font-medium text-gray-900 dark:text-white mb-2">Cannabinoids</h4>
-            <div className="flex flex-wrap gap-2">
-              {product.cannabinoidType.map((cannabinoid, index) => (
-                <span 
-                  key={index}
-                  className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm rounded-full"
-                >
-                  {cannabinoid}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
       </CollapsibleInfoSection>
 
       {/* Compliance Information */}

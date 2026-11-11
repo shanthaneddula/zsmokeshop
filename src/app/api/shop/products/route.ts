@@ -6,6 +6,7 @@ import { Product } from '@/types';
 import * as ProductStorage from '@/lib/product-storage-service';
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
 import { searchCatalog, toShopProduct } from '@/data/catalog';
+import { isRestrictedProduct } from '@/lib/restricted-content';
 
 // Convert AdminProduct to public Product format
 function convertToPublicProduct(adminProduct: AdminProduct): Product {
@@ -56,7 +57,7 @@ export async function GET(request: Request) {
     
     // Filter only active and in-stock products for public shop
     let filteredProducts = adminProducts
-      .filter((product: AdminProduct) => product.status === 'active' && product.inStock);
+      .filter((product: AdminProduct) => product.status === 'active' && product.inStock && !isRestrictedProduct(product));
     
     // Apply search filter if provided
     if (search && search.trim()) {

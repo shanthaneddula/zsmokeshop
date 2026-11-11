@@ -5,6 +5,7 @@ import { AdminCategory } from '@/types/admin';
 import { Category } from '@/types';
 import * as CategoryStorage from '@/lib/category-storage-service';
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
+import { isRestrictedCategorySlug } from '@/lib/restricted-content';
 import { getCatalogCategories, toShopCategory } from '@/data/catalog';
 
 // Convert AdminCategory to public Category format
@@ -30,7 +31,7 @@ export async function GET() {
     
     // Filter only active categories for public shop (show all active, even with 0 products)
     const activeCategories = categories
-      .filter(category => category.status === 'active')
+      .filter(category => category.status === 'active' && !isRestrictedCategorySlug(category.slug))
       .sort((a, b) => a.sortOrder - b.sortOrder) // Sort by admin-defined order
       .map(convertToPublicCategory);
 

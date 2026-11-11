@@ -11,11 +11,9 @@ export const categories: Category[] = [
   { id: '8', name: 'Glass', slug: 'glass', image: '/images/categories/glass.svg' },
   { id: '9', name: 'Grinders, Scales & Trays', slug: 'grinders-scales-trays', image: '/images/categories/accessories.svg' },
   { id: '10', name: 'High-End Vaporizers', slug: 'high-end-vaporizers', image: '/images/categories/vapes.svg' },
-  { id: '11', name: 'Kratoms', slug: 'kratoms', image: '/images/categories/detox.svg' },
   { id: '12', name: 'Lighters & Torches', slug: 'lighters-torches', image: '/images/categories/accessories.svg' },
   { id: '13', name: 'Shisha & Hookah', slug: 'shisha-hookah', image: '/images/categories/hookah.svg' },
   { id: '14', name: 'Smoke Accessories', slug: 'smoke-accessories', image: '/images/categories/accessories.svg' },
-  { id: '15', name: 'THC-A', slug: 'thc-a', image: '/images/categories/vapes.svg' },
   { id: '16', name: 'Vapes, Mods & Pods', slug: 'vapes-mods-pods', image: '/images/categories/vapes.svg' },
 ];
 
