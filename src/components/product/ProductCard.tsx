@@ -19,6 +19,10 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
   const { settings } = useBusinessSettings();
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [imageError, setImageError] = useState(false);
+  // Static catalog items are display-only: never show a price or add-to-cart.
+  const isCatalog = product.isCatalogItem === true;
+  const showPrice = settings?.showPrices !== false && !isCatalog;
+  const showCart = settings?.enableCart !== false && !isCatalog;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent link navigation
@@ -132,9 +136,15 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
               </p>
             )}
 
+            {isCatalog && product.optionSummary && (
+              <p className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">
+                {product.optionSummary}
+              </p>
+            )}
+
             {/* Price and Actions */}
             <div className="flex items-center justify-between">
-              {settings?.showPrices !== false && (
+              {showPrice && (
                 <div className="flex items-center gap-2">
                   <span className="text-lg font-black text-gray-900 dark:text-white">
                     ${product.salePrice ? product.salePrice.toFixed(2) : product.price.toFixed(2)}
@@ -146,7 +156,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                   )}
                 </div>
               )}
-              {settings?.enableCart !== false && (
+              {showCart && (
                 <button
                   onClick={handleAddToCart}
                   disabled={!product.inStock}
@@ -154,7 +164,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
                     product.inStock
                       ? 'bg-gray-900 text-white hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200'
                       : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500'
-                  } ${settings?.showPrices === false ? 'ml-auto' : ''}`}
+                  } ${!showPrice ? 'ml-auto' : ''}`}
                 >
                   {product.inStock ? (
                     <>
@@ -237,7 +247,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
 
 
         {/* Price */}
-        {settings?.showPrices !== false && (
+        {showPrice && (
           <div className="flex items-center gap-2 mb-4">
             <span className="text-lg font-black text-gray-900 dark:text-white">
               ${product.salePrice ? product.salePrice.toFixed(2) : product.price.toFixed(2)}
@@ -250,8 +260,20 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
           </div>
         )}
 
+        {/* Static catalog: variant summary + view details */}
+        {isCatalog && (
+          <>
+            <p className="text-xs text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-4 min-h-[1rem] line-clamp-1">
+              {product.optionSummary || 'In store'}
+            </p>
+            <span className="block w-full py-3 text-center text-sm font-bold uppercase tracking-wide bg-gray-900 text-white group-hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:group-hover:bg-gray-200 transition-colors">
+              View Details
+            </span>
+          </>
+        )}
+
         {/* Add to Cart Button */}
-        {settings?.enableCart !== false && (
+        {showCart && (
           <button
             onClick={handleAddToCart}
             disabled={!product.inStock}

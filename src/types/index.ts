@@ -39,6 +39,10 @@ export interface Product {
   stockQuantity?: number; // Number of items in stock
   badges?: string[]; // e.g., ['new', 'best-seller', 'sale', 'out-of-stock']
   rating?: number;
+  /** Display-only item from the static catalog (src/data/catalog): no price, no cart. */
+  isCatalogItem?: boolean;
+  /** e.g. "12 Flavors · 2 Sizes" (static catalog only) */
+  optionSummary?: string;
 }
 
 export interface ReviewData {

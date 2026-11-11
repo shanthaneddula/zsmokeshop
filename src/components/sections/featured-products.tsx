@@ -20,6 +20,7 @@ interface Product {
   brand?: string;
   inStock: boolean;
   slug: string;
+  isCatalogItem?: boolean;
 }
 
 export default function FeaturedProducts() {
@@ -247,7 +248,7 @@ export default function FeaturedProducts() {
                         <h3 className="font-bold text-gray-900 dark:text-white mb-2 uppercase tracking-wide text-xs line-clamp-2">
                           {product.name}
                         </h3>
-                        {settings?.showPrices !== false && (
+                        {settings?.showPrices !== false && !product.isCatalogItem && (
                           <div className="flex items-center gap-2">
                             <span className="text-sm font-bold text-gray-900 dark:text-white">
                               ${product.price.toFixed(2)}
@@ -333,7 +334,7 @@ export default function FeaturedProducts() {
                         </h3>
 
                         {/* Price */}
-                        {settings?.showPrices !== false && (
+                        {settings?.showPrices !== false && !product.isCatalogItem && (
                           <div className="mb-4">
                             <div className="flex items-center gap-3">
                               <span className="text-lg font-bold text-gray-900 dark:text-white">
@@ -349,7 +350,7 @@ export default function FeaturedProducts() {
                         )}
 
                         {/* Add to Cart Button */}
-                        {settings?.enableCart !== false && (
+                        {settings?.enableCart !== false && !product.isCatalogItem && (
                           <button className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3 px-4 font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors uppercase tracking-wide text-sm border border-gray-900 dark:border-white">
                             Add to Cart
                           </button>

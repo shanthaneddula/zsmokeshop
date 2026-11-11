@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 import { AdminProduct } from '@/types/admin';
 import { Product } from '@/types';
 import * as ProductStorage from '@/lib/product-storage-service';
+import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
+import { searchCatalog, toShopProduct } from '@/data/catalog';
 
 // Convert AdminProduct to public Product format
 function convertToPublicProduct(adminProduct: AdminProduct): Product {
@@ -23,7 +25,25 @@ function convertToPublicProduct(adminProduct: AdminProduct): Product {
   };
 }
 
+// Static display-only catalog response (same shape as the Redis response).
+function staticCatalogResponse(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const category = searchParams.get('category')?.trim().toLowerCase();
+  const brand = searchParams.get('brand')?.trim().toLowerCase();
+  const limitNum = parseInt(searchParams.get('limit') || '', 10);
+  let items = searchCatalog(searchParams.get('search') || '');
+  if (category) items = items.filter((p) => p.categorySlug === category);
+  if (brand) items = items.filter((p) => p.brandSlug === brand);
+  const products = items.map(toShopProduct);
+  const finalProducts = !isNaN(limitNum) && limitNum > 0 ? products.slice(0, limitNum) : products;
+  return NextResponse.json({ success: true, data: { products: finalProducts, total: products.length } });
+}
+
 export async function GET(request: Request) {
+  if (USE_STATIC_CATALOG) {
+    return staticCatalogResponse(request);
+  }
+
   try {
     // Parse query parameters
     const { searchParams } = new URL(request.url);

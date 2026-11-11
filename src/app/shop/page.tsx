@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import ShopPageClient from './shop-client';
+import StaticShopClient from './static-shop-client';
+import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
 
 // SEO metadata for the shop page
 export const metadata: Metadata = {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ShopPageClient />
+      {USE_STATIC_CATALOG ? <StaticShopClient /> : <ShopPageClient />}
     </Suspense>
   );
 }

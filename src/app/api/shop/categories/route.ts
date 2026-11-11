@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 import { AdminCategory } from '@/types/admin';
 import { Category } from '@/types';
 import * as CategoryStorage from '@/lib/category-storage-service';
+import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
+import { getCatalogCategories, toShopCategory } from '@/data/catalog';
 
 // Convert AdminCategory to public Category format
 function convertToPublicCategory(adminCategory: AdminCategory): Category {
@@ -16,6 +18,12 @@ function convertToPublicCategory(adminCategory: AdminCategory): Category {
 }
 
 export async function GET() {
+  // Static display-only catalog (see src/lib/catalog-source.ts). Redis path below is unchanged.
+  if (USE_STATIC_CATALOG) {
+    const categories = getCatalogCategories().map(toShopCategory);
+    return NextResponse.json({ success: true, data: { categories, total: categories.length } });
+  }
+
   try {
     // Read categories from Redis storage
     const categories = await CategoryStorage.readCategories();
