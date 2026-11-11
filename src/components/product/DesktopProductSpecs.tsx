@@ -102,10 +102,10 @@ export default function DesktopProductSpecs({ product }: DesktopProductSpecsProp
         <div className="space-y-4">
           <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
             <h4 className="font-bold text-green-800 dark:text-green-200 mb-2 uppercase tracking-wide">
-              Free Store Pickup
+              In-Store Purchase Only
             </h4>
             <p className="text-green-700 dark:text-green-300 text-sm">
-              Order online and pick up at our Austin location. No shipping fees, immediate availability.
+              We don't sell online. Visit our Austin store to buy; call ahead to check stock. 21+ with valid ID.
             </p>
           </div>
 
@@ -135,7 +135,7 @@ export default function DesktopProductSpecs({ product }: DesktopProductSpecsProp
               </h4>
               <p className="text-amber-700 dark:text-amber-300 text-sm">
                 You must be {product.ageRestriction}+ years old to purchase this product. 
-                Valid ID required for pickup.
+                Valid ID required for every purchase.
               </p>
             </div>
           )}

@@ -9,7 +9,7 @@ import {
   MapPin, 
   ShoppingBag, 
   CreditCard,
-  Truck,
+  Store,
   Shield
 } from 'lucide-react';
 import Link from 'next/link';
@@ -34,15 +34,15 @@ export default function SupportPage() {
     },
     {
       icon: CreditCard,
-      title: 'Orders & Payment',
-      description: 'Help with orders, payments, and billing',
-      topics: ['Order status', 'Payment methods', 'Billing questions', 'Order modifications']
+      title: 'In-Store Payment',
+      description: 'Payment methods and receipts for in-store purchases',
+      topics: ['Payment methods', 'Receipts', 'Billing questions', 'Loyalty program']
     },
     {
-      icon: Truck,
-      title: 'Shipping & Pickup',
-      description: 'Delivery, pickup, and shipping information',
-      topics: ['Shipping options', 'Store pickup', 'Delivery times', 'Tracking orders']
+      icon: Store,
+      title: 'In-Store Only',
+      description: 'We do not sell, ship or deliver online; all sales are in store',
+      topics: ['No online orders', 'No shipping or delivery', 'Call to check stock', '21+ with valid ID']
     },
     {
       icon: Shield,
@@ -62,8 +62,8 @@ export default function SupportPage() {
       answer: hoursAnswer
     },
     {
-      question: 'Do you offer same-day pickup?',
-      answer: `Yes! Place your order online or call us at ${businessPhone} and pick it up the same day at ${multipleLocations ? 'either of our Austin locations' : 'our Austin store'} during business hours. We'll have your order ready for quick pickup.`
+      question: 'Can I order online, or get delivery or shipping?',
+      answer: `No. We don't sell, ship or deliver online. This website is a catalog only, and every purchase is made in person at ${multipleLocations ? 'one of our Austin locations' : 'our Austin store'} with a valid ID showing you are 21 or older. Call us at ${businessPhone} to check what's in stock before you visit.`
     },
     {
       question: 'What payment methods do you accept?',

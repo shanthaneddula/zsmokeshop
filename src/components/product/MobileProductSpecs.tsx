@@ -115,10 +115,10 @@ export default function MobileProductSpecs({ product }: MobileProductSpecsProps)
               <TruckIcon className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
               <div className="space-y-1">
                 <h5 className="font-bold text-blue-800 dark:text-blue-200 text-sm uppercase tracking-wide">
-                  Store Pickup Available
+                  In-Store Purchase Only
                 </h5>
                 <p className="text-blue-700 dark:text-blue-300 text-sm">
-                  Order online and pick up at our Austin location. Ready in 1-2 hours during business hours.
+                  We don't sell online. Visit our Austin store to buy; call ahead to check stock. 21+ with valid ID.
                 </p>
               </div>
             </div>

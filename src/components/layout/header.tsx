@@ -1,5 +1,6 @@
 "use client";
 
+import { ONLINE_SALES_ENABLED } from '@/lib/online-sales';
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -272,7 +273,7 @@ export default function Header() {
           </Link>
 
           {/* Cart - Only show if cart is enabled */}
-          {settings?.enableCart !== false && (
+          {ONLINE_SALES_ENABLED && settings?.enableCart !== false && (
             <Link
               href="/cart"
               className="relative p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors"
@@ -468,20 +469,6 @@ export default function Header() {
                         My Account
                       </Link>
                       <Link
-                        href="/cart"
-                        className="block py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Exchanges & Returns
-                      </Link>
-                      <Link
-                        href="/cart"
-                        className="block py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        Order Tracker
-                      </Link>
-                      <Link
                         href="/locations"
                         className="block py-3 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -492,7 +479,7 @@ export default function Header() {
                   </div>
 
                   {/* Cart Button - Only show if cart is enabled */}
-                  {settings?.enableCart !== false && (
+                  {ONLINE_SALES_ENABLED && settings?.enableCart !== false && (
                     <div className="mt-8 px-6">
                       <Link
                         href="/cart"

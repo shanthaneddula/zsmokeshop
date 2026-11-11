@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { ONLINE_SALES_ENABLED } from '@/lib/online-sales';
 import { createOrder } from '@/lib/order-storage-service';
 import { 
   sendOrderConfirmationSMS, 
@@ -19,6 +20,12 @@ import { getProduct } from '@/lib/product-storage-service';
  * Create a new pickup order
  */
 export async function POST(request: NextRequest) {
+  if (!ONLINE_SALES_ENABLED) {
+    return NextResponse.json(
+      { error: 'Online ordering is not available. All purchases are made in store (21+, valid ID required).' },
+      { status: 410 }
+    );
+  }
   try {
     const body: CreateOrderRequest = await request.json();
 

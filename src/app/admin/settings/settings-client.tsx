@@ -1,5 +1,6 @@
 'use client';
 
+import { ONLINE_SALES_ENABLED } from '@/lib/online-sales';
 import { useState, useEffect } from 'react';
 import CatalogComplianceBanner from '../catalog-visibility/CatalogComplianceBanner';
 import { 
@@ -809,7 +810,8 @@ export default function SettingsClient() {
                   <label className="flex items-start">
                     <input
                       type="checkbox"
-                      checked={settings.enableCart}
+                      checked={false}
+                      disabled
                       onChange={(e) => updateSettings('enableCart', e.target.checked)}
                       className="mr-2 sm:mr-3 mt-1 accent-gray-900 dark:accent-white"
                     />
@@ -818,7 +820,7 @@ export default function SettingsClient() {
                         Enable Shopping Cart
                       </span>
                       <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 sm:mt-2">
-                        Show or hide the &quot;Add to Cart&quot; button on product pages and shop. When disabled, customers can browse products but cannot add them to cart or checkout.
+                        Online sales are turned off for compliance: the website is a display-only catalog and all sales happen in store (21+, ID check). Cart, checkout and online orders are disabled in code (src/lib/online-sales.ts).
                       </p>
                     </div>
                   </label>

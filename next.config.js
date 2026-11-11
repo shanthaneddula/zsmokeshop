@@ -18,6 +18,16 @@ const nextConfig = {
     return config;
   },
 
+  // No online sales: send any cart/checkout URL to the catalog.
+  async redirects() {
+    return [
+      { source: '/cart', destination: '/shop', permanent: false },
+      { source: '/cart/:path*', destination: '/shop', permanent: false },
+      { source: '/checkout', destination: '/shop', permanent: false },
+      { source: '/checkout/:path*', destination: '/shop', permanent: false },
+    ];
+  },
+
   // Experimental features
   experimental: {
     optimizePackageImports: ['@heroicons/react', 'lucide-react'],

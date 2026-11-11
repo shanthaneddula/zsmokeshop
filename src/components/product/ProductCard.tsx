@@ -1,5 +1,6 @@
 'use client';
 
+import { ONLINE_SALES_ENABLED } from '@/lib/online-sales';
 import { useState } from 'react';
 import { useCart } from '@/contexts/CartContext';
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
@@ -22,7 +23,7 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
   // Static catalog items are display-only: never show a price or add-to-cart.
   const isCatalog = product.isCatalogItem === true;
   const showPrice = settings?.showPrices !== false && !isCatalog;
-  const showCart = settings?.enableCart !== false && !isCatalog;
+  const showCart = ONLINE_SALES_ENABLED && settings?.enableCart !== false && !isCatalog;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent link navigation

@@ -1,5 +1,6 @@
 "use client";
 
+import { ONLINE_SALES_ENABLED } from '@/lib/online-sales';
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import OptimizedImage from '@/components/ui/OptimizedImage';
@@ -350,7 +351,7 @@ export default function FeaturedProducts() {
                         )}
 
                         {/* Add to Cart Button */}
-                        {settings?.enableCart !== false && !product.isCatalogItem && (
+                        {ONLINE_SALES_ENABLED && settings?.enableCart !== false && !product.isCatalogItem && (
                           <button className="w-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 py-3 px-4 font-bold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors uppercase tracking-wide text-sm border border-gray-900 dark:border-white">
                             Add to Cart
                           </button>

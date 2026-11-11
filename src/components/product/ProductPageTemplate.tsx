@@ -1,5 +1,6 @@
 'use client';
 
+import { ONLINE_SALES_ENABLED } from '@/lib/online-sales';
 import { AdminProduct } from '@/types';
 import { useState, useEffect } from 'react';
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
@@ -113,7 +114,7 @@ export default function ProductPageTemplate({
           product={product} 
           onAddToCart={handleAddToCart}
           isAddingToCart={isAddingToCart}
-          enableCart={settings?.enableCart !== false}
+          enableCart={ONLINE_SALES_ENABLED && settings?.enableCart !== false}
         />
       </div>
 
@@ -202,7 +203,7 @@ export default function ProductPageTemplate({
               />
 
               {/* Desktop Add to Cart - Only show if cart is enabled */}
-              {settings?.enableCart !== false && (
+              {ONLINE_SALES_ENABLED && settings?.enableCart !== false && (
                 <div className="space-y-4">
                   <button
                     onClick={handleAddToCart}
