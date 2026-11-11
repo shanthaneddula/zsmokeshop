@@ -65,6 +65,20 @@ function OptionGroups({ product }: Props) {
   );
 }
 
+function LabReportLink({ product }: Props) {
+  if (!product.labReportUrl) return null;
+  return (
+    <a
+      href={product.labReportUrl}
+      target="_blank"
+      rel="noopener noreferrer nofollow"
+      className="inline-block border border-gray-900 dark:border-white px-4 py-2 text-xs font-black uppercase tracking-wide text-gray-900 dark:text-white hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
+    >
+      View lab report (COA) from {product.brand}
+    </a>
+  );
+}
+
 function StoreNote() {
   return (
     <div className="border border-gray-200 dark:border-gray-700 p-4 flex items-start gap-3">
@@ -134,6 +148,11 @@ export default function CatalogProductTemplate({ product }: Props) {
           <div className="mb-6">
             <OptionGroups product={product} />
           </div>
+          {product.labReportUrl && (
+            <div className="mb-6">
+              <LabReportLink product={product} />
+            </div>
+          )}
           <div className="mb-8">
             <StoreNote />
           </div>
@@ -161,6 +180,7 @@ export default function CatalogProductTemplate({ product }: Props) {
               </div>
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">{product.description}</p>
               <OptionGroups product={product} />
+              <LabReportLink product={product} />
               <StoreNote />
               {brand && (
                 <p className="text-sm text-gray-500 dark:text-gray-400">

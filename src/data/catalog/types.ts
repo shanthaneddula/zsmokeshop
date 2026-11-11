@@ -19,6 +19,8 @@ export interface CatalogProduct {
   image: string;
   description: string;
   options: CatalogOption[];
+  /** Brand-published lab report (certificate of analysis) page or PDF, when one exists */
+  labReportUrl?: string;
 }
 
 export interface CatalogBrand {

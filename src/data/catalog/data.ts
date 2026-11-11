@@ -12,6 +12,8 @@ import { vapesModsAndPodsCategory } from './categories/vapes-mods-and-pods';
 import { cbdAndHempCategory } from './categories/cbd-and-hemp';
 import { grindersAndScalesCategory } from './categories/grinders-and-scales';
 import { lightersAndTorchesCategory } from './categories/lighters-and-torches';
+import { nectarCollectorsAndStrawsCategory } from './categories/nectar-collectors-and-straws';
+import { thcGummiesCategory } from './categories/thc-gummies';
 
 export const CATALOG_CATEGORIES: CatalogCategory[] = [
   vaporizersCategory,
@@ -24,4 +26,6 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
   cbdAndHempCategory,
   grindersAndScalesCategory,
   lightersAndTorchesCategory,
+  nectarCollectorsAndStrawsCategory,
+  thcGummiesCategory,
 ];

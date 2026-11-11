@@ -3189,6 +3189,706 @@
       "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/L085_2_67630d21-3a3a-469d-b7c4-328090e96b83.jpg?v=1716519018",
       "image": "/catalog/lighters-and-torches/newport-zero/newport-zero-long-side-torch-lighter.webp",
       "image_status": "ok"
+    },
+    {
+      "slug": "aleaf-the-reclaimer-straw",
+      "name": "aLeaf The Reclaimer Straw",
+      "brand": "aLeaf",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.aleafglass.com/products/the-reclaimer-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0209/1761/6689/files/Aleaf758.jpg?v=1708639636",
+      "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-the-reclaimer-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "aleaf-the-noisy-cricket-nectar-collector",
+      "name": "aLeaf \"The Noisy Cricket\" Nectar Collector",
+      "brand": "aLeaf",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.aleafglass.com/products/noisy-cricket-nectar-collector",
+      "image_source": "https://cdn.shopify.com/s/files/1/0209/1761/6689/files/Aleaf725.jpg?v=1692906197",
+      "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-the-noisy-cricket-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "aleaf-forever-injector-silicone-nectar-collector-with-reclaimer",
+      "name": "aLeaf Forever Injector Silicone Nectar Collector with Reclaimer",
+      "brand": "aLeaf",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.aleafglass.com/products/aleaf-forever-injector-silicone-nectar-collector-with-reclaimer",
+      "image_source": "https://cdn.shopify.com/s/files/1/0209/1761/6689/files/Silicone_Forever_Injector_Mix_5_2.jpg?v=1793319040",
+      "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-forever-injector-silicone-nectar-collector-with-reclaimer.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "aleaf-5-1-glycerin-honey-straw",
+      "name": "aLeaf 5.1\" Glycerin Honey Straw",
+      "brand": "aLeaf",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.aleafglass.com/products/aleaf-5-1-glycerin-honey-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0209/1761/6689/files/ALNC5040_Mix_1_1.jpg?v=1790735907",
+      "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-5-1-glycerin-honey-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "aleaf-the-volt-purifier",
+      "name": "aLeaf \"The Volt\" Purifier",
+      "brand": "aLeaf",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.aleafglass.com/products/the-volt-purifier",
+      "image_source": "https://cdn.shopify.com/s/files/1/0209/1761/6689/files/Aleaf1013.jpg?v=1760047358",
+      "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-the-volt-purifier.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "aleaf-6-liquid-purifier",
+      "name": "aLeaf 6\" Liquid Purifier",
+      "brand": "aLeaf",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.aleafglass.com/products/liquid-purifier",
+      "image_source": "https://cdn.shopify.com/s/files/1/0209/1761/6689/products/Aleaf518-1.jpg?v=1661885340",
+      "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-6-liquid-purifier.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "aleaf-silicone-rocket-nectar-collector-with-tree-perc",
+      "name": "aLeaf Silicone Rocket Nectar Collector with Tree Perc",
+      "brand": "aLeaf",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.aleafglass.com/products/silicon-rocket-nc-w-tree-perc-9-colors",
+      "image_source": "https://cdn.shopify.com/s/files/1/0209/1761/6689/products/Aleaf502.jpg?v=1661973707",
+      "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-silicone-rocket-nectar-collector-with-tree-perc.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "aleaf-8-winding-glass-straw-purifier",
+      "name": "aLeaf 8\" Winding Glass Straw Purifier",
+      "brand": "aLeaf",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.aleafglass.com/products/glass-straw-purifier",
+      "image_source": "https://cdn.shopify.com/s/files/1/0209/1761/6689/files/Aleaf722.jpg?v=1692906862",
+      "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-8-winding-glass-straw-purifier.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cali-cloud-honey-tree-extend-co-nectar-collector-10",
+      "name": "Cali Cloud Honey Tree Extend CO Nectar Collector 10\"",
+      "brand": "Cali Cloud",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/cali-cloud-honey-tree-extend-co-nectar-collector-10-in",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/CC-2603-G_01_WEBP_1.webp?v=1780519971",
+      "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-honey-tree-extend-co-nectar-collector-10.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cali-cloud-honeycomb-nectar-collector",
+      "name": "Cali Cloud Honeycomb Nectar Collector",
+      "brand": "Cali Cloud",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/cali-cloud-honeycomb-nectar-collector",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/CC-2605-Pk_01_WEBP_1.webp?v=1780520561",
+      "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-honeycomb-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cali-cloud-dual-tree-extend-cx-nectar-collector-10",
+      "name": "Cali Cloud Dual Tree Extend CX Nectar Collector 10\"",
+      "brand": "Cali Cloud",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/cali-cloud-dual-tree-extend-cx-nectar-collector-straw-10-in",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/CC-2607-B_1_WEBP.webp?v=1780521038",
+      "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-dual-tree-extend-cx-nectar-collector-10.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cali-cloud-pineapple-cx-nectar-collector-7",
+      "name": "Cali Cloud Pineapple CX Nectar Collector 7\"",
+      "brand": "Cali Cloud",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/cali-cloud-pineapple-cx-nectar-collector-straw-7-in",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/CC-2611-MPK_1_WEBP_1.webp?v=1780522354",
+      "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-pineapple-cx-nectar-collector-7.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cali-cloud-mushroom-cx-nectar-collector-7",
+      "name": "Cali Cloud Mushroom CX Nectar Collector 7\"",
+      "brand": "Cali Cloud",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/cali-cloud-mushroom-cx-nectar-collector-7-in",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/CC-2609-MG_1_WEBP_1.webp?v=1780521836",
+      "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-mushroom-cx-nectar-collector-7.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cali-cloud-dome-inline-recycler-cx-nectar-collector-7",
+      "name": "Cali Cloud Dome Inline Recycler CX Nectar Collector 7\"",
+      "brand": "Cali Cloud",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/cali-cloud-dome-inline-recycler-cx-nectar-collector-straw-7-in",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/CC-2613-MPk_01_WEBP_1.webp?v=1780524930",
+      "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-dome-inline-recycler-cx-nectar-collector-7.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "cali-cloud-lollipop-arm-recycler-nectar-collector",
+      "name": "Cali Cloud Lollipop Arm Recycler Nectar Collector",
+      "brand": "Cali Cloud",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/lollipop-brand-arm-recyclers-nectar-collector",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/NC1001-BLK__BlackBackground_1__WEBP.webp?v=1763743745",
+      "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-lollipop-arm-recycler-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "connect-key-electric-nectar-collector",
+      "name": "Connect Key Electric Nectar Collector",
+      "brand": "Connect",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://theconnectbrand.com/products/key-nectar-collector",
+      "image_source": "https://cdn.shopify.com/s/files/1/0573/3004/1010/files/1XvOpqDw.jpg?v=1702685656",
+      "image": "/catalog/nectar-collectors-and-straws/connect/connect-key-electric-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "connect-natural-wood-nectar-collector",
+      "name": "Connect Natural Wood Nectar Collector",
+      "brand": "Connect",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://phxwholesales.com/connect/",
+      "image_source": "https://cdn11.bigcommerce.com/s-mlveowvsdu/images/stencil/1280w/products/3687/6482/connect-wood-nectar-collector-bamboo-packaging__67785.1736983711.jpg?c=1",
+      "image": "/catalog/nectar-collectors-and-straws/connect/connect-natural-wood-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "connect-natural-wood-water-pipe",
+      "name": "Connect Natural Wood Water Pipe",
+      "brand": "Connect",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://phxwholesales.com/connect/",
+      "image_source": "https://cdn11.bigcommerce.com/s-mlveowvsdu/images/stencil/1280w/products/3686/6478/connect-wood-rig-bamboo-packaging__87423.1736880813.jpg?c=1",
+      "image": "/catalog/nectar-collectors-and-straws/connect/connect-natural-wood-water-pipe.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "connect-water-pipe-kit-in-box",
+      "name": "Connect Water Pipe Kit in Box",
+      "brand": "Connect",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://theconnectbrand.com/products/rig-kit-in-box",
+      "image_source": "https://cdn.shopify.com/s/files/1/0573/3004/1010/files/2GooxeA3.jpg?v=1702687244",
+      "image": "/catalog/nectar-collectors-and-straws/connect/connect-water-pipe-kit-in-box.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "pulsar-on-the-go-quartz-straw-kit",
+      "name": "Pulsar On The Go Quartz Straw Kit",
+      "brand": "Pulsar",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.pulsarvaporizers.com/products/on-the-go-quartz-dab-straw-kit",
+      "image_source": "https://cdn.shopify.com/s/files/1/0011/0025/1195/files/pulsar-on-the-go-quartz-dab-straw-kit-group.png?v=1767822844",
+      "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-on-the-go-quartz-straw-kit.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "pulsar-rip-silicone-straw",
+      "name": "Pulsar RIP Silicone Straw",
+      "brand": "Pulsar",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.pulsarvaporizers.com/products/rip-silicone-dab-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0011/0025/1195/files/pulsar-rip-silicone-dab-straw-new-group.png?v=1784666706",
+      "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-rip-silicone-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "pulsar-color-block-honeycomb-diffuser-straw",
+      "name": "Pulsar Color Block Honeycomb Diffuser Straw",
+      "brand": "Pulsar",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.pulsarvaporizers.com/products/honeycomb-diffuser-dab-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0011/0025/1195/files/pulsar-color-block-honeycomb-diffuser-dab-straw-group.png?v=1788363652",
+      "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-color-block-honeycomb-diffuser-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "pulsar-shroom-diffuser-straw",
+      "name": "Pulsar Shroom Diffuser Straw",
+      "brand": "Pulsar",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.pulsarvaporizers.com/products/shroom-diffuser-dab-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0011/0025/1195/files/pulsar-shroom-honeycomb-dab-straw-group.png?v=1769024328",
+      "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-shroom-diffuser-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "pulsar-spin-pearl-quartz-straw",
+      "name": "Pulsar Spin Pearl Quartz Straw",
+      "brand": "Pulsar",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.pulsarvaporizers.com/products/dab-straw-spin-pearl",
+      "image_source": "https://cdn.shopify.com/s/files/1/0011/0025/1195/files/pulsar-spin-pearl-quartz-dab-straw-group.png?v=1768597874",
+      "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-spin-pearl-quartz-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "pulsar-candy-frit-twist-straw",
+      "name": "Pulsar Candy Frit Twist Straw",
+      "brand": "Pulsar",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.pulsarvaporizers.com/products/candy-frit-twist-dab-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0011/0025/1195/files/pulsar-candy-frit-twist-dab-straw-group.png?v=1767647944",
+      "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-candy-frit-twist-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "pulsar-magic-mushroom-straw",
+      "name": "Pulsar Magic Mushroom Straw",
+      "brand": "Pulsar",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.pulsarvaporizers.com/products/magic-mushroom-dab-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0011/0025/1195/files/pulsar-magic-mushroom-dab-straw-group.png?v=1767384680",
+      "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-magic-mushroom-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "pulsar-cold-hearted-glycerin-straw",
+      "name": "Pulsar Cold Hearted Glycerin Straw",
+      "brand": "Pulsar",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.pulsarvaporizers.com/products/cold-hearted-glycerin-dab-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0011/0025/1195/files/pulsar-cold-hearted-glycerin-dab-straw-group.png?v=1763756041",
+      "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-cold-hearted-glycerin-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "nectar-collector-honeybird-kit",
+      "name": "Nectar Collector Honeybird Kit",
+      "brand": "The Original Nectar Collector",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://dankstop.com/products/nectar-collector-honeybird-kit",
+      "image_source": "https://cdn.shopify.com/s/files/1/0673/9007/9195/files/nc24004_105.jpg?v=1745441175",
+      "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-honeybird-kit.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "nectar-collector-honeybird-pro-kit",
+      "name": "Nectar Collector Honeybird Pro Kit",
+      "brand": "The Original Nectar Collector",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/nectar-collector-honeybird-pro-kit",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/nc23205_2.webp?v=1750234011",
+      "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-honeybird-pro-kit.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "nectar-collector-electric-honeybird-pro-kit",
+      "name": "Nectar Collector Electric Honeybird Pro Kit",
+      "brand": "The Original Nectar Collector",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/original-nectar-collector-electric-honeybird-pro-kit",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/nc60207_1.webp?v=1750233233",
+      "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-electric-honeybird-pro-kit.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "nectar-collector-electric-honeybird-simple-kit",
+      "name": "Nectar Collector Electric Honeybird Simple Kit",
+      "brand": "The Original Nectar Collector",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/original-nectar-collector-electric-honeybird-simple-kit",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/nc60206_2.webp?v=1750233200",
+      "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-electric-honeybird-simple-kit.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "nectar-collector-honeysucker-kit",
+      "name": "Nectar Collector Honeysucker Kit",
+      "brand": "The Original Nectar Collector",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/the-original-nectar-collector-honeysucker-kit",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/nc23610.webp?v=1750246624",
+      "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-honeysucker-kit.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "nectar-collector-honeybird-classic-cannaster-with-quartz-tip",
+      "name": "Nectar Collector Honeybird Classic Cannaster with Quartz Tip",
+      "brand": "The Original Nectar Collector",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/honeybird-classic-cannaster-with-quartz-tip",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/nc24113.webp?v=1750232083",
+      "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-honeybird-classic-cannaster-with-quartz-tip.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "snoozy-extra-strength-raspberry-gummies",
+      "name": "Snoozy Extra Strength Raspberry Gummies",
+      "brand": "Snoozy",
+      "category": "THC Gummies",
+      "source": "https://www.getsnoozy.com/products/delta-9-gummies-for-sleep",
+      "image_source": "https://cdn.shopify.com/s/files/1/0611/1848/0583/files/SWBPDPBadge.png?v=1793645776",
+      "image": "/catalog/thc-gummies/snoozy/snoozy-extra-strength-raspberry-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "snoozy-microdose-raspberry-gummies",
+      "name": "Snoozy Microdose Raspberry Gummies",
+      "brand": "Snoozy",
+      "category": "THC Gummies",
+      "source": "https://www.getsnoozy.com/products/microdose-sleep-with-benefits-bedtime-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0611/1848/0583/files/Frame54.png?v=1793645776",
+      "image": "/catalog/thc-gummies/snoozy/snoozy-microdose-raspberry-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "snoozy-extra-strength-orange-gummies",
+      "name": "Snoozy Extra Strength Orange Gummies",
+      "brand": "Snoozy",
+      "category": "THC Gummies",
+      "source": "https://www.getsnoozy.com/products/delta-9-thc-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0611/1848/0583/files/Frame46.png?v=1793645776",
+      "image": "/catalog/thc-gummies/snoozy/snoozy-extra-strength-orange-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "snoozy-strawberry-5mg-gummies",
+      "name": "Snoozy Strawberry 5mg Gummies",
+      "brand": "Snoozy",
+      "category": "THC Gummies",
+      "source": "https://www.getsnoozy.com/products/delta-9-thc-gummies-for-stress-relief",
+      "image_source": "https://cdn.shopify.com/s/files/1/0611/1848/0583/files/Frame50.png?v=1793645776",
+      "image": "/catalog/thc-gummies/snoozy/snoozy-strawberry-5mg-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "snoozy-peach-5mg-gummies",
+      "name": "Snoozy Peach 5mg Gummies",
+      "brand": "Snoozy",
+      "category": "THC Gummies",
+      "source": "https://www.getsnoozy.com/products/cbd-gummies-for-sex",
+      "image_source": "https://cdn.shopify.com/s/files/1/0611/1848/0583/files/LovePDP.png?v=1793645778",
+      "image": "/catalog/thc-gummies/snoozy/snoozy-peach-5mg-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "snoozy-tart-blueberry-gummies",
+      "name": "Snoozy Tart Blueberry Gummies",
+      "brand": "Snoozy",
+      "category": "THC Gummies",
+      "source": "https://www.getsnoozy.com/products/sigh-of-relief-20-count-pouch",
+      "image_source": "https://cdn.shopify.com/s/files/1/0611/1848/0583/files/Frame45.png?v=1793645777",
+      "image": "/catalog/thc-gummies/snoozy/snoozy-tart-blueberry-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "snoozy-pineapple-gummies",
+      "name": "Snoozy Pineapple Gummies",
+      "brand": "Snoozy",
+      "category": "THC Gummies",
+      "source": "https://www.getsnoozy.com/products/highly-in-focus-20-count-pouch",
+      "image_source": "https://cdn.shopify.com/s/files/1/0611/1848/0583/files/Frame49.png?v=1793645777",
+      "image": "/catalog/thc-gummies/snoozy/snoozy-pineapple-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "snoozy-watermelon-gummies",
+      "name": "Snoozy Watermelon Gummies",
+      "brand": "Snoozy",
+      "category": "THC Gummies",
+      "source": "https://www.getsnoozy.com/products/feel-good-energy-20-ct-bag",
+      "image_source": "https://cdn.shopify.com/s/files/1/0611/1848/0583/files/Frame52.png?v=1793645777",
+      "image": "/catalog/thc-gummies/snoozy/snoozy-watermelon-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "erth-wellness-nano-delta-9-thc-gummies-tutti-frutti",
+      "name": "Erth Wellness Nano Delta-9 THC Gummies - Tutti Frutti",
+      "brand": "Erth Wellness",
+      "category": "THC Gummies",
+      "source": "https://erthwellness.com/products/thc-gummies-vegan-tutti-frutti-10mg-ea",
+      "image_source": "https://cdn.shopify.com/s/files/1/0104/8497/3626/files/Erth-Wellness_Photoshoot_RELAX-10mg-THC-Gummies-_-Tutti-Frutti-_300mg__Can-on-Limes_2026-08-22_1x_a7982bdf-2369-4e99-9e04-683e23113a70.jpg?v=1787442539",
+      "image": "/catalog/thc-gummies/erth-wellness/erth-wellness-nano-delta-9-thc-gummies-tutti-frutti.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "erth-wellness-delta-9-thc-gummies-blue-dream",
+      "name": "Erth Wellness Delta-9 THC Gummies - Blue Dream",
+      "brand": "Erth Wellness",
+      "category": "THC Gummies",
+      "source": "https://erthwellness.com/products/thc-gummies-blue-dream",
+      "image_source": "https://cdn.shopify.com/s/files/1/0104/8497/3626/files/Erth-Wellness_Photoshoot_THC-Gummies-_-Blue-Dream-_Creative__Can-on-Limes_2026-08-18_1x_1.jpg?v=1787091979",
+      "image": "/catalog/thc-gummies/erth-wellness/erth-wellness-delta-9-thc-gummies-blue-dream.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "erth-wellness-delta-9-thc-gummies-green-crack",
+      "name": "Erth Wellness Delta-9 THC Gummies - Green Crack",
+      "brand": "Erth Wellness",
+      "category": "THC Gummies",
+      "source": "https://erthwellness.com/products/thc-gummies-green-crack",
+      "image_source": "https://cdn.shopify.com/s/files/1/0104/8497/3626/files/Erth-Wellness_Photoshoot_THC-Gummies-_-Green-Crack-_Energized__Can-on-Limes_2026-08-18_1x_f3cae9a5-5373-4844-832c-120ccf98fcf0.jpg?v=1787091262",
+      "image": "/catalog/thc-gummies/erth-wellness/erth-wellness-delta-9-thc-gummies-green-crack.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "erth-wellness-delta-9-thc-gummies-pineapple-express",
+      "name": "Erth Wellness Delta-9 THC Gummies - Pineapple Express",
+      "brand": "Erth Wellness",
+      "category": "THC Gummies",
+      "source": "https://erthwellness.com/products/thc-gummies-pineapple-express-strain-specific-sativa-300mg",
+      "image_source": "https://cdn.shopify.com/s/files/1/0104/8497/3626/files/pineapple_express.jpg?v=1787108709",
+      "image": "/catalog/thc-gummies/erth-wellness/erth-wellness-delta-9-thc-gummies-pineapple-express.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "erth-wellness-delta-9-thc-gummies-strawberry-haze",
+      "name": "Erth Wellness Delta-9 THC Gummies - Strawberry Haze",
+      "brand": "Erth Wellness",
+      "category": "THC Gummies",
+      "source": "https://erthwellness.com/products/strawberry-haze-thc-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0104/8497/3626/files/strawberry_haze.jpg?v=1787111619",
+      "image": "/catalog/thc-gummies/erth-wellness/erth-wellness-delta-9-thc-gummies-strawberry-haze.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "erth-wellness-delta-9-thc-gummies-granddaddy-purple",
+      "name": "Erth Wellness Delta-9 THC Gummies - Granddaddy Purple",
+      "brand": "Erth Wellness",
+      "category": "THC Gummies",
+      "source": "https://erthwellness.com/products/thc-gummies-granddaddy-purple-live-resin-indica-300mg",
+      "image_source": "https://cdn.shopify.com/s/files/1/0104/8497/3626/files/Erth-Wellness_Photoshoot_THC-Gummies-_-Granddaddy-Purple-_Calming__Can-on-Limes_2026-08-18_1x_b36eb0f1-ebb6-4153-ab4a-243e2a48fd08.jpg?v=1787110159",
+      "image": "/catalog/thc-gummies/erth-wellness/erth-wellness-delta-9-thc-gummies-granddaddy-purple.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "erth-wellness-delta-9-thc-gummies-northern-lights",
+      "name": "Erth Wellness Delta-9 THC Gummies - Northern Lights",
+      "brand": "Erth Wellness",
+      "category": "THC Gummies",
+      "source": "https://erthwellness.com/products/δ9-thc-gummies-northern-lights-live-resin-indica-300mg",
+      "image_source": "https://cdn.shopify.com/s/files/1/0104/8497/3626/files/northern_lights.jpg?v=1787109256",
+      "image": "/catalog/thc-gummies/erth-wellness/erth-wellness-delta-9-thc-gummies-northern-lights.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "erth-wellness-delta-9-thc-gummies-wedding-cake",
+      "name": "Erth Wellness Delta-9 THC Gummies - Wedding Cake",
+      "brand": "Erth Wellness",
+      "category": "THC Gummies",
+      "source": "https://erthwellness.com/products/δ9-thc-gummies-wedding-cake-live-resin-hybrid-300mg",
+      "image_source": "https://cdn.shopify.com/s/files/1/0104/8497/3626/files/wedding_cake.jpg?v=1787110425",
+      "image": "/catalog/thc-gummies/erth-wellness/erth-wellness-delta-9-thc-gummies-wedding-cake.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "willie-s-stardust-thc-gummies",
+      "name": "Willie's Stardust THC Gummies",
+      "brand": "Willie's",
+      "category": "THC Gummies",
+      "source": "https://willies.com/products/thc-sleep-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0857/8478/9239/files/Gummy_Pouch_PDP-2_hero-05.png?v=1787592225",
+      "image": "/catalog/thc-gummies/willies/willie-s-stardust-thc-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-raspberry-sativa-thc-gummies",
+      "name": "Wyld Raspberry Sativa THC Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/raspberry-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Raspberry.png?v=1784855023",
+      "image": "/catalog/thc-gummies/wyld/wyld-raspberry-sativa-thc-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-huckleberry-hybrid-thc-gummies",
+      "name": "Wyld Huckleberry Hybrid THC Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/huckleberry-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Huckleberry.png?v=1784855409",
+      "image": "/catalog/thc-gummies/wyld/wyld-huckleberry-hybrid-thc-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-marionberry-indica-thc-gummies",
+      "name": "Wyld Marionberry Indica THC Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/marionberry-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Marionberry.png?v=1784857735",
+      "image": "/catalog/thc-gummies/wyld/wyld-marionberry-indica-thc-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-sour-apple-sativa-thc-gummies",
+      "name": "Wyld Sour Apple Sativa THC Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/sour-apple-sativa-thc-active",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Sour_Apple.png?v=1784858055",
+      "image": "/catalog/thc-gummies/wyld/wyld-sour-apple-sativa-thc-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-sour-tangerine-hybrid-thc-gummies",
+      "name": "Wyld Sour Tangerine Hybrid THC Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/sour-tangerine-hybrid-thc-playful",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Sour_Tangerine.png?v=1784858614",
+      "image": "/catalog/thc-gummies/wyld/wyld-sour-tangerine-hybrid-thc-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-sour-cherry-indica-thc-gummies",
+      "name": "Wyld Sour Cherry Indica THC Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/sour-cherry-indica-thc-mellow",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Sour_Cherry.png?v=1784858977",
+      "image": "/catalog/thc-gummies/wyld/wyld-sour-cherry-indica-thc-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-elderberry-2-1-thc-cbn-gummies",
+      "name": "Wyld Elderberry 2:1 THC:CBN Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/elderberry-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Elderberry.png?v=1784854745",
+      "image": "/catalog/thc-gummies/wyld/wyld-elderberry-2-1-thc-cbn-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-pear-1-1-thc-cbg-gummies",
+      "name": "Wyld Pear 1:1 THC:CBG Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/pear-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Pear.png?v=1784857081",
+      "image": "/catalog/thc-gummies/wyld/wyld-pear-1-1-thc-cbg-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-pomegranate-1-1-thc-cbd-gummies",
+      "name": "Wyld Pomegranate 1:1 THC:CBD Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/pomegranate-gummies",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Pomegranate.png?v=1784858386",
+      "image": "/catalog/thc-gummies/wyld/wyld-pomegranate-1-1-thc-cbd-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "wyld-boysenberry-1-1-1-thc-cbd-cbn-gummies",
+      "name": "Wyld Boysenberry 1:1:1 THC:CBD:CBN Gummies",
+      "brand": "Wyld",
+      "category": "THC Gummies",
+      "source": "https://wyldhemp.com/products/boysenberry-1-1-1-thc-cbd-cbn-gummies-dream",
+      "image_source": "https://cdn.shopify.com/s/files/1/0874/1863/4528/files/Boysenberry.png?v=1784857424",
+      "image": "/catalog/thc-gummies/wyld/wyld-boysenberry-1-1-1-thc-cbd-cbn-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "sweet-sensi-elevated-gum-drops",
+      "name": "Sweet Sensi Elevated Gum Drops",
+      "brand": "Sweet Sensi (Elevated Edibles)",
+      "category": "THC Gummies",
+      "source": "https://sweetsensiwellness.com/product/elevated-gum-drops",
+      "image_source": "https://sweetsensiwellness.com/wp-content/uploads/2025/08/Elevated-Gumdrops-All-3_coa.webp",
+      "image": "/catalog/thc-gummies/sweet-sensi/sweet-sensi-elevated-gum-drops.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "sweet-sensi-easy-does-it-gum-drops",
+      "name": "Sweet Sensi Easy Does It Gum Drops",
+      "brand": "Sweet Sensi (Elevated Edibles)",
+      "category": "THC Gummies",
+      "source": "https://sweetsensiwellness.com/product/easy-does-it-gum-drops",
+      "image_source": "https://sweetsensiwellness.com/wp-content/uploads/2025/08/EasyDoesIt_All-scaled.webp",
+      "image": "/catalog/thc-gummies/sweet-sensi/sweet-sensi-easy-does-it-gum-drops.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "sweet-sensi-love-gummy",
+      "name": "Sweet Sensi Love Gummy",
+      "brand": "Sweet Sensi (Elevated Edibles)",
+      "category": "THC Gummies",
+      "source": "https://sweetsensiwellness.com/product/love-gummy",
+      "image_source": "https://sweetsensiwellness.com/wp-content/uploads/2025/08/Love-Gummy.webp",
+      "image": "/catalog/thc-gummies/sweet-sensi/sweet-sensi-love-gummy.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "hometown-hero-delta-9-live-rosin-gummies",
+      "name": "Hometown Hero Delta-9 Live Rosin Gummies",
+      "brand": "Hometown Hero",
+      "category": "THC Gummies",
+      "source": "https://hometownhero.com/p/delta-9-live-rosin-gummies-gelato/",
+      "image_source": "https://hometownhero.com/images/r/gelato-ww-v3.png",
+      "image": "/catalog/thc-gummies/hometown-hero/hometown-hero-delta-9-live-rosin-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "hometown-hero-absolute-gummies",
+      "name": "Hometown Hero Absolute Gummies",
+      "brand": "Hometown Hero",
+      "category": "THC Gummies",
+      "source": "https://hometownhero.com/p/delta-9-live-rosin-gummies-indica/",
+      "image_source": "https://hometownhero.com/images/r/indica-v4-webwhite.png",
+      "image": "/catalog/thc-gummies/hometown-hero/hometown-hero-absolute-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "hometown-hero-1-1-canna-classic-gummies",
+      "name": "Hometown Hero 1:1 Canna-Classic Gummies",
+      "brand": "Hometown Hero",
+      "category": "THC Gummies",
+      "source": "https://hometownhero.com/p/delta-9-5mg-live-rosin-gummies-cbd-blue-dream/",
+      "image_source": "https://hometownhero.com/images/r/blue-dream-5mg-cbd-thc-gummies.webp",
+      "image": "/catalog/thc-gummies/hometown-hero/hometown-hero-1-1-canna-classic-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "hometown-hero-double-take-gummies",
+      "name": "Hometown Hero Double Take Gummies",
+      "brand": "Hometown Hero",
+      "category": "THC Gummies",
+      "source": "https://hometownhero.com/p/passionfruit-guava-double-take-gummies/",
+      "image_source": "https://hometownhero.com/images/r/full-bag-passionfruitguava.webp",
+      "image": "/catalog/thc-gummies/hometown-hero/hometown-hero-double-take-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "hometown-hero-balance-gummies",
+      "name": "Hometown Hero Balance Gummies",
+      "brand": "Hometown Hero",
+      "category": "THC Gummies",
+      "source": "https://hometownhero.com/p/select-spectrum-gummies-mango/",
+      "image_source": "https://hometownhero.com/images/r/mangoTHCCBDgummies.png",
+      "image": "/catalog/thc-gummies/hometown-hero/hometown-hero-balance-gummies.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "hometown-hero-peak-100mg-gummy",
+      "name": "Hometown Hero Peak 100mg Gummy",
+      "brand": "Hometown Hero",
+      "category": "THC Gummies",
+      "source": "https://hometownhero.com/p/delta-9-peak-100mg-gummy-mandarin-sour-diesel/",
+      "image_source": "https://hometownhero.com/images/r/mandarin-sour-disel-gummy-peak-delta-92.png",
+      "image": "/catalog/thc-gummies/hometown-hero/hometown-hero-peak-100mg-gummy.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "hometown-hero-matcha-delta-9-live-rosin-gummies",
+      "name": "Hometown Hero Matcha Delta-9 Live Rosin Gummies",
+      "brand": "Hometown Hero",
+      "category": "THC Gummies",
+      "source": "https://hometownhero.com/p/matcha-delta-9-live-rosin-gummies/",
+      "image_source": "https://hometownhero.com/images/r/matcha-ww.png",
+      "image": "/catalog/thc-gummies/hometown-hero/hometown-hero-matcha-delta-9-live-rosin-gummies.webp",
+      "image_status": "ok"
     }
   ]
 }
