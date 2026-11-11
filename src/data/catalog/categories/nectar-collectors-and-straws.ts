@@ -6,7 +6,7 @@ import type { CatalogCategory } from '../types';
 export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
   "name": "Nectar Collectors & Straws",
   "slug": "nectar-collectors-and-straws",
-  "description": "Glass, quartz, silicone and electric nectar collectors and straws, sold for legal herbal and tobacco use only.",
+  "description": "Manually heated (torch-heated) glass, quartz, ceramic, titanium and silicone nectar collectors and straws. No electric models. Joint sizes include 10mm, 14mm, 19mm and threaded tips where noted. For use with legal tobacco and legal botanical products only. 21+.",
   "brands": [
     {
       "name": "aLeaf",
@@ -33,6 +33,12 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
                 "Pink",
                 "Green"
               ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "14mm"
+              ]
             }
           ]
         },
@@ -45,7 +51,7 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
           "category": "Nectar Collectors & Straws",
           "categorySlug": "nectar-collectors-and-straws",
           "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-the-noisy-cricket-nectar-collector.webp",
-          "description": "A statement glass nectar collector from aLeaf with water filtration for smoother, cooler pulls. For legal herbal or tobacco use only.",
+          "description": "A statement glass nectar collector from aLeaf with water filtration. For legal herbal or tobacco use only.",
           "options": [
             {
               "label": "Colors",
@@ -90,7 +96,7 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
           "category": "Nectar Collectors & Straws",
           "categorySlug": "nectar-collectors-and-straws",
           "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-5-1-glycerin-honey-straw.webp",
-          "description": "A compact honey straw with a freezable glycerin chamber that chills each hit. For legal herbal or tobacco use only.",
+          "description": "A compact honey straw with a freezable glycerin chamber. For legal herbal or tobacco use only.",
           "options": [
             {
               "label": "Colors",
@@ -99,6 +105,12 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
                 "Pink",
                 "Orange",
                 "Yellow"
+              ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "14mm"
               ]
             }
           ]
@@ -135,7 +147,7 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
           "category": "Nectar Collectors & Straws",
           "categorySlug": "nectar-collectors-and-straws",
           "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-6-liquid-purifier.webp",
-          "description": "A 6\" Purifier nectar collector with a liquid-filled chamber for cooler, smoother draws. For legal herbal or tobacco use only.",
+          "description": "A 6\" Purifier nectar collector with a liquid-filled chamber . For legal herbal or tobacco use only.",
           "options": [
             {
               "label": "Colors",
@@ -146,6 +158,12 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
                 "Yellow",
                 "Blue",
                 "Orange"
+              ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "14mm Threaded (Screw-On)"
               ]
             }
           ]
@@ -186,7 +204,7 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
           "category": "Nectar Collectors & Straws",
           "categorySlug": "nectar-collectors-and-straws",
           "image": "/catalog/nectar-collectors-and-straws/aleaf/aleaf-8-winding-glass-straw-purifier.webp",
-          "description": "An 8\" glass straw with a winding stem that cools vapor on its way to the mouthpiece. For legal herbal or tobacco use only.",
+          "description": "An 8\" glass straw with a winding stem. For legal herbal or tobacco use only.",
           "options": [
             {
               "label": "Colors",
@@ -244,7 +262,7 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
           "category": "Nectar Collectors & Straws",
           "categorySlug": "nectar-collectors-and-straws",
           "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-honeycomb-nectar-collector.webp",
-          "description": "A glass nectar collector with a honeycomb disc that diffuses vapor for smooth hits. For legal herbal or tobacco use only.",
+          "description": "A glass nectar collector with a honeycomb disc diffuser. For legal herbal or tobacco use only.",
           "options": [
             {
               "label": "Colors",
@@ -355,49 +373,14 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
               ]
             }
           ]
-        },
-        {
-          "id": "cat-cali-cloud-lollipop-arm-recycler-nectar-collector",
-          "slug": "cali-cloud-lollipop-arm-recycler-nectar-collector",
-          "name": "Cali Cloud Lollipop Arm Recycler Nectar Collector",
-          "brand": "Cali Cloud",
-          "brandSlug": "cali-cloud",
-          "category": "Nectar Collectors & Straws",
-          "categorySlug": "nectar-collectors-and-straws",
-          "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-lollipop-arm-recycler-nectar-collector.webp",
-          "description": "A recycler nectar collector with lollipop arms that keep water moving for cool, clean pulls. For legal herbal or tobacco use only.",
-          "options": [
-            {
-              "label": "Colors",
-              "values": [
-                "Black",
-                "Purple",
-                "Milky Pink",
-                "Milky Green",
-                "Blue"
-              ]
-            }
-          ]
         }
       ]
     },
     {
       "name": "Connect",
       "slug": "connect",
-      "description": "The Connect Brand makes compact electric nectar collectors and natural wood-and-glass pieces.",
+      "description": "The Connect Brand makes natural wood-and-glass pieces.",
       "products": [
-        {
-          "id": "cat-connect-key-electric-nectar-collector",
-          "slug": "connect-key-electric-nectar-collector",
-          "name": "Connect Key Electric Nectar Collector",
-          "brand": "Connect",
-          "brandSlug": "connect",
-          "category": "Nectar Collectors & Straws",
-          "categorySlug": "nectar-collectors-and-straws",
-          "image": "/catalog/nectar-collectors-and-straws/connect/connect-key-electric-nectar-collector.webp",
-          "description": "An electric nectar collector shaped like a car key fob: push a button to deploy the tip. 510-thread compatible, with three temperature settings, a 650mAh USB-rechargeable battery and a keychain loop. For legal herbal or tobacco use only.",
-          "options": []
-        },
         {
           "id": "cat-connect-natural-wood-nectar-collector",
           "slug": "connect-natural-wood-nectar-collector",
@@ -508,6 +491,12 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
                 "5-Piece Set",
                 "Individual"
               ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "10mm"
+              ]
             }
           ]
         },
@@ -606,6 +595,12 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
                 "Maroon Blue",
                 "Orange Yellow"
               ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "10mm"
+              ]
             }
           ]
         },
@@ -648,13 +643,19 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
           "category": "Nectar Collectors & Straws",
           "categorySlug": "nectar-collectors-and-straws",
           "image": "/catalog/nectar-collectors-and-straws/pulsar/pulsar-cold-hearted-glycerin-straw.webp",
-          "description": "A glass straw with a freezable glycerin chamber that chills each draw. For legal herbal or tobacco use only.",
+          "description": "A glass straw with a freezable glycerin chamber. For legal herbal or tobacco use only.",
           "options": [
             {
               "label": "Colors",
               "values": [
                 "Pink",
                 "Red"
+              ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "14mm"
               ]
             }
           ]
@@ -696,32 +697,14 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
                 "Vortex Diffuser",
                 "Single Hole and Vortex Diffuser"
               ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "Threadless (Infinity Tech)"
+              ]
             }
           ]
-        },
-        {
-          "id": "cat-nectar-collector-electric-honeybird-pro-kit",
-          "slug": "nectar-collector-electric-honeybird-pro-kit",
-          "name": "Nectar Collector Electric Honeybird Pro Kit",
-          "brand": "The Original Nectar Collector",
-          "brandSlug": "the-original-nectar-collector",
-          "category": "Nectar Collectors & Straws",
-          "categorySlug": "nectar-collectors-and-straws",
-          "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-electric-honeybird-pro-kit.webp",
-          "description": "An electric version of the Honeybird that heats the tip with a battery instead of a torch. For legal herbal or tobacco use only.",
-          "options": []
-        },
-        {
-          "id": "cat-nectar-collector-electric-honeybird-simple-kit",
-          "slug": "nectar-collector-electric-honeybird-simple-kit",
-          "name": "Nectar Collector Electric Honeybird Simple Kit",
-          "brand": "The Original Nectar Collector",
-          "brandSlug": "the-original-nectar-collector",
-          "category": "Nectar Collectors & Straws",
-          "categorySlug": "nectar-collectors-and-straws",
-          "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-electric-honeybird-simple-kit.webp",
-          "description": "A streamlined electric Honeybird kit with a battery-heated tip. For legal herbal or tobacco use only.",
-          "options": []
         },
         {
           "id": "cat-nectar-collector-honeysucker-kit",
@@ -743,6 +726,12 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
                 "Lake Green & Sage",
                 "Pink & Loki's Lipstick"
               ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "Threadless (Infinity Tech)"
+              ]
             }
           ]
         },
@@ -756,6 +745,238 @@ export const nectarCollectorsAndStrawsCategory: CatalogCategory = {
           "categorySlug": "nectar-collectors-and-straws",
           "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-honeybird-classic-cannaster-with-quartz-tip.webp",
           "description": "The Honeybird Classic packaged in a Cannaster storage tube with a quartz tip. For legal herbal or tobacco use only.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "name": "Lollipop",
+      "slug": "lollipop",
+      "description": "Lollipop glass nectar collectors and recycler straws in colorful worked glass.",
+      "products": [
+        {
+          "id": "cat-lollipop-arm-recycler-nectar-collector",
+          "slug": "lollipop-arm-recycler-nectar-collector",
+          "name": "Lollipop Arm Recycler Nectar Collector",
+          "brand": "Lollipop",
+          "brandSlug": "lollipop",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-arm-recycler-nectar-collector.webp",
+          "description": "A recycler nectar collector with lollipop arms that keep water moving for cool, clean pulls. For legal herbal or tobacco use only.",
+          "options": [
+            {
+              "label": "Colors",
+              "values": [
+                "Black",
+                "Purple",
+                "Milky Pink",
+                "Milky Green",
+                "Blue"
+              ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "14mm",
+                "19mm"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-lollipop-honey-pulse-nectar-collector-straw",
+          "slug": "lollipop-honey-pulse-nectar-collector-straw",
+          "name": "Lollipop Honey Pulse Nectar Collector Straw",
+          "brand": "Lollipop",
+          "brandSlug": "lollipop",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-honey-pulse-nectar-collector-straw.webp",
+          "description": "A compact Lollipop glass nectar collector straw. Manually heated. For legal herbal or tobacco use only.",
+          "options": []
+        },
+        {
+          "id": "cat-lollipop-space-bee-recycler-nectar-collector",
+          "slug": "lollipop-space-bee-recycler-nectar-collector",
+          "name": "Lollipop Space Bee Recycler Nectar Collector",
+          "brand": "Lollipop",
+          "brandSlug": "lollipop",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-space-bee-recycler-nectar-collector.webp",
+          "description": "A recycler-style glass nectar collector with Lollipop worked-glass styling. Manually heated. For legal herbal or tobacco use only.",
+          "options": []
+        },
+        {
+          "id": "cat-lollipop-golden-flow-double-arms-recycler-nectar-collector",
+          "slug": "lollipop-golden-flow-double-arms-recycler-nectar-collector",
+          "name": "Lollipop Golden Flow Double Arms Recycler Nectar Collector",
+          "brand": "Lollipop",
+          "brandSlug": "lollipop",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-golden-flow-double-arms-recycler-nectar-collector.webp",
+          "description": "A double-arm recycler glass nectar collector with a Golden Flow finish. Manually heated. For legal herbal or tobacco use only.",
+          "options": []
+        },
+        {
+          "id": "cat-lollipop-aero-drip-recycler-nectar-collector",
+          "slug": "lollipop-aero-drip-recycler-nectar-collector",
+          "name": "Lollipop Aero Drip Recycler Nectar Collector",
+          "brand": "Lollipop",
+          "brandSlug": "lollipop",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-aero-drip-recycler-nectar-collector.webp",
+          "description": "A recycler-style glass nectar collector with a perforated Aero Drip chamber. Manually heated. For legal herbal or tobacco use only.",
+          "options": []
+        },
+        {
+          "id": "cat-lollipop-buzz-boom-recycler-nectar-collector",
+          "slug": "lollipop-buzz-boom-recycler-nectar-collector",
+          "name": "Lollipop Buzz Boom Recycler Nectar Collector",
+          "brand": "Lollipop",
+          "brandSlug": "lollipop",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-buzz-boom-recycler-nectar-collector.webp",
+          "description": "A compact recycler-style glass nectar collector. Manually heated. For legal herbal or tobacco use only.",
+          "options": []
+        },
+        {
+          "id": "cat-lollipop-et-extractor-color-perc-nectar-collector",
+          "slug": "lollipop-et-extractor-color-perc-nectar-collector",
+          "name": "Lollipop ET Extractor Color Perc Nectar Collector",
+          "brand": "Lollipop",
+          "brandSlug": "lollipop",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-et-extractor-color-perc-nectar-collector.webp",
+          "description": "A colored glass nectar collector with an inline perc. Manually heated. For legal herbal or tobacco use only.",
+          "options": []
+        }
+      ]
+    },
+    {
+      "name": "White Rhino",
+      "slug": "white-rhino",
+      "description": "White Rhino glass, quartz and ceramic straws and nectar collector tips in 10mm, 14mm and 19mm.",
+      "products": [
+        {
+          "id": "cat-white-rhino-2-piece-10mm-nectar-collector",
+          "slug": "white-rhino-2-piece-10mm-nectar-collector",
+          "name": "White Rhino 2 Piece 10mm Nectar Collector",
+          "brand": "White Rhino",
+          "brandSlug": "white-rhino",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-2-piece-10mm-nectar-collector.webp",
+          "description": "A two-piece glass nectar collector with a 10mm joint and removable tip. Manually heated. For legal herbal or tobacco use only.",
+          "options": [
+            {
+              "label": "Styles",
+              "values": [
+                "V1",
+                "V2",
+                "V3",
+                "V5",
+                "V6",
+                "V7"
+              ]
+            },
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "10mm"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-white-rhino-ceramic-nectar-collector-tip",
+          "slug": "white-rhino-ceramic-nectar-collector-tip",
+          "name": "White Rhino Ceramic Nectar Collector Tip",
+          "brand": "White Rhino",
+          "brandSlug": "white-rhino",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-ceramic-nectar-collector-tip.webp",
+          "description": "A replacement ceramic tip for glass nectar collectors, in 10mm, 14mm or 19mm. Manually heated. For legal herbal or tobacco use only.",
+          "options": [
+            {
+              "label": "Joint Sizes",
+              "values": [
+                "10mm",
+                "14mm",
+                "19mm"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-white-rhino-quartz-glass-straw-nectar-collector",
+          "slug": "white-rhino-quartz-glass-straw-nectar-collector",
+          "name": "White Rhino Quartz Glass Straw Nectar Collector",
+          "brand": "White Rhino",
+          "brandSlug": "white-rhino",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-quartz-glass-straw-nectar-collector.webp",
+          "description": "A one-piece quartz glass straw. Manually heated. For legal herbal or tobacco use only.",
+          "options": [
+            {
+              "label": "Styles",
+              "values": [
+                "V2",
+                "V3",
+                "V4"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-white-rhino-smoked-pyrex-glass-straw-nectar-collector",
+          "slug": "white-rhino-smoked-pyrex-glass-straw-nectar-collector",
+          "name": "White Rhino Smoked Pyrex Glass Straw Nectar Collector",
+          "brand": "White Rhino",
+          "brandSlug": "white-rhino",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-smoked-pyrex-glass-straw-nectar-collector.webp",
+          "description": "A smoked borosilicate glass straw. Manually heated. For legal herbal or tobacco use only.",
+          "options": [
+            {
+              "label": "Styles",
+              "values": [
+                "V1",
+                "V2"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cat-white-rhino-ceramic-straw-v2-nectar-collector",
+          "slug": "white-rhino-ceramic-straw-v2-nectar-collector",
+          "name": "White Rhino Ceramic Straw V2 Nectar Collector",
+          "brand": "White Rhino",
+          "brandSlug": "white-rhino",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-ceramic-straw-v2-nectar-collector.webp",
+          "description": "A ceramic-tipped straw-style nectar collector. Manually heated. For legal herbal or tobacco use only.",
+          "options": []
+        },
+        {
+          "id": "cat-white-rhino-wood-and-glass-nectar-collector",
+          "slug": "white-rhino-wood-and-glass-nectar-collector",
+          "name": "White Rhino Wood & Glass Nectar Collector",
+          "brand": "White Rhino",
+          "brandSlug": "white-rhino",
+          "category": "Nectar Collectors & Straws",
+          "categorySlug": "nectar-collectors-and-straws",
+          "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-wood-and-glass-nectar-collector.webp",
+          "description": "A nectar collector with a wood body and glass core. Manually heated. For legal herbal or tobacco use only.",
           "options": []
         }
       ]

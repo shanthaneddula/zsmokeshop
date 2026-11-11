@@ -3241,26 +3241,6 @@
       "image_status": "ok"
     },
     {
-      "slug": "cali-cloud-lollipop-arm-recycler-nectar-collector",
-      "name": "Cali Cloud Lollipop Arm Recycler Nectar Collector",
-      "brand": "Cali Cloud",
-      "category": "Nectar Collectors & Straws",
-      "source": "https://smokecartel.com/products/lollipop-brand-arm-recyclers-nectar-collector",
-      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/NC1001-BLK__BlackBackground_1__WEBP.webp?v=1763743745",
-      "image": "/catalog/nectar-collectors-and-straws/cali-cloud/cali-cloud-lollipop-arm-recycler-nectar-collector.webp",
-      "image_status": "ok"
-    },
-    {
-      "slug": "connect-key-electric-nectar-collector",
-      "name": "Connect Key Electric Nectar Collector",
-      "brand": "Connect",
-      "category": "Nectar Collectors & Straws",
-      "source": "https://theconnectbrand.com/products/key-nectar-collector",
-      "image_source": "https://cdn.shopify.com/s/files/1/0573/3004/1010/files/1XvOpqDw.jpg?v=1702685656",
-      "image": "/catalog/nectar-collectors-and-straws/connect/connect-key-electric-nectar-collector.webp",
-      "image_status": "ok"
-    },
-    {
       "slug": "connect-natural-wood-nectar-collector",
       "name": "Connect Natural Wood Nectar Collector",
       "brand": "Connect",
@@ -3391,26 +3371,6 @@
       "image_status": "ok"
     },
     {
-      "slug": "nectar-collector-electric-honeybird-pro-kit",
-      "name": "Nectar Collector Electric Honeybird Pro Kit",
-      "brand": "The Original Nectar Collector",
-      "category": "Nectar Collectors & Straws",
-      "source": "https://smokecartel.com/products/original-nectar-collector-electric-honeybird-pro-kit",
-      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/nc60207_1.webp?v=1750233233",
-      "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-electric-honeybird-pro-kit.webp",
-      "image_status": "ok"
-    },
-    {
-      "slug": "nectar-collector-electric-honeybird-simple-kit",
-      "name": "Nectar Collector Electric Honeybird Simple Kit",
-      "brand": "The Original Nectar Collector",
-      "category": "Nectar Collectors & Straws",
-      "source": "https://smokecartel.com/products/original-nectar-collector-electric-honeybird-simple-kit",
-      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/nc60206_2.webp?v=1750233200",
-      "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-electric-honeybird-simple-kit.webp",
-      "image_status": "ok"
-    },
-    {
       "slug": "nectar-collector-honeysucker-kit",
       "name": "Nectar Collector Honeysucker Kit",
       "brand": "The Original Nectar Collector",
@@ -3428,6 +3388,136 @@
       "source": "https://smokecartel.com/products/honeybird-classic-cannaster-with-quartz-tip",
       "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/nc24113.webp?v=1750232083",
       "image": "/catalog/nectar-collectors-and-straws/the-original-nectar-collector/nectar-collector-honeybird-classic-cannaster-with-quartz-tip.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "lollipop-arm-recycler-nectar-collector",
+      "name": "Lollipop Arm Recycler Nectar Collector",
+      "brand": "Lollipop",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://smokecartel.com/products/lollipop-brand-arm-recyclers-nectar-collector",
+      "image_source": "https://cdn.shopify.com/s/files/1/0350/8253/files/NC1001-BLK__BlackBackground_1__WEBP.webp?v=1763743745",
+      "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-arm-recycler-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "lollipop-honey-pulse-nectar-collector-straw",
+      "name": "Lollipop Honey Pulse Nectar Collector Straw",
+      "brand": "Lollipop",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.smoketokes.com/products/lollipop-nectar-collector-straw-nc-pop1",
+      "image_source": "https://cdn.shopify.com/s/files/1/0022/4775/3801/files/NC-POP-01-A2.png?v=1787251139",
+      "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-honey-pulse-nectar-collector-straw.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "lollipop-space-bee-recycler-nectar-collector",
+      "name": "Lollipop Space Bee Recycler Nectar Collector",
+      "brand": "Lollipop",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.smoketokes.com/products/lollipop-space-bee-premium-nectar-collector-straw-nc-pop9",
+      "image_source": "https://cdn.shopify.com/s/files/1/0022/4775/3801/files/NC-POP-8-A18.png?v=1787260770",
+      "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-space-bee-recycler-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "lollipop-golden-flow-double-arms-recycler-nectar-collector",
+      "name": "Lollipop Golden Flow Double Arms Recycler Nectar Collector",
+      "brand": "Lollipop",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.smoketokes.com/products/lollipop-honey-goldeen-flow-nectar-collector-straw-nc-pop2",
+      "image_source": "https://cdn.shopify.com/s/files/1/0022/4775/3801/files/NC-POP-03-A4_e60252ca-1dd9-460c-b781-b31319b74f68.png?v=1787252891",
+      "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-golden-flow-double-arms-recycler-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "lollipop-aero-drip-recycler-nectar-collector",
+      "name": "Lollipop Aero Drip Recycler Nectar Collector",
+      "brand": "Lollipop",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.smoketokes.com/products/lollipop-honey-aero-drip-nectar-collector-straw-nc-pop4",
+      "image_source": "https://cdn.shopify.com/s/files/1/0022/4775/3801/files/NC-POP-04-A9.jpg?v=1787253426",
+      "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-aero-drip-recycler-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "lollipop-buzz-boom-recycler-nectar-collector",
+      "name": "Lollipop Buzz Boom Recycler Nectar Collector",
+      "brand": "Lollipop",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.smoketokes.com/products/lollipop-buzz-boom-nectar-collector-straw-nc-pop6",
+      "image_source": "https://cdn.shopify.com/s/files/1/0022/4775/3801/files/NC-POP-7-A16.png?v=1787255846",
+      "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-buzz-boom-recycler-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "lollipop-et-extractor-color-perc-nectar-collector",
+      "name": "Lollipop ET Extractor Color Perc Nectar Collector",
+      "brand": "Lollipop",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.smoketokes.com/products/lollipop-color-marble-premium-nectar-collector-straw-nc-pop9",
+      "image_source": "https://cdn.shopify.com/s/files/1/0022/4775/3801/files/NC-POP-09-A6.png?v=1787255553",
+      "image": "/catalog/nectar-collectors-and-straws/lollipop/lollipop-et-extractor-color-perc-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "white-rhino-2-piece-10mm-nectar-collector",
+      "name": "White Rhino 2 Piece 10mm Nectar Collector",
+      "brand": "White Rhino",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.whiterhinoproducts.com/products/2-piece-nectar-collector-v1",
+      "image_source": "https://cdn.shopify.com/s/files/1/0247/9301/files/0009_1-2PIECENECTARSTRAWV1-SINGLEPRODUCTDOWNVIEW.jpg?v=1734630467",
+      "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-2-piece-10mm-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "white-rhino-ceramic-nectar-collector-tip",
+      "name": "White Rhino Ceramic Nectar Collector Tip",
+      "brand": "White Rhino",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.whiterhinoproducts.com/products/10mm-ceramic-nectar-collector-tip",
+      "image_source": "https://cdn.shopify.com/s/files/1/0247/9301/files/0000_1-10MMCERAMICNECTORTIPS-SINGLEPRODUCTUPVIEW.jpg?v=1730238621",
+      "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-ceramic-nectar-collector-tip.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "white-rhino-quartz-glass-straw-nectar-collector",
+      "name": "White Rhino Quartz Glass Straw Nectar Collector",
+      "brand": "White Rhino",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.whiterhinoproducts.com/products/quartz-glass-straw-v2",
+      "image_source": "https://cdn.shopify.com/s/files/1/0247/9301/files/1000x1000-_0002_QUARTZV2.jpg?v=1766429620",
+      "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-quartz-glass-straw-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "white-rhino-smoked-pyrex-glass-straw-nectar-collector",
+      "name": "White Rhino Smoked Pyrex Glass Straw Nectar Collector",
+      "brand": "White Rhino",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.whiterhinoproducts.com/products/smoked-pyrex-v1-glass-straw",
+      "image_source": "https://cdn.shopify.com/s/files/1/0247/9301/files/1000x1000-_0007_1-BlackPyrexStrawSINGLEPRODUCTUPVIEW.jpg?v=1766427784",
+      "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-smoked-pyrex-glass-straw-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "white-rhino-ceramic-straw-v2-nectar-collector",
+      "name": "White Rhino Ceramic Straw V2 Nectar Collector",
+      "brand": "White Rhino",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.whiterhinoproducts.com/products/white-rhino-ceramic-straw-v2",
+      "image_source": "https://cdn.shopify.com/s/files/1/0247/9301/files/1000x1000-Ceramic-straw.jpg?v=1766428682",
+      "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-ceramic-straw-v2-nectar-collector.webp",
+      "image_status": "ok"
+    },
+    {
+      "slug": "white-rhino-wood-and-glass-nectar-collector",
+      "name": "White Rhino Wood & Glass Nectar Collector",
+      "brand": "White Rhino",
+      "category": "Nectar Collectors & Straws",
+      "source": "https://www.whiterhinoproducts.com/products/wood-nectar-collector",
+      "image_source": "https://cdn.shopify.com/s/files/1/0247/9301/files/1000x1000-wood-straw.jpg?v=1766432298",
+      "image": "/catalog/nectar-collectors-and-straws/white-rhino/white-rhino-wood-and-glass-nectar-collector.webp",
       "image_status": "ok"
     }
   ]
