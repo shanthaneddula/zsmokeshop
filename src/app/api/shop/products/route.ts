@@ -6,6 +6,7 @@ import { Product } from '@/types';
 import * as ProductStorage from '@/lib/product-storage-service';
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
 import { searchCatalog, toShopProduct } from '@/data/catalog';
+import { getHiddenCatalogSlugs } from '@/lib/catalog-visibility';
 import { isRestrictedProduct } from '@/lib/restricted-content';
 
 // Convert AdminProduct to public Product format
@@ -27,12 +28,13 @@ function convertToPublicProduct(adminProduct: AdminProduct): Product {
 }
 
 // Static display-only catalog response (same shape as the Redis response).
-function staticCatalogResponse(request: Request) {
+async function staticCatalogResponse(request: Request) {
   const { searchParams } = new URL(request.url);
   const category = searchParams.get('category')?.trim().toLowerCase();
   const brand = searchParams.get('brand')?.trim().toLowerCase();
   const limitNum = parseInt(searchParams.get('limit') || '', 10);
-  let items = searchCatalog(searchParams.get('search') || '');
+  // Hidden products never appear in listings or search.
+  let items = searchCatalog(searchParams.get('search') || '', await getHiddenCatalogSlugs());
   if (category) items = items.filter((p) => p.categorySlug === category);
   if (brand) items = items.filter((p) => p.brandSlug === brand);
   const products = items.map(toShopProduct);

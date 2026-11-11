@@ -1,11 +1,15 @@
 import { MetadataRoute } from 'next'
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source'
-import { getCatalogCategories } from '@/data/catalog'
+import { filterVisibleCategories } from '@/data/catalog'
+import { getHiddenCatalogSlugs } from '@/lib/catalog-visibility'
 
 // Canonical public host. Admin, account, cart, checkout and API routes are never listed.
 const SITE_URL = 'https://www.zsmokeshop.com'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+// Re-check hidden products (admin visibility overrides) every 5 minutes.
+export const revalidate = 300
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL
   const now = new Date()
 
@@ -22,7 +26,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   if (!USE_STATIC_CATALOG) return staticPages
 
   const catalogPages: MetadataRoute.Sitemap = []
-  for (const category of getCatalogCategories()) {
+  // Hidden products (and brands/categories left empty) are never listed.
+  const hidden = await getHiddenCatalogSlugs()
+  for (const category of filterVisibleCategories(hidden)) {
     catalogPages.push({
       url: `${baseUrl}/shop?category=${encodeURIComponent(category.slug)}`,
       lastModified: now,

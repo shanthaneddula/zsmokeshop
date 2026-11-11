@@ -5,7 +5,8 @@ import { Product } from '@/types';
 import * as ProductStorage from '@/lib/product-storage-service';
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source';
 import { isRestrictedProduct } from '@/lib/restricted-content';
-import { getCatalogCategories, toShopProduct } from '@/data/catalog';
+import { filterVisibleCategories, toShopProduct } from '@/data/catalog';
+import { getHiddenCatalogSlugs } from '@/lib/catalog-visibility';
 
 // Convert AdminProduct to public Product format
 function convertToPublicProduct(adminProduct: AdminProduct): Product {
@@ -55,7 +56,7 @@ function sortProducts(products: AdminProduct[], sortOrder: string): AdminProduct
 export async function GET() {
   // Static catalog: feature the first product of every category (display-only, no prices).
   if (USE_STATIC_CATALOG) {
-    const products = getCatalogCategories().map((c) => toShopProduct(c.brands[0].products[0]));
+    const products = filterVisibleCategories(await getHiddenCatalogSlugs()).map((c) => toShopProduct(c.brands[0].products[0]));
     return NextResponse.json({ success: true, data: { products, settings: null, total: products.length } });
   }
 

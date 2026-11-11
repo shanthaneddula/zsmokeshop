@@ -6,16 +6,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronRightIcon, MapPinIcon } from '@heroicons/react/24/outline';
-import type { AdminProduct } from '@/types';
+import type { AdminProduct, Product } from '@/types';
 import MobileProductImageGallery from '@/components/product/MobileProductImageGallery';
 import ProductCard from '@/components/product/ProductCard';
 import { CategoryTopNotice } from '@/components/catalog/CategoryNotice';
-import {
-  getCatalogCategory,
-  getRelatedCatalogProducts,
-  toShopProduct,
-  type CatalogProduct,
-} from '@/data/catalog';
+import { getCatalogCategory, type CatalogProduct } from '@/data/catalog';
 
 interface Props {
   product: CatalogProduct;
@@ -96,10 +91,9 @@ function StoreNote() {
   );
 }
 
-export default function CatalogProductTemplate({ product }: Props) {
+export default function CatalogProductTemplate({ product, related = [] }: Props & { related?: Product[] }) {
   const category = getCatalogCategory(product.categorySlug);
   const brand = category?.brands.find((b) => b.slug === product.brandSlug);
-  const related = getRelatedCatalogProducts(product, 8).map(toShopProduct);
   // The gallery only needs name/image; adapt to its AdminProduct prop.
   const galleryProduct = { name: product.name, image: product.image, badges: [] } as unknown as AdminProduct;
 

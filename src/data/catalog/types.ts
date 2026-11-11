@@ -21,6 +21,10 @@ export interface CatalogProduct {
   options: CatalogOption[];
   /** Brand-published lab report (certificate of analysis) page or PDF, when one exists */
   labReportUrl?: string;
+  /** Hidden by default (static). Admins can override per product in /admin/catalog-visibility. */
+  hidden?: boolean;
+  /** Why the product is hidden by default (shown to admins only). */
+  hiddenReason?: string;
 }
 
 export interface CatalogBrand {

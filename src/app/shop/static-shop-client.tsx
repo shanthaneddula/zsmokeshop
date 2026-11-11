@@ -11,12 +11,7 @@ import Link from 'next/link';
 import ProductCard from '@/components/product/ProductCard';
 import { CategoryTopNotice } from '@/components/catalog/CategoryNotice';
 import Pagination from '@/components/ui/Pagination';
-import {
-  getCatalogCategories,
-  getCatalogCategory,
-  searchCatalog,
-  toShopProduct,
-} from '@/data/catalog';
+import { filterVisibleCategories, searchCatalog, toShopProduct } from '@/data/catalog';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -26,11 +21,14 @@ const sortOptions = [
   { value: 'name-z-a', label: 'Name: Z to A' },
 ];
 
-export default function StaticShopClient() {
+// hiddenSlugs comes from the server (static defaults + admin overrides); hidden
+// products, and brands/categories left empty, are not shown or searchable.
+export default function StaticShopClient({ hiddenSlugs = [] }: { hiddenSlugs?: string[] }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const categories = getCatalogCategories();
+  const hidden = useMemo(() => new Set(hiddenSlugs), [hiddenSlugs]);
+  const categories = useMemo(() => filterVisibleCategories(hidden), [hidden]);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -49,7 +47,7 @@ export default function StaticShopClient() {
     setCurrentPage(1);
   }, [searchParams]);
 
-  const category = selectedCategory ? getCatalogCategory(selectedCategory) : undefined;
+  const category = selectedCategory ? categories.find((c) => c.slug === selectedCategory) : undefined;
   const brand = category?.brands.find((b) => b.slug === selectedBrand);
 
   useEffect(() => {
@@ -73,14 +71,14 @@ export default function StaticShopClient() {
   };
 
   const filteredProducts = useMemo(() => {
-    let list = searchQuery.trim() ? searchCatalog(searchQuery) : searchCatalog('');
+    let list = searchCatalog(searchQuery, hidden);
     if (category) list = list.filter((p) => p.categorySlug === category.slug);
     if (brand) list = list.filter((p) => p.brandSlug === brand.slug);
     const sorted = [...list];
     if (sortBy === 'name-a-z') sorted.sort((a, b) => a.name.localeCompare(b.name));
     if (sortBy === 'name-z-a') sorted.sort((a, b) => b.name.localeCompare(a.name));
     return sorted.map(toShopProduct);
-  }, [searchQuery, category, brand, sortBy]);
+  }, [searchQuery, category, brand, sortBy, hidden]);
 
   // Inside a category with no brand/search chosen, show the products grouped by brand.
   const groupByBrand = !!category && !brand && !searchQuery.trim() && sortBy === 'featured';

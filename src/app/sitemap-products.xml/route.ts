@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import { USE_STATIC_CATALOG } from '@/lib/catalog-source'
 import { isRestrictedProduct } from '@/lib/restricted-content'
-import { getCatalogCategories, getAllCatalogProducts } from '@/data/catalog'
+import { searchCatalog } from '@/data/catalog'
+import { getHiddenCatalogSlugs } from '@/lib/catalog-visibility'
 import * as ProductStorage from '@/lib/product-storage-service'
 
 function staticXml(urls: string[]) {
@@ -14,7 +15,7 @@ function staticXml(urls: string[]) {
 
 export async function GET() {
   // Static catalog: list its pages instead of the Redis ones (Redis code below is unchanged).
-  if (USE_STATIC_CATALOG) return staticXml(getAllCatalogProducts().map(p => `https://www.zsmokeshop.com/products/${p.slug}`))
+  if (USE_STATIC_CATALOG) return staticXml(searchCatalog('', await getHiddenCatalogSlugs()).map(p => `https://www.zsmokeshop.com/products/${p.slug}`))
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zsmokeshop.com'
   

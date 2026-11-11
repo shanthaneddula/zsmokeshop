@@ -198,7 +198,9 @@ export const hookahAndShishaCategory: CatalogCategory = {
                 "50g"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-al-fakher-x-cookies-shisha",
@@ -228,7 +230,9 @@ export const hookahAndShishaCategory: CatalogCategory = {
                 "250g"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-snoop-x-al-fakher-shisha",
@@ -557,7 +561,9 @@ export const hookahAndShishaCategory: CatalogCategory = {
                 "250g"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-starbuzz-colossus-hookah",

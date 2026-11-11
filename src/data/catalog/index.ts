@@ -31,10 +31,31 @@ export function getCatalogProduct(slug: string): CatalogProduct | undefined {
   return BY_SLUG.get(slug);
 }
 
-export function searchCatalog(query: string): CatalogProduct[] {
+/**
+ * Visibility helpers. `hidden` is the set of product slugs that must not be shown
+ * (static defaults merged with admin overrides; see src/lib/catalog-visibility.ts).
+ * Brands and categories with no visible products are dropped.
+ */
+export function filterVisibleCategories(hidden: ReadonlySet<string>): CatalogCategory[] {
+  if (hidden.size === 0) return CATALOG_CATEGORIES;
+  return CATALOG_CATEGORIES.map((c) => ({
+    ...c,
+    brands: c.brands
+      .map((b) => ({ ...b, products: b.products.filter((p) => !hidden.has(p.slug)) }))
+      .filter((b) => b.products.length > 0),
+  }))
+    .filter((c) => c.brands.length > 0)
+    .map((c) => {
+      const imageOwner = ALL_PRODUCTS.find((p) => p.image === c.image);
+      return imageOwner && hidden.has(imageOwner.slug) ? { ...c, image: c.brands[0].products[0].image } : c;
+    });
+}
+
+export function searchCatalog(query: string, hidden?: ReadonlySet<string>): CatalogProduct[] {
   const q = query.toLowerCase().trim();
-  if (!q) return ALL_PRODUCTS;
-  return ALL_PRODUCTS.filter(
+  const pool = hidden && hidden.size ? ALL_PRODUCTS.filter((p) => !hidden.has(p.slug)) : ALL_PRODUCTS;
+  if (!q) return pool;
+  return pool.filter(
     (p) =>
       p.name.toLowerCase().includes(q) ||
       p.brand.toLowerCase().includes(q) ||
@@ -45,12 +66,20 @@ export function searchCatalog(query: string): CatalogProduct[] {
 }
 
 /** Related items: same brand first, then the rest of the category. */
-export function getRelatedCatalogProducts(product: CatalogProduct, limit = 8): CatalogProduct[] {
+export function getRelatedCatalogProducts(
+  product: CatalogProduct,
+  limit = 8,
+  hidden?: ReadonlySet<string>
+): CatalogProduct[] {
   const cat = getCatalogCategory(product.categorySlug);
   if (!cat) return [];
-  const sameBrand = cat.brands.find((b) => b.slug === product.brandSlug)?.products ?? [];
-  const others = cat.brands.filter((b) => b.slug !== product.brandSlug).map((b) => b.products[0]);
-  return [...sameBrand, ...others].filter((p) => p && p.slug !== product.slug).slice(0, limit);
+  const ok = (p?: CatalogProduct) => !!p && p.slug !== product.slug && !(hidden && hidden.has(p.slug));
+  const sameBrand = (cat.brands.find((b) => b.slug === product.brandSlug)?.products ?? []).filter(ok);
+  const others = cat.brands
+    .filter((b) => b.slug !== product.brandSlug)
+    .map((b) => b.products.find(ok))
+    .filter(ok) as CatalogProduct[];
+  return [...sameBrand, ...others].slice(0, limit);
 }
 
 /** Short "12 Flavors · 2 Sizes" style summary for cards. */

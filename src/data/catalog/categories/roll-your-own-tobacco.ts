@@ -277,7 +277,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "16 oz Bag"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-gambler-filter-tubes",
@@ -306,7 +308,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "100mm"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-gambler-100mm-injector-machine",
@@ -318,7 +322,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/gambler/gambler-100mm-injector-machine.webp",
           "description": "A simple hand-operated injector that fills 100mm filter tubes quickly and evenly.",
-          "options": []
+          "options": [],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-gambler-tube-cut-injector-machine",
@@ -337,7 +343,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "100mm"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-gambler-machine-red",
@@ -362,7 +370,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "King Size"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         }
       ]
     },
@@ -391,7 +401,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "5 lb Bag"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-kentucky-select-gold-light-pipe-tobacco",
@@ -412,7 +424,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "5 lb Bag"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-kentucky-select-silver-ultra-light-pipe-tobacco",
@@ -433,7 +447,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "5 lb Bag"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-kentucky-select-green-menthol-pipe-tobacco",
@@ -454,7 +470,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "5 lb Bag"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-kentucky-select-menthol-blue-pipe-tobacco",
@@ -475,7 +493,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "5 lb Bag"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-kentucky-select-black-pipe-tobacco",
@@ -496,7 +516,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "5 lb Bag"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         }
       ]
     },
@@ -531,7 +553,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "100mm"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-top-rolling-papers-fine-gummed",
@@ -550,7 +574,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "1 (Single Wide), 100 Leaves"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-top-100mm-injector-machine",
@@ -562,7 +588,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/top/top-100mm-injector-machine.webp",
           "description": "A compact, hand-operated injector machine for filling 100mm filter tubes.",
-          "options": []
+          "options": [],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-top-70mm-rolling-machine",
@@ -574,7 +602,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/top/top-70mm-rolling-machine.webp",
           "description": "A classic hand rolling machine for neat, consistent 70mm smokes.",
-          "options": []
+          "options": [],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-top-o-matic-injector-machine",
@@ -594,7 +624,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
                 "100mm"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-top-power-roll-70mm-steel-rolling-machine",
@@ -606,7 +638,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/top/top-power-roll-70mm-steel-rolling-machine.webp",
           "description": "A durable steel rolling machine for quick, uniform 70mm rolls.",
-          "options": []
+          "options": [],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-top-adjust-a-roll-rolling-machine",
@@ -618,7 +652,9 @@ export const rollYourOwnTobaccoCategory: CatalogCategory = {
           "categorySlug": "roll-your-own-tobacco",
           "image": "/catalog/roll-your-own-tobacco/top/top-adjust-a-roll-rolling-machine.webp",
           "description": "An adjustable rolling machine that lets you set the thickness of every roll.",
-          "options": []
+          "options": [],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         }
       ]
     }

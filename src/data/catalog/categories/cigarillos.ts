@@ -76,7 +76,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "5-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-leaf-by-swisher-sweets",
@@ -113,7 +115,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "3-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-swisher-sweets-blk-tip-cigarillos",
@@ -144,7 +148,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "2-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-swisher-sweets-mini-cigarillos",
@@ -179,7 +185,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "3-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-swisher-sweets-little-cigars-100mm",
@@ -210,7 +218,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "20-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-swisher-sweets-legend-cigarillos",
@@ -239,7 +249,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "2-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         }
       ]
     },
@@ -303,7 +315,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "5-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-backwoods-cigars-3-pack",
@@ -333,7 +347,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "3-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-backwoods-singles",
@@ -363,7 +379,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "Single"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-backwoods-select",
@@ -392,7 +410,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "3-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-true-wraps-by-backwoods",
@@ -420,7 +440,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "5-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         }
       ]
     },
@@ -491,7 +513,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "3-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-white-owl-swirl-cigarillos",
@@ -519,7 +543,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "2-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-white-owl-mini-cigarillos",
@@ -546,7 +572,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "3-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-white-owl-duos-cigarillos",
@@ -574,7 +602,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "2-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-white-owl-invincible-cigars",
@@ -593,7 +623,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "5-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         }
       ]
     },
@@ -641,7 +673,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "2-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-dutch-masters-cigarillos",
@@ -677,7 +711,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "3-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-dutch-leaf-cigarillos",
@@ -704,7 +740,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "2-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-dutch-masters-corona-cigars",
@@ -733,7 +771,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "Box of 55"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-dutch-masters-palma-cigars",
@@ -760,7 +800,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "Box of 55"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-dutch-masters-honey-sports-cigars",
@@ -785,7 +827,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "4-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-dutch-masters-president-cigars",
@@ -805,7 +849,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "Box of 50"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         }
       ]
     },
@@ -856,7 +902,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "5-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-game-vega-foil-cigarillos",
@@ -910,7 +958,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "2-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-game-vega-cigarillos-4-pack",
@@ -942,7 +992,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "4-Pack"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-game-mini-cigarillos",
@@ -967,7 +1019,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "3-Pack Pouch"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         },
         {
           "id": "cat-game-special-reserve-cigarillos",
@@ -986,7 +1040,9 @@ export const cigarillosCategory: CatalogCategory = {
                 "Single"
               ]
             }
-          ]
+          ],
+          "hidden": true,
+          "hiddenReason": "Product photo carries a tobaccostock.com watermark. Replace it with your own photo or a brand-licensed image before showing (do not crop or erase watermarks)."
         }
       ]
     }
