@@ -1,5 +1,5 @@
 export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zsmokeshop.com'
+  const baseUrl = 'https://www.zsmokeshop.com'
 
   return {
     rules: {
