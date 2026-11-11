@@ -16,6 +16,7 @@ interface Row {
   status: Status;
   reasons: string[];
   defaultHidden: boolean;
+  suggestHide: boolean;
   override: 'show' | 'hide' | null;
   hidden: boolean;
 }
@@ -41,7 +42,7 @@ export default function CatalogVisibilityClient() {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('');
   const [brand, setBrand] = useState('');
-  const [status, setStatus] = useState<'' | Status>('');
+  const [status, setStatus] = useState<'' | Status | 'suggest'>('');
   const [visibility, setVisibility] = useState<'' | 'shown' | 'hidden'>('');
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
@@ -82,15 +83,16 @@ export default function CatalogVisibilityClient() {
       (r) =>
         (!category || r.categorySlug === category) &&
         (!brand || r.brandSlug === brand) &&
-        (!status || r.status === status) &&
+        (!status || (status === 'suggest' ? r.suggestHide : r.status === status)) &&
         (!visibility || (visibility === 'hidden' ? r.hidden : !r.hidden)) &&
         (!q || `${r.name} ${r.brand} ${r.category} ${r.slug}`.toLowerCase().includes(q))
     );
   }, [rows, query, category, brand, status, visibility]);
 
   const counts = useMemo(() => {
-    const c = { action: 0, actionShown: 0, warning: 0, hidden: 0 };
+    const c = { action: 0, actionShown: 0, warning: 0, hidden: 0, suggestShown: 0 };
     rows.forEach((r) => {
+      if (r.suggestHide && !r.hidden) c.suggestShown++;
       if (r.status === 'action') c.action++;
       if (r.status === 'action' && !r.hidden) c.actionShown++;
       if (r.status === 'warning') c.warning++;
@@ -177,6 +179,17 @@ export default function CatalogVisibilityClient() {
         </div>
       ) : null}
 
+      {counts.suggestShown > 0 && (
+        <div className="flex gap-3 rounded-md border border-yellow-300 bg-yellow-50 p-4 text-yellow-900 dark:border-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-200">
+          <AlertTriangle className="h-5 w-5 flex-shrink-0" />
+          <p className="text-sm">
+            <strong>{counts.suggestShown} shown product(s) are marked &quot;suggest hiding&quot;</strong> (cannabis-associated
+            branding or unverified source). They stay visible by your choice; hiding them is the safer option.{' '}
+            <button className="underline font-semibold" onClick={() => setStatus('suggest')}>Show me the list</button>
+          </p>
+        </div>
+      )}
+
       <div className="flex flex-wrap gap-3 items-center">
         <div className="relative flex-1 min-w-[220px]">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
@@ -200,9 +213,10 @@ export default function CatalogVisibilityClient() {
             <option key={slug} value={slug}>{name}</option>
           ))}
         </select>
-        <select className={input} value={status} onChange={(e) => setStatus(e.target.value as '' | Status)} aria-label="Status">
+        <select className={input} value={status} onChange={(e) => setStatus(e.target.value as '' | Status | 'suggest')} aria-label="Status">
           <option value="">Any status</option>
           <option value="action">Action needed</option>
+          <option value="suggest">Warning: suggest hiding</option>
           <option value="warning">Warning</option>
           <option value="ok">OK</option>
         </select>
@@ -279,6 +293,11 @@ export default function CatalogVisibilityClient() {
                       {r.status === 'ok' ? <CheckCircle2 className="h-3 w-3" /> : <AlertTriangle className="h-3 w-3" />}
                       {STATUS_LABEL[r.status]}
                     </span>
+                    {r.suggestHide && (
+                      <span className="ml-1 inline-flex rounded border border-yellow-400 px-2 py-0.5 text-xs font-semibold text-yellow-800 dark:text-yellow-300">
+                        Suggest hiding
+                      </span>
+                    )}
                     {r.reasons.map((reason, i) => (
                       <p key={i} className="mt-1 text-xs text-gray-600 dark:text-gray-400">{reason}</p>
                     ))}

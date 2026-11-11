@@ -124,6 +124,7 @@ export interface CatalogVisibilityRow {
   status: ComplianceInfo['status'];
   reasons: string[];
   defaultHidden: boolean;
+  suggestHide: boolean;
   override: VisibilityOverride | null;
   hidden: boolean;
 }
@@ -143,6 +144,7 @@ export async function getCatalogVisibilityRows(): Promise<{ rows: CatalogVisibil
       status: info.status,
       reasons: info.reasons,
       defaultHidden: info.defaultHidden,
+      suggestHide: info.suggestHide,
       override: stored.overrides[p.slug] ?? null,
       hidden: resolveHidden(p, stored.overrides, info),
     };

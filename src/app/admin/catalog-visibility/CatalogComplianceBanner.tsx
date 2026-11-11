@@ -7,6 +7,7 @@ import { AlertTriangle, ShieldAlert } from 'lucide-react';
 interface Row {
   status: 'ok' | 'warning' | 'action';
   hidden: boolean;
+  suggestHide?: boolean;
 }
 
 /** Summary of catalog compliance status with a link to the visibility page (full admins only). */
@@ -25,6 +26,7 @@ export default function CatalogComplianceBanner() {
   const actionShown = rows.filter((r) => r.status === 'action' && !r.hidden).length;
   const warning = rows.filter((r) => r.status === 'warning').length;
   const hidden = rows.filter((r) => r.hidden).length;
+  const suggestShown = rows.filter((r) => r.suggestHide && !r.hidden).length;
   if (!action && !warning) return null;
 
   const urgent = actionShown > 0;
@@ -42,6 +44,14 @@ export default function CatalogComplianceBanner() {
         <strong>Catalog compliance:</strong> {action} product(s) need action
         {urgent ? ` and ${actionShown} of them are shown on the website` : ' (hidden from the website)'}, {warning} have a warning,
         {` ${hidden}`} hidden in total.
+        {suggestShown > 0 && (
+          <>
+            {' '}
+            <strong>
+              Warning: {suggestShown} shown product(s) have cannabis-associated branding or an unverified source; suggest hiding.
+            </strong>
+          </>
+        )}
       </p>
       <Link href="/admin/catalog-visibility" className="text-sm font-bold uppercase tracking-wide underline whitespace-nowrap">
         Review products

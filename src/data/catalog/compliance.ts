@@ -16,18 +16,25 @@ export interface ComplianceInfo {
   reasons: string[];
   /** Static default before any admin override. */
   defaultHidden: boolean;
+  /** Shown by default, but the review suggests hiding it (borderline branding/sourcing). */
+  suggestHide: boolean;
 }
 
 interface Rule {
   /** 'action' rules hide the product by default. */
   status: 'warning' | 'action';
   reason: string;
+  /** For 'warning' rules: stays visible, but admins are told to consider hiding it. */
+  suggestHide?: boolean;
   match: (p: CatalogProduct) => boolean;
 }
 
 const inCat = (...slugs: string[]) => (p: CatalogProduct) => slugs.includes(p.categorySlug);
 const brandIn = (cat: string, ...brands: string[]) => (p: CatalogProduct) =>
   p.categorySlug === cat && brands.includes(p.brandSlug);
+
+const CANNABIS_BRANDING =
+  'The brand name, logo or co-branding (for example Cookies, a leaf logo, High Times, MJ, Hemper, Blazy, Dabber) is associated with cannabis. Under Texas Health & Safety Code 481.183, how items are described and displayed can be used as evidence of intended drug use. Showing it is your choice; hiding it is the safer option.';
 
 const RULES: Rule[] = [
   {
@@ -42,11 +49,21 @@ const RULES: Rule[] = [
     reason:
       'Refillable e-cigarette device made in China (Shenzhen) with no FDA marketing authorization. Empty hardware may fall outside SB 2024, but federal law treats unauthorized ENDS as illegal to sell. Keep hidden unless a lawyer approves.',
   },
+  // Borderline items: shown (owner's choice), but flagged "suggest hiding".
   {
-    status: 'action',
-    match: (p) => /high times/i.test(p.name),
+    status: 'warning',
+    suggestHide: true,
+    match: (p) =>
+      ['cookies', 'aleaf', 'mj-arsenal', 'hemper', 'blazy-susan', 'dr-dabber'].includes(p.brandSlug) ||
+      /high times/i.test(p.name),
+    reason: `Warning: cannabis-associated branding, suggest hiding. ${CANNABIS_BRANDING}`,
+  },
+  {
+    status: 'warning',
+    suggestHide: true,
+    match: (p) => p.brandSlug === 'cali-cloud',
     reason:
-      'Co-branded with High Times, a cannabis publication. Cannabis branding on an accessory can be used as evidence of intended drug use (Texas Health & Safety Code 481.183). Hidden to be safe.',
+      'Warning: brand source not verified, suggest hiding. Product details come from a reseller listing ("Cloud Cali Inc"), not an official brand site; confirm the maker and country of origin before showing.',
   },
   {
     status: 'warning',
@@ -78,6 +95,7 @@ export function getComplianceInfo(p: CatalogProduct): ComplianceInfo {
   const reasons: string[] = [];
   let action = false;
   let warning = false;
+  let suggestHide = false;
   if (p.hidden) {
     action = true;
     reasons.push(p.hiddenReason || 'Hidden by default.');
@@ -87,6 +105,12 @@ export function getComplianceInfo(p: CatalogProduct): ComplianceInfo {
     reasons.push(r.reason);
     if (r.status === 'action') action = true;
     else warning = true;
+    if (r.suggestHide) suggestHide = true;
   }
-  return { status: action ? 'action' : warning ? 'warning' : 'ok', reasons, defaultHidden: action };
+  return {
+    status: action ? 'action' : warning ? 'warning' : 'ok',
+    reasons,
+    defaultHidden: action,
+    suggestHide: !action && suggestHide,
+  };
 }
