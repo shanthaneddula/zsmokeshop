@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Pause, Play } from "lucide-react";
 import { useBanner } from "@/contexts/BannerContext";
 import { useBusinessSettings } from "@/hooks/useBusinessSettings";
 import { getStoreStatus, type StoreStatus } from "@/lib/store-hours";
@@ -18,6 +19,28 @@ export default function HeroSection() {
   // Computed on the client only (in store time, America/Chicago) to avoid hydration mismatches.
   const [storeStatus, setStoreStatus] = useState<StoreStatus | null>(null);
 
+  // Background video: pausable (WCAG 2.2.2) and paused by default for reduced-motion users.
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoPaused, setVideoPaused] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) {
+      videoRef.current?.pause();
+      setVideoPaused(true);
+    }
+  }, []);
+  const toggleVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play().catch(() => {});
+      setVideoPaused(false);
+    } else {
+      v.pause();
+      setVideoPaused(true);
+    }
+  };
+
   useEffect(() => {
     if (loading) return;
     const update = () => setStoreStatus(primaryHours ? getStoreStatus(primaryHours) : null);
@@ -31,6 +54,9 @@ export default function HeroSection() {
       {/* Video Background */}
       <div className="absolute inset-0 z-0">
         <video
+          ref={videoRef}
+          aria-hidden="true"
+          tabIndex={-1}
           autoPlay
           loop
           muted
@@ -76,7 +102,7 @@ export default function HeroSection() {
 
             {/* Description */}
             <p className="text-base md:text-lg lg:text-xl text-gray-100 leading-relaxed max-w-2xl lg:max-w-3xl drop-shadow-lg px-2">
-              Your trusted destination for quality smoking accessories, vapes, and CBD products.
+              Your trusted Austin destination for quality glass, hookah, rolling supplies and smoke shop accessories. 21+ only.
             </p>
 
             {/* CTA Buttons - Enhanced hierarchy */}
@@ -85,7 +111,7 @@ export default function HeroSection() {
                 href="/shop"
                 className="inline-flex items-center justify-center bg-white text-black px-8 md:px-10 py-4 md:py-5 text-sm md:text-base font-black hover:bg-gray-100 transition-all duration-300 uppercase tracking-wider shadow-2xl hover:shadow-3xl transform hover:scale-105"
               >
-                Shop Now
+                Browse Catalog
               </Link>
               <Link
                 href="/locations"
@@ -115,6 +141,17 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Pause/play control for the background video */}
+      <button
+        type="button"
+        onClick={toggleVideo}
+        aria-label={videoPaused ? 'Play background video' : 'Pause background video'}
+        aria-pressed={videoPaused}
+        className="absolute right-3 bottom-3 sm:right-6 sm:bottom-6 z-20 flex h-10 w-10 items-center justify-center border border-white/70 bg-black/60 text-white hover:bg-black focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+      >
+        {videoPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+      </button>
+
       {/* Enhanced Scroll Indicator - Banner-aware positioning */}
       <motion.div 
         className={`absolute left-0 right-0 z-10 flex justify-center ${
@@ -123,7 +160,7 @@ export default function HeroSection() {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="flex flex-col items-center gap-1 sm:gap-2 md:gap-3 text-white/80 hover:text-white transition-colors cursor-pointer">
+        <div aria-hidden="true" className="flex flex-col items-center gap-1 sm:gap-2 md:gap-3 text-white/80 hover:text-white transition-colors cursor-pointer motion-reduce:hidden">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-widest drop-shadow-lg">Scroll Down</span>
           <div className="w-0.5 h-6 sm:h-8 md:h-12 bg-white/70 shadow-xl"></div>
           <motion.div 

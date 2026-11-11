@@ -92,7 +92,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Store Info and Newsletter in Two Columns */}
+          {/* Store Info and 21+ notice in Two Columns */}
           <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
             {/* Store Info */}
             <div className="text-center md:text-left">
@@ -119,27 +119,16 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Newsletter */}
+            {/* Age & sales notice (newsletter removed: no marketing sign-ups without a consent flow) */}
             <div className="text-center md:text-left">
-              <h4 className="text-base font-bold text-white uppercase tracking-wide mb-4">Stay Updated</h4>
-              <p className="mb-4 text-sm font-light text-gray-300 leading-relaxed">
-                Get exclusive deals and product updates
+              <h4 className="text-base font-bold text-white uppercase tracking-wide mb-4">21+ Only</h4>
+              <p className="text-sm font-light text-gray-300 leading-relaxed">
+                Every product we carry is for adults 21 and older. A valid government-issued photo ID is required for
+                every purchase.
               </p>
-              <form className="space-y-4">
-                <div className="flex border border-white/30 focus-within:border-white max-w-sm mx-auto md:mx-0">
-                  <input
-                    type="email"
-                    placeholder="Enter email"
-                    className="flex-1 bg-transparent px-4 py-3 text-white placeholder-gray-400 focus:outline-none text-sm font-light"
-                  />
-                  <button 
-                    type="submit" 
-                    className="bg-white text-gray-900 px-4 py-3 font-bold hover:bg-gray-100 transition-colors uppercase tracking-wide text-xs"
-                  >
-                    Subscribe
-                  </button>
-                </div>
-              </form>
+              <p className="mt-3 text-sm font-light text-gray-300 leading-relaxed">
+                We don&apos;t sell, ship or deliver online. This website is a catalog only; all sales happen in store.
+              </p>
             </div>
           </div>
         </div>
@@ -149,12 +138,12 @@ export default function Footer() {
       <div className="border-t border-white/10 bg-black/30">
         <div className="container-wide flex flex-col items-center justify-between space-y-3 py-4 text-center text-xs text-gray-400 md:flex-row md:space-y-0 md:text-left">
           <div className="font-light">
-            © {currentYear} Z SMOKE SHOP. All rights reserved.
+            © {currentYear} Z SMOKE SHOP. All rights reserved. <span className="font-bold text-gray-300">21+ only.</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link href="/privacy" className="hover:text-white transition-colors font-light uppercase tracking-wide">Privacy</Link>
             <Link href="/terms" className="hover:text-white transition-colors font-light uppercase tracking-wide">Terms</Link>
-            <Link href="/age-verification" className="hover:text-white transition-colors font-light uppercase tracking-wide">Age Verification</Link>
+            <a href="/sms-terms.html" className="hover:text-white transition-colors font-light uppercase tracking-wide">SMS Terms</a>
           </div>
         </div>
       </div>
