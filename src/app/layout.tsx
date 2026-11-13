@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
@@ -7,6 +8,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import AgeVerification from "@/components/layout/age-verification";
 import TawkToChat from "@/components/chat/TawkToChat";
 import ConditionalLayout from "@/components/layout/conditional-layout";
+import { getSiteUrl } from "@/lib/site-url";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,10 +25,10 @@ export const viewport: Viewport = {
 
 // SEO-friendly metadata
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NODE_ENV === 'production' 
-    ? 'https://zsmokeshop.com' 
-    : 'http://localhost:3000'
-  ),
+  metadataBase: new URL(getSiteUrl()),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Z Smoke Shop | Premium Smoke Shop in Austin, TX",
     template: "%s | Z Smoke Shop",
@@ -58,6 +60,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <body className="min-h-screen bg-gray-50 font-sans antialiased dark:bg-gray-900">
+        <Script
+          id="age-verified-check"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("ageVerified")==="true")document.documentElement.classList.add("age-verified")}catch(e){}`,
+          }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

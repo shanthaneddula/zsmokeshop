@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
 import { AdminProduct } from '@/types';
 import { formatPrice } from './product-utils';
+import { getSiteUrl } from './site-url';
 
 const SITE_NAME = 'Z Smoke Shop';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://zsmokeshop.com';
+const SITE_URL = getSiteUrl();
 const BUSINESS_NAME = 'Z Smoke Shop - Austin, TX';
 const LOCATION = 'Austin, Texas';
 

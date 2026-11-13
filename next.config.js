@@ -19,8 +19,25 @@ const nextConfig = {
   },
 
   // No online sales: send any cart/checkout URL to the catalog.
+  // Also pin the apex host to www with a permanent redirect (308). A temporary
+  // 307 from the platform splits SEO signals across two origins.
   async redirects() {
+    const apexToWww = [
+      {
+        source: '/',
+        has: [{ type: 'host', value: 'zsmokeshop.com' }],
+        destination: 'https://www.zsmokeshop.com/',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'zsmokeshop.com' }],
+        destination: 'https://www.zsmokeshop.com/:path*',
+        permanent: true,
+      },
+    ];
     return [
+      ...apexToWww,
       { source: '/cart', destination: '/shop', permanent: false },
       { source: '/cart/:path*', destination: '/shop', permanent: false },
       { source: '/checkout', destination: '/shop', permanent: false },
@@ -96,7 +113,8 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },    ],
-    formats: ['image/webp'],
+    formats: ['image/webp', 'image/avif'],
+    qualities: [60, 70, 75, 80, 85, 90, 95],
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; img-src 'self' data: https:; sandbox;",

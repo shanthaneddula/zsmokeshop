@@ -51,46 +51,49 @@ export default function StorePhotosGallery() {
     fetchStorePhotos();
   }, []);
 
+  const getScrollAmount = () => {
+    const el = carouselRef.current;
+    if (!el) return 316;
+    const card = el.querySelector<HTMLElement>(':scope > *');
+    const styles = window.getComputedStyle(el);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap || '16') || 16;
+    return (card?.offsetWidth || 300) + gap;
+  };
+
   // Scroll carousel left with circular effect
   const scrollLeft = useCallback(() => {
     if (carouselRef.current && storePhotos.length > 0) {
-      const cardWidth = 300;
-      const cardGap = 16;
-      const scrollAmount = cardWidth + cardGap;
-      
+      const scrollAmount = getScrollAmount();
       const isAtStart = carouselRef.current.scrollLeft <= 10;
-      
+
       if (isAtStart) {
-        const totalWidth = storePhotos.length * scrollAmount;
-        const maxScrollPosition = totalWidth - carouselRef.current.clientWidth;
+        const maxScrollPosition = carouselRef.current.scrollWidth - carouselRef.current.clientWidth;
         carouselRef.current.scrollTo({ left: maxScrollPosition, behavior: 'smooth' });
-        setActiveIndex(Math.max(0, storePhotos.length - 3));
+        setActiveIndex(Math.max(0, storePhotos.length - 1));
       } else {
         carouselRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        setActiveIndex(Math.max(0, activeIndex - 1));
+        setActiveIndex((current) => Math.max(0, current - 1));
       }
     }
-  }, [activeIndex, storePhotos.length]);
+  }, [storePhotos.length]);
 
   // Scroll carousel right with circular effect
   const scrollRight = useCallback(() => {
     if (carouselRef.current && storePhotos.length > 0) {
-      const cardWidth = 300;
-      const cardGap = 16;
-      const scrollAmount = cardWidth + cardGap;
-      const totalWidth = storePhotos.length * scrollAmount;
-      
-      const isAtEnd = carouselRef.current.scrollLeft >= totalWidth - carouselRef.current.clientWidth - cardGap;
-      
+      const scrollAmount = getScrollAmount();
+      const isAtEnd =
+        carouselRef.current.scrollLeft >=
+        carouselRef.current.scrollWidth - carouselRef.current.clientWidth - 10;
+
       if (isAtEnd) {
         carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
         setActiveIndex(0);
       } else {
         carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        setActiveIndex(Math.min(storePhotos.length - 3, activeIndex + 1));
+        setActiveIndex((current) => Math.min(storePhotos.length - 1, current + 1));
       }
     }
-  }, [activeIndex, storePhotos.length]);
+  }, [storePhotos.length]);
 
   // Auto-scroll effect
   useEffect(() => {
@@ -123,6 +126,24 @@ export default function StorePhotosGallery() {
       }
     };
   }, []);
+
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el || storePhotos.length === 0) return;
+    const onScroll = () => {
+      const styles = window.getComputedStyle(el);
+      const gap = Number.parseFloat(styles.columnGap || styles.gap || '16') || 16;
+      const card = el.querySelector<HTMLElement>(':scope > *');
+      const amount = (card?.offsetWidth || 300) + gap;
+      const index = Math.min(
+        storePhotos.length - 1,
+        Math.max(0, Math.round(el.scrollLeft / amount))
+      );
+      setActiveIndex(index);
+    };
+    el.addEventListener('scroll', onScroll, { passive: true });
+    return () => el.removeEventListener('scroll', onScroll);
+  }, [storePhotos.length]);
 
   // Don't render section if no photos and not loading
   if (!isLoading && storePhotos.length === 0 && !error) {
@@ -167,6 +188,7 @@ export default function StorePhotosGallery() {
             {/* Desktop Navigation Arrows */}
             <div className="hidden md:block">
               <button
+                type="button"
                 onClick={scrollLeft}
                 className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-yellow-500 hover:text-white dark:hover:bg-yellow-500 transition-all duration-300 -translate-x-4"
                 aria-label="Previous photos"
@@ -174,6 +196,7 @@ export default function StorePhotosGallery() {
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
+                type="button"
                 onClick={scrollRight}
                 className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-yellow-500 hover:text-white dark:hover:bg-yellow-500 transition-all duration-300 translate-x-4"
                 aria-label="Next photos"
@@ -182,26 +205,30 @@ export default function StorePhotosGallery() {
               </button>
             </div>
 
-            {/* Desktop Carousel */}
+            {/* Single carousel for all viewports so each photo is requested once,
+                with sizes matching the actual 85vw / 300px tiles. */}
             <div
               ref={carouselRef}
-              className="hidden md:flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth px-12"
+              className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory md:snap-none md:px-12"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {storePhotos.map((photo, index) => (
                 <motion.div
                   key={photo.id}
-                  className="flex-shrink-0 w-[300px]"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5, delay: Math.min(index * 0.1, 0.6) }}
+                  className="flex-shrink-0 w-[85vw] snap-center md:w-[300px] md:snap-align-none"
+                  initial={false}
+                  animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                 >
-                  <div className="group relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 h-[400px]">
+                  <div className="group relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 h-[350px] md:h-[400px]">
                     <div className="relative w-full h-full">
                       <OptimizedImage
                         src={photo.url}
                         alt={photo.title || `Store photo ${index + 1}`}
                         context="gallery"
+                        sizes="(max-width: 767px) 85vw, 300px"
+                        quality={75}
+                        priority={false}
+                        loading="lazy"
                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                       />
                       {photo.title && (
@@ -218,47 +245,16 @@ export default function StorePhotosGallery() {
               ))}
             </div>
 
-            {/* Mobile Carousel */}
-            <div className="md:hidden">
-              <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
-                {storePhotos.map((photo, index) => (
-                  <div
-                    key={photo.id}
-                    className="flex-shrink-0 w-[85vw] snap-center"
-                  >
-                    <div className="group relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md h-[350px]">
-                      <div className="relative w-full h-full">
-                        <OptimizedImage
-                          src={photo.url}
-                          alt={photo.title || `Store photo ${index + 1}`}
-                          context="gallery"
-                          className="object-cover w-full h-full"
-                        />
-                        {photo.title && (
-                          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                            <h3 className="text-white font-bold text-lg">{photo.title}</h3>
-                            {photo.description && (
-                              <p className="text-white/80 text-sm mt-1">{photo.description}</p>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Mobile Dots Indicator */}
-              <div className="flex justify-center gap-2 mt-6">
-                {storePhotos.map((_, index) => (
-                  <div
-                    key={index}
-                    className={`h-2 rounded-full transition-all ${
-                      index === activeIndex ? 'w-8 bg-yellow-500' : 'w-2 bg-gray-300 dark:bg-gray-600'
-                    }`}
-                  />
-                ))}
-              </div>
+            {/* Mobile Dots Indicator */}
+            <div className="flex md:hidden justify-center gap-2 mt-6">
+              {storePhotos.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-2 rounded-full transition-all ${
+                    index === activeIndex ? 'w-8 bg-yellow-500' : 'w-2 bg-gray-300 dark:bg-gray-600'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         )}

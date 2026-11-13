@@ -122,10 +122,17 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
               </div>
               <div className="flex items-center gap-2 ml-4">
                 <button
-                  onClick={() => setIsWishlisted(!isWishlisted)}
-                  className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsWishlisted(!isWishlisted);
+                  }}
+                  aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+                  aria-pressed={isWishlisted}
+                  className="p-2 text-gray-400 hover:text-red-500 transition-colors"
                 >
-                  <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current text-red-500' : ''}`} />
+                  <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current text-red-500' : ''}`} aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -199,16 +206,26 @@ export default function ProductCard({ product, viewMode = 'grid' }: ProductCardP
         
         {/* Wishlist Button */}
         <button
-          onClick={() => setIsWishlisted(!isWishlisted)}
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsWishlisted(!isWishlisted);
+          }}
+          aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+          aria-pressed={isWishlisted}
           className="absolute top-2 right-2 z-10 p-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
         >
-          <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current text-red-500' : ''}`} />
+          <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current text-red-500' : ''}`} aria-hidden="true" />
         </button>
 
         {/* Quick View Button */}
         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-          <button className="px-4 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-            <Eye className="h-4 w-4 inline mr-2" />
+          <button
+            type="button"
+            className="px-4 py-2 bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0"
+          >
+            <Eye className="h-4 w-4 inline mr-2" aria-hidden="true" />
             Quick View
           </button>
         </div>

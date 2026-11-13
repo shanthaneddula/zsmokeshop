@@ -341,3 +341,8 @@ html {
     right: 15px !important;
   }
 }
+/* Hide the age gate before first paint when this session is already verified.
+   Paired with the beforeInteractive script in src/app/layout.tsx. */
+html.age-verified #age-verification-root {
+  display: none !important;
+}

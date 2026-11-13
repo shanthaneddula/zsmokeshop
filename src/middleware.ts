@@ -4,6 +4,16 @@ import type { NextRequest } from 'next/server';
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Permanent apex → www so crawlers don't treat zsmokeshop.com as a separate origin.
+  const host = request.headers.get('host')?.split(':')[0];
+  if (host === 'zsmokeshop.com') {
+    const url = request.nextUrl.clone();
+    url.hostname = 'www.zsmokeshop.com';
+    url.protocol = 'https:';
+    url.port = '';
+    return NextResponse.redirect(url, 308);
+  }
+
   // Check maintenance mode (except for admin, login, maintenance pages, and API routes).
   // /api/* is excluded so /api/public/maintenance-status stays reachable from this middleware.
   if (!pathname.startsWith('/admin') &&

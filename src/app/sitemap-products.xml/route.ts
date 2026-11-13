@@ -4,6 +4,7 @@ import { isRestrictedProduct } from '@/lib/restricted-content'
 import { searchCatalog } from '@/data/catalog'
 import { getHiddenCatalogSlugs } from '@/lib/catalog-visibility'
 import * as ProductStorage from '@/lib/product-storage-service'
+import { PRODUCTION_SITE_URL } from '@/lib/site-url'
 
 function staticXml(urls: string[]) {
   const now = new Date().toISOString()
@@ -17,7 +18,7 @@ export async function GET() {
   // Static catalog: list its pages instead of the Redis ones (Redis code below is unchanged).
   if (USE_STATIC_CATALOG) return staticXml(searchCatalog('', await getHiddenCatalogSlugs()).map(p => `https://www.zsmokeshop.com/products/${p.slug}`))
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zsmokeshop.com'
+  const baseUrl = PRODUCTION_SITE_URL
   
   try {
     const products = await ProductStorage.readProducts()

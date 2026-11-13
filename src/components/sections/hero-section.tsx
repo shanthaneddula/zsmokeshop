@@ -19,24 +19,56 @@ export default function HeroSection() {
   // Computed on the client only (in store time, America/Chicago) to avoid hydration mismatches.
   const [storeStatus, setStoreStatus] = useState<StoreStatus | null>(null);
 
-  // Background video: pausable (WCAG 2.2.2) and paused by default for reduced-motion users.
+  // Background video: not downloaded until age is verified, and not auto-loaded
+  // on mobile / reduced-motion / save-data (the 1.4MB file dominated PageSpeed bytes).
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoPaused, setVideoPaused] = useState(false);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [videoPaused, setVideoPaused] = useState(true);
+
+  const shouldAutoLoadVideo = () => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mobile = window.matchMedia('(max-width: 767px)').matches;
+    const saveData = Boolean(
+      (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
+    );
+    return !reduced && !mobile && !saveData;
+  };
+
+  const loadAndPlayVideo = () => {
+    setVideoSrc('/videos/smoke-background.mp4');
+    setVideoPaused(false);
+  };
+
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mq.matches) {
-      videoRef.current?.pause();
-      setVideoPaused(true);
-    }
+    const maybeLoad = () => {
+      if (sessionStorage.getItem('ageVerified') !== 'true') return;
+      if (!shouldAutoLoadVideo()) return;
+      loadAndPlayVideo();
+    };
+
+    maybeLoad();
+    window.addEventListener('ageVerified', maybeLoad);
+    return () => window.removeEventListener('ageVerified', maybeLoad);
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !videoSrc || videoPaused) return;
+    video.play().catch(() => setVideoPaused(true));
+  }, [videoSrc, videoPaused]);
+
   const toggleVideo = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.paused) {
-      v.play().catch(() => {});
+    const video = videoRef.current;
+    if (!videoSrc) {
+      loadAndPlayVideo();
+      return;
+    }
+    if (!video) return;
+    if (video.paused) {
+      video.play().catch(() => {});
       setVideoPaused(false);
     } else {
-      v.pause();
+      video.pause();
       setVideoPaused(true);
     }
   };
@@ -51,33 +83,32 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-[85vh] max-h-screen bg-black flex items-center overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          ref={videoRef}
-          aria-hidden="true"
-          tabIndex={-1}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover"
-          onError={(e) => {
-            console.log('Video failed to load:', e);
-            e.currentTarget.style.display = 'none';
-          }}
-        >
-          <source src="/videos/smoke-background.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
+      {/* Fallback background is visible immediately so first paint does not wait on the video */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black" />
+
+      {/* Video Background — source is attached only after the age gate (and not on mobile by default) */}
+      {videoSrc && (
+        <div className="absolute inset-0 z-0">
+          <video
+            ref={videoRef}
+            aria-hidden="true"
+            tabIndex={-1}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            src={videoSrc}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        </div>
+      )}
 
       {/* Enhanced overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/50 z-5"></div>
-
-      {/* Fallback Background (if video doesn't load) */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-0"></div>
+      <div className="absolute inset-0 bg-black/50 z-[1]"></div>
 
       {/* Main Content - Account for banner and header spacing */}
       <div className="container-wide relative z-10 w-full">
@@ -87,9 +118,8 @@ export default function HeroSection() {
           {/* Centered Content */}
           <motion.div 
             className="space-y-6 md:space-y-8 text-center px-4 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
           >
 
             {/* Main Headline */}
@@ -145,11 +175,11 @@ export default function HeroSection() {
       <button
         type="button"
         onClick={toggleVideo}
-        aria-label={videoPaused ? 'Play background video' : 'Pause background video'}
-        aria-pressed={videoPaused}
+        aria-label={videoSrc && !videoPaused ? 'Pause background video' : 'Play background video'}
+        aria-pressed={Boolean(videoSrc) && !videoPaused}
         className="absolute right-3 bottom-3 sm:right-6 sm:bottom-6 z-20 flex h-10 w-10 items-center justify-center border border-white/70 bg-black/60 text-white hover:bg-black focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
       >
-        {videoPaused ? <Play className="h-4 w-4" aria-hidden="true" /> : <Pause className="h-4 w-4" aria-hidden="true" />}
+        {videoSrc && !videoPaused ? <Pause className="h-4 w-4" aria-hidden="true" /> : <Play className="h-4 w-4" aria-hidden="true" />}
       </button>
 
       {/* Enhanced Scroll Indicator - Banner-aware positioning */}

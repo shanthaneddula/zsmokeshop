@@ -20,5 +20,29 @@
       "path": "/api/cron/expire-inbox",
       "schedule": "0 10 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "zsmokeshop.com"
+        }
+      ],
+      "destination": "https://www.zsmokeshop.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "zsmokeshop.com"
+        }
+      ],
+      "destination": "https://www.zsmokeshop.com/:path*",
+      "permanent": true
+    }
   ]
 }

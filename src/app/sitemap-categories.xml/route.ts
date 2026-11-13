@@ -4,6 +4,7 @@ import { isRestrictedCategorySlug } from '@/lib/restricted-content'
 import { filterVisibleCategories } from '@/data/catalog'
 import { getHiddenCatalogSlugs } from '@/lib/catalog-visibility'
 import * as CategoryStorage from '@/lib/category-storage-service'
+import { PRODUCTION_SITE_URL } from '@/lib/site-url'
 
 function staticXml(urls: string[]) {
   const now = new Date().toISOString()
@@ -17,7 +18,7 @@ export async function GET() {
   // Static catalog: list its pages instead of the Redis ones (Redis code below is unchanged).
   if (USE_STATIC_CATALOG) return staticXml(filterVisibleCategories(await getHiddenCatalogSlugs()).flatMap(c => [`https://www.zsmokeshop.com/shop?category=${c.slug}`, ...c.brands.map(b => `https://www.zsmokeshop.com/shop?category=${c.slug}&brand=${b.slug}`)]))
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zsmokeshop.com'
+  const baseUrl = PRODUCTION_SITE_URL
   
   try {
     const categories = await CategoryStorage.readCategories()
