@@ -2,6 +2,8 @@
 
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import { formatHoursForDisplay } from '@/lib/store-hours';
+import ContactForm from '@/components/inbox/ContactForm';
+import RequestProductBanner from '@/components/inbox/RequestProductBanner';
 
 export default function ContactPage() {
   const { getActiveLocations, getPrimaryPhone } = useBusinessSettings();
@@ -79,62 +81,8 @@ export default function ContactPage() {
               <h2 className="text-3xl font-black uppercase tracking-wide text-gray-900 dark:text-white mb-6">
                 SEND MESSAGE
               </h2>
-              <form className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-bold text-gray-900 dark:text-white uppercase tracking-wide mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:border-transparent resize-none"
-                    required
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-black dark:bg-white text-white dark:text-black px-8 py-4 font-bold uppercase tracking-wide border border-black dark:border-white hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white transition-colors duration-200"
-                >
-                  Send Message
-                </button>
-              </form>
+              <RequestProductBanner className="mb-6" />
+              <ContactForm />
             </div>
           </div>
         </div>
