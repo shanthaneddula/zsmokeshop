@@ -27,6 +27,12 @@ export interface UserPermissions {
   // Settings permissions
   viewSettings: boolean;
   manageSettings: boolean;
+
+  // Inbox and product requests (admin and orders-manager)
+  viewContactMessages: boolean;
+  manageContactMessages: boolean;
+  viewProductRequests: boolean;
+  manageProductRequests: boolean;
   
   // User management (admin only)
   manageUsers: boolean;
@@ -86,7 +92,7 @@ export interface ActivityLog {
   userId: string;
   username: string;
   action: string;
-  resource: 'product' | 'category' | 'order' | 'store-photo' | 'setting' | 'user';
+  resource: 'product' | 'category' | 'order' | 'store-photo' | 'setting' | 'user' | 'contact-message' | 'product-request';
   resourceId?: string;
   details: string;
   changes?: Record<string, { old: unknown; new: unknown }>;
@@ -109,6 +115,10 @@ export const DEFAULT_PERMISSIONS: Record<UserRole, UserPermissions> = {
     manageStorePhotos: true,
     viewSettings: true,
     manageSettings: true,
+    viewContactMessages: true,
+    manageContactMessages: true,
+    viewProductRequests: true,
+    manageProductRequests: true,
     manageUsers: true,
   },
   'orders-manager': {
@@ -124,6 +134,10 @@ export const DEFAULT_PERMISSIONS: Record<UserRole, UserPermissions> = {
     manageStorePhotos: false,
     viewSettings: false,
     manageSettings: false,
+    viewContactMessages: true,
+    manageContactMessages: true,
+    viewProductRequests: true,
+    manageProductRequests: true,
     manageUsers: false,
   },
   'inventory-manager': {
@@ -139,6 +153,10 @@ export const DEFAULT_PERMISSIONS: Record<UserRole, UserPermissions> = {
     manageStorePhotos: true,
     viewSettings: false,
     manageSettings: false,
+    viewContactMessages: false,
+    manageContactMessages: false,
+    viewProductRequests: false,
+    manageProductRequests: false,
     manageUsers: false,
   },
 };
