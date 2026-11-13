@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export const LEGAL_LAST_UPDATED = 'November 11, 2026';
+export const LEGAL_LAST_UPDATED = 'November 13, 2026';
 export const LEGAL_EMAIL = 'info@zsmokeshop.com';
 export const LEGAL_PHONE = '(512) 227-9820';
 export const LEGAL_ADDRESS = 'Z Smoke Shop, 719 W William Cannon Dr #105, Austin, TX 78745';

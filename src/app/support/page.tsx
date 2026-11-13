@@ -15,6 +15,7 @@ import {
 import Link from 'next/link';
 import { useBusinessSettings } from '@/hooks/useBusinessSettings';
 import { formatHoursForDisplay, hoursToLines } from '@/lib/store-hours';
+import RequestProductBanner from '@/components/inbox/RequestProductBanner';
 
 export default function SupportPage() {
   const { getPrimaryPhone, getActiveLocations } = useBusinessSettings();
@@ -63,7 +64,7 @@ export default function SupportPage() {
     },
     {
       question: 'Can I order online, or get delivery or shipping?',
-      answer: `No. We don't sell, ship or deliver online. This website is a catalog only, and every purchase is made in person at ${multipleLocations ? 'one of our Austin locations' : 'our Austin store'} with a valid ID showing you are 21 or older. Call us at ${businessPhone} to check what's in stock before you visit.`
+      answer: `No. We don't sell, ship or deliver online. This website is a catalog only, and every purchase is made in person at ${multipleLocations ? 'one of our Austin locations' : 'our Austin store'} with a valid ID showing you are 21 or older. Call us at ${businessPhone} to check what's in stock before you visit, or use the Request a Product page if you are looking for an item we do not currently carry.`
     },
     {
       question: 'What payment methods do you accept?',
@@ -162,6 +163,9 @@ export default function SupportPage() {
                 info@zsmokeshop.com
               </p>
             </motion.div>
+          </div>
+          <div className="mt-8 max-w-3xl mx-auto">
+            <RequestProductBanner />
           </div>
         </motion.div>
 

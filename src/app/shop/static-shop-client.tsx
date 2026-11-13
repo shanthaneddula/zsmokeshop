@@ -13,6 +13,7 @@ import { CategoryTopNotice } from '@/components/catalog/CategoryNotice';
 import Pagination from '@/components/ui/Pagination';
 import { filterVisibleCategories, searchCatalog, toShopProduct } from '@/data/catalog';
 import NicotineWarning, { isNicotineCategory } from '@/components/catalog/NicotineWarning';
+import RequestProductBanner from '@/components/inbox/RequestProductBanner';
 
 const ITEMS_PER_PAGE = 12;
 
@@ -231,6 +232,7 @@ export default function StaticShopClient({ hiddenSlugs = [] }: { hiddenSlugs?: s
       </section>
 
       <div className="container-wide py-8 md:py-12">
+        <RequestProductBanner className="mb-8" />
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
           <aside className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>

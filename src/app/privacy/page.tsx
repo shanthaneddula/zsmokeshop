@@ -26,9 +26,16 @@ export default function PrivacyPage() {
             current session (session storage). We do not receive or keep it.
           </li>
           <li>
-            <strong>Messages you send us.</strong> If you email, call, or use the website chat, we receive what you choose to
-            share, such as your name, phone number, email address and your message. The chat is provided by Tawk.to, which
-            processes chat messages for us.
+            <strong>Messages you send us.</strong> If you email, call, use the website contact form, or use the website chat,
+            we receive what you choose to share, such as your name, phone number, email address and your message. Contact form
+            messages are stored so we can answer you, and a copy may be emailed to us and (if you consented) a confirmation
+            may be emailed to you through Resend. The chat is provided by Tawk.to, which processes chat messages for us.
+          </li>
+          <li>
+            <strong>Product requests.</strong> If you use the Request a Product form, we receive the product details you
+            provide, optional photos, your name, and the email and/or phone number you choose to share, plus your contact
+            preference and consent choices. We use this only to try to source the item for in-store pickup and to follow up
+            with you. Photos are stored with Vercel Blob. We do not treat a request as an online order or sale.
           </li>
           <li>
             <strong>Past pickup orders.</strong> Before online ordering was turned off, customers who placed pickup orders gave
@@ -36,8 +43,10 @@ export default function PrivacyPage() {
             for business, tax and legal purposes.
           </li>
           <li>
-            <strong>Text messages.</strong> If you agreed to receive order text messages, we used your phone number only for
-            those messages. See our <a href="/sms-terms.html" className="underline">SMS Terms</a>.
+            <strong>Text messages.</strong> If you earlier agreed to receive order text messages, we used your phone number
+            only for those messages. If you request a product and agree to a manual text, staff may text you from the store
+            phone about that request only (these are not automated messages). See our{' '}
+            <a href="/sms-terms.html" className="underline">SMS Terms</a>.
           </li>
           <li>
             <strong>Technical data.</strong> Our hosting provider and services automatically process basic technical data
@@ -52,8 +61,9 @@ export default function PrivacyPage() {
 
       <LegalSection title="How we use information">
         <ul className="list-disc pl-5 space-y-2">
-          <li>To answer your questions and provide customer service.</li>
-          <li>To run, secure and improve the website.</li>
+          <li>To answer your questions and provide customer service, including contact form messages and product requests.</li>
+          <li>To try to source a requested item for in-store pickup and to notify you by the method you agreed to.</li>
+          <li>To run, secure and improve the website, including preventing spam and abuse of our forms.</li>
           <li>To keep records required by law and to protect our legal rights.</li>
         </ul>
       </LegalSection>
@@ -62,9 +72,11 @@ export default function PrivacyPage() {
         <p>
           <strong>We do not sell personal data, and we do not use it for targeted advertising or for profiling</strong> that
           produces legal or similarly significant effects. We share personal data only with service providers that process it
-          for us under contract: Vercel (website hosting), Redis Cloud (data storage), Tawk.to (live chat), Resend (email) and
-          Twilio (text messages), or when the law requires it. Phone numbers and text-message opt-in consent are never shared
-          with third parties for their marketing.
+          for us under contract: Vercel (website hosting and Vercel Blob for photos you upload), Redis Cloud (data storage),
+          Tawk.to (live chat), Resend (email) and Twilio (only for any earlier automated order text program), or when the law
+          requires it. Phone numbers and text-message opt-in consent are never shared with third parties for their marketing.
+          Product-request follow-up texts, if you agree to them, are sent manually from our store phone and are not sent
+          through an automated texting service.
         </p>
       </LegalSection>
 
@@ -96,9 +108,10 @@ export default function PrivacyPage() {
 
       <LegalSection title="Retention and security">
         <p>
-          We keep personal data only as long as needed for the purposes above or as required by law, then delete it. We use
-          reasonable administrative, technical and physical safeguards to protect it. No method of transmission or storage is
-          completely secure.
+          We keep contact form messages and product requests (including any photos) while we are handling them, and for 90
+          days after they are closed, then we delete the record and any associated photos. We may keep information longer if
+          the law requires it or if we need it to protect our legal rights. We use reasonable administrative, technical and
+          physical safeguards to protect personal data. No method of transmission or storage is completely secure.
         </p>
       </LegalSection>
 

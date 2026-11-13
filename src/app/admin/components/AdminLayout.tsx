@@ -1,6 +1,7 @@
 'use client';
 
 import { isFullAdmin } from '@/lib/is-full-admin';
+import { userHasPermission } from '@/lib/user-permissions';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -16,7 +17,9 @@ import {
   Users,
   UserCircle,
   Clock,
-  ShieldCheck
+  ShieldCheck,
+  Mail,
+  ClipboardList
 } from 'lucide-react';
 import { User, UserPermissions } from '@/types/users';
 import { LucideIcon } from 'lucide-react';
@@ -52,6 +55,18 @@ const navigation: NavItem[] = [
     href: '/admin/orders',
     icon: ShoppingBag,
     requiredPermission: 'viewOrders',
+  },
+  {
+    name: 'Messages',
+    href: '/admin/messages',
+    icon: Mail,
+    requiredPermission: 'viewContactMessages',
+  },
+  {
+    name: 'Product Requests',
+    href: '/admin/product-requests',
+    icon: ClipboardList,
+    requiredPermission: 'viewProductRequests',
   },
   {
     name: 'Products',
@@ -149,11 +164,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     }
 
     // If current route requires a permission the user doesn't have, redirect
-    if (currentRoute.requiredPermission && 'permissions' in currentUser) {
-      if (!currentUser.permissions[currentRoute.requiredPermission]) {
-        router.push('/admin/my-dashboard');
-        return;
-      }
+    if (currentRoute.requiredPermission && !userHasPermission(currentUser, currentRoute.requiredPermission)) {
+      router.push('/admin/my-dashboard');
+      return;
     }
 
     // If user is on /admin (dashboard) and is not main admin, redirect
@@ -193,8 +206,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     if (item.adminOnly) return false;
 
     // Check required permission
-    if (item.requiredPermission && 'permissions' in currentUser) {
-      return currentUser.permissions[item.requiredPermission] === true;
+    if (item.requiredPermission) {
+      return userHasPermission(currentUser, item.requiredPermission);
     }
 
     return true;

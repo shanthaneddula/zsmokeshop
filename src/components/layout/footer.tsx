@@ -84,6 +84,12 @@ export default function Footer() {
                 Contact
               </Link>
               <Link 
+                href="/request-product" 
+                className="text-sm font-light text-gray-300 hover:text-white transition-colors uppercase tracking-wide"
+              >
+                Request a Product
+              </Link>
+              <Link 
                 href="/locations" 
                 className="text-sm font-light text-gray-300 hover:text-white transition-colors uppercase tracking-wide"
               >

@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Category, Product } from '@/types';
 import ProductCard from '@/components/product/ProductCard';
 import Pagination from '@/components/ui/Pagination';
+import RequestProductBanner from '@/components/inbox/RequestProductBanner';
 
 export default function ShopPageClient() {
   const searchParams = useSearchParams();
@@ -313,6 +314,7 @@ export default function ShopPageClient() {
       </section>
 
       <div className="container-wide py-8 md:py-12">
+        <RequestProductBanner className="mb-8" />
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters - Adidas Style */}
           <aside className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>

@@ -170,7 +170,7 @@ export function UsersClient() {
       phone: user.phone || '',
       role: user.role,
     });
-    setPermissions(user.permissions);
+    setPermissions({ ...DEFAULT_PERMISSIONS[user.role], ...user.permissions });
     setShowEditModal(true);
   };
 
