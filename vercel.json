@@ -6,6 +6,19 @@
     "src/app/api/admin/upload/route.ts": {
       "maxDuration": 60,
       "memory": 1024
+    },
+    "src/app/api/product-requests/upload/route.ts": {
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "src/app/api/cron/expire-inbox/route.ts": {
+      "maxDuration": 60
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/expire-inbox",
+      "schedule": "0 10 * * *"
+    }
+  ]
 }
